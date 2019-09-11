@@ -29,6 +29,22 @@ ssh-keygen -t rsa -C "your_email@example.com"
 ** -C 设置注释文字，比如邮箱。 **
 ** -f 指定密钥文件存储文件名。 ** 
   * 在GitHub中设置SSH
+* 4、建立本地到上游（远端）仓的链接，建立链接后代码才能提交上去
+```
+git branch --set-upstream-to=origin
+```
+   * 当本地仓库与远程仓库没有相同的commit时，git不允许提交会出现`fatal: refusing to merge unrelated histories`错误，需要使用下面命令：
+```
+git pull origin master --allow-unrelated-histories
+```
+* 5、将本地仓库推送至远端
+```
+git push -u origin master 
+```
+
+
+
+
   
 
 
