@@ -16,3 +16,5 @@
 Master分支只进行合并提交文章，只合并EditBranch分支内容，不做任何修改
 
 EditBranch分支只对Gitbook进行配置，不做其他处理
+
+Edit分支进行文章编辑操作，与EditBranch通过命令行进行互相合并操作
