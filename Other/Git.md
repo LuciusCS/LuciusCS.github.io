@@ -6,11 +6,11 @@
 ```
    git remote add github git@github.com:Lucius/GitTest.git
 ```
-   * 查看本地仓库与远程仓库关联情况
+    查看本地仓库与远程仓库关联情况
 ```
 git remote -v
 ```
-   * 删除与远程仓库关联 
+    删除与远程仓库关联 
 ```
  git remote rm origin
 ```
@@ -20,8 +20,8 @@ git remote -v
 git config -global user.name ""
 git config -global user.email ""
 ```
-* 3、设置SSH Key
-  * 生成SSH Key
+* 3、设置SSH Key,
+    生成SSH Key
 ```
 ssh-keygen -t rsa -C "your_email@example.com"
 ```
@@ -29,14 +29,14 @@ ssh-keygen -t rsa -C "your_email@example.com"
 ** -C 设置注释文字，比如邮箱。 **
 ** -f 指定密钥文件存储文件名。 ** 
 ![](/assets/GitImg1.png)
-  * 在GitHub中设置SSH，即将.ssh.id_rsa.pub中的内容添加到Key中
+   在GitHub中设置SSH，即将.ssh.id_rsa.pub中的内容添加到Key中
   ![](/assets/GitImg2.png)
 * 4、建立本地到上游（远端）仓的链接，建立链接后代码才能提交上去
 ```
 git branch --set-upstream-to=origin
 ```
 ![](/assets/GitImg3.png)
-   * 当本地仓库与远程仓库没有相同的commit时，git不允许提交会出现`fatal: refusing to merge unrelated histories`错误，需要使用下面命令：
+    当本地仓库与远程仓库没有相同的commit时，git不允许提交会出现`fatal: refusing to merge unrelated histories`错误，需要使用下面命令：
 ```
 git pull origin master --allow-unrelated-histories
 ```
