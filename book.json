@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 
 {
   "title": "",
@@ -61,68 +61,4 @@
    
    }
 
-=======
-
-{
-  "title": "",
-  "author": "、",
-  "description": "Android开发全纪录",
-  "language": "zh-hans",
-    "plugins": [
-    "theme-comscore",
-	"prism",
-    "-highlight",
-    "copy-code-button",
-    "search-pro",
-    "-search",
-	"-lunr",
-    "expandable-chapters-small",
-    "splitter",
-    "-sharing",
-    "github-buttons",
-    "tbfed-pagefooter",
-	"anchor-navigation-ex",
-	"pageview-count",
-	"sidebar-style"
-	
-  ],
-   
-   "pluginsConfig": {
-     "prism": {
-       "css": [
-
-            "prismjs/themes/prism-okaidia.css"
-
-         ],
-       "lang": {
-        "shell": "bash"
-       }
-       },
-     "github-buttons": {
-      "buttons": [
-        {
-          "user": "LuciusCS",
-          "width": "160", 
-          "type": "follow", 
-          "count": true,
-          "size": "small"
-        }
-      ]
-    },
-    "tbfed-pagefooter": {
-      "copyright":"Copyright &copy LuciusCS 2019",
-      "modify_label": "文件修订时间：",
-      "modify_format": "YYYY-MM-DD HH:mm:ss"
-    },
-    "anchor-navigation-ex": {
-      "showLevel": false
-    },
-     "sidebar-style": {
-            "title": "Android开发",
-            "author": "蛰伏"
-        }
-   
-   }
-
->>>>>>> EditBranch
 }
