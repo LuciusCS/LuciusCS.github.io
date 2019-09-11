@@ -57,9 +57,30 @@ git branch --set-upstream-to=origin
 ```
 ![](/assets/GitImg6.png)
 
+* 2、拉取远程分支内容
+```
+git pull --allow-unrelated-histories
+```
+* 3、将本地分支推送至远程
+```
+git push origin EditBranch
+```
+![](/assets/GitImg7.png)
 
 
 ### 三、合并多次提交
 
+```
+git rebase -i HEAD~3
+```
 
+如果在合并的过程中出现冲突需要先解决冲突，再进行合并
+```
+git rebase --continue  
+```
+
+如果放弃本次合并，使用
+```
+git rebase --abort 
+```
 
