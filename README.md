@@ -1,8 +1,5 @@
 
-<<<<<<< HEAD
 
-=======
->>>>>>> master
 # My Awesome Book
 # Introduction
 
