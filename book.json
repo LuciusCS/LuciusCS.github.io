@@ -16,7 +16,10 @@
     "-sharing",
     "github-buttons",
     "tbfed-pagefooter",
-	"anchor-navigation-ex"
+	"anchor-navigation-ex",
+	"pageview-count",
+	"sidebar-style",
+	
   ],
    
    "pluginsConfig": {
@@ -46,7 +49,11 @@
     },
     "anchor-navigation-ex": {
       "showLevel": false
-    }
+    },
+     "sidebar-style": {
+            "title": "Android开发",
+            "author": "蛰伏"
+        }
    
    }
 
