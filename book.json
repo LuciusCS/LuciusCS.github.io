@@ -1,0 +1,19 @@
+{
+  "title": "",
+  "author": "、",
+  "description": "、里面包含了个人撰写的所有前端文章、",
+  "language": "zh-hans",
+    "plugins": [
+    "theme-comscore",
+    "-highlight",
+    "copy-code-button",
+    "search-pro",
+    "-search",
+    "expandable-chapters",
+    "splitter",
+    "-sharing",
+    "github-buttons",
+    "tbfed-pagefooter"
+  ]
+
+}
