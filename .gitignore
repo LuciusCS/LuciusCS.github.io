@@ -24,9 +24,6 @@ build/Release
 # see https://npmjs.org/doc/faq.html#Should-I-check-my-node_modules-folder-into-git
 <<<<<<< HEAD
 # node_modules
-=======
-node_modules
->>>>>>> 5d6a9fc... add config
 
 _book/
 book.pdf
