@@ -27,9 +27,9 @@ ssh-keygen -t rsa -C "your_email@example.com"
 ```
 ** -t 指定密钥类型，默认是 rsa ，可以省略。 **
 ** -C 设置注释文字，比如邮箱。 **
-** -f 指定密钥文件存储文件名。 **
-
-
+** -f 指定密钥文件存储文件名。 ** 
+  * 在GitHub中设置SSH
+  
 
 
 
