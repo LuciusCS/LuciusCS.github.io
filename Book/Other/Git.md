@@ -1,7 +1,4 @@
 <<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> EditBranch
 ## 常用Git操作
 
 ### 一、将本地已有仓库推送到远程仓库
@@ -88,8 +85,6 @@ git rebase --continue
 git rebase --abort 
 ```
 
-<<<<<<< HEAD
-=======
 =======
 ## 常用Git操作
 
@@ -178,4 +173,3 @@ git rebase --abort
 ```
 
 >>>>>>> b6aef2ad46c4b2e11e5d2168a9229bf0cee976ed
->>>>>>> EditBranch
