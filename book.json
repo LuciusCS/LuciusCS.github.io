@@ -2,7 +2,7 @@
 {
   "title": "",
   "author": "、",
-  "description": "Android开发全纪录",
+  "description": "Android开发",
   "language": "zh-hans",
     "plugins": [
     "theme-comscore",
@@ -57,5 +57,4 @@
         }
    
    }
-
 }
