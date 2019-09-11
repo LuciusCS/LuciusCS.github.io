@@ -11,6 +11,7 @@
     "search-pro",
     "-search",
 	"-lunr",
+    "expandable-chapters",
     "splitter",
     "-sharing",
     "github-buttons",
