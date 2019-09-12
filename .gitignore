@@ -2,7 +2,7 @@
 # Logs
 logs
 *.log
-*.gitattributes
+.gitattributes
 # Runtime data
 pids
 *.pid
