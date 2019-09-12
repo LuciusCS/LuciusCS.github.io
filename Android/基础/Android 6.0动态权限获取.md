@@ -65,7 +65,7 @@ Android动态权限的申请仅对下图中的9大权限组进行申请
 在进行连续多次申请时，在回调函数`onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,@NonNull int[] grantResults)`的`permissions`数组会返回长度为零的数组，因为在Activity的`requestPermissions()`方法源码中，mHasCurrentPermissionsRequest标记当前是否有正在请求的权限，方法是异步执行的，如果你在申请权限的时候连续多次执行此方法，会直接执行`onRequestPermissionsResult`方法，返回的permissions和grantResults都是长度为0的空数组。在返回结果处理时需要对数组长度进行判断；
 
 ```java
-
+    //Activity源码
     public final void requestPermissions(@NonNull String[] permissions, int requestCode) {
         //省略部分代码
         if (mHasCurrentPermissionsRequest) {
