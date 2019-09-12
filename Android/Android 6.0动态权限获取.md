@@ -9,3 +9,5 @@
 ```html
 <uses-feature android:name="android.hardware.camera" android:required="false" />
 ```
+当声明为`android:required="false"`时，用户即使没有该设备也可以进行安装，在进行权限申请时则需要`PackageManager.hasSystemFeature()`来确定该设备是否存在；当声明为`android:required="true"`时，需要手机上具有该设备，否则不能进行安装操作。
+
