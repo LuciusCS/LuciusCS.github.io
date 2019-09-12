@@ -47,7 +47,7 @@ private class DeviceReceiver extends BroadcastReceiver {
 }
 ```
 
-* 方法二：`BluetoothAdapter.startScan(ScanCallback callback)`
+* 方法二：`BluetoothAdapter.startScan(ScanCallback callback)`在`ScanCallback`的`onScanResult(int callbackType, ScanResult result)`方法中，通过`result.getDevice()`可获取扫描到的Ble设备
 * 方法三：`BluetoothAdapter.startLeScan(BluetoothAdapter.LeScanCallback callback)`
   该方法已经被舍弃
 
