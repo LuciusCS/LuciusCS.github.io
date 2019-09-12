@@ -83,4 +83,27 @@ git rebase --continue
 ```
 git rebase --abort 
 ```
+### 四、Git多用户进行管理
+
+需要为每一个仓库设置user、email
+
+* 第一步：取消git的global用户以及邮箱
+
+```
+git config --global --unset user.name
+git config --global --unset user.email
+
+```
+
+
+* 第二步：在不同的仓库中配置不同的user、email,然后就可以愉快地使用了,第一次为仓库添加user、email在push的时候需要输入密码进行验证。
+
+```
+git config  user.email "xxxx@xx.com"
+git config  user.name "xxxx"
+
+```
+
+
+
 
