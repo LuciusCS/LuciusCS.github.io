@@ -32,7 +32,6 @@ Android动态权限的申请仅对下图中的9大权限组进行申请
             if (i != PackageManager.PERMISSION_GRANTED) {
                 //如果没有被授予该权限，提示用户请求该权限
                 ActivityCompat.requestPermissions(this, permissions, 1);
-
             }else {
                 Toast.makeText(this,"权限已获取",Toast.LENGTH_LONG).show();
             }
