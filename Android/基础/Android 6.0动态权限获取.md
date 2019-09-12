@@ -16,8 +16,12 @@ Android动态权限的申请仅对下图中的9大权限组进行申请
 当声明为`android:required="false"`时，用户即使没有该设备也可以进行安装，在进行权限申请时则需要`PackageManager.hasSystemFeature()`来确定该设备是否存在；当声明为`android:required="true"`时，需要手机上具有该设备，否则不能进行安装操作。
 
 ### 二、连续多次申请权限出现问题
-在进行连续多次申请时，在回调函数`onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,@NonNull int[] grantResults)`
-Activity的`requestPermissions()`方法源码。
+在进行连续多次申请时，在回调函数`onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,@NonNull int[] grantResults)`的`permissions`数组会返回长度为零的数组，因为在Activity的`requestPermissions()`方法源码中，mHasCurrentPermissionsRequest标记当前是否有正在请求的权限，因为方法是异步执行的，如果你在申请权限的时候连续多次执行此方法，你会在方法第二次请求的时候他会直接执行onRequestPermissionsResult方法，返回的permissions和grantResults都是长度为0的空数组
+
+作者：小崔老大
+链接：https://juejin.im/post/5b7e274ae51d4538dd08ddec
+来源：掘金
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
 ```java
 
