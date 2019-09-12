@@ -15,3 +15,22 @@ Android动态权限的申请仅对下图中的9大权限组进行申请
 ```
 当声明为`android:required="false"`时，用户即使没有该设备也可以进行安装，在进行权限申请时则需要`PackageManager.hasSystemFeature()`来确定该设备是否存在；当声明为`android:required="true"`时，需要手机上具有该设备，否则不能进行安装操作。
 
+### 连续多次申请权限出现问题
+
+
+```
+    public final void requestPermissions(@NonNull String[] permissions, int requestCode) {
+        //省略部分代码
+        if (mHasCurrentPermissionsRequest) {
+            Log.w(TAG, "Can request only one set of permissions at a time");
+            // Dispatch the callback with empty arrays which means a cancellation.
+            onRequestPermissionsResult(requestCode, new String[0], new int[0]);
+            return;
+        }
+        Intent intent = getPackageManager().buildRequestPermissionsIntent(permissions);
+        startActivityForResult(REQUEST_PERMISSIONS_WHO_PREFIX, intent, requestCode, null);
+        mHasCurrentPermissionsRequest = true;
+    }
+
+
+```
