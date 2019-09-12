@@ -7,7 +7,7 @@
 Android动态权限的申请仅对下图中的9大权限组进行申请
 ![](/assets/android_basis_permission.png)
 
-### 对于可选硬件功能权限的获取
+### 一、对于可选硬件功能权限的获取
 
 使用蓝牙以及相机等硬件权限时，手机上可以没有蓝牙或者相机设备，因此在获取相机设备权限时，需要添加`<uses-feature> `
 ```html
@@ -15,8 +15,9 @@ Android动态权限的申请仅对下图中的9大权限组进行申请
 ```
 当声明为`android:required="false"`时，用户即使没有该设备也可以进行安装，在进行权限申请时则需要`PackageManager.hasSystemFeature()`来确定该设备是否存在；当声明为`android:required="true"`时，需要手机上具有该设备，否则不能进行安装操作。
 
-### 连续多次申请权限出现问题
-
+### 二、连续多次申请权限出现问题
+在进行连续多次申请时，在回调函数`onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,@NonNull int[] grantResults)`
+Activity的`requestPermissions()`方法源码。
 
 ```java
 
