@@ -19,6 +19,7 @@ Android动态权限的申请仅对下图中的9大权限组进行申请
 
 
 ```java
+
     public final void requestPermissions(@NonNull String[] permissions, int requestCode) {
         //省略部分代码
         if (mHasCurrentPermissionsRequest) {
