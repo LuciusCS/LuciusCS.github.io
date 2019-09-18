@@ -114,6 +114,58 @@ Callable接口带有`type`类型参数，该参数表示`call()`方法（非`run
 
 当一个在线程**m**中调用`t.join()`，**m**线程会被挂起，直至**t**执行结束(`t.isAlive`为false)；如果**t**线程调用`t.interrupt()`(在**m**线程之外)，则线程**m**中会继续执行任务。
 
+### 数据共享
+
+#### synchronized关键字
+
+使用synchronized关键字保护的代码段，在运行在之前会检测是否加锁，如果没有锁则执行。
+```java
+
+    synchronized void f() { /* ... */ }
+```
+
+当调用被synchronized关键字修饰的方法时，该方法所在的对象会被自动加锁，只有当该锁被释放后，其他方法才可以被调用。
+
+在使用并发操作时，需要将数据域设置为private，否则synchronized关键字不能保证其他线程直接获取数据域操作，造成冲突。
+
+
+#### Lock对象的使用
+
+在调用`lock()`方法后，一定需要添加在`try-finally`的代码块，并在finally中调用`unlock()`方法。这是唯一可以保证锁可以释放的方式。return关键字一定要在`try`代码块中实现，这样可以保证锁释放之前返回需要的值。
+
+
+
+
+```
+     private Lock lock = new ReentrantLock();
+     int num=0;
+     
+     public int f(){
+        lock.lock();    
+        try {       
+             Thread.yield();   
+             return num++;    
+         }finally {      
+            lock.unlock();  
+        }   
+```
+当使用synchronized关键字不能解决并发问题时，需要使用Lock进行处理，如：使用synchronized不能获取到代码锁，或者尝试多次获取到锁之后停止代码运行。
+
+```java
+     boolean captured = false;    
+      try {      
+        captured = lock.tryLock(2, TimeUnit.SECONDS);   
+       } catch(InterruptedException e) {      
+         throw new RuntimeException(e);     
+       } 
+      try {       
+         System.out.println("tryLock(2, TimeUnit.SECONDS): " + captured);    
+       } finally {     
+              if(captured)        
+              lock.unlock();    
+       }   
+
+```
 
 
 
