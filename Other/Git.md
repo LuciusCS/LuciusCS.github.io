@@ -119,6 +119,17 @@ git config  user.name "xxxx"
 `git reflog` 查看操作历史，找到之前 HEAD 的 hash 值，然后 `git reset --hard` 到那个 hash 即可
 
 
+### 六、`git cherry-pick`使用方法
+
+将某一个分支的提交，引入到当前分支的提交上，即合并某一分支的部分提交。
+
+```
+git cherry-pick <commit id>:单独合并一个提交
+git cherry-pick -x <commit id>：同上，不同点：保留原提交者信息。
+
+git cherry-pick <start-commit-id>..<end-commit-id>：(左开右闭，不包含start-commit-id)的提交cherry-pick到当前分支
+```
+
 
 
 
