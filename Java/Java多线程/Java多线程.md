@@ -20,6 +20,8 @@ Executors在client以及任务之前提供了一个间接层，而不是有clien
  
  Executors中的`shutdown()`方法用于停止向Executor中提交新的任务，在`shutdown()`方法调用之前提交的同步线程任务则会继续执行。
  
+ ***注：在Java SE 1.5之前使用 thread group来对线程运行过程中出现的异常情况进行处理，在Java SE 1.5之后使用 Executor进行处理***
+ 
  
  ### 不同线程池的使用
 
@@ -110,7 +112,7 @@ Callable接口带有`type`类型参数，该参数表示`call()`方法（非`run
 
 ### join
 
-当一个在线程**m**中调用`t.join()`，**m**线程会被挂起，直至**t**执行结束(`t.isAlive`为false)；如果**t**线程调用`t.interrupt()`(在**m**线程之外)，则线程**m**中的`t.join()`将不会执行。
+当一个在线程**m**中调用`t.join()`，**m**线程会被挂起，直至**t**执行结束(`t.isAlive`为false)；如果**t**线程调用`t.interrupt()`(在**m**线程之外)，则线程**m**中会继续执行任务。
 
 
 
