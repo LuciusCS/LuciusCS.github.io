@@ -11,9 +11,7 @@ asset使用InputStream in = getResources().getAssets().open(fileName);
 
 ### Android应用数据内部存储（位于应用功能安装目录下）
 
-是否需要用户权限：否
-是否能被其他应用访问：否
-卸载应用数据是否被删除：是
+该目录使用不需要获取用户权限，不能被其他应用访问，当应用被卸载时，该目录会被删除。
 
 文件类型：
 /data/data/应用名/cache ：存放的是APP的缓存信息
@@ -21,6 +19,8 @@ asset使用InputStream in = getResources().getAssets().open(fileName);
 /data/data/应用名/files ： 存放APP的文件信息
 
 还有其他一些文件，该内部存储文件在Debug模式下，使用Android Studio的Device File Explore工具可以进行访问；以release模式进行安装，则不能进行访问；对App进行反编译，以Debug模式运行则可以进入到该文件下访问；手机在Root模式下也可访问该文件（未进行测试）。
+
+`context.getCacheDir()`用于获取缓存目录，当Android内存不足时，可以删除该目录进行空间
 
 
 #### 文件读操作
@@ -30,9 +30,9 @@ asset使用InputStream in = getResources().getAssets().open(fileName);
 
 ### Android应用数据外部存储（保存至SD卡，也可以认为非应用安装目录）
 
-是否需要用户权限：是
-是否能被其他应用访问：是
-卸载应用数据是否被删除：否
+该目录使用需要获取用户权限，能被其他应用访问，当应用被卸载时，该目录不会被删除。
+
+
 
 
 
