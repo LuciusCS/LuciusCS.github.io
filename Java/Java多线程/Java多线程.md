@@ -131,10 +131,7 @@ Callable接口带有`type`类型参数，该参数表示`call()`方法（非`run
 
 #### Lock对象的使用
 
-在调用`lock()`方法后，一定需要添加在`try-finally`的代码块，并在finally中调用`unlock()`方法。这是唯一可以保证锁可以释放的方式。return关键字一定要在`try`代码块中实现，这样可以保证锁释放之前返回需要的值。
-
-
-
+在调用`lock()`方法后，一定需要添加在`try-finally`的代码块，并在finally中调用`unlock()`方法。这是唯一可以保证锁可以释放的方式。return关键字一定要在`try`代码块中实现，这样可以保证锁释放之前返回需要的值。***如果`lock.lock()`方法调用失败会出现什么情况***
 
 ```
      private Lock lock = new ReentrantLock();
@@ -154,7 +151,8 @@ Callable接口带有`type`类型参数，该参数表示`call()`方法（非`run
 ```java
      boolean captured = false;    
       try {      
-        captured = lock.tryLock(2, TimeUnit.SECONDS);   
+        captured = lock.tryLock(2, TimeUnit.SECONDS);   //限制请求次数
+        //captured = lock.tryLock();          //不限制请求次数
        } catch(InterruptedException e) {      
          throw new RuntimeException(e);     
        } 
@@ -166,6 +164,32 @@ Callable接口带有`type`类型参数，该参数表示`call()`方法（非`run
        }   
 
 ```
+
+#### 原子性和波动性（Atomicity and Volality（易变的））
+原子性操作不可以被打断，一旦其开始执行，就会执行至操作结束，不需要进行同步。按照《Thinking In Java》书中所讲：“依赖于原子性操作是困难以及危险的，除非开发者是并发的专家，或者是这方面的专家，才可以使用原子操作，来避开线程同步。”所以我们的第一选择是`synchronized`而非`volatile`。
+
+原子操作被应用于除`long`和`double`的基础数据类型中，读和写基础类型保证了对内存的操作是原子性的。JVM将64位数据（`long`和`double`类型）是为两个独立的32位操作，因此在操作的过程中会被打断。在`long`和`double`数据类型使用`volatile`关键字可以保证其操作的原子性。
+
+在多处理器系统中，与单处理器系统相比可见性比原子性更重要。在一个任务对数据做出改变即使其是原子性的，改变的数据其他线程也可能观察不到（数据的改变可能被临时存放在寄存器中），造成不同的任务获取到统一数据的不同状态。在同步操作机制中，可以保证数据的改变可以被不同的任务观察到相同的数据，即将改变的数据刷到内存中。
+
+当一个变量`volatile`关键字，则其在修改后会被其他任务立即观察到数据改变，即使该变量是一个局部变量。`volatile`关键字只在多任务中使用，如果一个变量只在单任务中，那么其改变后一定会被观察到。`volatile`关键字在使用的过程中，如果一个值依赖于其之前的值（自增）那么该关键字将会失效，或者其值有上界或者下界也会失效。
+
+ atomicity和volatility是两个不同的概念，原子性操作如果是非`volatile`类型的，那么其不会被立即刷到内存中；如果一个变量在一个` synchronized `的方法或者代码块中，那么变量也会被刷到内存中。
+
+
+#### Atomic classes （原子类）
+
+在Java SE 5中介绍了特殊的原子类：`Atomiclnteger`, `AtomicLong`, `AtomicReference`；对其操作时提供了原子类型的状态。
+
+#### 临界区
+
+```java
+     synchronized(syncObject) {  
+       // This code can be accessed 
+      }
+
+```
+
 
 
 
