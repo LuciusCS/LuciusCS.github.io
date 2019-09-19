@@ -33,4 +33,54 @@ add_library(
 
 ```
 
+在Andorid的Module下，右键选择 **Link C++ Project with Gradle**，选择新建的CMakeLists.txt文件的路径；构建完成后，在moudle的build.gradle会增加如下代码
+
+```xml
+    android {
+      …
+      externalNativeBuild {
+        cmake {
+            path file('src/main/cpp/CMakeLists.txt')
+        }
+    }
+```
+
+在native-lib.cpp添加如下代码，方法名命名规则`Java_demo_lucius_baselib_MainActivity_stringFromJNI`，以`Java`作为开头,`demo_lucius_baselib_MainActivity`是“包名+调用类名”，`stringFromJNI`方法名。
+
+
+
+```c++
+    #include <jni.h>
+    #include <string>
+    extern "C" JNIEXPORT jstring JNICALL
+    Java_demo_lucius_baselib_MainActivity_stringFromJNI(
+        JNIEnv *env,
+        jobject /* this */) {
+        std::string text = "String from C++";
+        return env->NewStringUTF(hello.c_str());
+    }
+
+```
+
+在MainActivity中添加C++代码的调用
+
+```java
+public class MainActivity extends AppCompatActivity {
+
+    static {
+        System.loadLibrary("native-lib");
+    }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        System.out.println(stringFromJNI());
+        }
+
+    public native String stringFromJNI();
+
+
+```
+
 
