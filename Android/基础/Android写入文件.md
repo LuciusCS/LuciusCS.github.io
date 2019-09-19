@@ -1,4 +1,41 @@
-### Android应用保存文件至本地
+## Android文件的读和写
+
+1、apk资源文件在raw和assert文件夹下，只能进行读取不能进行写入，文件大小不能超过1M；
+2、SD卡中的文件；
+3、数据区(/data/data/..)的文件；
+
+### 资源文件的读写
+
+raw使用InputStream in = getResources().openRawResource(R.raw.test);
+asset使用InputStream in = getResources().getAssets().open(fileName);
+
+### Android应用数据内部存储（位于应用功能安装目录下）
+
+是否需要用户权限：否
+是否能被其他应用访问：否
+卸载应用数据是否被删除：是
+
+文件类型：
+/data/data/应用名/cache ：存放的是APP的缓存信息
+/data/data/应用名/code_cache ：在运行时存放应用产生的编译或者优化的代码
+/data/data/应用名/files ： 存放APP的文件信息
+
+还有其他一些文件，该内部存储文件在Debug模式下，使用Android Studio的Device File Explore工具可以进行访问；以release模式进行安装，则不能进行访问；对App进行反编译，以Debug模式运行则可以进入到该文件下访问；手机在Root模式下也可访问该文件（未进行测试）。
+
+
+#### 文件读操作
+
+#### 文件写操作
+
+
+### Android应用数据外部存储（保存至SD卡，也可以认为非应用安装目录）
+
+是否需要用户权限：是
+是否能被其他应用访问：是
+卸载应用数据是否被删除：否
+
+
+
 
 * 首先需要获取权限
 
@@ -8,3 +45,4 @@
      <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
      <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 ```
+* 需要确定写入文件目录是否存在，如果不存在，则需要新建目录
