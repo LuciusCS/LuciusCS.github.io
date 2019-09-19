@@ -48,8 +48,6 @@ asset使用InputStream in = getResources().getAssets().open(fileName);
 
 
 
-
-
 ### Android存储公有目录
 Andorid开发公有目录与Context无关，使用Environment进行获取
 
