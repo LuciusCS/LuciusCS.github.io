@@ -24,7 +24,7 @@
         * [Java多线程之间的协作与通信](Java/Java多线程/Java多线程之间的协作.md)
           
 * [Other](Directory/Other Directory.md)
-    * [Git使用](/Other/Git/Git.md)
+    * [Git基础](/Other/Git/Git.md)
 
 
 
