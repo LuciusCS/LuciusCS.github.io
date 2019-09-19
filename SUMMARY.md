@@ -4,10 +4,14 @@
 * [introduction](README.md)
 
 * [Android](Android/README.md)
+    * [Android基础](Android基础/README.md)
+        * [Android 6.0动态权限获取](Android 6.0动态权限获取.md)
+    
     * [Android BLE](Ble/README.md)
         * [Android BLE 4.0](Android ble 4.0.md)
     * [View](View/README.md)    
         * [CountDownView](CountDownView.md)
+    
 * [Java](Directory/Java Directory.md)
     * [Java基础](Java/Java基础.md)
         * [Java线程间通信](Java/Java线程间通信.md)
