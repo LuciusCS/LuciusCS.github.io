@@ -7,3 +7,9 @@
 * CMake：一款外部编译工具，可与 Gradle 搭配使用来编译原生库。
 * LLDB：Android Studio 用于调试原生代码的调试程序。 
 
+安装方式：
+
+Android Studio Tools—>SDK manager—>SDK Tools
+
+
+
