@@ -62,7 +62,7 @@ add_library(
 
 ```
 
-在MainActivity中添加C++代码的调用
+在MainActivity中添加C++代码的调用，启动MainActivity后会输出"String from C++"
 
 ```java
 public class MainActivity extends AppCompatActivity {
