@@ -11,6 +11,13 @@
 
 ```
 
+### 在指定目录生成Book
+
+```xml
+    gitbook build ./  Book
+```
+
+
 ### 分支区分
 
 Master分支只进行合并提交文章，只合并EditBranch分支内容，不做任何修改
