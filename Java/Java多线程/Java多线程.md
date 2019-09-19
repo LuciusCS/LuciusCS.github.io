@@ -183,12 +183,53 @@ Callable接口带有`type`类型参数，该参数表示`call()`方法（非`run
 
 #### 临界区
 
+在多线程操作时只需将对部分代码进行操作，而非整个方法进行同步，则可使用临界区进行实现。
+
+
+使用`synchronized`创建临界区
 ```java
      synchronized(syncObject) {  
        // This code can be accessed 
       }
+    
+    
+    class PairManager2 extends PairManager { 
+     public void increment() { 
+         Pair temp;     
+         synchronized(this) {   
+             p.incrementX();    
+             p.incrementY();     
+             emp = getPair();   
+         }   
+         store(temp); 
+        }
+    } 
+   
+```
+
+使用功`Lock`锁创建临界区
+
+```java
+    class ExplicitPairManager2 extends PairManager {
+      private Lock lock = new ReentrantLock();  
+      public void increment() {    
+         Pair temp;     
+         lock.lock();    
+         try {     
+           p.incrementX();    
+           p.incrementY();     
+           temp = getPair();   
+           } finally {     
+             lock.unlock();   
+             }   
+           store(temp);  
+     } 
+    }
 
 ```
+
+
+
 
 
 
