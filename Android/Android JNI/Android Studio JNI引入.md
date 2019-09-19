@@ -13,22 +13,39 @@ Android Studio Tools—>SDK manager—>SDK Tools 选择LLDB、CMake、NDK点击A
 
 ![](/assets/Android JNI.png)
 
-在cpp文件夹下新建CMakeLists.txt和native-lib.cpp文件
+在cpp文件夹下新建CMakeLists.txt和native-lib.cpp文件，CMakeLists.txt可以建在工程的任意位置
 ![](/assets/Android JNI1.png)
 
 
-现在CMakeLists.txt中添加如下代码，native-lib-cpp可以先不添加
+现在CMakeLists.txt中添加如下代码，native-lib-cpp可以先不添加代码
 ```xml
-cmake_minimum_required(VERSION 3.4.1)
 
+     # 设置cmake的最低版本
+     cmake_minimum_required(VERSION 3.4.1)
 
-add_library( 
-        //设置调用lib的名称
+    # 设置生成的so库的信息
+    add_library( 
+        #生成的so库的名字
         native-lib
-        //将lib设置为SHARED模式
+        # 生成的so库的类型，类型分为两种：
+        #  STATIC：静态库，为目标文件的归档文件
+        #  SHARED：动态库，会被动态链接，在运行时被加载
         SHARED
-        //依赖的文件
+        # 设置源文件的位置，可以是很多个源文件，都需要添加进去
         native-lib.cpp)
+    # 从系统里查找依赖库，可添加多个
+    find_library(
+        log-lib
+        # liblog.so库指定的名称为 log，libjnitest.so的名称为jnitest
+        log)
+     # 配置目标库的链接，即相互依赖关系
+  target_link_libraries(
+        # 目标库（最终生成的库）
+        native-lib
+        # 需要依赖的log库，一般情况下，如果依赖的是系统中的库，需要加${}进行引用
+        # 如果是第三方库，可以直接引用
+        # 每行引用一个库
+        ${log-lib})
 
 
 ```
