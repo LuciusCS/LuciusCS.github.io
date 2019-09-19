@@ -9,7 +9,28 @@
 
 安装方式：
 
-Android Studio Tools—>SDK manager—>SDK Tools
+Android Studio Tools—>SDK manager—>SDK Tools 选择LLDB、CMake、NDK点击Apply进行下载
 
+![](/assets/Android JNI.png)
+
+在cpp文件夹下新建CMakeLists.txt和native-lib.cpp文件
+![](/assets/Android JNI1.png)
+
+
+现在CMakeLists.txt中添加如下代码，native-lib-cpp可以先不添加
+```xml
+cmake_minimum_required(VERSION 3.4.1)
+
+
+add_library( 
+        //设置调用lib的名称
+        native-lib
+        //将lib设置为SHARED模式
+        SHARED
+        //依赖的文件
+        native-lib.cpp)
+
+
+```
 
 
