@@ -1,5 +1,5 @@
 
-Android防止重打包主要通过对签名文件的验证来进行
+Android防止二次打包主要通过对签名文件的验证来进行
 
 ### 应用签名文件查看
 
@@ -11,6 +11,7 @@ Android防止重打包主要通过对签名文件的验证来进行
 keytool -list -v -keystore path/android.jks -storepass password
 
 ```
+![](/assets/Android safe.png)
 
 
 * 只有.apk文件
@@ -19,19 +20,13 @@ keytool -list -v -keystore path/android.jks -storepass password
 ```xml
 keytool -printcert -file path/android.jks
 ```
+![](/assets/Android safe1.png)
 
-
-
-
-
-
+**两种方式获取到的签名文件是一致的，使用.jks文件需要密码，而使用.apk文件无需密码**
 
 ### 在Java代码中进行验证，通过PackageManager获取签名信息。
 
-
-
-##### 使用Java代码尽心签名信息验证，通过修改smali文件可以绕过，容易破解
-
+使用Java代码进行签名信息验证，通过修改smali文件可以绕过，容易破解
 
 
 ### 在native层进行签名验证
