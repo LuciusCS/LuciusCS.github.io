@@ -218,6 +218,47 @@ Java引用数据类型不能直接在Native层使用，需要根据JNI函数进�
 ```
 
 
+#### JNIEnv介绍
+
+JNIEnv是一个与线程相关的，代表JNI环境的结构体，不同线程的JNIEnv彼此独立。`jni.h`的定义中，在C++模式下，`JNIEnv`是一个结构体；在C语言模式下`JNIEnv`是是一个指向方法接口指针的指针。
+
+```c++
+
+    #if defined(__cplusplus)
+    typedef _JNIEnv JNIEnv;
+    typedef _JavaVM JavaVM;
+    #else
+    typedef const struct JNINativeInterface* JNIEnv;
+    typedef const struct JNIInvokeInterface* JavaVM;
+    #endif
+
+```
+
+
+#### JavaVM介绍
+ 
+JavaVM是虚拟机在JNI层的代表，每一个虚拟机进程只有一个JavaVM，即对JNI来说，JavaVM是一个全局变量。`jni.h`的定义中，在C++模式下，`JavaVM`是一个结构体；在C语言模式下`JavaVM`是是一个指向方法接口指针的指针。
+
+#### JNIEnv和JavaVM调用方法
+
+* 对于C语言
+
+```
+    (*env)->方法名(env,参数列表)
+    (*vm)->方法名(vm,参数列表)
+
+```
+* 对于C++
+
+```
+    env->方法名(参数列表)
+    vm->方法名(参数列表)
+
+```
+
+
+
+
 
 
 
