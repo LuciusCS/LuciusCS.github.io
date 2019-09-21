@@ -207,7 +207,10 @@ Java引用数据类型不能直接在Native层使用，需要根据JNI函数进�
      jobjectArray objectIntArray=env->NewObjectArray(length,intArrayClass,Null);
      
 ```
-当Native层需要调用Java的某个方法时，需要通过JNI函数获取它的ID,根据ID调用JNI函数获取该方法，变量的获取也是如此。`jni.h`中对ID的定义
+
+#### jfieldID 和jmethodID
+
+当Native层需要调用Java的某个方法时，需用`jmethodID`表示，变量则用`jfieldID`表示。`jni.h`中对ID的定义
 
 ```c
     struct _jfieldID;                       /* opaque structure */
@@ -217,10 +220,21 @@ Java引用数据类型不能直接在Native层使用，需要根据JNI函数进�
     typedef struct _jmethodID* jmethodID;   /* method IDs */
 ```
 
+在JNI规则中，用jfieldID 和jmethodID 来表示Java类的成员变量和成员函数，它们通过JNIEnv的下面两个函数可以得到
+
+
+
+#### JavaVM介绍
+
+JavaVM是虚拟机在JNI层的代表，每一个虚拟机进程只有一个JavaVM，即对JNI来说，JavaVM是一个全局变量。`jni.h`的定义中，在C++模式下，`JavaVM`是一个结构体；在C语言模式下`JavaVM`是是一个指向方法接口指针的指针。
 
 #### JNIEnv介绍
 
-JNIEnv是一个与线程相关的，代表JNI环境的结构体，不同线程的JNIEnv彼此独立。`jni.h`的定义中，在C++模式下，`JNIEnv`是一个结构体；在C语言模式下`JNIEnv`是是一个指向方法接口指针的指针。
+JNIEnv是JavaVM在线程中的代表，是一个与线程相关的，代表JNI环境的结构体，不同线程的JNIEnv彼此独立。`jni.h`的定义中，在C++模式下，`JNIEnv`是一个结构体；在C语言模式下`JNIEnv`是是一个指向方法接口指针的指针。
+
+**作用：**
+* 调用Java函数 ：JNIEnv 代表 Java 运行环境, 可以使用 JNIEnv 调用Java中的代码;
+* 操作Java对象 : Java对象传入JNI层就是Jobject对象, 需要使用 JNIEnv来操作这个 Java 对象;
 
 ```c++
 
@@ -235,9 +249,6 @@ JNIEnv是一个与线程相关的，代表JNI环境的结构体，不同线程�
 ```
 
 
-#### JavaVM介绍
- 
-JavaVM是虚拟机在JNI层的代表，每一个虚拟机进程只有一个JavaVM，即对JNI来说，JavaVM是一个全局变量。`jni.h`的定义中，在C++模式下，`JavaVM`是一个结构体；在C语言模式下`JavaVM`是是一个指向方法接口指针的指针。
 
 #### JNIEnv和JavaVM调用方法
 
