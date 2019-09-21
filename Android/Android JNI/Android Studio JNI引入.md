@@ -1,0 +1,199 @@
+
+
+## Android 在已有的项目中引入JNI 最简方式
+
+### JNI与NDK
+
+JNI：JNI是一套编程接口，用来实现Java代码与本地的C/C++代码进行交互；
+NDK: NDK是Google开发的一套开发和编译工具集，可以生成动态链接库，主要用于Android的JNI开发；
+
+            
+### 下载NDK和编译工具
+* NDK:一个工具集，能够在 Android 应用中使用 C 和 C++ 代码；它提供各种平台库，可以管理原生 Activity 并访问实际设备组件，例如传感器和轻触输入。
+* CMake：一款外部编译工具，可与 Gradle 搭配使用来编译原生库。
+* LLDB：Android Studio 用于调试原生代码的调试程序。 
+
+安装方式：
+
+Android Studio Tools—>SDK manager—>SDK Tools 选择LLDB、CMake、NDK点击Apply进行下载
+
+![](/assets/Android JNI.png)
+
+在cpp文件夹下新建CMakeLists.txt和native-lib.cpp文件，CMakeLists.txt可以建在工程的任意位置
+![](/assets/Android JNI1.png)
+
+
+### 添加CMakeLists.txt和native-lib-cpp文件
+
+现在CMakeLists.txt中添加如下代码，native-lib-cpp可以先不添加代码
+```xml
+
+     # 设置cmake的最低版本
+     cmake_minimum_required(VERSION 3.4.1)
+
+    # 设置生成的so库的信息
+    add_library( 
+        #生成的so库的名字
+        native-lib
+        # 生成的so库的类型，类型分为两种：
+        #  STATIC：静态库，为目标文件的归档文件
+        #  SHARED：动态库，会被动态链接，在运行时被加载
+        SHARED
+        # 设置源文件的位置，可以是很多个源文件，都需要添加进去
+        native-lib.cpp)
+    # 从系统里查找依赖库，可添加多个
+    find_library(
+        log-lib
+        # liblog.so库指定的名称为 log，libjnitest.so的名称为jnitest
+        log)
+     # 配置目标库的链接，即相互依赖关系
+  target_link_libraries(
+        # 目标库（最终生成的库）
+        native-lib
+        # 需要依赖的log库，一般情况下，如果依赖的是系统中的库，需要加${}进行引用
+        # 如果是第三方库，可以直接引用
+        # 每行引用一个库
+        ${log-lib})
+
+
+```
+
+在Andorid的Module下，右键选择 **Link C++ Project with Gradle**，选择新建的CMakeLists.txt文件的路径；构建完成后，在moudle的build.gradle会增加如下代码
+
+```xml
+    android {
+      …
+      externalNativeBuild {
+        cmake {
+            path file('src/main/cpp/CMakeLists.txt')
+        }
+    }
+```
+
+在native-lib.cpp添加如下代码，方法名命名规则`Java_demo_lucius_baselib_MainActivity_stringFromJNI`，以`Java`作为开头,`demo_lucius_baselib_MainActivity`是“包名+调用类名”，`stringFromJNI`方法名。
+
+
+
+```c++
+    #include <jni.h>
+    #include <string>
+    extern "C" JNIEXPORT jstring JNICALL
+    Java_demo_lucius_baselib_MainActivity_stringFromJNI(
+        JNIEnv *env,
+        jobject /* this */) {
+        std::string text = "String from C++";
+        return env->NewStringUTF(hello.c_str());
+    }
+
+```
+
+在MainActivity中添加C++代码的调用，启动MainActivity后会输出"String from C++"
+
+```java
+public class MainActivity extends AppCompatActivity {
+
+    static {
+        System.loadLibrary("native-lib");
+    }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        System.out.println(stringFromJNI());
+        }
+
+    public native String stringFromJNI();
+
+
+```
+
+### JNI基础类型介绍
+
+在`jni.h`文件中定义了预编译类型，区分Java、C++以及C
+
+```c
+
+/* Primitive types that match up with Java equivalents. */
+typedef uint8_t  jboolean; /* unsigned 8 bits */
+typedef int8_t   jbyte;    /* signed 8 bits */
+typedef uint16_t jchar;    /* unsigned 16 bits */
+typedef int16_t  jshort;   /* signed 16 bits */
+typedef int32_t  jint;     /* signed 32 bits */
+typedef int64_t  jlong;    /* signed 64 bits */
+typedef float    jfloat;   /* 32-bit IEEE 754 */
+typedef double   jdouble;  /* 64-bit IEEE 754 */
+
+/* "cardinal indices and sizes" */
+typedef jint     jsize;
+
+#ifdef __cplusplus
+/*
+ * Reference types, in C++
+ */
+class _jobject {};
+class _jclass : public _jobject {};
+class _jstring : public _jobject {};
+class _jarray : public _jobject {};
+class _jobjectArray : public _jarray {};
+class _jbooleanArray : public _jarray {};
+class _jbyteArray : public _jarray {};
+class _jcharArray : public _jarray {};
+class _jshortArray : public _jarray {};
+class _jintArray : public _jarray {};
+class _jlongArray : public _jarray {};
+class _jfloatArray : public _jarray {};
+class _jdoubleArray : public _jarray {};
+class _jthrowable : public _jobject {};
+
+typedef _jobject*       jobject;
+typedef _jclass*        jclass;
+typedef _jstring*       jstring;
+typedef _jarray*        jarray;
+typedef _jobjectArray*  jobjectArray;
+typedef _jbooleanArray* jbooleanArray;
+typedef _jbyteArray*    jbyteArray;
+typedef _jcharArray*    jcharArray;
+typedef _jshortArray*   jshortArray;
+typedef _jintArray*     jintArray;
+typedef _jlongArray*    jlongArray;
+typedef _jfloatArray*   jfloatArray;
+typedef _jdoubleArray*  jdoubleArray;
+typedef _jthrowable*    jthrowable;
+typedef _jobject*       jweak;
+
+
+#else /* not __cplusplus */
+
+/*
+ * Reference types, in C.
+ */
+typedef void*           jobject;
+typedef jobject         jclass;
+typedef jobject         jstring;
+typedef jobject         jarray;
+typedef jarray          jobjectArray;
+typedef jarray          jbooleanArray;
+typedef jarray          jbyteArray;
+typedef jarray          jcharArray;
+typedef jarray          jshortArray;
+typedef jarray          jintArray;
+typedef jarray          jlongArray;
+typedef jarray          jfloatArray;
+typedef jarray          jdoubleArray;
+typedef jobject         jthrowable;
+typedef jobject         jweak;
+
+#endif /* not __cplusplus */
+
+```
+
+
+#### Java基本数据类型与Native层中的数据对应关系
+
+![](/assets/Android JNI2.png)
+
+#### Java引用数据类型与Native层中的数据对应关系
+
+![](/assets/Android JNI3.png)
+
