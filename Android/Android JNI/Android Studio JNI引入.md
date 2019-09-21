@@ -190,10 +190,38 @@ typedef jobject         jweak;
 
 
 #### Java基本数据类型与Native层中的数据对应关系
+这些基本数据类型可以在Native层直接使用。
 
 ![](/assets/Android JNI2.png)
 
 #### Java引用数据类型与Native层中的数据对应关系
+Java引用数据类型不能直接在Native层使用，需要根据JNI函数进行类型的转换后，才能使用。多维数组（包括二维数组）都是引用类型，需要转化为`jobjectArray`类型进行使用。    
 
 ![](/assets/Android JNI3.png)
+
+在JNI中二维数组的使用
+```java
+     //获取一维数组的引用，即jintArray类型
+     jclass intArrayClass=env->FindClass("[I");  
+     //构造一个指向jintArray类的一维数组对象，该对象数组初始大小为length,类型为jsize
+     jobjectArray objectIntArray=env->NewObjectArray(length,intArrayClass,Null);
+     
+```
+当Native层需要调用Java的某个方法时，需要通过JNI函数获取它的ID,根据ID调用JNI函数获取该方法，变量的获取也是如此。`jni.h`中对ID的定义
+
+```c
+    struct _jfieldID;                       /* opaque structure */
+    typedef struct _jfieldID* jfieldID;     /* field IDs */
+
+    struct _jmethodID;                      /* opaque structure */
+    typedef struct _jmethodID* jmethodID;   /* method IDs */
+```
+
+
+
+
+
+
+
+
 
