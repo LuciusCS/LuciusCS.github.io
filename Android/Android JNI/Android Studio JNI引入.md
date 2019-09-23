@@ -23,6 +23,7 @@ Android Studio Tools—>SDK manager—>SDK Tools 选择LLDB、CMake、NDK点击A
 ![](/assets/Android JNI1.png)
 
 
+
 ### 添加CMakeLists.txt和native-lib-cpp文件
 
 现在CMakeLists.txt中添加如下代码，native-lib-cpp可以先不添加代码
@@ -70,9 +71,7 @@ Android Studio Tools—>SDK manager—>SDK Tools 选择LLDB、CMake、NDK点击A
     }
 ```
 
-在native-lib.cpp添加如下代码，方法名命名规则`Java_demo_lucius_baselib_MainActivity_stringFromJNI`，以`Java`作为开头,`demo_lucius_baselib_MainActivity`是“包名+调用类名”，`stringFromJNI`方法名。
-
-
+在native-lib.cpp添加如下代码，方法名命名规则`Java_demo_lucius_baselib_MainActivity_stringFromJNI`，以`Java`作为开头,`demo_lucius_baselib_MainActivity`是“包名+调用类名”，`stringFromJNI`方法名。即` Java_{package_and_classname}_{function_name}(JNI_arguments)`，包名的`.`被下划线替代。
 
 ```c++
     #include <jni.h>
@@ -86,6 +85,12 @@ Android Studio Tools—>SDK manager—>SDK Tools 选择LLDB、CMake、NDK点击A
     }
 
 ```
+在上述函数`JNI_arguments`有`JNIEnv*`和`jobject`
+* JNIEnv*，代表JNI的环境，可以获取到所有的JNI方法。
+* jobject，指向Java对象的`object`。
+
+`extern "C"`只会被C++编译器识别，C++编译器在编译时会按照C语言方法的命名规则，而非C++的命名规则进行编译。C和C++的有不同方法命名规则,C++支持方法的重载，同时C++使用mangling scheme识别方法的重载。
+
 
 在MainActivity中添加C++代码的调用，启动MainActivity后会输出"String from C++"
 
@@ -93,6 +98,7 @@ Android Studio Tools—>SDK manager—>SDK Tools 选择LLDB、CMake、NDK点击A
 public class MainActivity extends AppCompatActivity {
 
     static {
+        //用于在运行时加载本地库
         System.loadLibrary("native-lib");
     }
     @Override
@@ -107,6 +113,21 @@ public class MainActivity extends AppCompatActivity {
 
 
 ```
+
+### 在JNI中使用C语言，新建helloJIN.c文件
+
+```c
+    #include <jni.h>        // JNI header provided by JDK
+    #include <stdio.h>      // C Standard IO Header
+
+    // Implementation of the native method sayHello()
+    JNIEXPORT void JNICALL Java_HelloJNI_sayHello(JNIEnv *env, jobject thisObj) {
+       printf("Hello World!\n");
+       return;
+    }
+
+```
+
 
 ### JNI基础类型介绍
 
@@ -210,9 +231,9 @@ Java引用数据类型不能直接在Native层使用，需要根据JNI函数进�
 
 #### jfieldID 和jmethodID
 
-当Native层需要调用Java的某个方法时，需用`jmethodID`表示，变量则用`jfieldID`表示。`jni.h`中对ID的定义
+当Native层需要调用Java的某个方法时，需用`jmethodID`表示，变量则用`jfieldID`表示。`jni.h`中对jfieldID和jmethodID的定义
 
-```c
+```c++
     struct _jfieldID;                       /* opaque structure */
     typedef struct _jfieldID* jfieldID;     /* field IDs */
 
@@ -220,7 +241,23 @@ Java引用数据类型不能直接在Native层使用，需要根据JNI函数进�
     typedef struct _jmethodID* jmethodID;   /* method IDs */
 ```
 
-在JNI规则中，用jfieldID 和jmethodID 来表示Java类的成员变量和成员函数，它们通过JNIEnv的下面两个函数可以得到
+在JNI规则中，用jfieldID 和jmethodID 来表示Java类的成员变量和成员函数，它们通过JNIEnv的下面两个函数可以得到，其中jclass代表Java类，name表示成员函数或成员变量的名字，sig为这个函数和变量的签名信息。
+
+```c++
+    //获取jfieldID
+      jfieldID GetFieldID(jclass clazz, const char* name, const char* sig)
+    { return functions->GetFieldID(this, clazz, name, sig); }
+
+    //获取jmethodID
+     jmethodID GetMethodID(jclass clazz, const char* name, const char* sig)
+    { return functions->GetMethodID(this, clazz, name, sig); }
+
+```
+以Java中的MD5加密在JNI层调用为例，介绍jmethodID的使用
+
+
+
+
 
 
 
@@ -267,7 +304,7 @@ JNIEnv是JavaVM在线程中的代表，是一个与线程相关的，代表JNI�
 
 ```
 
-
+### 在
 
 
 
