@@ -22,13 +22,55 @@ Executors在client以及任务之前提供了一个间接层，而不是有clien
  
  ***注：在Java SE 1.5之前使用 thread group来对线程运行过程中出现的异常情况进行处理，在Java SE 1.5之后使用 Executor进行处理***
  
+#### Executor、Executors、ExecutorService区别
+
+* Executor是一个接口，用于并发提交的任务，只有`execute()`一个方法，没有返回值，不能对任务进行任何操作。
+
+```java
+    public interface Executor {
+        void execute(Runnable var1);
+    }
+```
+
+* Executors类提供不同的工厂方法来创建不同类型的线程池，包括：`newSingleThreadExecutor()`、`newFixedThreadPool(int numOfThreads)`、`newCachedThreadPool()`
+
+```java
+
+    public class Executors {
+            //...
+            public static ExecutorService newFixedThreadPool(int var0) {
+            return new ThreadPoolExecutor(var0, var0, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue());
+        }
+        
+        //...
+    }
+
+```
+
+
+* ExecutorService 是继承自`Exxecutor`的接口，其中有异步执行和关闭线程池的方法。可以通过`submit()`方法来提交任务，同时可以对任务进行取消等操作。
+
+```java
+    public interface ExecutorService extends Executor {
+        //...
+        void shutdown();
+
+        List<Runnable> shutdownNow();
+
+        boolean isShutdown();
+
+        boolean isTerminated();
+        //...          
+          
+    }
+```
+
  
  ### 不同线程池的使用
 
 CachedThreadPool没有线程数量限制，会按照需要创建足够的线程，当循环使用到旧的线程时会停止创建新的线程。
 
  ```java
-    
      ExecutorService exec = Executors.newCachedThreadPool();
  ```
  
@@ -224,6 +266,7 @@ Callable接口带有`type`类型参数，该参数表示`call()`方法（非`run
     }
 
 ```
+
 
 
 
