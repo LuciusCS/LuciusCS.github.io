@@ -131,7 +131,11 @@ git cherry-pick <start-commit-id>..<end-commit-id>：(左开右闭，不包含st
 ```
 
 
+### 七、修改git urls的路径方式
 
+#### 将urls由SSH模式修改为Https模式
+
+#### 将usrls由Https模式修改为SSH模式
 
 
 
