@@ -4,13 +4,17 @@
 
 通常将一个Runnable对象转换成一个任务，需要将其传递给一个Thread构造函数。
 
+实现Runnable接口，并在一个独立的线程中运行Runnable.run()方法中的代码；一个或多个Runnable对象执行不同的操作，有时也被称为任务。
+
+Thread以及Runnable是基类，只有有限的功能，事实上他们也是HandlerThread,AsyTask以及IntentService的基类，也同时是ThreadPoolExcutor的基类。ThreadPoolExcutor可以自动管理线程以及任务队列，甚至可以同时运行多个线程。
+
 ### Thread类
 
 Thread类的构造函数需要Runnable实例，调用Thread类的`start()`方法，可以对线程进行必要额初始化，然后执行Runnable实例的`run()`方法。
 
 静态方法`Thread.yield()`用于通知CPU从一个线程切换至另外一个线程；
 
-``
+**注：Thread以及Runnable是基类，只有有限的功能，事实上他们也是HandlerThread,AsyTask以及IntentService的基类，也同时是ThreadPoolExcutor的基类。ThreadPoolExcutor可以自动管理线程以及任务队列，甚至可以同时运行多个线程。**
 
 
 ### 多线程框架Executor的使用

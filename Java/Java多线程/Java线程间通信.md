@@ -54,11 +54,243 @@ Condition是在Java 1.5中出现的，用于替代传统的Object的wait()/notif
 
 ### 生产者消费者模型
 
+线程锁控制代码
+```java
+public class Service {
+
+    //线程锁
+    private ReentrantLock lock=new ReentrantLock();
+    //生产者线程控制
+    private Condition conditionCustomer=lock.newCondition();
+    //消费者线程控制
+    private Condition conditionProducer=lock.newCondition();
+    //用于表示需要生产
+    private boolean hasValue=false;
+    //用于随机消费时间；
+    private static Random rand = new Random(2000);
+
+    //用于生产者
+    public void produce(){
+        try {
+            lock.lock();
+            while (hasValue){
+                System.out.println("生产线程："+Thread.currentThread().getName()+"await");
+                conditionCustomer.await();
+            }
+            System.out.println("线程："+Thread.currentThread().getName()+"生产中");
+            Thread.sleep(rand.nextInt(500));
+            hasValue=true;
+            System.out.println("线程："+Thread.currentThread().getName()+"生产完毕");
+            System.out.println(Thread.currentThread().getName()+"唤醒所有消费者线程 "+"....");
+            System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++.");
+            //唤起所有的消费者线程
+            conditionProducer.signalAll();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } finally {
+            lock.unlock();
+        }
+    }
+
+    //用于消费者
+    public void custome(){
+        try{
+            lock.lock();
+            while (!hasValue){
+                System.out.println("消费线程："+Thread.currentThread().getName()+"await");
+                conditionProducer.await();
+            }
+            System.out.println("线程："+Thread.currentThread().getName()+"消费中");
+            Thread.sleep(rand.nextInt(4000));
+            hasValue=false;
+            System.out.println("线程："+Thread.currentThread().getName()+"消费完毕");
+            System.out.println(Thread.currentThread().getName()+"唤醒所有生产者线程 ");
+            System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++.");
+            //唤起所有的生产者线程
+            conditionCustomer.signalAll();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }finally {
+            lock.unlock();
+        }
+    }
+}
+
+```
+
+消费者线程
+
+```java
+public class CustomerThread extends Thread {
+
+    private Service service;
+    public CustomerThread(Service service) {
+        this.service = service;
+    }
+    @Override
+    public void run() {
+        while (true){
+            service.custome();
+        }
+    }
+}
+
+```
+测试代码
+```java
+
+public class Customer_ServiceMain {
+
+    public static void main(String[] args) throws InterruptedException {
+        Service service=new Service();
+        CustomerThread[] customerThread=new CustomerThread[10];
+        ProducerThread[] producerThreads=new ProducerThread[10];
+        for (int i=0;i<3;i++){
+            customerThread[i]=new CustomerThread(service);
+            customerThread[i].setName("生产者Thread："+i);
+            producerThreads[i]=new ProducerThread(service);
+            producerThreads[i].setName("消费者Thread："+i);
+            customerThread[i].start();
+            producerThreads[i].start();
+
+        }
+    }
+    }
+
+```
+
+运行结果,出现未被唤起的线程，我认为是当前线程正在执行生产或者消费任务，无需进行唤起操作。
+
+```xml
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++.
+消费线程：生产者Thread：1await
+消费线程：生产者Thread：0await
+线程：消费者Thread：2生产中
+线程：消费者Thread：2生产完毕
+消费者Thread：2唤醒所有消费者线程 ....
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++.
+生产线程：消费者Thread：2await
+生产线程：消费者Thread：1await
+生产线程：消费者Thread：0await
+线程：生产者Thread：2消费中
+线程：生产者Thread：2消费完毕
+生产者Thread：2唤醒所有生产者线程 
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++.
+生产线程：消费者Thread：1await
+生产线程：消费者Thread：0await
+线程：生产者Thread：2消费中
+线程：生产者Thread：2消费完毕
+生产者Thread：2唤醒所有生产者线程 
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++.
+消费线程：生产者Thread：2await
+消费线程：生产者Thread：1await
+消费线程：生产者Thread：0await
+线程：消费者Thread：2生产中
+线程：消费者Thread：2生产完毕
+消费者Thread：2唤醒所有消费者线程 ....
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++.
+
+```
+
+
 ### 线程间通信管道模式
 
 #### CountDownLatch的使用
 
 用于同步一个或者多个任务，强制它们等待一系列的其他任务操作的结束。
+
+任务执行线程
+```java
+    public class Task extends Thread {
+
+    private static Random random = new Random(100);
+
+    private final CountDownLatch latch;
+
+    //使用CountDownLatch会被自动要求加上此构造函数
+    public Task(CountDownLatch latch, String name) {
+        this.latch = latch;
+        this.setName(name);
+    }
+
+    @Override
+    public void run() {
+
+        try {
+            doWork();
+            //用于倒数技术
+            latch.countDown();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void doWork() throws InterruptedException {
+        //random.nextInt(2000)在Java中是线程安全的来自TIJ
+        TimeUnit.MILLISECONDS.sleep(random.nextInt(1000));
+        System.out.println(this.getName() + "completed");
+    }
+}
+```
+等待任务执行完毕，需要唤醒的线程
+```java
+  public class WaitingTask implements Runnable {
+    
+    private final CountDownLatch latch;
+
+    public WaitingTask(CountDownLatch latch) {
+        this.latch = latch;
+    }
+
+    @Override
+    public void run() {
+        try {
+            latch.await();
+            System.out.println("Latch阻塞运行至waiting class");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+ }
+
+
+```
+测试代码
+```java
+public class TestCountDown {
+
+    static final int SIZE = 10;
+
+    public static void main(String[] args) throws Exception {
+
+        ExecutorService exec = Executors.newFixedThreadPool(5);
+        //所有需要同时结束的线程，需要使用同一个CountDownLatch对象，构造函数用于表示需要等待的线程的个数
+        CountDownLatch latch = new CountDownLatch(SIZE);
+      // for (int i=0;i<10;i++){   //可以有多个等待线程
+        exec.execute(new WaitingTask(latch));
+      // }
+        for (int i = 0; i < SIZE; i++) {
+            exec.execute(new Task(latch,"线程"+i));
+        }
+        System.out.println("启动所有任务");
+        exec.shutdown();  //任务只有在执行完毕后才会结束
+    }
+}
+
+```
+任务执行结果
+```xml
+启动所有任务
+线程0completed
+线程4completed
+线程1completed
+线程2completed
+线程3completed
+Latch阻塞运行至waiting class
+
+Process finished with exit code 0
+
+```
 
 
 #### CyclicBarrier的使用
@@ -72,6 +304,7 @@ Condition是在Java 1.5中出现的，用于替代传统的Object的wait()/notif
 
 
 
+### 线程间通信管道模式
 
 
 
