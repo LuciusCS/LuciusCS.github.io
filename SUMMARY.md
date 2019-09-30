@@ -16,8 +16,7 @@
     * [Java基础](Java/Java基础/README.md)
     * [Java多线程](Java/Java多线程/README.md)
     * [Java设计模式](Java/设计模式/README.md)    
-* [Other](Other/README.md)
-    * [Git基础](/Other/Git/Git.md)
+
 
 
 
