@@ -1,3 +1,4 @@
+
 ### gitalk配置
 
 需要在node_modules/gitbook-plugin-tbfed-pagefooter/index.js文件中添加
@@ -10,6 +11,13 @@
       '\n\n<script src="https://snowdreams1006.github.io/gitalk-config.js"></script>';
 
 ```
+
+### 在指定目录生成Book
+
+```xml
+    gitbook build ./  Book
+```
+
 
 ### 分支区分
 
