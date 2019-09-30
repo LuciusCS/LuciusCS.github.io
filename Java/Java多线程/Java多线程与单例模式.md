@@ -44,6 +44,7 @@ public static Singleton getSingleton() {
 }
 
 ```
+**在使用`synchronized`关键字之后，每次只有一个线程可以进入到该方法中，但是使用`synchronized`关键字会造成开销过大**
 
 于instance = new Singleton()这条语句，这并非是一个原子操作，在 JVM 中这句话大概做了下面 3 件事情。
 
