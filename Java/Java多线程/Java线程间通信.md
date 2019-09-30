@@ -296,7 +296,126 @@ Process finished with exit code 0
 #### CyclicBarrier的使用
 
 `CyclicBarrier`类用于创建一组并行的类，等待它们全部执行完成进入后续的任务(类似于`join`)，与`CountDownLatch`类的使用类似，`CountDownLatch`类只能执行一次，而`CyclicBarrier`可以进行多次使用。
+以运动员百米跑步测试为例，有五名运动员，会进行多次百米测试，只有所有运动员都跑完一百米后才进入下一轮；
 
+运动员代码
+```java
+
+public class Athlete extends Thread {
+
+    //用于表示耗时
+    private double time =90;
+
+    private static Random rand = new Random(1);
+
+    private static CyclicBarrier cyclicBarrier;
+
+    public Athlete(CyclicBarrier cyclicBarrier){
+        this.cyclicBarrier=cyclicBarrier;
+    }
+
+    public synchronized double getTime(){
+        return time;
+    }
+
+    @Override
+    public void run() {
+        try {
+            while (!Thread.interrupted()){
+                synchronized (this){
+                    time =(double)(rand.nextInt(20)+90)/10;
+                    System.out.println(getName()+"跑步耗时："+ getTime());
+                }
+                Thread.sleep(1000);
+                cyclicBarrier.await();
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (BrokenBarrierException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+```
+所有运动员跑完标志输出代码
+
+```java
+public class RunningCtrl extends Thread{
+
+    public RunningCtrl(){
+
+    }
+
+    @Override
+    public void run() {
+        super.run();
+        System.out.println("++++++++++++++++++++++++++++++++");
+    }
+}
+
+```
+
+测试代码
+
+```java
+public class CyclicBarrierMain {
+
+    public static void main(String[] args) {
+
+        RunningCtrl  runningCtrl=new RunningCtrl();
+        CyclicBarrier cyclicBarrier = new CyclicBarrier(5,runningCtrl);
+        ExecutorService exec = Executors.newCachedThreadPool();
+        for (int i = 0; i <5; i++) {
+            Athlete athlete = new Athlete(cyclicBarrier);
+            athlete.setName("选手："+i);
+            exec.execute(athlete);
+        }
+    }
+}
+
+```
+
+运行结果
+```xml
+
+选手：0跑步耗时：9.5
+选手：1跑步耗时：9.8
+选手：4跑步耗时：10.4
+选手：2跑步耗时：9.7
+选手：3跑步耗时：10.3
+++++++++++++++++++++++++++++++++
+选手：0跑步耗时：10.4
+选手：2跑步耗时：9.8
+选手：1跑步耗时：9.6
+选手：4跑步耗时：9.4
+选手：3跑步耗时：10.8
+++++++++++++++++++++++++++++++++
+选手：4跑步耗时：9.9
+选手：1跑步耗时：10.7
+选手：3跑步耗时：9.2
+选手：2跑步耗时：9.3
+选手：0跑步耗时：10.3
+++++++++++++++++++++++++++++++++
+选手：1跑步耗时：10.4
+选手：2跑步耗时：9.2
+选手：0跑步耗时：9.9
+选手：3跑步耗时：10.2
+选手：4跑步耗时：10.6
+++++++++++++++++++++++++++++++++
+选手：4跑步耗时：10.2
+选手：2跑步耗时：10.9
+选手：0跑步耗时：10.6
+选手：3跑步耗时：10.0
+选手：1跑步耗时：10.4
+++++++++++++++++++++++++++++++++
+选手：2跑步耗时：10.8
+选手：4跑步耗时：10.9
+选手：1跑步耗时：10.7
+选手：3跑步耗时：10.3
+选手：0跑步耗时：9.2
+++++++++++++++++++++++++++++++++
+```
 
 #### `DelayQueue`的使用
 
