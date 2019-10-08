@@ -18,8 +18,7 @@
     * [Java设计模式](Java/设计模式/README.md)    
 
 * [Git](Other/Git/Git.md) 
-
-* [Android](Android/Android JNI/Android Studio JNI引入.md)
+* [](Android/Android JNI/Android Studio JNI引入.md)
 
 * [测试](Android/Android JNI/Android JNI敏感信息保护.md)
 
