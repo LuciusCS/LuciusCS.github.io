@@ -19,7 +19,7 @@
 
 * [Git](Other/Git/Git.md) 
 
-* [测试](Android/Android JNI/Android Studio JNI引入.md)
+* [Android](Android/Android JNI/Android Studio JNI引入.md)
 
 * [测试](Android/Android JNI/Android JNI敏感信息保护.md)
 
