@@ -1,0 +1,953 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Lambda表达式 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="、">
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-prism/prism-okaidia.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search-pro/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-tbfed-pagefooter/footer.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-pageview-count/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-sidebar-style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-theme-comscore/test.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="String、StringBuffer、StringBuilder区别.html" />
+    
+    
+    <link rel="prev" href="Java集合.html" />
+    
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"buttons":[{"user":"LuciusCS","width":"160","type":"follow","count":true,"size":"small"}]};
+    </script>
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Android开发</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../../Android/">
+            
+                <a href="../../Android/">
+            
+                    
+                    Android
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.1" data-path="../../Android/Android基础/">
+            
+                <a href="../../Android/Android基础/">
+            
+                    
+                    Android基础
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.2" data-path="../../Android/Android JNI/">
+            
+                <a href="../../Android/Android JNI/">
+            
+                    
+                    Android JNI
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3" data-path="../../Android/Android反编译/">
+            
+                <a href="../../Android/Android反编译/">
+            
+                    
+                    Android 反编译
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.4" data-path="../../Android/Ble/">
+            
+                <a href="../../Android/Ble/">
+            
+                    
+                    Android BLE
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.5" data-path="../../Android/View/">
+            
+                <a href="../../Android/View/">
+            
+                    
+                    View
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.6" data-path="../../Android/Other/">
+            
+                <a href="../../Android/Other/">
+            
+                    
+                    Other
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.7" data-path="../../Android/框架/">
+            
+                <a href="../../Android/框架/">
+            
+                    
+                    框架
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Java开发</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Java
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Java基础
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.2" data-path="../Java多线程/">
+            
+                <a href="../Java多线程/">
+            
+                    
+                    Java多线程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.3" data-path="../设计模式/">
+            
+                <a href="../设计模式/">
+            
+                    
+                    Java设计模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="header">其他</li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="../../Other/Git/Git.html">
+            
+                <a href="../../Other/Git/Git.html">
+            
+                    
+                    Git
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="../../Android/Android JNI/Android Studio JNI引入.html">
+            
+                <a href="../../Android/Android JNI/Android Studio JNI引入.html">
+            
+                    
+                    Android Studio JNI引入
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="../../Android/Android JNI/Android JNI敏感信息保护.html">
+            
+                <a href="../../Android/Android JNI/Android JNI敏感信息保护.html">
+            
+                    
+                    Android JNI敏感信息保护
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="../../Android/Android反编译/Android应用防止二次打包.html">
+            
+                <a href="../../Android/Android反编译/Android应用防止二次打包.html">
+            
+                    
+                    Android应用防止二次打包
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="6.1" data-path="../../Android/Android基础/Android 6.0动态权限获取.html">
+            
+                <a href="../../Android/Android基础/Android 6.0动态权限获取.html">
+            
+                    
+                    Android 6.0动态权限获取
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2" data-path="../../Android/Android基础/Android后台任务.html">
+            
+                <a href="../../Android/Android基础/Android后台任务.html">
+            
+                    
+                    Android后台任务
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.3" data-path="../../Android/Android基础/Android文件操作.html">
+            
+                <a href="../../Android/Android基础/Android文件操作.html">
+            
+                    
+                    Android文件操作
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.4" data-path="../../Android/Android基础/getSystemService的使用.html">
+            
+                <a href="../../Android/Android基础/getSystemService的使用.html">
+            
+                    
+                    getSystemService的使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.5" data-path="../../Android/Android基础/Handler Looper介绍.html">
+            
+                <a href="../../Android/Android基础/Handler Looper介绍.html">
+            
+                    
+                    Handler Looper介绍
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.6" data-path="../../Android/Android基础/异步操作Asynctask.html">
+            
+                <a href="../../Android/Android基础/异步操作Asynctask.html">
+            
+                    
+                    异步操作Asynctask
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.7" data-path="../../Android/Ble/Android ble 4.0.html">
+            
+                <a href="../../Android/Ble/Android ble 4.0.html">
+            
+                    
+                    Android ble 4.0
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.8" data-path="../../Android/Other/Groovy介绍.html">
+            
+                <a href="../../Android/Other/Groovy介绍.html">
+            
+                    
+                    Groovy介绍
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.9" data-path="../../Android/Other/Module的.gradle配置.html">
+            
+                <a href="../../Android/Other/Module的.gradle配置.html">
+            
+                    
+                    Module的.gradle配置
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.10" data-path="../../Android/Other/常用操作.html">
+            
+                <a href="../../Android/Other/常用操作.html">
+            
+                    
+                    常用操作
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.11" data-path="../../Android/View/ActionBar和ToolBar的使用.html">
+            
+                <a href="../../Android/View/ActionBar和ToolBar的使用.html">
+            
+                    
+                    ActionBar和ToolBar的使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.12" data-path="../../Android/View/CountDownView.html">
+            
+                <a href="../../Android/View/CountDownView.html">
+            
+                    
+                    CountDownView
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.13" data-path="../../Android/View/LayoutInflater的使用.md">
+            
+                <span>
+            
+                    
+                    LayoutInflater的使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.14" data-path="../../Android/View/Materials Design.html">
+            
+                <a href="../../Android/View/Materials Design.html">
+            
+                    
+                    Materials Design
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="7.1" data-path="../../Android/框架/AAC/Android Architecture Components.html">
+            
+                <a href="../../Android/框架/AAC/Android Architecture Components.html">
+            
+                    
+                    Android Architecture Components
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.2" data-path="../../Android/框架/AAC/DataBinding的使用.html">
+            
+                <a href="../../Android/框架/AAC/DataBinding的使用.html">
+            
+                    
+                    DataBinding的使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.3" data-path="../../Android/框架/AAC/LifeCycle和Room的使用.html">
+            
+                <a href="../../Android/框架/AAC/LifeCycle和Room的使用.html">
+            
+                    
+                    LifeCycle和Room的使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.4" data-path="../../Android/框架/Dagger2.html">
+            
+                <a href="../../Android/框架/Dagger2.html">
+            
+                    
+                    Dagger2
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.5" data-path="../../Android/框架/fastjson的使用.html">
+            
+                <a href="../../Android/框架/fastjson的使用.html">
+            
+                    
+                    fastjson的使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6" data-path="Java输入输出操作.md">
+            
+                <span>
+            
+                    
+                    Java输入输出操作
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.7" data-path="Java关键字.html">
+            
+                <a href="Java关键字.html">
+            
+                    
+                    Java关键字
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.8" data-path="Java泛型.html">
+            
+                <a href="Java泛型.html">
+            
+                    
+                    Java泛型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.9" data-path="Java集合.html">
+            
+                <a href="Java集合.html">
+            
+                    
+                    Java集合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="7.10" data-path="Lambda表达式.html">
+            
+                <a href="Lambda表达式.html">
+            
+                    
+                    Lambda表达式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.11" data-path="String、StringBuffer、StringBuilder区别.html">
+            
+                <a href="String、StringBuffer、StringBuilder区别.html">
+            
+                    
+                    String、StringBuffer、StringBuilder区别
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.12" data-path="../Java多线程/Java多线程与单例模式.html">
+            
+                <a href="../Java多线程/Java多线程与单例模式.html">
+            
+                    
+                    Java多线程与单例模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.13" data-path="../Java多线程/Java多线程基础.html">
+            
+                <a href="../Java多线程/Java多线程基础.html">
+            
+                    
+                    Java多线程基础
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.14" data-path="../Java多线程/Java多线程间通信.md">
+            
+                <span>
+            
+                    
+                    Java多线程间通信
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.15" data-path="../Java多线程/Java锁机制.html">
+            
+                <a href="../Java多线程/Java锁机制.html">
+            
+                    
+                    Java锁机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.16" data-path="../设计模式/观察者模式.html">
+            
+                <a href="../设计模式/观察者模式.html">
+            
+                    
+                    观察者模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >Lambda表达式</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><ul><ul><li><span class="title-icon "></span><a href="#lambda&#x4ECB;&#x7ECD;"><b></b>Lambda&#x4ECB;&#x7ECD;</a></li></ul></ul></ul></div><a href="#" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h3 id="lambda&#x4ECB;&#x7ECD;"><a name="lambda&#x4ECB;&#x7ECD;" class="anchor-navigation-ex-anchor" href="#lambda&#x4ECB;&#x7ECD;"><i class="fa fa-link" aria-hidden="true"></i></a>Lambda&#x4ECB;&#x7ECD;</h3>
+<p>Lambda &#x8868;&#x8FBE;&#x5F0F;&#x201D;(lambda expression)&#x662F;&#x4E00;&#x4E2A;&#x533F;&#x540D;&#x51FD;&#x6570;&#xFF0C;Lambda&#x8868;&#x8FBE;&#x5F0F;&#x57FA;&#x4E8E;&#x6570;&#x5B66;&#x4E2D;&#x7684;&#x3BB;&#x6F14;&#x7B97;&#x5F97;&#x540D;&#xFF0C;&#x76F4;&#x63A5;&#x5BF9;&#x5E94;&#x4E8E;&#x5176;&#x4E2D;&#x7684;lambda&#x62BD;&#x8C61;(lambda abstraction)&#xFF0C;&#x662F;&#x4E00;&#x4E2A;&#x533F;&#x540D;&#x51FD;&#x6570;&#xFF0C;&#x5373;&#x6CA1;&#x6709;&#x51FD;&#x6570;&#x540D;&#x7684;&#x51FD;&#x6570;&#x3002;Lambda&#x8868;&#x8FBE;&#x5F0F;&#x53EF;&#x4EE5;&#x8868;&#x793A;&#x95ED;&#x5305;&#xFF0C;&#x5B83;&#x662F;&#x63A8;&#x52A8; Java 8 &#x53D1;&#x5E03;&#x7684;&#x6700;&#x91CD;&#x8981;&#x65B0;&#x7279;&#x6027;&#x3002;
+Lambda &#x5141;&#x8BB8;&#x628A;&#x51FD;&#x6570;&#x4F5C;&#x4E3A;&#x4E00;&#x4E2A;&#x65B9;&#x6CD5;&#x7684;&#x53C2;&#x6570;&#xFF08;&#x51FD;&#x6570;&#x4F5C;&#x4E3A;&#x53C2;&#x6570;&#x4F20;&#x9012;&#x8FDB;&#x65B9;&#x6CD5;&#x4E2D;&#xFF09;&#x3002;</p>
+<p>&#x5728;Java&#x4E2D;Lambda&#x8868;&#x8FBE;&#x5F0F;&#x4E0E;&#x51FD;&#x6570;&#x5F0F;&#x63A5;&#x53E3;&#x662F;&#x4E0D;&#x53EF;&#x5206;&#x5272;&#x7684;&#xFF0C;&#x90FD;&#x662F;&#x7ED3;&#x5408;&#x8D77;&#x6765;&#x4F7F;&#x7528;&#x7684;&#xFF1B;</p>
+<h4 id="&#x51FD;&#x6570;&#x5F0F;&#x63A5;&#x53E3;"><a name="&#x51FD;&#x6570;&#x5F0F;&#x63A5;&#x53E3;" class="anchor-navigation-ex-anchor" href="#&#x51FD;&#x6570;&#x5F0F;&#x63A5;&#x53E3;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x51FD;&#x6570;&#x5F0F;&#x63A5;&#x53E3;</h4>
+<p>&#x628A;&#x53EA;&#x6709;&#x4E00;&#x4E2A;&#x62BD;&#x8C61;&#x65B9;&#x6CD5;&#x7684;&#x63A5;&#x53E3;&#x53EB;&#x505A;&#x51FD;&#x6570;&#x5F0F;&#x63A5;&#x53E3;&#xFF08;functional interface&#xFF09;</p>
+<footer class="page-footer"><span class="copyright">Copyright &#xA9; LuciusCS 2019 all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
+2019-09-19 17:41:14
+</span></footer>
+
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+
+<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script src="https://snowdreams1006.github.io/gitalk-config.js"></script>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="Java集合.html" class="navigation navigation-prev " aria-label="Previous page: Java集合">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="String、StringBuffer、StringBuilder区别.html" class="navigation navigation-next " aria-label="Next page: String、StringBuffer、StringBuilder区别">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Lambda表达式","level":"7.10","depth":1,"next":{"title":"String、StringBuffer、StringBuilder区别","level":"7.11","depth":1,"path":"Java/Java基础/String、StringBuffer、StringBuilder区别.md","ref":"Java/Java基础/String、StringBuffer、StringBuilder区别.md","articles":[]},"previous":{"title":"Java集合","level":"7.9","depth":1,"path":"Java/Java基础/Java集合.md","ref":"Java/Java基础/Java集合.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-comscore","prism","-highlight","copy-code-button","search-pro","-search","-lunr","expandable-chapters-small","splitter","-sharing","github-buttons","tbfed-pagefooter","anchor-navigation-ex","pageview-count","sidebar-style"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"sidebar-style":{"author":"蛰伏","title":"Android开发"},"tbfed-pagefooter":{"copyright":"Copyright &copy LuciusCS 2019","modify_label":"文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"prism":{"css":["prismjs/themes/prism-okaidia.css"],"lang":{"shell":"bash"}},"splitter":{},"search-pro":{},"fontsettings":{"theme":"white","family":"sans","size":2},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"theme-comscore":{},"pageview-count":{},"github-buttons":{"buttons":[{"user":"LuciusCS","width":"160","type":"follow","count":true,"size":"small"}]},"expandable-chapters-small":{},"copy-code-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"、","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"","language":"zh-hans","gitbook":"*","description":"Android开发全纪录"},"file":{"path":"Java/Java基础/Lambda表达式.md","mtime":"2019-09-19T09:41:14.774Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-10-08T07:03:33.725Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-copy-code-button/toggle.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search-pro/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search-pro/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-pageview-count/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sidebar-style/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-theme-comscore/test.js"></script>
+        
+    
+
+    </body>
+</html>
+
