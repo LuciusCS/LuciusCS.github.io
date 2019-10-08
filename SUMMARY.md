@@ -20,7 +20,7 @@
 * [Git](Other/Git/Git.md) 
 
 
-[](Android/Android JNI/Android Studio JNI引入.md)
+[1](Android/Android JNI/Android Studio JNI引入.md)
 [](Android/Android JNI/Android JNI敏感信息保护.md)
 
 [](Android/Android反编译/Android应用防止二次打包.md)
