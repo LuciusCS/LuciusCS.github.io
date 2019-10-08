@@ -19,7 +19,7 @@
 
 * [Git](Other/Git/Git.md) 
 
-[不需要测试](Android/Android JNI/Android Studio JNI引入.md)[测试](Android/Android JNI/Android JNI敏感信息保护.md)[的](Android/Android反编译/Android应用防止二次打包.md)
+* [不需要测试](Android/Android JNI/Android Studio JNI引入.md)[测试](Android/Android JNI/Android JNI敏感信息保护.md)[的](Android/Android反编译/Android应用防止二次打包.md)
 
 [](Android/Android基础/Android 6.0动态权限获取.md)
 [](Android/Android基础/Android后台任务.md)
