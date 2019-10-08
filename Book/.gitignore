@@ -27,7 +27,6 @@ build/Release
 
 node_modules/
 
-Book
 _book/
 book.pdf
 book.epub
