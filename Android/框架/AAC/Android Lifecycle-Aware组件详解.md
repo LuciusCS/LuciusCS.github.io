@@ -29,7 +29,7 @@ public interface LifecycleOwner {
      * Returns the Lifecycle of the provider.
      *
      * @return The lifecycle of the provider.
-     */
+     *
     @NonNull
     Lifecycle getLifecycle();
 }
