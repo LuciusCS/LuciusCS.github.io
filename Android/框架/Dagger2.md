@@ -16,7 +16,7 @@ Dependency Injection\(注解依赖\)是在IOC\(Inversion of cnontrol\)的基础�
 
 “依赖调用者”通过一个“连接器”从“依赖提供者”调用“依赖对象”
 
-* Dependency provider:使用注解`@Module`表示的类，用于提供可以进行注入的对象。类中的方法使用注解`@Providers`表示该方法的返回对象可以被依赖注入。
+* Dependency provider:使用注解`@Module`表示的类，用于提供可以进行注入的对象。类中的方法使用注解`@Providers`表示该方法的返回对象可以被依赖注入。`@Moudle`可将引用的类（非自己编码的类）的注入，如果是自己编码的类仅用`@Inject`即可
 * Dependency consumer：注解`@Inject`用于定义一个依赖。
 * Connection consumer and producer：使用注解`@Component`的接口定义module对象中`provider`与依赖对象之间的连接，接口的实现类由Dagger自动生成。
 
