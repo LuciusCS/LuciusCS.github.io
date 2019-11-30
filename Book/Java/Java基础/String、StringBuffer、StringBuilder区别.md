@@ -10,3 +10,20 @@ StringBuffer是线程安全的，有加锁开销，效率低；StringBuilder非�
 
 ### '+' VS. StringBuilder
 
+
+
+### byte[]和String类型相互转化
+
+byte[]转换为String,如果是非法值，可能转换不成功
+
+```
+    //用于测试String和byte之间的相互转化
+    String testString="1234566789";
+    byte[] testByte=testString.getBytes();
+    try {
+        String string=new String(testByte, "UTF-8");
+        System.out.println(string);
+    } catch (UnsupportedEncodingException e) {
+        e.printStackTrace();
+    }
+```
