@@ -1,0 +1,1453 @@
+<!DOCTYPE html>
+<html  lang="en">
+<head>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 4.2.0" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>Android Development</title>
+
+
+    <meta name="description" content="程序员">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Android Development">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+<meta property="og:site_name" content="Android Development">
+<meta property="og:description" content="程序员">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/images/og_image.png">
+<meta property="article:author" content="Lucius Zhao">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/favicon.svg">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+    
+    
+    
+    
+    
+    
+    
+    <link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.svg" alt="Android Development" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">Home</a>
+                
+                <a class="navbar-item"
+                href="/archives">Archives</a>
+                
+                <a class="navbar-item"
+                href="/categories">Categories</a>
+                
+                <a class="navbar-item"
+                href="/tags">Tags</a>
+                
+                <a class="navbar-item"
+                href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                
+                
+                <a class="navbar-item search" title="Search" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-11-28T12:20:15.894Z">2019-11-28</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    a few seconds read (About 66 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/11/28/Android/Android%E5%9F%BA%E7%A1%80/Android%E5%BA%8F%E5%88%97%E5%8C%96/">Android/Android基础/Android序列化</a>
+            
+        </h1>
+        <div class="content">
+            <h2 id="Android序列化"><a href="#Android序列化" class="headerlink" title="Android序列化"></a>Android序列化</h2><p>Android序列化对象的方法有两种：</p>
+<ul>
+<li>实现Serializable接口，Java自带</li>
+<li>实现Parcelable接口，android特有接口，效率高于Serializable接口，支持Intent数据传递，也可用于跨进程通讯（IPC）</li>
+</ul>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-11-28T12:18:36.264Z">2019-11-28</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    6 minutes read (About 959 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/11/28/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/">Java/设计模式/代理模式</a>
+            
+        </h1>
+        <div class="content">
+            <h1 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h1><h3 id="代理模式介绍"><a href="#代理模式介绍" class="headerlink" title="代理模式介绍"></a>代理模式介绍</h3><p>代理模式又被称为委托模式，一个代理类为另一个类提供代理；使用代理模式可以隐藏原始的类，并控制对其的访问，当我们想要使用一个可以充当接口的类时，可以使用代理模式；代理模式也被大量使用在懒加载中。</p>
+<p>代理模式主要由三部分组成：</p>
+<ul>
+<li>Subject：一个将方法暴露给client的接口</li>
+<li>Real Subject：实现Subject接口的类，重是方法的实现，在代理模式中需要被隐藏的类</li>
+<li>Proxy：继承Real Subject并将其进行隐藏，Client与real subject之间的调用直接通过Proxy进行。</li>
+</ul>
+<p>代理模式的结构<br><img src="/assets/proxy-design-pattern.jpg" alt=""></p>
+<h3 id="静态代理实现方式"><a href="#静态代理实现方式" class="headerlink" title="静态代理实现方式"></a>静态代理实现方式</h3><p>Subject</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Subject</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSomething</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Real Subject</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RealSubject</span> <span class="keyword">implements</span> <span class="title">Subject</span></span>&#123;</span><br><span class="line">     <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSomething</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      System.out.println(<span class="string">"RealSubject 输出"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Proxy</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProxyTest</span> <span class="keyword">extends</span> <span class="title">RealSubject</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSomething</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"proxy输出"</span>);</span><br><span class="line">        <span class="keyword">super</span>.doSomething();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>测试类client</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        RealSubject proxy=<span class="keyword">new</span> ProxyTest();</span><br><span class="line">        proxy.doSomething();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//输出</span></span><br><span class="line"><span class="comment">//proxy输出</span></span><br><span class="line"><span class="comment">//RealSubject 输出</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="动态代理实现方式"><a href="#动态代理实现方式" class="headerlink" title="动态代理实现方式"></a>动态代理实现方式</h3><p>Subject</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Subject</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSomething</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Real Subject</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RealSubject</span> <span class="keyword">implements</span> <span class="title">Subject</span></span>&#123;</span><br><span class="line">     <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSomething</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      System.out.println(<span class="string">"RealSubject 输出"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Proxy</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProxyHandler</span> <span class="keyword">implements</span> <span class="title">InvocationHandler</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Object tar;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//绑定委托对象，并返回代理类</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">bind</span><span class="params">(Object tar)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.tar=tar;</span><br><span class="line">        <span class="keyword">return</span>                         Proxy.newProxyInstance(tar.getClass().getClassLoader(),tar.getClass().getInterfaces(),<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object o, Method method, Object[] objects)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">    </span><br><span class="line">        Object result=<span class="keyword">null</span>;</span><br><span class="line">        <span class="comment">//这里可以进行所谓的AOP编程</span></span><br><span class="line">        <span class="comment">//在调用具体函数方法项之前，执行功能处理</span></span><br><span class="line">        result=method.invoke(tar,objects);</span><br><span class="line">        <span class="comment">//在调用具体函数方法项之后，执行功能处理</span></span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Client</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    ProxyHandler proxyHandler=<span class="keyword">new</span> ProxyHandler();</span><br><span class="line">    <span class="comment">//绑定该类实现的所有接口</span></span><br><span class="line">    Subject sub=(Subject)proxyHandler.bind(<span class="keyword">new</span> RealSubject());</span><br><span class="line">    sub.doSomething();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="动态代理模式详解"><a href="#动态代理模式详解" class="headerlink" title="动态代理模式详解"></a>动态代理模式详解</h4><h4 id="InvocationHandler接口介绍"><a href="#InvocationHandler接口介绍" class="headerlink" title="InvocationHandler接口介绍"></a>InvocationHandler接口介绍</h4><p>InvocationHandler 源码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">InvocationHandler</span> </span>&#123;</span><br><span class="line">    <span class="function">Object <span class="title">invoke</span><span class="params">(Object var1, Method var2, Object[] var3)</span> <span class="keyword">throws</span>     Throwable</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>InvocationHandler接口是proxy代理实例的调用处理程序实现的一个接口，并且每个代理类的实例都关联到了一个handler，当我们通过代理对象调用一个方法的时候，这个方法的调用就会被转发为由InvocationHandler这个接口的 invoke 方法来进行调用。</p>
+<p><code>invoke(Object var1, Method var2, Object[] var3)</code>方法中有三个参数：</p>
+<ul>
+<li>Object var1：指代代理的真实对象</li>
+<li>Method method：指代真实对象调用的方法</li>
+<li>Object[] args：指代真实对象调用方法时的参数</li>
+</ul>
+<h4 id="Proxy-类介绍"><a href="#Proxy-类介绍" class="headerlink" title="Proxy 类介绍"></a>Proxy 类介绍</h4><p>Proxy用来动态创建一个代理对象的类，<br><code>newProxyInstance(ClassLoader var0, Class&lt;?&gt;[] var1, InvocationHandler var2)</code>方法中的参数</p>
+<ul>
+<li>ClassLoader var0：一个ClassLoader对象，即用哪个类加载器来加载这个代理类到 JVM 的方法区</li>
+<li>Class&lt;?&gt;[] var1：给代理对象提供的接口类型</li>
+<li>InvocationHandler var2：InvocationHandler的实现的实例对象,表示方法调用时会调用哪一个InvocationHandler的invoke方法</li>
+</ul>
+<p>源码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Proxy</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Object <span class="title">newProxyInstance</span><span class="params">(ClassLoader var0, Class&lt;?&gt;[] var1, InvocationHandler var2)</span> <span class="keyword">throws</span> IllegalArgumentException </span>&#123;</span><br><span class="line">        Objects.requireNonNull(var2);</span><br><span class="line">        Class[] var3 = (Class[])var1.clone();                <span class="comment">//用于将传入的Class进行复制       </span></span><br><span class="line">        SecurityManager var4 = System.getSecurityManager();</span><br><span class="line">        <span class="keyword">if</span> (var4 != <span class="keyword">null</span>) &#123;</span><br><span class="line">            checkProxyAccess(Reflection.getCallerClass(), var0, var3);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//调用 getProxyClass0() 方法</span></span><br><span class="line">        Class var5 = getProxyClass0(var0, var3);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (var4 != <span class="keyword">null</span>) &#123;</span><br><span class="line">                checkNewProxyPermission(Reflection.getCallerClass(), var5);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">final</span> Constructor var6 = var5.getConstructor(constructorParams);  <span class="comment">//通过反射类中的Constructor获取构造函数</span></span><br><span class="line">            <span class="keyword">if</span> (!Modifier.isPublic(var5.getModifiers())) &#123;</span><br><span class="line">                AccessController.doPrivileged(<span class="keyword">new</span> PrivilegedAction&lt;Void&gt;() &#123;</span><br><span class="line">                <span class="function"><span class="keyword">public</span> Void <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                    var6.setAccessible(<span class="keyword">true</span>);</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;</span><br><span class="line">           <span class="comment">// 通过Constructor返回代理类的实例</span></span><br><span class="line">            <span class="keyword">return</span> var6.newInstance(var2);</span><br><span class="line">        &#125; <span class="comment">//catch省略</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p><code>getProxyClass0()</code>源码，从缓存中获取代理类对象</p>
+<pre><code class="java">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Proxy</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>{
+       <span class="comment">//proxyClassCache对象定义</span>
+        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> WeakCache&lt;ClassLoader, Class&lt;?&gt;[], Class&lt;?&gt;&gt; proxyClassCache = <span class="keyword">new</span> WeakCache(<span class="keyword">new</span> Proxy.KeyFactory(), <span class="keyword">new</span> Proxy.ProxyClassFactory());
+
+        <span class="comment">//......</span>
+        <span class="keyword">private</span> <span class="keyword">static</span> Class&lt;?&gt; getProxyClass0(ClassLoader var0, Class&lt;?&gt;... var1) {
+        <span class="keyword">if</span> (var1.length &gt; <span class="number">65535</span>) {
+            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"interface limit exceeded"</span>);
+        } <span class="keyword">else</span> {
+            <span class="comment">// proxyClassCache 来做一个中间的缓存</span>
+            <span class="keyword">return</span> (Class)proxyClassCache.get(var0, var1);
+        }
+        }
+        <span class="comment">//......</span>
+    }
+
+```java
+
+
+
+
+
+
+
+</code></pre>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-11-28T12:18:36.245Z">2019-11-28</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3 minutes read (About 413 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/Java%E5%86%85%E9%83%A8%E7%B1%BB/">Java/Java基础/Java内部类</a>
+            
+        </h1>
+        <div class="content">
+            <h3 id="java-内部类"><a href="#java-内部类" class="headerlink" title="java 内部类"></a>java 内部类</h3><p>内部类依赖于外部类而存在，即内部类存在指向外部类的引用，可以访问外部类private类型的属性。</p>
+<h3 id="内部类的作用"><a href="#内部类的作用" class="headerlink" title="内部类的作用"></a>内部类的作用</h3><p>实现多重继承，每个内部类都能独立继承一个类，在Java中没有多重继承，如果一个类需要同时继承两个类，则可以使用内部类。</p>
+<p>内部类可以同时用多个实例，每个实例都有自己的状态信息；</p>
+<p>内部类有更好的封装，除了其自身的外部类，其他类都不能访问内部类；</p>
+<h3 id="内部类分类"><a href="#内部类分类" class="headerlink" title="内部类分类"></a>内部类分类</h3><h4 id="局部内部类"><a href="#局部内部类" class="headerlink" title="局部内部类"></a>局部内部类</h4><p>嵌套在方法里或者某个作用域内，内部类非公共可用，在方法外或者作用域外不能进行使用。</p>
+<h4 id="静态内部类"><a href="#静态内部类" class="headerlink" title="静态内部类"></a>静态内部类</h4><p>静态内部类创建不依赖于外部类，没有指向外部类的引用，不能使用外部类任何非static的静态成员方法，可以用来创建线程安全的单例模式</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonHolder</span> </span>&#123;  </span><br><span class="line">            <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Singleton INSTANCE = <span class="keyword">new</span> Singleton();  </span><br><span class="line">        &#125;  </span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span> <span class="params">()</span></span>&#123;&#125;  </span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">            <span class="keyword">return</span> SingletonHolder.INSTANCE; </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">```   </span><br><span class="line"></span><br><span class="line">#### 匿名内部类</span><br><span class="line"></span><br><span class="line">匿名内部类依赖于接口实现，如果匿名内部类需要访问局部变量，则该局部变量需要表示为<span class="keyword">final</span>类型</span><br><span class="line"></span><br><span class="line">```java</span><br><span class="line"></span><br><span class="line">    <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                System.out.println(<span class="string">"hello"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;).start();</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="内部类与闭包"><a href="#内部类与闭包" class="headerlink" title="内部类与闭包"></a>内部类与闭包</h4><p>内部类会包含对外部类的引用，形成闭包</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">    </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Outer</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> a=<span class="number">1</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Inner</span></span>&#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">int</span> b=<span class="number">2</span>;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">multi</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> a*b;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-09-30T08:28:42.959Z">2019-09-30</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    10 minutes read (About 1510 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/09/30/Android/Other/Module%E7%9A%84.gradle%E9%85%8D%E7%BD%AE/">Android/Other/Module的.gradle配置</a>
+            
+        </h1>
+        <div class="content">
+            <h3 id="gradle介绍"><a href="#gradle介绍" class="headerlink" title="gradle介绍"></a>gradle介绍</h3><p>gradle和make以及ant不同，它基于Groovy语言，而非一种配置；</p>
+<p>Gradle是一个自动化构建的开源工具，使用基于Groovy的领域专用语言(domain specific language (DSL))，来替代使用xml文件对工程的配置。其支持增量编译，可以使用cache，</p>
+<h4 id="在Moudle的build-gradle中添加依赖包"><a href="#在Moudle的build-gradle中添加依赖包" class="headerlink" title="在Moudle的build.gradle中添加依赖包"></a>在Moudle的build.gradle中添加依赖包</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">android &#123; ... &#125;</span><br><span class="line"></span><br><span class="line">dependencies &#123;</span><br><span class="line">    <span class="comment">// 依赖于本地模块，在添加本地模块依赖时，需要在`settings.gradle`文件中添加`include:mylibrary`</span></span><br><span class="line">    <span class="function">implementation <span class="title">project</span><span class="params">(<span class="string">":mylibrary"</span>)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">    <span class="comment">// 依赖于本地库,需要将jar文件添加至 `module_name/libs/`文件夹中 </span></span></span><br><span class="line"><span class="function">    implementation <span class="title">fileTree</span><span class="params">(dir: <span class="string">'libs'</span>, include: [<span class="string">'*.jar'</span>])</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">    <span class="comment">// 依赖于远程库</span></span></span><br><span class="line"><span class="function">    implementation 'com.example.android:app-magic:12.3'</span></span><br><span class="line"><span class="function">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>依赖包的配置有以下类型：<code>implementation</code>、<code>api</code>、<code>compileOnly</code>、<code>runtimeOnly</code>、<code>annotationProcessor</code>、<code>lintChecks</code>、<code>lintPublish</code><br>在上述配置中，会将所有的依赖在构建的时候进行打包；如果需要将特定的依赖打包到特定的版本中，需要在依赖配置前添加响应的前缀,下述依赖只会打包到falvor为free的生成包中。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">    freeImplementation <span class="string">'com.google.firebase:firebase-ads:9.8.0'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果需要将依赖作为变量，与flavor和build type进行结合，要在<code>configurations</code>代码块中进行初始化。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">configurations &#123;</span><br><span class="line">    <span class="comment">//初始化只与freeDebugRuntimeOnly相关的依赖</span></span><br><span class="line">    freeDebugRuntimeOnly &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">dependencies &#123;</span><br><span class="line">    <span class="function">freeDebugRuntimeOnly <span class="title">fileTree</span><span class="params">(dir: <span class="string">'libs'</span>, include: [<span class="string">'*.jar'</span>])</span></span></span><br><span class="line"><span class="function">&#125;</span></span><br></pre></td></tr></table></figure>
+
+
+<h3 id="在Debug模式下使用正式签名"><a href="#在Debug模式下使用正式签名" class="headerlink" title="在Debug模式下使用正式签名"></a>在Debug模式下使用正式签名</h3><p>在moudle.gradle进行配置,signingConfigs配置需要在buildTypes配置之后,否则会报错<code>ERROR: Could not get unknown property &#39;release&#39; for SigningConfig container of type org.gradle.api.internal.FactoryNamedDomainObjectContainer.</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">android&#123;</span><br><span class="line">       ...</span><br><span class="line">    signingConfigs &#123;</span><br><span class="line">        release &#123;</span><br><span class="line">            <span class="comment">//.jks文件放在项目目录（app目录）</span></span><br><span class="line">            <span class="function">storeFile <span class="title">file</span><span class="params">(<span class="string">"app.jks"</span>)</span><span class="comment">//签名文件名</span></span></span><br><span class="line"><span class="function">            storePassword "password"<span class="comment">//密码</span></span></span><br><span class="line"><span class="function">            keyAlias"key0"<span class="comment">//别名</span></span></span><br><span class="line"><span class="function">            keyPassword"password"<span class="comment">//密码</span></span></span><br><span class="line"><span class="function">            &#125;</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">        debug </span>&#123;</span><br><span class="line">            <span class="function">storeFile <span class="title">file</span><span class="params">(<span class="string">"app.jks"</span>)</span></span></span><br><span class="line"><span class="function">            storePassword"password"</span></span><br><span class="line"><span class="function">            keyAlias"key0"<span class="comment">//别名</span></span></span><br><span class="line"><span class="function">            keyPassword"password"</span></span><br><span class="line"><span class="function">        &#125;</span></span><br><span class="line"><span class="function">    &#125;   </span></span><br><span class="line"><span class="function">       </span></span><br><span class="line"><span class="function">    buildTypes </span>&#123;</span><br><span class="line">        release &#123;</span><br><span class="line">            minifyEnabled <span class="keyword">false</span></span><br><span class="line">            <span class="function">proguardFiles <span class="title">getDefaultProguardFile</span><span class="params">(<span class="string">'proguard-android.txt'</span>)</span>, 'proguard-rules.pro'</span></span><br><span class="line"><span class="function">            signingConfig signingConfigs.release</span></span><br><span class="line"><span class="function">        &#125;</span></span><br><span class="line"><span class="function">        debug </span>&#123;</span><br><span class="line">        signingConfig signingConfigs.release</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   ....</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="加速项目的构建速度"><a href="#加速项目的构建速度" class="headerlink" title="加速项目的构建速度"></a>加速项目的构建速度</h3><h4 id="优化项目配置"><a href="#优化项目配置" class="headerlink" title="优化项目配置"></a>优化项目配置</h4><p>有一些打包的配置，在进行开发的过程中不需要，这些不需要的配置会拖慢增量编译，以及clean up的速度；我们可以配置仅在打包的时候进行使用的编译变量，下述示例是创建一个<code>dev</code>flavor和<code>prod</code>flavor(发布版本)。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">android &#123;</span><br><span class="line">  ...</span><br><span class="line">  defaultConfig &#123;...&#125;</span><br><span class="line">  buildTypes &#123;...&#125;</span><br><span class="line">  productFlavors &#123;</span><br><span class="line">    <span class="comment">//当在构件时使用下述flavor，则会覆盖`defaultConfig`代码块；</span></span><br><span class="line">    dev &#123;</span><br><span class="line">      </span><br><span class="line">      minSdkVersion <span class="number">21</span></span><br><span class="line">      versionNameSuffix <span class="string">"-dev"</span></span><br><span class="line">      applicationIdSuffix <span class="string">'.dev'</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    prod &#123;</span><br><span class="line">      <span class="comment">// 如果使用默认配置发布版本，则这一代码块可以设置为空，但不能省略`prob`，否则所有的编译版本都会使用`dev`中的配置。</span></span><br><span class="line">      </span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以使用flavor维度设置，可以创建出组合的flavor；如下述示例中创建出<code>devDemo</code>和<code>prodFull</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">android &#123;</span><br><span class="line">  ...</span><br><span class="line">  defaultConfig &#123;...&#125;</span><br><span class="line">  buildTypes &#123;...&#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 定义需要使用的flavor dimensions，定义的顺序就是它们从高到底的优先级；使用flavor维度后，需要在每一项flavor配置中定义指定维度</span></span><br><span class="line">  flavorDimensions <span class="string">"stage"</span>, <span class="string">"mode"</span></span><br><span class="line"></span><br><span class="line">  productFlavors &#123;</span><br><span class="line">    dev &#123;</span><br><span class="line">      dimension <span class="string">"stage"</span></span><br><span class="line">      minSdkVersion <span class="number">21</span></span><br><span class="line">      versionNameSuffix <span class="string">"-dev"</span></span><br><span class="line">      applicationIdSuffix <span class="string">'.dev'</span></span><br><span class="line">      </span><br><span class="line">      <span class="comment">//可以通过配置`resConfigs`仅配置英文，以及`xxhdpi`尺寸的图片</span></span><br><span class="line">      resConfigs <span class="string">"en"</span>, <span class="string">"xxhdpi"</span></span><br><span class="line">      ...</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    prod &#123;</span><br><span class="line">      dimension <span class="string">"stage"</span></span><br><span class="line">      ...</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    demo &#123;</span><br><span class="line">      dimension <span class="string">"mode"</span></span><br><span class="line">      ...</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    full &#123;</span><br><span class="line">      dimension <span class="string">"mode"</span></span><br><span class="line">      ...</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="编译类型配置"><a href="#编译类型配置" class="headerlink" title="编译类型配置"></a>编译类型配置</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">    android &#123;</span><br><span class="line">      ...</span><br><span class="line">      buildTypes &#123;</span><br><span class="line">        debug &#123;</span><br><span class="line">          <span class="comment">//如果不需要Crashlytics 报告可以设置为`diable`加快编译速度`</span></span><br><span class="line">          ext.enableCrashlytics = <span class="keyword">false</span></span><br><span class="line">          <span class="comment">//防止Crashlytics 每次更新编译的id</span></span><br><span class="line">          ext.alwaysUpdateBuildId = <span class="keyword">false</span></span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="在Debug版本构建的过程中使用静态常量"><a href="#在Debug版本构建的过程中使用静态常量" class="headerlink" title="在Debug版本构建的过程中使用静态常量"></a>在Debug版本构建的过程中使用静态常量</h4><p>在Debug版本中总是使用静态常量，或者硬编码的方式进行编译。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">int</span> MILLIS_IN_MINUTE = <span class="number">1000</span> * <span class="number">60</span></span><br><span class="line"><span class="keyword">int</span> minutesSinceEpoch = System.currentTimeMillis() / MILLIS_IN_MINUTE</span><br><span class="line"></span><br><span class="line">android &#123;</span><br><span class="line">    ...</span><br><span class="line">    defaultConfig &#123;</span><br><span class="line">  </span><br><span class="line">        <span class="comment">//如果将下述两个值设置为动态的，会在`AndroidManifest.xml`的影响下进行更新，编译出完整版本apk</span></span><br><span class="line">        versionCode <span class="number">1</span></span><br><span class="line">        versionName <span class="string">"1.0"</span></span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//进行上述默认配置后，在进行增量变异的时候不需要重新构建`manifest`，重新构建会导致构建完整apk，拖慢构建速度。</span></span><br><span class="line">    <span class="comment">//下面的语句会在构建的时候遍历`buildType.name`并进行相应的处理</span></span><br><span class="line">    applicationVariants.all &#123; variant -&gt;</span><br><span class="line">        <span class="keyword">if</span> (variant.buildType.name == <span class="string">"release"</span>) &#123;</span><br><span class="line">            variant.mergedFlavor.versionCode = minutesSinceEpoch;</span><br><span class="line">            variant.mergedFlavor.versionName = minutesSinceEpoch + <span class="string">"-"</span> + variant.flavorName;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="使用增量注解处理（incremental-annotation-processors）"><a href="#使用增量注解处理（incremental-annotation-processors）" class="headerlink" title="使用增量注解处理（incremental annotation processors）"></a>使用增量注解处理（incremental annotation processors）</h4><p>Android Studio的Gradle插件版本高于3.3.0支持增量注解处理，如果您使用一个或多个不支持增量编译的注解处理器，则增量 Java 编译不会启用。如果需要使用不支持此优化的注解处理器，可以再 gradle.properties 文件中添加以下标记。添加后，Android Gradle 插件会在一个单独的任务中执行所有注解处理器，并允许 Java 编译任务以增量方式运行。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android.enableSeparateAnnotationProcessing = true</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="其他方式"><a href="#其他方式" class="headerlink" title="其他方式"></a>其他方式</h4><ul>
+<li><p>使用确定的依赖，避免使用<code>+</code>，如：’com.android.tools.build:gradle:2.+’</p>
+</li>
+<li><p>使用离线模式进行编译</p>
+</li>
+<li><p>创建library modules，使用这种方式，该模块可以编译输出至缓存中，仅在模块编辑后才会重新编译。</p>
+</li>
+<li><p>创建自定义编译任务</p>
+</li>
+<li><p>将图片转换为WebP</p>
+<p> WebP可以像PNG一样透明，使用与JPEG一样是有损压缩，但比JPG和JPEG压缩更优秀。重新更改图片的尺寸，而非在编译时压缩可以加快编译速度。可以使用Android Studio进行图片的转换。</p>
+</li>
+<li><p>禁用PNG压缩</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">  </span><br><span class="line">  android &#123;</span><br><span class="line">    buildTypes &#123;</span><br><span class="line">        release &#123;</span><br><span class="line">            <span class="comment">//禁用PNG压缩</span></span><br><span class="line">            crunchPngs <span class="keyword">false</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 如果使用的gradle插件版本小于3.0.0，使用下述方式禁用PNG压缩</span></span><br><span class="line">    <span class="comment">//  aaptOptions &#123;</span></span><br><span class="line">    <span class="comment">//      cruncherEnabled false</span></span><br><span class="line">    <span class="comment">//  &#125;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用编译缓存<br>在编译缓存中会保存Gradle插件在编译过程中的输出（如：未打包的AAR文件，提前下载的远程库），当使用编译缓存，<code>clean build</code>会变得更快，因为其会调用缓存中的文件，而非重新生成。<br>在gradle.gradle.properties 中指定编译缓存的路径，默认路径为<code>&lt;user-home&gt;/.android/build-cache/</code></p>
+</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// 执行绝对路径或者相对路径</span><br><span class="line">android.buildCacheDir=<span class="tag">&lt;<span class="name">path-to-directory</span>&gt;</span></span><br><span class="line">android.enableBuildCache=true</span><br></pre></td></tr></table></figure>
+
+<h4 id="打包编译多个版本的apk，待续"><a href="#打包编译多个版本的apk，待续" class="headerlink" title="打包编译多个版本的apk，待续"></a>打包编译多个版本的apk，待续</h4>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-09-30T08:28:42.959Z">2019-09-30</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    a few seconds read (About 20 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/09/30/Android/Other/%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/">Android/Other/常用操作</a>
+            
+        </h1>
+        <div class="content">
+            <h3 id="查看签名文件信息"><a href="#查看签名文件信息" class="headerlink" title="查看签名文件信息"></a>查看签名文件信息</h3><p>密码是password</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -list -v -keystore application.jks -storepass password</span><br></pre></td></tr></table></figure>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-09-30T08:28:42.958Z">2019-09-30</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    a few seconds read (About 0 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/09/30/Android/Other/Groovy%E4%BB%8B%E7%BB%8D/">Android/Other/Groovy介绍</a>
+            
+        </h1>
+        <div class="content">
+            
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-09-30T08:28:42.950Z">2019-09-30</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    4 minutes read (About 656 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/09/30/Android/Android%E5%8F%8D%E7%BC%96%E8%AF%91/Android%E5%BA%94%E7%94%A8%E9%98%B2%E6%AD%A2%E4%BA%8C%E6%AC%A1%E6%89%93%E5%8C%85/">Android/Android反编译/Android应用防止二次打包</a>
+            
+        </h1>
+        <div class="content">
+            <p>Android防止二次打包主要通过对签名文件的验证来进行</p>
+<h3 id="应用签名文件介绍"><a href="#应用签名文件介绍" class="headerlink" title="应用签名文件介绍"></a>应用签名文件介绍</h3><p>在Android Studio2.2之后多了对签名版本的选择<code>V1(Jar Signature)</code>和<code>V2(Full APK Signature)</code>V1就是传统的签名方式，V2则是Android7.0之后引入的。其区别是，V1是通过ZIP条目进行验证，这样APK 签署后可进行许多修改；而V2验证压缩文件的所有字节，而不是单个 ZIP 条目，这样在签名后无法再更改。V2的好处很明显，更安全且验证更迅速。所以，推荐在生成apk时，签名方式选择V1+V2。当然，仅仅选择V1也是可以的。如果仅选择V2呢，这样生成的apk在Android7.0及之后的版本上没有问题，不过会导致7.0以下的版本无法安装，所以要避免这种方式。</p>
+<h4 id="签名文件在gradle中配置"><a href="#签名文件在gradle中配置" class="headerlink" title="签名文件在gradle中配置"></a>签名文件在gradle中配置</h4><pre><code>signingConfigs {      
+  debug {          
+    storeFile file(&quot;./hyydev.jks&quot;)          
+    storePassword &quot;******&quot;         
+    keyAlias &quot;**&quot;          
+    keyPassword &quot;******&quot;          
+    v1SigningEnabled true          
+    v2SigningEnabled true      
+  }      
+  release {          
+    storeFile file(&quot;./hyydev.jks&quot;)          
+    storePassword &quot;******&quot;          
+    keyAlias &quot;**&quot;          
+    keyPassword &quot;******&quot;         
+    v1SigningEnabled true          
+    v2SigningEnabled true      
+  }
+}</code></pre><h3 id="应用签名文件查看"><a href="#应用签名文件查看" class="headerlink" title="应用签名文件查看"></a>应用签名文件查看</h3><ul>
+<li>已有.jks文件</li>
+</ul>
+<p>在cmd中输入</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">keytool -list -v -keystore path/android.jks -storepass password</span><br></pre></td></tr></table></figure>
+<p>![](/assets/Android safe.png)</p>
+<ul>
+<li>只有.apk文件</li>
+</ul>
+<p>使用解压工具解压APK文件，在META-INF文件夹拿到CERT.RSA文件,在CMD中输入</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -printcert -file path/android.jks</span><br></pre></td></tr></table></figure>
+<p>![](/assets/Android safe1.png)</p>
+<p><strong>两种方式获取到的签名文件是一致的，使用.jks文件需要密码，而使用.apk文件无需密码</strong></p>
+<h3 id="在Java代码中进行验证，通过PackageManager获取签名信息。"><a href="#在Java代码中进行验证，通过PackageManager获取签名信息。" class="headerlink" title="在Java代码中进行验证，通过PackageManager获取签名信息。"></a>在Java代码中进行验证，通过PackageManager获取签名信息。</h3><p>使用Java代码进行签名信息验证，通过修改smali文件可以绕过，容易破解</p>
+<h3 id="在native层进行签名验证"><a href="#在native层进行签名验证" class="headerlink" title="在native层进行签名验证"></a>在native层进行签名验证</h3><p>使用NDK开发出来的原生C++代码编译后生成的so库是一个二进制文件，可以增加了破解的难度，但在实现中将用于对比的签名HASH串明文存放在代码中，可能会被取出。</p>
+<p>因此在编写时需要对签名内容进行加密，使用自定义加密算法，在使用时进行解密。</p>
+<h3 id="在服务端对签名文件进行验证"><a href="#在服务端对签名文件进行验证" class="headerlink" title="在服务端对签名文件进行验证"></a>在服务端对签名文件进行验证</h3><p>服务器校验即将本地的程序信息，传输到服务器进行校验，然后返回一段核心代码进行执行（非校验结果，防本地修改；同时也不建议服务器下发校验信息，本地校验，原理同）</p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-09-30T08:28:42.948Z">2019-09-30</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    9 minutes read (About 1303 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/09/30/Android/Advanced/%E5%BA%94%E7%94%A8%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B/">Android/Advanced/应用启动流程</a>
+            
+        </h1>
+        <div class="content">
+            <p>1、Launcher通知AMS启动淘宝APP的MainActivity，也就是清单文件设置启动的Activity。<br>2、AMS记录要启动的Activity信息，并且通知Launcher进入pause状态。<br>3、Launcher进入pause状态后，通知AMS已经paused了，可以启动淘宝了。<br>4、淘宝app未开启过，所以AMS启动新的进程，并且在新进程中创建ActivityThread对象，执行其中的main函数方法。<br>5、淘宝app主线程启动完毕后通知AMS，并传入applicationThread以便通讯。<br>6、AMS通知淘宝绑定Application并启动MainActivity。<br>7、淘宝启动MainActivitiy，并且创建和关联Context,最后调用onCreate方法。</p>
+<h2 id="Android应用启动从Zygote到Activity-onCreate"><a href="#Android应用启动从Zygote到Activity-onCreate" class="headerlink" title="Android应用启动从Zygote到Activity.onCreate"></a>Android应用启动从Zygote到Activity.onCreate</h2><p>本文从点击Android应用图标开始介绍Android应用的启动过程</p>
+<h3 id="Android应用有两个方面的特点"><a href="#Android应用有两个方面的特点" class="headerlink" title="Android应用有两个方面的特点"></a>Android应用有两个方面的特点</h3><p><strong>特点一：</strong>具有多个入口，Android应用由多个组件组成，而且他们可以调用其他应用的组件。组件可以成为应用的多个入口，因此Android应用不像传统的应用只有类似于main()函数的启动入口。</p>
+<p><strong>特点二：</strong>自己的运行空间，每个Android应用都运行在独立的进程中，具有自己的Dalvik虚拟机实例，并且被指定了唯一的userId;</p>
+<p>任何用户或者其他的组件请求你的应用组件（service、activitry）执行，如果你的App没有在运行，操作系统会为App启动一个新的进程。</p>
+<p>在默认的情况下，每一个Android应用都运行在自己的进程中，即一个Linux进程，改Linux进程拥有一个可以启动的线程。 </p>
+<h3 id="Zygote：创建新的进程"><a href="#Zygote：创建新的进程" class="headerlink" title="Zygote：创建新的进程"></a>Zygote：创建新的进程</h3><p>Android操作系统在启动的过程：Boot加载系统内核，并启动init进程，init进程再创建Linux中低等级的守护进程（daemons）,例如：debug daemons、USB daemons，这些守护进程用于控制低级的硬件接口。</p>
+<p><strong>init进程会启动Zygote进程</strong></p>
+<p><strong>Zygote</strong>进程可以初始化第一个Dalvik虚拟机实例，同时也提前加载Android层通用的类和系统中不同的应用。会在套接字接口上监听创建新的虚拟机的请求，以及管理新的应用进程。一旦获取创建虚拟机的请求，Zygote会将自己fork创建一个新的进程，并提前初始化虚拟机的实例。</p>
+<p><strong>在Zygote之后，init启动运行时的进程？</strong></p>
+<p>紧接着Zygote fork并启动一个称为system server的进程，<strong>system server会启动所有的核心服务包括：activity manager service、hardware services在其自己的context中。</strong></p>
+<h3 id="用户点击图标通过Launcher启动应用的过程"><a href="#用户点击图标通过Launcher启动应用的过程" class="headerlink" title="用户点击图标通过Launcher启动应用的过程"></a>用户点击图标通过Launcher启动应用的过程</h3><p>点击事件会被转换为startActivity(intent)并通过Binder IPC将事件转换到ActivityManagerService，在ActivityManagerService中执行很多操作步骤。</p>
+<ul>
+<li>1、收集intent的目标的信息，通过调用<code>PackageManager</code>对象中的<code>resolveIntent()</code>方法，默认使用<code>PackageManager.MATCH_DEFAULT_ONLY</code> 和     <code>PackageManager.GET_SHARED_LIBRARY_FILES</code>标志。</li>
+<li>2、目标信心会被存储至intent对象中，避免重复第一步工作；</li>
+<li>3、判断用户是否有权限调用intent中的组件，通过<code>grantUriPermissionLocked()</code>方法执行；</li>
+<li>4、如果用户有足够的权限，ActivityManagerService会去检查目标activity是否需要在新的task中进行启动。task的创建依赖于intent的标志(flags)如：<code>FLAG_ACTIVITY_NEW_TASK</code> 或者其他flags<code>FLAG_ACTIVITY_CLEAR_TOP</code>；</li>
+<li>5、检查进程的<code>ProcessRecord</code>是否已经存在，如果<code>ProcessRecord</code>为空，ActivityManager需要创建一个新的进程来实例化目标组件。</li>
+</ul>
+<h3 id="在该应用启动流程中有三个不同的阶段"><a href="#在该应用启动流程中有三个不同的阶段" class="headerlink" title="在该应用启动流程中有三个不同的阶段"></a>在该应用启动流程中有三个不同的阶段</h3><ul>
+<li>1、进程创建</li>
+<li>2、绑定应用</li>
+<li>3、启动Activity/Service/调用intent receiver</li>
+</ul>
+<h4 id="进程创建"><a href="#进程创建" class="headerlink" title="进程创建"></a>进程创建</h4><p>ActivityManagerService通过调用<code>startProcessLocked()</code>方法来创建一个新的进程，<code>startProcessLocked</code>方法通过socket连接将参数传递给Zygote进程。Zygote将自己fork，然后调用<code>ZygoteInit.main()</code>方法，该方法会创建一个ActivityThread对象，并返回新建进程的id</p>
+<p>在默认情况先每一个进程都会获取一个线程，在主线程中有一个Looper实例通过调用<code>Looper.loop()</code>方法处理从message queue中的message，在Looper每一次运行run()方法时。Looper的作用是从message queue中取出相应message并调用相应的方法来处理它们。ActivityThread通过调用<code>Looper.prepareLoop()</code>再掉用<code>Looper.loop()</code>方法启动message loop。</p>
+<h4 id="应用绑定"><a href="#应用绑定" class="headerlink" title="应用绑定"></a>应用绑定</h4><p>下一步是将新创建的进程绑定至特定的应用上，通过调用线程中的<code>bindApplication()</code>方法来实现。该方法将<code>BIND_APPLICATION</code>信息发送至message queue，该Message通过Handler对象检索，然后调用handlerMessage()方法来触发该message具有的特殊方法——<code>handleBindApplication()</code>，该方法调用<code>makeApplication()</code>方法，<code>makeApplication()</code>方法将应用中特定的类加载到内存中执行。</p>
+<h4 id="启动Activity"><a href="#启动Activity" class="headerlink" title="启动Activity"></a>启动Activity</h4>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-09-30T08:26:59.176Z">2019-09-30</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    6 minutes read (About 904 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/09/30/Android/Android%E5%9F%BA%E7%A1%80/Android%E5%90%8E%E5%8F%B0%E4%BB%BB%E5%8A%A1/">Android/Android基础/Android后台任务</a>
+            
+        </h1>
+        <div class="content">
+            <h1 id="Android后台处理介绍"><a href="#Android后台处理介绍" class="headerlink" title="Android后台处理介绍"></a>Android后台处理介绍</h1><p>Android手机应用通过主线程来控制UI，包括计算以及View绘制；当有太多的工作在主线程中进行，会造成App假死或者运行缓慢，会给用户较差的体验。很多耗时操作包括编码与解码Bitmap、读取存储器内容或者网络处理工作可以在一个独立的后台进程中进行。</p>
+<h2 id="推荐在后台进行处理的三种情况"><a href="#推荐在后台进行处理的三种情况" class="headerlink" title="推荐在后台进行处理的三种情况"></a>推荐在后台进行处理的三种情况</h2><h3 id="App处理操作是否可以滞后进行，或者需要实时处理"><a href="#App处理操作是否可以滞后进行，或者需要实时处理" class="headerlink" title="App处理操作是否可以滞后进行，或者需要实时处理"></a>App处理操作是否可以滞后进行，或者需要实时处理</h3><p>例如：当用户需要获取数据并显示时，不能将此数据获取放在后台；如果需要将App输出的log日志传递到服务器中，则需要将传输工作放置在后台中进行</p>
+<h3 id="App的处理操作开始的时候，Android操作系统是否需要将App进行“保活”（Keep-Alive）处理"><a href="#App的处理操作开始的时候，Android操作系统是否需要将App进行“保活”（Keep-Alive）处理" class="headerlink" title="App的处理操作开始的时候，Android操作系统是否需要将App进行“保活”（Keep Alive）处理"></a>App的处理操作开始的时候，Android操作系统是否需要将App进行“保活”（Keep Alive）处理</h3><p>例如：当对Bitmap进行解码显示处理的时候，通常需要App保持运行；当使用手机播放器进行音乐播放的时候,手机播放器需要可以再后台运行。</p>
+<h3 id="App操作处理是否是由系统进行触发"><a href="#App操作处理是否是由系统进行触发" class="headerlink" title="App操作处理是否是由系统进行触发"></a>App操作处理是否是由系统进行触发</h3><p>系统触发的内容包括：手机网络状态、电量状态、存储器容量以及其他的触发。例如：当你需要在手机处于网络可应用的状态下与服务器进行通信，如果此时App进程已经死掉，你需要重新启动一个。</p>
+<h4 id="加一个选择策略图片"><a href="#加一个选择策略图片" class="headerlink" title="加一个选择策略图片"></a>加一个选择策略图片</h4><h2 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h2><p>对于处理工作只能在App前台工作的情况使用线程池，线程池提供了一组后台线程，接收任务提交队列。如果需要监控操作系统的触发机制，需要使用动态注册Broadcast receivers,去监控操作系统的状态以及触发任务。</p>
+<ul>
+<li>注：在需要线程池进行网络、存储器以及计算操作时，这些任务通常需要是独立的避免引发死锁</li>
+</ul>
+<h2 id="Foreground-Service操作"><a href="#Foreground-Service操作" class="headerlink" title="Foreground Service操作"></a>Foreground Service操作</h2><p>对于需要尽快完成的工作，使用Foreground Servie通知操作系统App正在进行一些重要的工作，不可以被杀死。Foreground Service对于用户是可见的，它显示在通知栏中。</p>
+<h2 id="Workmanager"><a href="#Workmanager" class="headerlink" title="Workmanager"></a>Workmanager</h2><p>对于那些可以进行演示进行但必须要完成的任务，可以使用WorkManager。WorkManager是Android的一个库，用以运行可以延时触发后台任务（如：网络状态触发，或者电池状态触发）。WorkManager使用的是framework层的JobScheduler,当设备的版本低于Android 6.0(API 23)，如果已经在App中添加依赖，WorkManager就会使用Workbase JobDispatcher,否则将会使用AlarmManager来对后台任务进行处理。</p>
+<h2 id="后台进程操作的限制"><a href="#后台进程操作的限制" class="headerlink" title="后台进程操作的限制"></a>后台进程操作的限制</h2><p>为了最大化利用电池以及更好的App使用体验，Android会限制App(或者一个forceground service notification)，当其对用户不可见时。</p>
+<ul>
+<li>Android 6.0(Api 23)使用休眠状态或者standby状态，当屏幕关闭或者未操作状态时，App处于standby状态时，是未使用的应用进入到网络、任务以及同步都被限制的状态。</li>
+<li>Android 7.0(Api 24)限制隐式广播。</li>
+<li>Android 8.0(Api 26)限制更多的后台操作，包括后台获取地址信息以及释放缓存。</li>
+</ul>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-09-30T07:19:02.876Z">2019-09-30</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3 minutes read (About 440 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/09/30/Android/%E6%A1%86%E6%9E%B6/AAC/WorkManager%E4%BB%8B%E7%BB%8D/">Android/框架/AAC/WorkManager介绍</a>
+            
+        </h1>
+        <div class="content">
+            <p>WorkManager是一个Job分发服务，用来管理任务,一旦任务进入管理队里，无论是退出当前应用或重启设备，WorkManager都会保证任务的进行。</p>
+<p>在默认请状态下WorkManager会立即运行任务，但可以指定在手机在某一特殊状态下运行，如：网络状态、电池状态、或者是内存状态。</p>
+<p>当程序运行时，运行WorkManager,WorkManager会在一个新的后台子线程中进行；如果程序没有运行，WorkManager将会根据设备的API以及是否可以使用Google服务来选择合适的方式运行。当API在23及以上，WorkManager会使用功JobScheduler来运行，在API14-22将会使用Firebase JobDispatcher，如果JobDispatcher不能使用则会调用一个自定义AlarmManager以及BroadcastReceiver来实现后台运行任务。</p>
+<p>WorkManager不是为了执行所有不在主线程中的任务，如果任务不需要保证执行，则应该使用intent service或者foreground service</p>
+<p>WorkManager可以执行两种类型的任务</p>
+<ul>
+<li>只执行一次的任务，需要创建一个OneTimeWorkRequest对象，然后加入到任务队列中</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">WorkManager workManager=workManager.getInstance();</span><br><span class="line">workManager.enqueue(<span class="keyword">new</span> OneTimeWorkRequest.Builder(MyWork<span class="class">.<span class="keyword">class</span>).<span class="title">build</span>())</span>;</span><br></pre></td></tr></table></figure>
+
+<p>因为没有加其他的限制条件，所以上述任务只会执行一次；</p>
+<ul>
+<li>多次任务，如：每天将应用数据同步至服务器；</li>
+</ul>
+<p>创建多次任务时，需要使用PeriodicWorkRequest.Bulder创建一个PeriodicWorkRequest对象，指定两次任务之间的时间间隔，然后将PeriodWorkRequest加入到执行队列中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">new PeriodicWorkRequest.Builder dataCheckBuilder&#x3D;new PeriodicWorkRequest.Builder(DataCheckWorker.class,12,TimeUnit.HOURS);</span><br><span class="line"></span><br><span class="line">PeriodicWorkRequest dataCheckWork&#x3D;dataCheckBuilder.build();</span><br><span class="line">WorkManager.getInstance().enqueue(dataCheckWork);</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+    
+<div class="card card-transparent">
+    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+        <div class="pagination-previous">
+            <a class="is-flex-grow has-text-black-ter" href="/">Previous</a>
+        </div>
+        <div class="pagination-next">
+            <a class="is-flex-grow has-text-black-ter" href="/page/3/">Next</a>
+        </div>
+        <ul class="pagination-list is-hidden-mobile">
+            
+            <li><a class="pagination-link has-text-black-ter" href="/">1</a></li>
+            
+            <li><a class="pagination-link is-current" href="/page/2/">2</a></li>
+            
+            <li><a class="pagination-link has-text-black-ter" href="/page/3/">3</a></li>
+            
+            <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
+            
+            <li><a class="pagination-link has-text-black-ter" href="/page/8/">8</a></li>
+            
+        </ul>
+    </nav>
+</div>
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left is-sticky">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                    <figure class="image is-128x128 has-mb-6">
+                        <img class="is-rounded" src="https://www.gravatar.com/avatar/5f88f4a896dde4ec7ad915a606b0faa9?s=128" alt="Lucius">
+                    </figure>
+                    
+                    <p class="is-size-4 is-block">
+                        Lucius
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        Android Developer
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Qingdao</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Posts
+                    </p>
+                    <a href="/archives">
+                        <p class="title has-text-weight-normal">
+                            72
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Categories
+                    </p>
+                    <a href="/categories">
+                        <p class="title has-text-weight-normal">
+                            0
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Tags
+                    </p>
+                    <a href="/tags">
+                        <p class="title has-text-weight-normal">
+                            0
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/LuciusCS" target="_blank" rel="noopener">
+                Follow</a>
+        </div>
+        
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="Github" href="https://github.com/LuciusCS">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Links
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener">
+                    <span class="level-left">
+                        <span class="level-item">Hexo</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">hexo.io</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://github.com/ppoffice" target="_blank" rel="noopener">
+                    <span class="level-left">
+                        <span class="level-item">PPOffice</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">github.com</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Categories
+            </h3>
+            <ul class="menu-list">
+            
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen is-sticky">
+        
+            <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/02/26/hello-world/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Hello World">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-26T12:43:14.002Z">2020-02-26</time></div>
+                    <a href="/2020/02/26/hello-world/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Hello World</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/11/30/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Android/框架/Retrofit 2.5 框架使用与源码分析">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-30T11:13:20.728Z">2019-11-30</time></div>
+                    <a href="/2019/11/30/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android/框架/Retrofit 2.5 框架使用与源码分析</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/README/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Kotlin/Kotlin基础/README">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:23.104Z">2019-11-28</time></div>
+                    <a href="/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/README/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Kotlin/Kotlin基础/README</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Kotlin/Kotlin基础/Lambda表达式">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:23.103Z">2019-11-28</time></div>
+                    <a href="/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Kotlin/Kotlin基础/Lambda表达式</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/11/28/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/Img/README/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Java/设计模式/Img/README">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:23.102Z">2019-11-28</time></div>
+                    <a href="/2019/11/28/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/Img/README/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java/设计模式/Img/README</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Archives
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/02/">
+                <span class="level-start">
+                    <span class="level-item">February 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/11/">
+                <span class="level-start">
+                    <span class="level-item">November 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">12</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/09/">
+                <span class="level-start">
+                    <span class="level-item">September 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">59</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right is-sticky">
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/02/26/hello-world/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Hello World">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-26T12:43:14.002Z">2020-02-26</time></div>
+                    <a href="/2020/02/26/hello-world/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Hello World</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/11/30/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Android/框架/Retrofit 2.5 框架使用与源码分析">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-30T11:13:20.728Z">2019-11-30</time></div>
+                    <a href="/2019/11/30/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android/框架/Retrofit 2.5 框架使用与源码分析</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/README/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Kotlin/Kotlin基础/README">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:23.104Z">2019-11-28</time></div>
+                    <a href="/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/README/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Kotlin/Kotlin基础/README</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Kotlin/Kotlin基础/Lambda表达式">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:23.103Z">2019-11-28</time></div>
+                    <a href="/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Kotlin/Kotlin基础/Lambda表达式</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/11/28/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/Img/README/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Java/设计模式/Img/README">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:23.102Z">2019-11-28</time></div>
+                    <a href="/2019/11/28/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/Img/README/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java/设计模式/Img/README</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Archives
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/02/">
+                <span class="level-start">
+                    <span class="level-item">February 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/11/">
+                <span class="level-start">
+                    <span class="level-item">November 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">12</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/09/">
+                <span class="level-start">
+                    <span class="level-item">September 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">59</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.svg" alt="Android Development" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2020 Lucius Zhao&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("en");</script>
+
+
+<script>
+var IcarusThemeSettings = {
+    site: {
+        url: 'http://yoursite.com',
+        external_link: {"enable":true,"exclude":[]}
+    },
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+
+
+<script src="/js/animation.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/js/gallery.js" defer></script>
+
+
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+
+<a id="back-to-top" title="Back to Top" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>

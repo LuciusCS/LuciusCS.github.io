@@ -1,0 +1,1425 @@
+<!DOCTYPE html>
+<html  lang="en">
+<head>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 4.2.0" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>Android Development</title>
+
+
+    <meta name="description" content="程序员">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Android Development">
+<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:site_name" content="Android Development">
+<meta property="og:description" content="程序员">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/images/og_image.png">
+<meta property="article:author" content="Lucius Zhao">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/favicon.svg">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+    
+    
+    
+    
+    
+    
+    
+    <link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.svg" alt="Android Development" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item is-active"
+                href="/">Home</a>
+                
+                <a class="navbar-item"
+                href="/archives">Archives</a>
+                
+                <a class="navbar-item"
+                href="/categories">Categories</a>
+                
+                <a class="navbar-item"
+                href="/tags">Tags</a>
+                
+                <a class="navbar-item"
+                href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                
+                
+                <a class="navbar-item search" title="Search" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-02-26T12:43:14.002Z">2020-02-26</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    a minute read (About 123 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/02/26/hello-world/">Hello World</a>
+            
+        </h1>
+        <div class="content">
+            <p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-11-30T11:13:20.728Z">2019-11-30</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    14 minutes read (About 2126 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/11/30/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">Android/框架/Retrofit 2.5 框架使用与源码分析</a>
+            
+        </h1>
+        <div class="content">
+            <h1 id="Retrofit-2-5-框架使用与源码分析"><a href="#Retrofit-2-5-框架使用与源码分析" class="headerlink" title="Retrofit 2.5 框架使用与源码分析"></a>Retrofit 2.5 框架使用与源码分析</h1><h2 id="Retrofit-框架使用"><a href="#Retrofit-框架使用" class="headerlink" title="Retrofit 框架使用"></a>Retrofit 框架使用</h2><h4 id="请求内容与返回值"><a href="#请求内容与返回值" class="headerlink" title="请求内容与返回值"></a>请求内容与返回值</h4><p>使用PostMan进行请求测试<br>请求：<code>https://api.github.com/search/repositories?q=android</code></p>
+<p>返回值：</p>
+<p>Header:<br><img src="/assets/Retrofit.png" alt=""></p>
+<p>Body:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"total_count"</span>: <span class="number">943593</span>,</span><br><span class="line">    <span class="attr">"incomplete_results"</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">"items"</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">"id"</span>: <span class="number">82128465</span>,</span><br><span class="line">            <span class="attr">"node_id"</span>: <span class="string">"MDEwOlJlcG9zaXRvcnk4MjEyODQ2NQ=="</span>,</span><br><span class="line">            <span class="attr">"name"</span>: <span class="string">"Android"</span>,</span><br><span class="line">            <span class="attr">"full_name"</span>: <span class="string">"open-android/Android"</span>,</span><br><span class="line">            <span class="attr">"private"</span>: <span class="literal">false</span>,</span><br><span class="line">            <span class="attr">"owner"</span>: &#123;</span><br><span class="line">                <span class="attr">"login"</span>: <span class="string">"open-android"</span>,</span><br><span class="line">                <span class="attr">"id"</span>: <span class="number">23095877</span>,</span><br><span class="line">                <span class="attr">"node_id"</span>: <span class="string">"MDQ6VXNlcjIzMDk1ODc3"</span>,</span><br><span class="line">                <span class="attr">"avatar_url"</span>: <span class="string">"https://avatars2.githubusercontent.com/u/23095877?v=4"</span>,</span><br><span class="line">                <span class="comment">//……</span></span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="attr">"html_url"</span>: <span class="string">"https://github.com/open-android/Android"</span>,</span><br><span class="line">            <span class="attr">"description"</span>: <span class="string">"GitHub上最火的Android开源项目,所有开源项目都有详细资料和配套视频"</span>,</span><br><span class="line">            <span class="attr">"fork"</span>: <span class="literal">false</span>,</span><br><span class="line">            <span class="attr">"url"</span>: <span class="string">"https://api.github.com/repos/open-android/Android"</span>,</span><br><span class="line">            <span class="comment">//……</span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">"id"</span>: <span class="number">12544093</span>,</span><br><span class="line">            <span class="attr">"node_id"</span>: <span class="string">"MDEwOlJlcG9zaXRvcnkxMjU0NDA5Mw=="</span>,</span><br><span class="line">            <span class="attr">"name"</span>: <span class="string">"Android"</span>,</span><br><span class="line">            <span class="attr">"full_name"</span>: <span class="string">"hmkcode/Android"</span>,</span><br><span class="line">            <span class="attr">"private"</span>: <span class="literal">false</span>,</span><br><span class="line">            <span class="attr">"owner"</span>: &#123;</span><br><span class="line">                <span class="attr">"login"</span>: <span class="string">"hmkcode"</span>,</span><br><span class="line">                <span class="attr">"id"</span>: <span class="number">3790597</span>,</span><br><span class="line">                <span class="comment">//……</span></span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="comment">//……</span></span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="引入Retrofit依赖"><a href="#引入Retrofit依赖" class="headerlink" title="引入Retrofit依赖"></a>引入Retrofit依赖</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">implementation <span class="string">'com.squareup.retrofit2:retrofit:2.5.0'</span></span><br><span class="line">implementation <span class="string">'com.squareup.retrofit2:converter-gson:2.5.0'</span></span><br></pre></td></tr></table></figure>
+<h4 id="根据返回的请求结果定义Repository-Bean类"><a href="#根据返回的请求结果定义Repository-Bean类" class="headerlink" title="根据返回的请求结果定义Repository Bean类"></a>根据返回的请求结果定义Repository Bean类</h4><p>返回的报文采用google.gson进行处理，金处理必要的值</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RepoBean</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//用于表示Repo id</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line">    <span class="comment">//用于表示RepoName</span></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//用于表示完整名称</span></span><br><span class="line">    <span class="comment">//Repository中json的返回值为 `full_name`，与定义的变量名不一致，使用注解`@SerializedName`进行标注</span></span><br><span class="line">    <span class="meta">@SerializedName</span>(<span class="string">"full_name"</span>)</span><br><span class="line">    <span class="keyword">private</span> String fullName;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//省略getter和setter</span></span><br><span class="line">    <span class="comment">//……</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="根据返回的请求结果定义一次查询结果"><a href="#根据返回的请求结果定义一次查询结果" class="headerlink" title="根据返回的请求结果定义一次查询结果"></a>根据返回的请求结果定义一次查询结果</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SearchRepoBean</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//用于表示仓库数量</span></span><br><span class="line">    <span class="meta">@SerializedName</span>(<span class="string">"total_count"</span>)</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> totalCount;</span><br><span class="line">    <span class="comment">//用于表示是否为完整结果</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> incompleteResults;</span><br><span class="line">    <span class="comment">//用于表示持有的所有的仓库类</span></span><br><span class="line">    <span class="keyword">private</span> List&lt;RepoBean&gt;items;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//省略getter和setter</span></span><br><span class="line">    <span class="comment">//……</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="定义网络请求API接口"><a href="#定义网络请求API接口" class="headerlink" title="定义网络请求API接口"></a>定义网络请求API接口</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">GithubService</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//@Get注解，表示以Get方法发送网络请求</span></span><br><span class="line">    <span class="comment">//返回类型为Call&lt;SearchRepoBean&gt;，SearchRepoBean是接收数据的类，可以自定义</span></span><br><span class="line">    <span class="meta">@GET</span>(<span class="string">"search/repositories"</span>)</span><br><span class="line">    <span class="function">Call&lt;SearchRepoBean&gt; <span class="title">getRepoInfo</span><span class="params">(@Query(<span class="string">"q"</span>)</span> String query)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="初始化Retrofit实例，生成接口实现类"><a href="#初始化Retrofit实例，生成接口实现类" class="headerlink" title="初始化Retrofit实例，生成接口实现类"></a>初始化Retrofit实例，生成接口实现类</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Retrofit retrofit = <span class="keyword">new</span> Retrofit.Builder()</span><br><span class="line">        .baseUrl(<span class="string">"https://api.github.com/"</span>)                   <span class="comment">//设置网络请求的URL地址           </span></span><br><span class="line">        .addConverterFactory(GsonConverterFactory.create())   <span class="comment">//设置数据解析器 </span></span><br><span class="line">        .build();</span><br><span class="line"></span><br><span class="line">githubService = retrofit.create(GithubService<span class="class">.<span class="keyword">class</span>)</span>;</span><br></pre></td></tr></table></figure>
+
+<h4 id="进行网络请求"><a href="#进行网络请求" class="headerlink" title="进行网络请求"></a>进行网络请求</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Call&lt;SearchRepoBean&gt; call = githubService.getRepoInfo(<span class="string">"Android"</span>);</span><br><span class="line">    <span class="comment">//同步请求方式</span></span><br><span class="line">    <span class="comment">//call.request();</span></span><br><span class="line">    <span class="comment">//异步请求方式</span></span><br><span class="line">    call.enqueue(<span class="keyword">new</span> Callback&lt;SearchRepoBean&gt;() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onResponse</span><span class="params">(Call&lt;SearchRepoBean&gt; call, Response&lt;SearchRepoBean&gt; response)</span> </span>&#123;</span><br><span class="line">          <span class="comment">//输出请求结果 </span></span><br><span class="line">          <span class="comment">//  LogUtils.printInfo("搜索到的仓库的数量：" + response.body().getItems().size());</span></span><br><span class="line">           <span class="comment">// List&lt;RepoBean&gt;repoBeans=new ArrayList&lt;&gt;();</span></span><br><span class="line">           <span class="comment">// repoBeans.addAll(response.body().getItems());</span></span><br><span class="line">           <span class="comment">// for (int i=repoBeans.size()-1;i&gt;=0;i--)&#123;</span></span><br><span class="line">           <span class="comment">//  LogUtils.printInfo(repoBeans.get(i).getFullName());</span></span><br><span class="line">           <span class="comment">// &#125;</span></span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onFailure</span><span class="params">(Call&lt;SearchRepoBean&gt; call, Throwable t)</span> </span>&#123;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br></pre></td></tr></table></figure>
+
+<h4 id="将请求值的返回设为LiveData"><a href="#将请求值的返回设为LiveData" class="headerlink" title="将请求值的返回设为LiveData"></a>将请求值的返回设为LiveData</h4><p>将请求的返回值设为LiveData可以通过为Retrofit添加CallAdapterFactory来实现</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">GithubService</span> </span>&#123;</span><br><span class="line">     <span class="meta">@GET</span>(<span class="string">"search/repositories"</span>)</span><br><span class="line">     <span class="function">LiveData&lt;SearchRepoBean&gt; <span class="title">getRepoInfo</span><span class="params">(@Query(<span class="string">"q"</span>)</span> String query)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>自定义LiveDataCallAdapterFactory </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LiveDataCallAdapterFactory</span> <span class="keyword">extends</span> <span class="title">CallAdapter</span>.<span class="title">Factory</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> CallAdapter&lt;?, ?&gt; get(Type returnType, Annotation[] annotations, Retrofit retrofit) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//用于获取泛型的参数</span></span><br><span class="line">    Type observerType = getParameterUpperBound(<span class="number">0</span>, (ParameterizedType) returnType);</span><br><span class="line"></span><br><span class="line">    Class&lt;?&gt; rawObserverType = getRawType(observerType);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    LiveDataCallAdapter&lt;Object&gt; liveDataCallAdapter = <span class="keyword">new</span> LiveDataCallAdapter&lt;&gt;(rawObserverType);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> liveDataCallAdapter;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>自定义 LiveDataCallAdapter</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LiveDataCallAdapter</span>&lt;<span class="title">R</span>&gt; <span class="keyword">implements</span> <span class="title">CallAdapter</span>&lt;<span class="title">R</span>, <span class="title">LiveData</span>&lt;<span class="title">SearchRepoBean</span>&gt;&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Type responseType;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LiveDataCallAdapter</span><span class="params">(Type responseType)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.responseType=responseType;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Type <span class="title">responseType</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> responseType;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> LiveData&lt;SearchRepoBean&gt; <span class="title">adapt</span><span class="params">(<span class="keyword">final</span> Call&lt;R&gt; call)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">         LiveData&lt;SearchRepoBean&gt;searchRepoBeanLiveData=<span class="keyword">new</span> LiveData&lt;SearchRepoBean&gt;() &#123;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onActive</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                <span class="keyword">super</span>.onActive();</span><br><span class="line">                call.enqueue(<span class="keyword">new</span> Callback&lt;R&gt;() &#123;</span><br><span class="line"></span><br><span class="line">                <span class="meta">@Override</span></span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onResponse</span><span class="params">(Call&lt;R&gt; call, Response&lt;R&gt; response)</span> </span>&#123;</span><br><span class="line">                    postValue((SearchRepoBean) response.body());</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="meta">@Override</span></span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onFailure</span><span class="params">(Call&lt;R&gt; call, Throwable t)</span> </span>&#123;</span><br><span class="line">                    LogUtils.printInfo(<span class="string">"error"</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="comment">//这里的return 即为下文中githubService.getRepoInfo("Android")调用的返回值</span></span><br><span class="line">   <span class="keyword">return</span> searchRepoBeanLiveData;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>为Retrofit实例添加CallAdapterFactory</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Retrofit retrofit = <span class="keyword">new</span> Retrofit.Builder()</span><br><span class="line">          .baseUrl(<span class="string">"https://api.github.com/"</span>)</span><br><span class="line">          .addConverterFactory(GsonConverterFactory.create())</span><br><span class="line">          .addCallAdapterFactory(<span class="keyword">new</span> LiveDataCallAdapterFactory())</span><br><span class="line">          .build();</span><br></pre></td></tr></table></figure>
+<p>调用方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">repoBeanLiveData = githubService.getRepoInfo(<span class="string">"Android"</span>);</span><br><span class="line">repoBeanLiveData.observe(GithubApiActivity.<span class="keyword">this</span>, <span class="keyword">new</span> Observer&lt;SearchRepoBean&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onChanged</span><span class="params">(SearchRepoBean searchRepoBean)</span> </span>&#123;                            </span><br><span class="line">         <span class="comment">//输出结果</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="添加通用的响应实体"><a href="#添加通用的响应实体" class="headerlink" title="添加通用的响应实体"></a>添加通用的响应实体</h4><p>通过<code>LiveDataCallAdapter</code> 和<code>LiveDataCallAdapterFactory</code> 可以将返回的数据表示为LiveData数据形式，且只能对返回结果为<code>SearchRepoBean</code>类型的JSON字符串进行处理。如果是返回其他的实体则需要重新构造适配器。</p>
+<p>定义一个通用的响应实体</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">  <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ApiResponse</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> ApiResponseSuccess&lt;T&gt; <span class="title">create</span><span class="params">(Response&lt;T&gt; response)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">if</span> (response.isSuccessful()) &#123;</span><br><span class="line">          <span class="keyword">return</span> <span class="keyword">new</span> ApiResponseSuccess&lt;T&gt;(response.body());</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//用于表示返回成功的值</span></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">ApiResponseSuccess</span>&lt;<span class="title">T</span>&gt; <span class="keyword">extends</span> <span class="title">ApiResponse</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">      /用于表示请求返回成功的内容，在本代码中是SearchRepoBean</span><br><span class="line">      <span class="keyword">private</span> T body;</span><br><span class="line"></span><br><span class="line">      <span class="function"><span class="keyword">public</span> <span class="title">ApiResponseSuccess</span><span class="params">(T body)</span> </span>&#123;</span><br><span class="line">          <span class="keyword">this</span>.body = body;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="function"><span class="keyword">public</span> T <span class="title">getBody</span><span class="params">()</span> </span>&#123;</span><br><span class="line">          <span class="keyword">return</span> body;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>修改LiveDataCallAdapterFactory</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LiveDataCallAdapterFactory</span> <span class="keyword">extends</span> <span class="title">CallAdapter</span>.<span class="title">Factory</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> CallAdapter&lt;?, ?&gt; get(Type returnType, Annotation[] annotations, Retrofit retrofit) &#123;</span><br><span class="line">        <span class="comment">//用于获取泛型的参数</span></span><br><span class="line">        <span class="comment">//return type为LiveData&lt;ApiResponse&lt;SearchRepoBean&gt;&gt; </span></span><br><span class="line">        <span class="comment">//observerType为ApiResponse&lt;SearchRepoBean&gt;</span></span><br><span class="line">        Type observerType = getParameterUpperBound(<span class="number">0</span>, (ParameterizedType) returnType);</span><br><span class="line">        <span class="comment">//bodyType为SearchRepoBean</span></span><br><span class="line">        Type bodyType = getParameterUpperBound(<span class="number">0</span>, (ParameterizedType) observerType);</span><br><span class="line">        LiveDataCallAdapter&lt;Object&gt; liveDataCallAdapter = <span class="keyword">new</span> LiveDataCallAdapter&lt;&gt;(bodyType);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> liveDataCallAdapter;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>修改LiveDataCallAdapter</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LiveDataCallAdapter</span>&lt;<span class="title">R</span>&gt; <span class="keyword">implements</span> <span class="title">CallAdapter</span>&lt;<span class="title">R</span>,<span class="title">LiveData</span>&lt;<span class="title">ApiResponse</span>&lt;<span class="title">R</span>&gt;&gt;&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">private</span> Type responseType;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">LiveDataCallAdapter</span><span class="params">(Type responseType)</span></span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.responseType=responseType;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> Type <span class="title">responseType</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> responseType;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> LiveData&lt;ApiResponse&lt;R&gt;&gt; adapt(<span class="keyword">final</span> Call&lt;R&gt; call) &#123;</span><br><span class="line">            LiveData&lt;ApiResponse&lt;R&gt;&gt; result=<span class="keyword">new</span> LiveData&lt;ApiResponse&lt;R&gt;&gt;() &#123;</span><br><span class="line">                <span class="meta">@Override</span></span><br><span class="line">                <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onActive</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                    <span class="keyword">super</span>.onActive();</span><br><span class="line">                    call.enqueue(<span class="keyword">new</span> Callback&lt;R&gt;() &#123;</span><br><span class="line">                        <span class="meta">@Override</span></span><br><span class="line">                        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onResponse</span><span class="params">(Call&lt;R&gt; call, Response&lt;R&gt; response)</span> </span>&#123;</span><br><span class="line">                       postValue(<span class="keyword">new</span> ApiResponse&lt;R&gt;().create(response));</span><br><span class="line">                    &#125;</span><br><span class="line"></span><br><span class="line">                        <span class="meta">@Override</span></span><br><span class="line">                        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onFailure</span><span class="params">(Call&lt;R&gt; call, Throwable t)</span> </span>&#123;</span><br><span class="line">                          <span class="comment">//  LogUtils.printInfo("+++++!2312qwqweww31");</span></span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>修改调用方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">repoBeanLiveData = githubService.getRepoInfo(<span class="string">"Android"</span>);</span><br><span class="line">repoBeanLiveData.observe(GithubApiActivity.<span class="keyword">this</span>, <span class="keyword">new</span> Observer&lt;ApiResponse&lt;SearchRepoBean&gt;&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onChanged</span><span class="params">(ApiResponse&lt;SearchRepoBean&gt; searchRepoBeanApiResponse)</span> </span>&#123;</span><br><span class="line">        SearchRepoBean searchRepoBean = (SearchRepoBean) ((ApiResponse.ApiResponseSuccess) searchRepoBeanApiResponse).getBody();</span><br><span class="line">       <span class="comment">//输出结果</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="源码详解"><a href="#源码详解" class="headerlink" title="源码详解"></a>源码详解</h2><h5 id="Retrofit构建中的-baseUrl-quot-https-api-github-com-quot-介绍"><a href="#Retrofit构建中的-baseUrl-quot-https-api-github-com-quot-介绍" class="headerlink" title="Retrofit构建中的.baseUrl(&quot;https://api.github.com/&quot;)介绍"></a>Retrofit构建中的<code>.baseUrl(&quot;https://api.github.com/&quot;)</code>介绍</h5><p>Retrofit源碼，Retrofit在源码中使用建造者模式进行实例化，将String类型的地址转换为OKhttp3中的HttpUrl类型</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">Retrofit</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">Builder</span> </span>&#123;</span><br><span class="line">         <span class="function"><span class="keyword">public</span> Builder <span class="title">baseUrl</span><span class="params">(String baseUrl)</span> </span>&#123;</span><br><span class="line">              checkNotNull(baseUrl, <span class="string">"baseUrl == null"</span>);</span><br><span class="line">              <span class="keyword">return</span> baseUrl(HttpUrl.get(baseUrl));</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">        <span class="function"><span class="keyword">public</span> Builder <span class="title">baseUrl</span><span class="params">(HttpUrl baseUrl)</span> </span>&#123;</span><br><span class="line">              checkNotNull(baseUrl, <span class="string">"baseUrl == null"</span>);</span><br><span class="line">              List&lt;String&gt; pathSegments = baseUrl.pathSegments();</span><br><span class="line">              <span class="keyword">if</span> (!<span class="string">""</span>.equals(pathSegments.get(pathSegments.size() - <span class="number">1</span>))) &#123;</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"baseUrl must end in /: "</span> + baseUrl);</span><br><span class="line">              &#125;</span><br><span class="line">          <span class="keyword">this</span>.baseUrl = baseUrl;</span><br><span class="line">          <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="Retrofit构建中的-addConverterFactory-GsonConverterFactory-create"><a href="#Retrofit构建中的-addConverterFactory-GsonConverterFactory-create" class="headerlink" title="Retrofit构建中的.addConverterFactory(GsonConverterFactory.create())"></a>Retrofit构建中的<code>.addConverterFactory(GsonConverterFactory.create())</code></h5><p>通过.addConverterFactory()传入我们需要的ConverFactory，目的是将responseBody转换成我们的Bean类，在这里我们使用的是GsonConverterFactory</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Builder <span class="title">addConverterFactory</span><span class="params">(Converter.Factory factory)</span> </span>&#123;</span><br><span class="line">  converterFactories.add(checkNotNull(factory, <span class="string">"factory == null"</span>));</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Converter接口源码，核心是<code>T convert(F value)</code>,将F类型的数据转换为T类型</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Converter</span>&lt;<span class="title">F</span>, <span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">  <span class="comment">//将F类型的数据转换为T类型</span></span><br><span class="line">  <span class="meta">@Nullable</span> <span class="function">T <span class="title">convert</span><span class="params">(F value)</span> <span class="keyword">throws</span> IOException</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//根据数据类型创建Converter创建 Converter</span></span><br><span class="line">  <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Factory</span> </span>&#123;</span><br><span class="line">    <span class="comment">//将HTTP响应的body体转换成type,type是由CallAdapter 接口里面的responseType()函数返回的。</span></span><br><span class="line">    <span class="keyword">public</span> <span class="meta">@Nullable</span> Converter&lt;ResponseBody, ?&gt; responseBodyConverter(Type type,</span><br><span class="line">        Annotation[] annotations, Retrofit retrofit) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">       <span class="comment">//将API方法的输入参数使用注解@Body, @Part 和 @PartMap标记的类型，从type转换为RequestBody</span></span><br><span class="line">    <span class="keyword">public</span> <span class="meta">@Nullable</span> Converter&lt;?, RequestBody&gt; requestBodyConverter(Type type,</span><br><span class="line">        Annotation[] parameterAnnotations, Annotation[] methodAnnotations, Retrofit retrofit) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">        <span class="comment">//将API方法的输入参数使用注解@Header, @HeaderMap, @Path, @Query 和 @QueryMap 标记的类型从type转换为String</span></span><br><span class="line">    <span class="keyword">public</span> <span class="meta">@Nullable</span> Converter&lt;?, String&gt; stringConverter(Type type, Annotation[] annotations,</span><br><span class="line">        Retrofit retrofit) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">static</span> Type <span class="title">getParameterUpperBound</span><span class="params">(<span class="keyword">int</span> index, ParameterizedType type)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> Utils.getParameterUpperBound(index, type);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">static</span> Class&lt;?&gt; getRawType(Type type) &#123;</span><br><span class="line">      <span class="keyword">return</span> Utils.getRawType(type);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h5 id="Retrofit构建中的-addCallAdapterFactory-new-LiveDataCallAdapterFactory"><a href="#Retrofit构建中的-addCallAdapterFactory-new-LiveDataCallAdapterFactory" class="headerlink" title="Retrofit构建中的.addCallAdapterFactory(new LiveDataCallAdapterFactory())"></a>Retrofit构建中的<code>.addCallAdapterFactory(new LiveDataCallAdapterFactory())</code></h5><p>用于添加数据适配器，在HttpServiceMethod实例生成的时候会调用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">Retrofit</span> </span>&#123;</span><br><span class="line">      <span class="keyword">final</span> List&lt;CallAdapter.Factory&gt; callAdapterFactories;</span><br><span class="line">      </span><br><span class="line">      <span class="comment">//…………</span></span><br><span class="line">      <span class="function"><span class="keyword">public</span> Builder <span class="title">addCallAdapterFactory</span><span class="params">(CallAdapter.Factory factory)</span> </span>&#123;</span><br><span class="line">          callAdapterFactories.add(checkNotNull(factory, <span class="string">"factory == null"</span>));</span><br><span class="line">          <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">        &#125;</span><br><span class="line">      <span class="comment">//…………</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="最终用来创建Service的代码retrofit-create-GithubService-class"><a href="#最终用来创建Service的代码retrofit-create-GithubService-class" class="headerlink" title="最终用来创建Service的代码retrofit.create(GithubService.class)"></a>最终用来创建Service的代码<code>retrofit.create(GithubService.class)</code></h5><p>create()采用代理的方式进行创建，</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">Retrofit</span> </span>&#123;</span><br><span class="line">  <span class="comment">//……</span></span><br><span class="line">  <span class="keyword">public</span> &lt;T&gt; <span class="function">T <span class="title">create</span><span class="params">(<span class="keyword">final</span> Class&lt;T&gt; service)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//判断定义的接口服务是否可用</span></span><br><span class="line">    Utils.validateServiceInterface(service);</span><br><span class="line">    <span class="keyword">if</span> (validateEagerly) &#123;</span><br><span class="line">      eagerlyValidateMethods(service);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (T) Proxy.newProxyInstance(service.getClassLoader(), <span class="keyword">new</span> Class&lt;?&gt;[] &#123; service &#125;,</span><br><span class="line">        <span class="keyword">new</span> InvocationHandler() &#123;</span><br><span class="line">          <span class="keyword">private</span> <span class="keyword">final</span> Platform platform = Platform.get();</span><br><span class="line">          <span class="keyword">private</span> <span class="keyword">final</span> Object[] emptyArgs = <span class="keyword">new</span> Object[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">          <span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, @Nullable Object[] args)</span></span></span><br><span class="line"><span class="function">              <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">            <span class="comment">// 如果是Object本身的方法，正常调用后返回</span></span><br><span class="line">            <span class="keyword">if</span> (method.getDeclaringClass() == Object<span class="class">.<span class="keyword">class</span>) </span>&#123;</span><br><span class="line">              <span class="keyword">return</span> method.invoke(<span class="keyword">this</span>, args);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//如果是platform默认的方法，正常调用后返回</span></span><br><span class="line">            <span class="keyword">if</span> (platform.isDefaultMethod(method)) &#123;</span><br><span class="line">              <span class="keyword">return</span> platform.invokeDefaultMethod(method, service, proxy, args);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//解析我们定义的网络请求的方法</span></span><br><span class="line">            <span class="keyword">return</span> loadServiceMethod(method).invoke(args != <span class="keyword">null</span> ? args : emptyArgs);</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//……</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>loadServiceMethod(Method method)</code>源码解析,其实际上是HttpServiceMethod对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">ServiceMethod&lt;?&gt; loadServiceMethod(Method method) &#123;</span><br><span class="line">  <span class="comment">//从解析的缓存中获取</span></span><br><span class="line">  ServiceMethod&lt;?&gt; result = serviceMethodCache.get(method);</span><br><span class="line">  <span class="keyword">if</span> (result != <span class="keyword">null</span>) <span class="keyword">return</span> result;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">synchronized</span> (serviceMethodCache) &#123;</span><br><span class="line">    result = serviceMethodCache.get(method);</span><br><span class="line">    <span class="keyword">if</span> (result == <span class="keyword">null</span>) &#123;</span><br><span class="line">      </span><br><span class="line">      result = ServiceMethod.parseAnnotations(<span class="keyword">this</span>, method);</span><br><span class="line">      serviceMethodCache.put(method, result);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>static &lt;T&gt; ServiceMethod&lt;T&gt; parseAnnotations(Retrofit retrofit, Method method)</code>源码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">ServiceMethod</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">      <span class="keyword">static</span> &lt;T&gt; <span class="function">ServiceMethod&lt;T&gt; <span class="title">parseAnnotations</span><span class="params">(Retrofit retrofit, Method method)</span> </span>&#123;</span><br><span class="line">      <span class="comment">//RequestFactory负责解析接口并且生成Request</span></span><br><span class="line">        RequestFactory requestFactory = RequestFactory.parseAnnotations(retrofit, method);</span><br><span class="line"></span><br><span class="line">       <span class="comment">//…………</span></span><br><span class="line">    <span class="keyword">return</span> HttpServiceMethod.parseAnnotations(retrofit, method, requestFactory);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">abstract</span> T <span class="title">invoke</span><span class="params">(Object[] args)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>HttpServiceMethod.parseAnnotations(retrofit, method, requestFactory)</code>源码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//将一个接口方法转变为一个Http请求</span></span><br><span class="line"><span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">HttpServiceMethod</span>&lt;<span class="title">ResponseT</span>, <span class="title">ReturnT</span>&gt; <span class="keyword">extends</span> <span class="title">ServiceMethod</span>&lt;<span class="title">ReturnT</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">static</span> &lt;ResponseT, ReturnT&gt; <span class="function">HttpServiceMethod&lt;ResponseT, ReturnT&gt; <span class="title">parseAnnotations</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">      Retrofit retrofit, Method method, RequestFactory requestFactory)</span> </span>&#123;</span><br><span class="line">      <span class="comment">//创建HTTP请求的CallAdapter，在下面有createCallAdapter()源码</span></span><br><span class="line">    CallAdapter&lt;ResponseT, ReturnT&gt; callAdapter = createCallAdapter(retrofit, method);</span><br><span class="line"> </span><br><span class="line">    <span class="comment">//……</span></span><br><span class="line">    Converter&lt;ResponseBody, ResponseT&gt; responseConverter =</span><br><span class="line">        createResponseConverter(retrofit, method, responseType);</span><br><span class="line"></span><br><span class="line">    okhttp3.Call.Factory callFactory = retrofit.callFactory;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> HttpServiceMethod&lt;&gt;(requestFactory, callFactory, callAdapter, responseConverter);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> &lt;ResponseT, ReturnT&gt; <span class="function">CallAdapter&lt;ResponseT, ReturnT&gt; <span class="title">createCallAdapter</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">      Retrofit retrofit, Method method)</span> </span>&#123;</span><br><span class="line">    Type returnType = method.getGenericReturnType();</span><br><span class="line">    Annotation[] annotations = method.getAnnotations();</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="comment">//retrofit.callAdapter()返回 Retrofit实例化中.addCallAdapterFactory(new LiveDataCallAdapterFactory())添加的CallAdapter</span></span><br><span class="line">      <span class="keyword">return</span> (CallAdapter&lt;ResponseT, ReturnT&gt;) retrofit.callAdapter(returnType, annotations);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (RuntimeException e) &#123; <span class="comment">// Wide exception range because factories are user code.</span></span><br><span class="line">      <span class="keyword">throw</span> methodError(method, e, <span class="string">"Unable to create call adapter for %s"</span>, returnType);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"> <span class="comment">//…………</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">final</span> RequestFactory requestFactory;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">final</span> okhttp3.Call.Factory callFactory;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">final</span> CallAdapter&lt;ResponseT, ReturnT&gt; callAdapter;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">final</span> Converter&lt;ResponseBody, ResponseT&gt; responseConverter;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">private</span> <span class="title">HttpServiceMethod</span><span class="params">(RequestFactory requestFactory, okhttp3.Call.Factory callFactory,</span></span></span><br><span class="line"><span class="function"><span class="params">      CallAdapter&lt;ResponseT, ReturnT&gt; callAdapter,</span></span></span><br><span class="line"><span class="function"><span class="params">      Converter&lt;ResponseBody, ResponseT&gt; responseConverter)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.requestFactory = requestFactory;</span><br><span class="line">    <span class="keyword">this</span>.callFactory = callFactory;</span><br><span class="line">    <span class="keyword">this</span>.callAdapter = callAdapter;</span><br><span class="line">    <span class="keyword">this</span>.responseConverter = responseConverter;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//代理调用的invoke最终会调用下面invoke方法</span></span><br><span class="line">  <span class="meta">@Override</span> <span class="function">ReturnT <span class="title">invoke</span><span class="params">(Object[] args)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> callAdapter.adapt(</span><br><span class="line">        <span class="keyword">new</span> OkHttpCall&lt;&gt;(requestFactory, args, callFactory, responseConverter));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">`call.enqueue(<span class="keyword">new</span> Callback&lt;SearchRepoBean&gt;() &#123;&#125;)`最终调用的方法是OkhttpCall中的`call.enqueue(<span class="keyword">new</span> okhttp3.Callback() &#123;&#125;)`</span><br><span class="line"></span><br><span class="line">```java</span><br><span class="line"></span><br><span class="line"><span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">OkHttpCall</span>&lt;<span class="title">T</span>&gt; <span class="keyword">implements</span> <span class="title">Call</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//……</span></span><br><span class="line">   <span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">enqueue</span><span class="params">(<span class="keyword">final</span> Callback&lt;T&gt; callback)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//……</span></span><br><span class="line">    call.enqueue(<span class="keyword">new</span> okhttp3.Callback() &#123;</span><br><span class="line">      <span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onResponse</span><span class="params">(okhttp3.Call call, okhttp3.Response rawResponse)</span> </span>&#123;</span><br><span class="line">        Response&lt;T&gt; response;</span><br><span class="line">        <span class="comment">//……</span></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">          callback.onResponse(OkHttpCall.<span class="keyword">this</span>, response);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Throwable t) &#123;</span><br><span class="line">          t.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">   &#125;</span><br><span class="line">    <span class="comment">//……</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-11-28T12:20:23.104Z">2019-11-28</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    a few seconds read (About 0 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/README/">Kotlin/Kotlin基础/README</a>
+            
+        </h1>
+        <div class="content">
+            
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-11-28T12:20:23.103Z">2019-11-28</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    2 minutes read (About 325 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/">Kotlin/Kotlin基础/Lambda表达式</a>
+            
+        </h1>
+        <div class="content">
+            <h3 id="使用Lambda表达式遍历数组"><a href="#使用Lambda表达式遍历数组" class="headerlink" title="使用Lambda表达式遍历数组"></a>使用Lambda表达式遍历数组</h3><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//val</span></span><br><span class="line">stringArrays.forEach(&#123;</span><br><span class="line">    it-&gt;println(it)</span><br><span class="line"> &#125;)</span><br></pre></td></tr></table></figure>
+
+<p>Kotlin中Array的<code>forEach()</code>函数源码如下，它是一个扩展方法，在for循环中调用我们传入的lambda表达式；<code>action: (T) -&gt; Unit</code>中<code>(T) -&gt; Unit</code>是lambda表达式的类型，即函数的类型，此函数参数类型为<code>T</code>返回值为<code>Unit</code></p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> Array<span class="type">&lt;out T&gt;</span>.<span class="title">forEach</span><span class="params">(action: (<span class="type">T</span>) -&gt; <span class="type">Unit</span>)</span></span>: <span class="built_in">Unit</span> &#123;</span><br><span class="line">    <span class="keyword">for</span> (element <span class="keyword">in</span> <span class="keyword">this</span>) action(element)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>lambda表达式作为形参的类型</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">()-&gt;<span class="built_in">Int</span>          <span class="comment">//无参数，返回Int类型</span></span><br><span class="line">(<span class="built_in">Int</span>,<span class="built_in">Int</span>)-&gt;<span class="built_in">Int</span>   <span class="comment">//两个整型参数，返回Int</span></span><br><span class="line">(()-&gt;<span class="built_in">Unit</span>,<span class="built_in">Int</span>)-&gt;<span class="built_in">Int</span> <span class="comment">//一个lambda表达式参数，一个整型参数，返回Int</span></span><br></pre></td></tr></table></figure>
+
+
+<p>在kotlin中，可以把函数的最后一个lambda表达式移到括号外</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">stringArrays.forEach()&#123;</span><br><span class="line">    it-&gt;println(it)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果lambda表达式里只有一个函数调用，并且这个函数的参数也是Lambda表达式的参数，那么可以使用函数引用</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">stringArrays.forEach(::println)</span><br></pre></td></tr></table></figure>
+
+<p>使用标签从Lambda表达式中返回,其中<code>forEachItem</code>为自定义标签，<code>@forEachItem</code>与return之间不能存在空格</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">stringArrays.forEach <span class="symbol">forEachItem@</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (it==<span class="number">1</span>) <span class="keyword">return</span><span class="symbol">@forEachItem</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>在Lambda中最后一个表达式的值是默认的返回值</p>
+<h4 id="高阶函数"><a href="#高阶函数" class="headerlink" title="高阶函数"></a>高阶函数</h4><p>高阶函数是将函数用作参数或返回值的函数</p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-11-28T12:20:23.102Z">2019-11-28</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    a few seconds read (About 0 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/11/28/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/Img/README/">Java/设计模式/Img/README</a>
+            
+        </h1>
+        <div class="content">
+            
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-11-28T12:20:15.919Z">2019-11-28</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    a minute read (About 177 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/">Java/Java基础/加密算法</a>
+            
+        </h1>
+        <div class="content">
+            <h2 id="AES加密"><a href="#AES加密" class="headerlink" title="AES加密"></a>AES加密</h2><p> AES加密算法，全称：Advanced Encryption Standard，用来替代原有的DES加密算法，可以使用128位、192位和256位秘钥，</p>
+<h3 id="AES在Java中的使用"><a href="#AES在Java中的使用" class="headerlink" title="AES在Java中的使用"></a>AES在Java中的使用</h3><p> JCE的API都在javax.crypto包下，核心功能包括：加解密、密钥生成（对称）、MAC生成、密钥协商。<br> Java中的加解密由Cipher组件提供。</p>
+<p><strong>注：</strong></p>
+<ul>
+<li>Cipher在使用时需以参数方式指定transformation，格式为algorithm/mode/padding </li>
+<li>Cipher有4种操作模式: ENCRYPT_MODE(加密), DECRYPT_MODE(解密), WRAP_MODE(导出Key), UNWRAP_MODE(导入Key)</li>
+</ul>
+<h4 id="生成秘钥"><a href="#生成秘钥" class="headerlink" title="生成秘钥"></a>生成秘钥</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">KeyGenerator generator&#x3D;KeyGenerator.getInstance(&quot;AES&#x2F;ECB&#x2F;PKCS5PADDING&quot;);</span><br><span class="line">&#x2F;&#x2F;用于指定秘钥长度</span><br><span class="line">generator.init(Secret_Key_Size);</span><br><span class="line"></span><br><span class="line">SecretKey secretKey&#x3D;generator.generateKey();</span><br></pre></td></tr></table></figure>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-11-28T12:20:15.918Z">2019-11-28</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    2 minutes read (About 310 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/Java%E5%BC%95%E7%94%A8/">Java/Java基础/Java引用</a>
+            
+        </h1>
+        <div class="content">
+            <h2 id="Java引用"><a href="#Java引用" class="headerlink" title="Java引用"></a>Java引用</h2><p>在<code>java.lang.ref</code>包中有一系列可以辅助GC灵活进行处理的类；抽象类<code>Reference</code>有三个子类<code>SoftReference</code>(软引用),<code>WeakReference</code>(弱引用),和<code>PhantomReference</code>(虚引用)，三个子类的可达性依次减弱。</p>
+<p>当你可能需要再次使用某一个Object，也允许GC处理它时，可以使用<code>Reference</code>，如果GC发现一个Object是可达的，那么不会回收该对象。</p>
+<table>
+<thead>
+<tr>
+<th>引用类型</th>
+<th>GC回收时间</th>
+<th>用途</th>
+<th>生存时间</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>HardReference</td>
+<td>从不</td>
+<td>对象的一般状态</td>
+<td>JVM停止运行时</td>
+</tr>
+<tr>
+<td>SoftReference</td>
+<td>内存不足时</td>
+<td>对象缓存</td>
+<td>内存不足时停止</td>
+</tr>
+<tr>
+<td>WeakReference</td>
+<td>GC时</td>
+<td>对象缓存</td>
+<td>GC后终止</td>
+</tr>
+<tr>
+<td>PhantomReference</td>
+<td>unknown</td>
+<td>unknown</td>
+<td>unknown</td>
+</tr>
+</tbody></table>
+<p><code>SoftReference</code>和<code>WeakReference</code>可以选择是否将其放入<code>ReferenceQueue</code>，而<code>PhantomReference</code>必须放入<code>ReferenceQueue</code>中。</p>
+<p>注：<code>ReferenceQueue</code>用于<code>PhantomReference</code>的清理</p>
+<h3 id="Java基本类型与引用类型"><a href="#Java基本类型与引用类型" class="headerlink" title="Java基本类型与引用类型"></a>Java基本类型与引用类型</h3><p>注：Java方法中参数传递的方式（值传递，只是传递的值不同）：如果参数是基本类型，传递的是基本类型的字面值的拷贝；如果参数是引用类型，传递的是该参数变量所引用对象在堆中地址值的拷贝。</p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-11-28T12:20:15.896Z">2019-11-28</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    7 minutes read (About 1038 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/11/28/Android/%E6%A1%86%E6%9E%B6/AAC/Android%20Livedata%E8%AF%A6%E8%A7%A3/">Android/框架/AAC/Android Livedata详解</a>
+            
+        </h1>
+        <div class="content">
+            <h2 id="LiveData介绍"><a href="#LiveData介绍" class="headerlink" title="LiveData介绍"></a>LiveData介绍</h2><p><code>LiveData</code>是一个被观察的类，其具有生命周期感知，即只有Android组件，Activity、Fragment、Service处于活动状态时，它才会通知组件数据发生变化。<code>LiveData</code>是一个抽象类，其继承关系如下：</p>
+<p><img src="/assets/livedata.png" alt=""></p>
+<h4 id="LiveData的优势"><a href="#LiveData的优势" class="headerlink" title="LiveData的优势"></a>LiveData的优势</h4><ul>
+<li><p>保证UI界面与数据相匹配</p>
+</li>
+<li><p>无内存泄漏</p>
+<p>  观察者绑定至<code>Lifecycle</code>，当观察者的生命周期结束后，其会自动清理</p>
+</li>
+<li><p>不会由于Activity stop而发生崩溃</p>
+<p>  如果观察者的生命周期进入inactive状态，那么其将不会收到LiveData的数据</p>
+</li>
+<li><p>合理的数据配置</p>
+<p>  如果Activity和Fragment由于屏幕旋转重建导致页面配置发生变化，则可以通过LiveData获取到最新数据 </p>
+</li>
+<li><p>数据共享</p>
+<p>  可以使用继承自Livedata的单例类，定义系统所需要的数据，并在整个App中进行共享。</p>
+</li>
+</ul>
+<h3 id="在具有生命周期的对象中使用LiveData"><a href="#在具有生命周期的对象中使用LiveData" class="headerlink" title="在具有生命周期的对象中使用LiveData"></a>在具有生命周期的对象中使用LiveData</h3><h4 id="定义被观察者"><a href="#定义被观察者" class="headerlink" title="定义被观察者"></a>定义被观察者</h4><p>在定义被观察者对象时通常使用<code>MutableLiveData</code>类，在Activity中定义一个被观察的对象：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">  </span><br><span class="line">MutableLiveData&lt;String&gt; mutableLiveData=<span class="keyword">new</span> MutableLiveData&lt;&gt;();</span><br></pre></td></tr></table></figure>
+
+<h4 id="注册观察者："><a href="#注册观察者：" class="headerlink" title="注册观察者："></a>注册观察者：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(@Nullable Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">    mutableLiveData.observe(<span class="keyword">this</span>, <span class="keyword">new</span> Observer&lt;String&gt;() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onChanged</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">            Log.i(<span class="string">"输出数据："</span>,s);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>被观察者<code>mutableLiveData</code>的数据修改有两种方式：<code>setValue(T value)</code>和<code>postValue(T value)</code>。当被观察者数据在UI主线程中进行修改时，使用<code>setValue(T value)</code>，当被观察者在子线程中使用时，使用<code>postValue(T value)</code>；</p>
+<h4 id="通过setValue-T-value-修改被观察者并通知观察者"><a href="#通过setValue-T-value-修改被观察者并通知观察者" class="headerlink" title="通过setValue(T value)修改被观察者并通知观察者"></a>通过<code>setValue(T value)</code>修改被观察者并通知观察者</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mutableLiveData.setValue(&quot;TEST&quot;);</span><br></pre></td></tr></table></figure>
+
+<p><code>setValue(T value)</code>源码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@MainThread</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">setValue</span><span class="params">(T value)</span> </span>&#123;</span><br><span class="line">    assertMainThread(<span class="string">"setValue"</span>); <span class="comment">//用于判断是否在主线程，否则抛出异常</span></span><br><span class="line">    mVersion++;</span><br><span class="line">    mData = value;</span><br><span class="line">    dispatchingValue(<span class="keyword">null</span>);  <span class="comment">//用于数据分发通知观察者</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在<code>setValue(T value)</code>中调用<code>dispatchingValue(null)</code>，用于通知观察者。</p>
+<p><code>dispatchingValue(@Nullable ObserverWrapper initiator)</code>源码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//参数ObserverWrapper是每一个观察者的封装</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dispatchingValue</span><span class="params">(@Nullable ObserverWrapper initiator)</span> </span>&#123;</span><br><span class="line">   </span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        mDispatchInvalidated = <span class="keyword">false</span>;</span><br><span class="line">            <span class="comment">//...</span></span><br><span class="line">            <span class="comment">//遍历所有的观察者，并进行通知</span></span><br><span class="line">            <span class="keyword">for</span> (Iterator&lt;Map.Entry&lt;Observer&lt;? <span class="keyword">super</span> T&gt;, ObserverWrapper&gt;&gt; iterator =</span><br><span class="line">                    mObservers.iteratorWithAdditions(); iterator.hasNext(); ) &#123;</span><br><span class="line">                <span class="comment">//considerNotify用于通知观察者</span></span><br><span class="line">                considerNotify(iterator.next().getValue());</span><br><span class="line">                <span class="keyword">if</span> (mDispatchInvalidated) &#123;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">while</span> (mDispatchInvalidated);</span><br><span class="line">    mDispatchingValue = <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在<code>dispatchingValue(@Nullable ObserverWrapper initiator)</code>方法中调用<code>considerNotify(ObserverWrapper observer)</code>通知观察者</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">considerNotify</span><span class="params">(ObserverWrapper observer)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!observer.mActive) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (!observer.shouldBeActive()) &#123;</span><br><span class="line">        observer.activeStateChanged(<span class="keyword">false</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (observer.mLastVersion &gt;= mVersion) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    observer.mLastVersion = mVersion;</span><br><span class="line">    observer.mObserver.onChanged((T) mData);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="通过postValue-T-value-修改被观察者并通知观察者"><a href="#通过postValue-T-value-修改被观察者并通知观察者" class="headerlink" title="通过postValue(T value)修改被观察者并通知观察者"></a>通过<code>postValue(T value)</code>修改被观察者并通知观察者</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">new Thread(new Runnable() &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void run() &#123;</span><br><span class="line">        mutableLiveData.postValue(&quot;TEST&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;).start();</span><br></pre></td></tr></table></figure>
+
+<p><code>postValue(T value)</code>源码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">postValue</span><span class="params">(T value)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">boolean</span> postTask;</span><br><span class="line">    <span class="keyword">synchronized</span> (mDataLock) &#123;</span><br><span class="line">        postTask = mPendingData == NOT_SET;</span><br><span class="line">        mPendingData = value;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (!postTask) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//postToMainThread将任务放入主线程中进行，即mPostValueRunnable将会在主线程执行</span></span><br><span class="line">    ArchTaskExecutor.getInstance().postToMainThread(mPostValueRunnable);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>mPostValueRunnable</code>源码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Runnable mPostValueRunnable = <span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">        <span class="comment">//依然是调用setValue对数据进行修改</span></span><br><span class="line">        setValue((T) newValue);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="在不具有生命周期的对象中使用LiveData"><a href="#在不具有生命周期的对象中使用LiveData" class="headerlink" title="在不具有生命周期的对象中使用LiveData"></a>在不具有生命周期的对象中使用LiveData</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">public class TestLiveDataBean &#123;</span><br><span class="line"></span><br><span class="line">    MutableLiveData&lt;String&gt; mutableLiveData &#x3D; new MutableLiveData&lt;&gt;();</span><br><span class="line">    </span><br><span class="line">    Observer&lt;String&gt; observer;</span><br><span class="line"></span><br><span class="line">    public TestLiveDataBean() &#123;</span><br><span class="line">        observer &#x3D; new Observer&lt;String&gt;() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onChanged(String s) &#123;</span><br><span class="line">                LogUtils.printInfo(s);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        &#x2F;&#x2F;添加观察者</span><br><span class="line">        mutableLiveData.observeForever(observer);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setValue() &#123;</span><br><span class="line">        &#x2F;&#x2F;无论setValue是否在UI主线程中，都可以用postValue</span><br><span class="line">        mutableLiveData.postValue(&quot;测试&quot;);</span><br><span class="line">        &#x2F;&#x2F;当在子线程中调用setValue报错</span><br><span class="line">        &#x2F;&#x2F;mutableLiveData.setValue(&quot;测试&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">      public void removeObserver() &#123;</span><br><span class="line">        mutableLiveData.removeObserver(observer);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>observeForever()</code>与<code>removeOberver()</code>方法需要成对进行使用，通过<code>observeForever()</code>方法添加观察者，该方法只能在主线程中调用;</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@MainThread</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">observeForever</span><span class="params">(@NonNull Observer&lt;? <span class="keyword">super</span> T&gt; observer)</span> </span>&#123;</span><br><span class="line">    assertMainThread(<span class="string">"observeForever"</span>);</span><br><span class="line">    AlwaysActiveObserver wrapper = <span class="keyword">new</span> AlwaysActiveObserver(observer);</span><br><span class="line">    ObserverWrapper existing = mObservers.putIfAbsent(observer, wrapper);</span><br><span class="line">    <span class="keyword">if</span> (existing <span class="keyword">instanceof</span> LiveData.LifecycleBoundObserver) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"Cannot add the same observer"</span></span><br><span class="line">                + <span class="string">" with different lifecycles"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (existing != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    wrapper.activeStateChanged(<span class="keyword">true</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>观察者使用完毕后，需要通过<code>removeOberver()</code>方法，将观察者从观察者队列中移除，该方法只能在主线程中进行调用</p>
+<p><code>removeObserver(@NonNull final Observer&lt;? super T&gt; observer)</code>源码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@MainThread</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">removeObserver</span><span class="params">(@NonNull <span class="keyword">final</span> Observer&lt;? <span class="keyword">super</span> T&gt; observer)</span> </span>&#123;</span><br><span class="line">    assertMainThread(<span class="string">"removeObserver"</span>);</span><br><span class="line">    ObserverWrapper removed = mObservers.remove(observer);</span><br><span class="line">    <span class="keyword">if</span> (removed == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    removed.detachObserver();</span><br><span class="line">    removed.activeStateChanged(<span class="keyword">false</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="MediatorLiveData介绍"><a href="#MediatorLiveData介绍" class="headerlink" title="MediatorLiveData介绍"></a>MediatorLiveData介绍</h3><p><code>MediatorLiveData</code>是<code>LiveData</code>的一个子类，可以将<code>LiveData</code>的数据源合并至一起；当任一<code>LiveData</code>数据源的数据发生改变后，都会触发<code>MediatorLiveData</code>的观察者。</p>
+<h3 id="继承LiveData进行数据共享"><a href="#继承LiveData进行数据共享" class="headerlink" title="继承LiveData进行数据共享"></a>继承LiveData进行数据共享</h3>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-11-28T12:20:15.895Z">2019-11-28</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    a few seconds read (About 12 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/11/28/Android/Android%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E5%82%A8%E5%AD%98/">Android/Android基础/数据储存</a>
+            
+        </h1>
+        <div class="content">
+            <h2 id="SharedPreference的使用"><a href="#SharedPreference的使用" class="headerlink" title="SharedPreference的使用"></a>SharedPreference的使用</h2><h3 id="保存数据"><a href="#保存数据" class="headerlink" title="保存数据"></a>保存数据</h3><h3 id="读取数据"><a href="#读取数据" class="headerlink" title="读取数据"></a>读取数据</h3>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-11-28T12:20:15.895Z">2019-11-28</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    2 minutes read (About 354 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/11/28/Android/%E6%A1%86%E6%9E%B6/AAC/Android%20Lifecycle-Aware%E7%BB%84%E4%BB%B6%E8%AF%A6%E8%A7%A3/">Android/框架/AAC/Android Lifecycle-Aware组件详解</a>
+            
+        </h1>
+        <div class="content">
+            <h2 id="Android生命周期感知组件详解"><a href="#Android生命周期感知组件详解" class="headerlink" title="Android生命周期感知组件详解"></a>Android生命周期感知组件详解</h2><p>使用Lifecycle-aware components（生命周期感知组件），可以将与Activity、Fragemnt、Service生命周期相关方法如 <code>onStart()</code> <code>onStop()</code>中的调用，放入单独的模块中,lifecycle-aware components可以自动根据生命周期进行不同的处理。</p>
+<h3 id="Lifecycle类"><a href="#Lifecycle类" class="headerlink" title="Lifecycle类"></a>Lifecycle类</h3><p><img src="/assets/lifecycle.png" alt=""></p>
+<p>Lifecycle可以持有组件的生命周期的信息，其使用两个枚举类型来跟踪与之相关的组件的生命周期。</p>
+<ul>
+<li><p>Event</p>
+<p>  由framework层分发的以及<code>Lifecycle</code>类分发的生命周期事件，这些事件映射到Activity以及Fragemnt的回调</p>
+</li>
+<li><p>State</p>
+<p>  表示由<code>Lifecycle</code>对象跟踪的组件的当前的状态</p>
+</li>
+</ul>
+<h3 id="LifecycleOwner"><a href="#LifecycleOwner" class="headerlink" title="LifecycleOwner"></a>LifecycleOwner</h3><p><code>LifecycleOwner</code>是只有一个方法的接口，在代码编写的过程中任何一个类都可以实现该接口。</p>
+<p>源码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">LifecycleOwner</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Returns the Lifecycle of the provider.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> The lifecycle of the provider.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">    <span class="doctag">@NonNull</span></span></span><br><span class="line"><span class="comment">    Lifecycle getLifecycle();</span></span><br><span class="line"><span class="comment">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>一个常用的生命周期感知用于Android组件的中回调，如果回调函数发生在组件的不合理生命周期则会造成崩溃的发生。在Support Library 26.1.0 以及更新的版本中，Fragment以及Activity已经实现<code>LifecycleOwner</code>接口。</p>
+<h3 id="LifecycleObserver"><a href="#LifecycleObserver" class="headerlink" title="LifecycleObserver"></a>LifecycleObserver</h3><p><code>LifecycleObserver</code>接口可以与实现<code>LifecycleOwner</code>接口的类配合使用，实现<code>LifecycleOwner</code>接口的类提供<code>Lifecycle</code>，而<code>LifecycleObserver</code>可以注册至被观察者。</p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+    
+<div class="card card-transparent">
+    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+        <div class="pagination-previous is-invisible is-hidden-mobile">
+            <a class="is-flex-grow has-text-black-ter" href="/page/0/">Previous</a>
+        </div>
+        <div class="pagination-next">
+            <a class="is-flex-grow has-text-black-ter" href="/page/2/">Next</a>
+        </div>
+        <ul class="pagination-list is-hidden-mobile">
+            
+            <li><a class="pagination-link is-current" href="/">1</a></li>
+            
+            <li><a class="pagination-link has-text-black-ter" href="/page/2/">2</a></li>
+            
+            <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
+            
+            <li><a class="pagination-link has-text-black-ter" href="/page/8/">8</a></li>
+            
+        </ul>
+    </nav>
+</div>
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left is-sticky">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                    <figure class="image is-128x128 has-mb-6">
+                        <img class="is-rounded" src="https://www.gravatar.com/avatar/5f88f4a896dde4ec7ad915a606b0faa9?s=128" alt="Lucius">
+                    </figure>
+                    
+                    <p class="is-size-4 is-block">
+                        Lucius
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        Android Developer
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Qingdao</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Posts
+                    </p>
+                    <a href="/archives">
+                        <p class="title has-text-weight-normal">
+                            72
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Categories
+                    </p>
+                    <a href="/categories">
+                        <p class="title has-text-weight-normal">
+                            0
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Tags
+                    </p>
+                    <a href="/tags">
+                        <p class="title has-text-weight-normal">
+                            0
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/LuciusCS" target="_blank" rel="noopener">
+                Follow</a>
+        </div>
+        
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="Github" href="https://github.com/LuciusCS">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Links
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener">
+                    <span class="level-left">
+                        <span class="level-item">Hexo</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">hexo.io</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://github.com/ppoffice" target="_blank" rel="noopener">
+                    <span class="level-left">
+                        <span class="level-item">PPOffice</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">github.com</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Categories
+            </h3>
+            <ul class="menu-list">
+            
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen is-sticky">
+        
+            <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/02/26/hello-world/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Hello World">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-26T12:43:14.002Z">2020-02-26</time></div>
+                    <a href="/2020/02/26/hello-world/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Hello World</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/11/30/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Android/框架/Retrofit 2.5 框架使用与源码分析">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-30T11:13:20.728Z">2019-11-30</time></div>
+                    <a href="/2019/11/30/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android/框架/Retrofit 2.5 框架使用与源码分析</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/README/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Kotlin/Kotlin基础/README">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:23.104Z">2019-11-28</time></div>
+                    <a href="/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/README/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Kotlin/Kotlin基础/README</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Kotlin/Kotlin基础/Lambda表达式">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:23.103Z">2019-11-28</time></div>
+                    <a href="/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Kotlin/Kotlin基础/Lambda表达式</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/11/28/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/Img/README/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Java/设计模式/Img/README">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:23.102Z">2019-11-28</time></div>
+                    <a href="/2019/11/28/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/Img/README/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java/设计模式/Img/README</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Archives
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/02/">
+                <span class="level-start">
+                    <span class="level-item">February 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/11/">
+                <span class="level-start">
+                    <span class="level-item">November 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">12</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/09/">
+                <span class="level-start">
+                    <span class="level-item">September 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">59</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right is-sticky">
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/02/26/hello-world/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Hello World">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-26T12:43:14.002Z">2020-02-26</time></div>
+                    <a href="/2020/02/26/hello-world/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Hello World</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/11/30/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Android/框架/Retrofit 2.5 框架使用与源码分析">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-30T11:13:20.728Z">2019-11-30</time></div>
+                    <a href="/2019/11/30/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android/框架/Retrofit 2.5 框架使用与源码分析</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/README/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Kotlin/Kotlin基础/README">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:23.104Z">2019-11-28</time></div>
+                    <a href="/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/README/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Kotlin/Kotlin基础/README</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Kotlin/Kotlin基础/Lambda表达式">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:23.103Z">2019-11-28</time></div>
+                    <a href="/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Kotlin/Kotlin基础/Lambda表达式</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/11/28/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/Img/README/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Java/设计模式/Img/README">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:23.102Z">2019-11-28</time></div>
+                    <a href="/2019/11/28/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/Img/README/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java/设计模式/Img/README</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Archives
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/02/">
+                <span class="level-start">
+                    <span class="level-item">February 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/11/">
+                <span class="level-start">
+                    <span class="level-item">November 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">12</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/09/">
+                <span class="level-start">
+                    <span class="level-item">September 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">59</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.svg" alt="Android Development" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2020 Lucius Zhao&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("en");</script>
+
+
+<script>
+var IcarusThemeSettings = {
+    site: {
+        url: 'http://yoursite.com',
+        external_link: {"enable":true,"exclude":[]}
+    },
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+
+
+<script src="/js/animation.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/js/gallery.js" defer></script>
+
+
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+
+<a id="back-to-top" title="Back to Top" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>
