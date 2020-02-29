@@ -66,7 +66,7 @@
     <link rel="stylesheet" href="/css/progressbar.css">
 <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
     
-    
+    <script async="" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     
 
 
@@ -127,13 +127,13 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-11-28T12:20:15.894Z">2019-11-28</time>
+                <time class="level-item has-text-grey" datetime="2020-02-29T02:45:08.936Z">2020-02-29</time>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    a few seconds read (About 66 words)
+                    4 minutes read (About 578 words)
                 </span>
                 
                 
@@ -142,15 +142,169 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/11/28/Android/Android%E5%9F%BA%E7%A1%80/Android%E5%BA%8F%E5%88%97%E5%8C%96/">Android/Android基础/Android序列化</a>
+                <a class="has-link-black-ter" href="/2020/02/29/Data_Structure/2017-08-04-data-structure-merge-sort/">归并排序</a>
             
         </h1>
         <div class="content">
-            <h2 id="Android序列化"><a href="#Android序列化" class="headerlink" title="Android序列化"></a>Android序列化</h2><p>Android序列化对象的方法有两种：</p>
+            <p>modified: 2017-08-04</p>
+<p>归并排序（Merge Sort）是建立在归并操作上的一种有效的排序算法，效率为O（n log n）；该算法是采用分治法一种典型的应用，且各层分治递归可以同时进行。</p>
+<p>归并排序的基本思路是</p>
 <ul>
-<li>实现Serializable接口，Java自带</li>
-<li>实现Parcelable接口，android特有接口，效率高于Serializable接口，支持Intent数据传递，也可用于跨进程通讯（IPC）</li>
+<li>将序列每相邻两个数字进行归并操作，形成n/2个序列，排序后每个序列包含两个元素；</li>
+<li>将上述序列再次归并，形成n/4个序列，每个序列包含四个元素；</li>
+<li>重复步骤2，直到所有元素排序完毕；</li>
 </ul>
+<pre><code>/images/DataStructure/Merge_sort.gif
+
+
+
+/images/DataStructure/Merge_sort_01.gif</code></pre><p>要理解归并算法首先要理解归并操作（Merge），归并操作（Merge）也叫归并算法，指的是将两个已经排好的序列合并成一个序列的操作；归并算法依赖于归并操作。</p>
+<p>使用C语言实现一个数组的左右两部分有序数列的归并操作，即将左右两部分看成两个有序数列合并成一个有序数列</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//a[]是要进行排序的数组，first、mid、last分别代表左侧有序部分数组的起始位置，</span></span><br><span class="line"><span class="comment">//左右有序两部分的分界点，右侧有序部分的终点，</span></span><br><span class="line"><span class="comment">//tmp[]是大小为last-first的数组，用于临时存放排序的数列</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">mergeArray</span><span class="params">(<span class="keyword">int</span> a[],<span class="keyword">int</span> first,<span class="keyword">int</span> mid,<span class="keyword">int</span> last,<span class="keyword">int</span> tmp[])</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i = first;</span><br><span class="line">	<span class="keyword">int</span> j = mid+<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">int</span> k = <span class="number">0</span>;    <span class="comment">//K用作tmp[]的索引</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//将a[]左右有序的两部分按照由小到大的顺序存入tmp[]中</span></span><br><span class="line">	<span class="keyword">while</span> (i&lt;=mid&amp;&amp;j&lt;=last)</span><br><span class="line">		a[i] &lt; a[j] ? tmp[k++] = a[i++] : tmp[k++] = a[j++];</span><br><span class="line">	<span class="keyword">while</span> (i &lt;= mid)</span><br><span class="line">		tmp[k++] = a[i++];</span><br><span class="line">	<span class="keyword">while</span> (j &lt;= last)</span><br><span class="line">		tmp[k++] = a[j++];</span><br><span class="line">   </span><br><span class="line">	<span class="keyword">while</span> (k &gt; <span class="number">0</span>)</span><br><span class="line">		a[--j] = tmp[--k];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">mergeSort</span><span class="params">(<span class="keyword">int</span> a[],<span class="keyword">int</span> first,<span class="keyword">int</span> last,<span class="keyword">int</span> tmp[])</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (first&lt;last)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> mid = (first + last) / <span class="number">2</span>;</span><br><span class="line">		mergeSort(a,first,mid,tmp);  <span class="comment">//左边有序</span></span><br><span class="line">		mergeSort(a, mid+<span class="number">1</span>, last, tmp);<span class="comment">//右边有序</span></span><br><span class="line">		mergeArray(a,first,mid,last,tmp);  <span class="comment">//将两个数组合并</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">`</span><br></pre></td></tr></table></figure>
+<p>有序数组的归并以及归并排序的测试</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> a[<span class="number">7</span>] = &#123;<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line">	<span class="keyword">int</span> tmp[<span class="number">7</span>];</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"测试数组归并\n"</span>);</span><br><span class="line"></span><br><span class="line">	mergeArray(a, <span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, tmp);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">7</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, a[i]);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"测试数组归并排序\n"</span>);</span><br><span class="line">	mergeSort(a,<span class="number">0</span>,<span class="number">6</span>,tmp);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">7</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, a[i]);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-02-29T02:45:08.927Z">2020-02-29</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    2 minutes read (About 258 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/02/29/Data_Structure/2017-08-02-data-structure-stack-use/">栈的应用——需要再次进行编辑</a>
+            
+        </h1>
+        <div class="content">
+            <p>modified: 2017-08-02<br>##　使用栈实现进制转换、括号匹配的检验、行编辑程序</p>
+<h3 id="使用栈实现进制的转换"><a href="#使用栈实现进制的转换" class="headerlink" title="使用栈实现进制的转换"></a>使用栈实现进制的转换</h3><ul>
+<li>将十进制转换为二进制</li>
+</ul>
+<p>C语言实现代码</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">conversion</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">	SqStack <span class="built_in">stack</span>;</span><br><span class="line">	initStack(&amp;<span class="built_in">stack</span>);</span><br><span class="line">	<span class="keyword">while</span> (num / <span class="number">2</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		push(&amp;<span class="built_in">stack</span>, num % <span class="number">2</span>);</span><br><span class="line">		num /= <span class="number">2</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	push(&amp;<span class="built_in">stack</span>, num);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> tmp = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (!isEmpty(&amp;<span class="built_in">stack</span>))</span><br><span class="line">	&#123;</span><br><span class="line">		pop(&amp;<span class="built_in">stack</span>, &amp;tmp);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d"</span>, tmp);</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用栈实现括号匹配的检验"><a href="#使用栈实现括号匹配的检验" class="headerlink" title="使用栈实现括号匹配的检验"></a>使用栈实现括号匹配的检验</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">check_symbol</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">char</span> s[<span class="number">50</span>] = &#123; <span class="number">0</span> &#125;;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"请输入一串括号"</span>);</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%s"</span>, s);</span><br><span class="line">	SqStack <span class="built_in">stack</span>;</span><br><span class="line">	initStack(&amp;<span class="built_in">stack</span>);</span><br><span class="line">	push(&amp;<span class="built_in">stack</span>, s[<span class="number">0</span>]);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; s[i] != <span class="number">0</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (!isEmpty(&amp;<span class="built_in">stack</span>))</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (getStackTop(<span class="built_in">stack</span>) == (<span class="keyword">int</span>) <span class="string">'&#123;'</span>&amp;&amp;s[i] == (<span class="keyword">int</span>)<span class="string">'&#125;'</span> || getStackTop(<span class="built_in">stack</span>) == (<span class="keyword">int</span>) <span class="string">'('</span>&amp;&amp;s[i] == (<span class="keyword">int</span>)<span class="string">')'</span>) &#123;</span><br><span class="line">				<span class="keyword">int</span> tmp;</span><br><span class="line">				pop(&amp;<span class="built_in">stack</span>, &amp;tmp);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">			&#123;</span><br><span class="line">				push(&amp;<span class="built_in">stack</span>, s[i]);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">int</span> tmp;</span><br><span class="line">			push(&amp;<span class="built_in">stack</span>, s[i]);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (isEmpty(&amp;<span class="built_in">stack</span>))</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"括号匹配"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"括号不匹配"</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用栈实现行编辑器"><a href="#使用栈实现行编辑器" class="headerlink" title="使用栈实现行编辑器"></a>使用栈实现行编辑器</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">lineEdit</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="comment">//首先初始化栈</span></span><br><span class="line">	SqStack <span class="built_in">stack</span>;</span><br><span class="line">	initStack(&amp;<span class="built_in">stack</span>);</span><br><span class="line">	<span class="keyword">char</span> ch = getchar();</span><br><span class="line">	<span class="keyword">while</span> (ch != EOF)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">while</span> (ch != EOF&amp;&amp;ch!=<span class="string">'\n'</span>) &#123;</span><br><span class="line">			<span class="keyword">switch</span> (ch)</span><br><span class="line">			&#123;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'@'</span>:clearStack(<span class="built_in">stack</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'#'</span>:<span class="keyword">if</span> (isEmpty(&amp;<span class="built_in">stack</span>))</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">					 <span class="keyword">else</span></span><br><span class="line">					 &#123;</span><br><span class="line">						 <span class="keyword">int</span> tmp;</span><br><span class="line">						 pop(&amp;<span class="built_in">stack</span>, &amp;tmp);</span><br><span class="line">						 <span class="keyword">break</span>;</span><br><span class="line">					 &#125;</span><br><span class="line">			<span class="keyword">default</span>:</span><br><span class="line">				push(&amp;<span class="built_in">stack</span>, ch); <span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			ch = getchar();</span><br><span class="line">		&#125;</span><br><span class="line">		ch = getchar();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//用于将存储在栈中的内容输出</span></span><br><span class="line">	<span class="keyword">if</span> (ch == EOF) &#123;</span><br><span class="line">		<span class="keyword">while</span> (!isEmpty(&amp;<span class="built_in">stack</span>))</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">int</span> tmp;</span><br><span class="line">			pop(&amp;<span class="built_in">stack</span>, &amp;tmp);</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"%c"</span>, tmp);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-02-29T02:45:08.918Z">2020-02-29</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    a few seconds read (About 31 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/02/29/Data_Structure/2017-08-02-data-structure-sort-algorithm-summary/">排序算法总结</a>
+            
+        </h1>
+        <div class="content">
+            <p>modified: 2017-08-02</p>
+<p>各种排序算法的总结</p>
+<h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><h2 id="非比较型排序"><a href="#非比较型排序" class="headerlink" title="非比较型排序"></a>非比较型排序</h2><h3 id="桶排序"><a href="#桶排序" class="headerlink" title="桶排序"></a>桶排序</h3><h3 id="基数排序"><a href="#基数排序" class="headerlink" title="基数排序"></a>基数排序</h3><h3 id="计数排序"><a href="#计数排序" class="headerlink" title="计数排序"></a>计数排序</h3>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-02-29T02:45:08.910Z">2020-02-29</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3 minutes read (About 476 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/02/29/Data_Structure/2017-08-02-data-structure-radix-sort/">基数排序（Radix Sort）</a>
+            
+        </h1>
+        <div class="content">
+            <p>modified: 2017-08-03</p>
+<p>桶排序（Bucket Sort）工作原理是将数列分到有限的桶中，每个桶再分别进行排序；</p>
+<p>基数排序（Radix Sort）是一种非比较型整数排序算法，其原理是将整数按位数切割成不同的数字，然后按每个位数分别比较。由于整数也可以表达字符串（比如名字或日期）和特定格式的浮点数，所以基数排序也不是只能使用于整数。</p>
+<p>基数排序的方式可以采用LSD（Least significant digital）或MSD（Most significant digital），LSD的排序方式由键值的最右边开始，而MSD则相反，由键值的最左边开始。</p>
+<p>基数排序可以看做是多次桶排序</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdio.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdlib.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//从个位开始，最低位优先（Least Significant Digital first）</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">radixSort</span><span class="params">(<span class="keyword">int</span> num[], <span class="keyword">int</span> length)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> *radix[<span class="number">10</span>];</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		radix[i] = (<span class="keyword">int</span> *)<span class="built_in">malloc</span>(length * <span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br><span class="line">		radix[i][<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> index = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; <span class="number">5</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line"></span><br><span class="line">		<span class="comment">//将num数组中的数据放入数组radix中</span></span><br><span class="line">		<span class="comment">//第一次分配</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; length; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			radix[(num[i]/index)% <span class="number">10</span>][<span class="number">0</span>]++;</span><br><span class="line">			radix[(num[i]/index) % <span class="number">10</span>][radix[(num[i]/index )% <span class="number">10</span>][<span class="number">0</span>]] = num[i];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//第一次回收</span></span><br><span class="line">		<span class="keyword">int</span> length = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; radix[i][<span class="number">0</span>] + <span class="number">1</span>; j++)</span><br><span class="line">			&#123;</span><br><span class="line">				num[length++] = radix[i][j];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			radix[i][<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		index = index * <span class="number">10</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; length; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,num[i]);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//从最高位开始，最高位优先（Most Significant Digit first）</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">radixSortMSD</span><span class="params">(<span class="keyword">int</span> num[], <span class="keyword">int</span> length)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> *radix[<span class="number">10</span>];</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		radix[i] = (<span class="keyword">int</span> *)<span class="built_in">malloc</span>(length * <span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br><span class="line">		radix[i][<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> index = <span class="number">10000</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; <span class="number">5</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line"></span><br><span class="line">		<span class="comment">//将num数组中的数据放入数组radix中</span></span><br><span class="line">		<span class="comment">//分配</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; length; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			radix[(num[i] / index) % <span class="number">10</span>][<span class="number">0</span>]++;</span><br><span class="line">			radix[(num[i] / index) % <span class="number">10</span>][radix[(num[i] / index) % <span class="number">10</span>][<span class="number">0</span>]] = num[i];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//回收</span></span><br><span class="line">		<span class="keyword">int</span> length = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; radix[i][<span class="number">0</span>] + <span class="number">1</span>; j++)</span><br><span class="line">			&#123;</span><br><span class="line">				num[length++] = radix[i][j];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			radix[i][<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		index = index /<span class="number">10</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; length; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, num[i]);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> num[<span class="number">10</span>] = &#123;<span class="number">0</span>,<span class="number">10</span>,<span class="number">12</span>,<span class="number">5665</span>,<span class="number">285</span>,<span class="number">125</span>,<span class="number">554</span>,<span class="number">26</span>,<span class="number">7895</span>,<span class="number">12</span>&#125;;</span><br><span class="line">	radixSortMSD(num, <span class="number">10</span>);</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
         </div>
         
@@ -173,13 +327,13 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-11-28T12:18:36.264Z">2019-11-28</time>
+                <time class="level-item has-text-grey" datetime="2020-02-29T02:45:08.900Z">2020-02-29</time>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    6 minutes read (About 959 words)
+                    6 minutes read (About 840 words)
                 </span>
                 
                 
@@ -188,82 +342,29 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/11/28/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/">Java/设计模式/代理模式</a>
+                <a class="has-link-black-ter" href="/2020/02/29/Data_Structure/2017-08-02-data-structure-queue/">队列的表示与实现</a>
             
         </h1>
         <div class="content">
-            <h1 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h1><h3 id="代理模式介绍"><a href="#代理模式介绍" class="headerlink" title="代理模式介绍"></a>代理模式介绍</h3><p>代理模式又被称为委托模式，一个代理类为另一个类提供代理；使用代理模式可以隐藏原始的类，并控制对其的访问，当我们想要使用一个可以充当接口的类时，可以使用代理模式；代理模式也被大量使用在懒加载中。</p>
-<p>代理模式主要由三部分组成：</p>
-<ul>
-<li>Subject：一个将方法暴露给client的接口</li>
-<li>Real Subject：实现Subject接口的类，重是方法的实现，在代理模式中需要被隐藏的类</li>
-<li>Proxy：继承Real Subject并将其进行隐藏，Client与real subject之间的调用直接通过Proxy进行。</li>
+            <p>modified: 2017-08-02<br>队列是先进先出的（FIFO）的线性表，在具体应用中通常使用链表或者数组实现；只允许在一端插入，在另一端删除；在队列中允许插入的一端叫队尾，允许删除的一端叫队头；</p>
+<h2 id="链队列——队列的链式表示和实现"><a href="#链队列——队列的链式表示和实现" class="headerlink" title="链队列——队列的链式表示和实现"></a>链队列——队列的链式表示和实现</h2><p>链队列的本质是一个单向链表，头结点front相当于head,再增加一个尾结点。</p>
+<pre><code>/source/img/20170802/002.gif</code></pre><ul>
+<li>注意头结点指向的节点为空，在删除队列头节点时应该删除的是该空节点的下一个节点</li>
 </ul>
-<p>代理模式的结构<br><img src="/assets/proxy-design-pattern.jpg" alt=""></p>
-<h3 id="静态代理实现方式"><a href="#静态代理实现方式" class="headerlink" title="静态代理实现方式"></a>静态代理实现方式</h3><p>Subject</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Subject</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSomething</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>C语言实现代码</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdlib.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdio.h"</span></span></span><br><span class="line"><span class="comment">//单链队列，队列的链式存储结构，队列是由队头指向队尾</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">QNode</span> &#123;</span></span><br><span class="line">	<span class="keyword">char</span> data;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">QNode</span> *<span class="title">next</span>;</span></span><br><span class="line">&#125;QNode,*QueuePtr;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">	QueuePtr  front;   <span class="comment">//队头指针</span></span><br><span class="line">	QueuePtr rare;     <span class="comment">//队尾指针</span></span><br><span class="line">&#125;LinkQueue;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//用于初始化队列</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">initQueue</span><span class="params">(LinkQueue &amp;lq)</span> </span>&#123;</span><br><span class="line">	lq.front = lq.rare = (QueuePtr)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(QNode));</span><br><span class="line">	lq.rare-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//用于插入队列</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">enQueue</span><span class="params">(LinkQueue &amp;lq,<span class="keyword">char</span> data)</span> </span>&#123;</span><br><span class="line">	<span class="comment">//插入元素为Q的新的队尾元素 data</span></span><br><span class="line">	QueuePtr p;</span><br><span class="line">	p = (QueuePtr)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(QNode));</span><br><span class="line">	p-&gt;data = data;</span><br><span class="line">	p-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">	lq.rare-&gt;next = p;</span><br><span class="line">	lq.rare = lq.rare-&gt;next;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//用于取出头元素，在操作之前首先需要判断是不是空队列</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">reQueue</span><span class="params">(LinkQueue &amp;lq)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (lq.front==lq.rare)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"队列为空"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		QueuePtr q;</span><br><span class="line">        <span class="comment">//因为lq.front为一个空节点，因为在初始化队列的时候没有给这一个节点赋值</span></span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%c"</span>,lq.front-&gt;next-&gt;data);  </span><br><span class="line">		q = lq.front;</span><br><span class="line">		lq.front = lq.front-&gt;next;</span><br><span class="line">		<span class="built_in">free</span>(q);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	LinkQueue lq;</span><br><span class="line">	initQueue(lq);</span><br><span class="line">	enQueue(lq,<span class="string">'a'</span>);</span><br><span class="line">	enQueue(lq,<span class="string">'b'</span>);</span><br><span class="line">	reQueue(lq);</span><br><span class="line">	reQueue(lq);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>Real Subject</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RealSubject</span> <span class="keyword">implements</span> <span class="title">Subject</span></span>&#123;</span><br><span class="line">     <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSomething</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      System.out.println(<span class="string">"RealSubject 输出"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Proxy</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProxyTest</span> <span class="keyword">extends</span> <span class="title">RealSubject</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSomething</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"proxy输出"</span>);</span><br><span class="line">        <span class="keyword">super</span>.doSomething();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>测试类client</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        RealSubject proxy=<span class="keyword">new</span> ProxyTest();</span><br><span class="line">        proxy.doSomething();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//输出</span></span><br><span class="line"><span class="comment">//proxy输出</span></span><br><span class="line"><span class="comment">//RealSubject 输出</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="动态代理实现方式"><a href="#动态代理实现方式" class="headerlink" title="动态代理实现方式"></a>动态代理实现方式</h3><p>Subject</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Subject</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSomething</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>Real Subject</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RealSubject</span> <span class="keyword">implements</span> <span class="title">Subject</span></span>&#123;</span><br><span class="line">     <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSomething</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      System.out.println(<span class="string">"RealSubject 输出"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Proxy</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProxyHandler</span> <span class="keyword">implements</span> <span class="title">InvocationHandler</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Object tar;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//绑定委托对象，并返回代理类</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">bind</span><span class="params">(Object tar)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.tar=tar;</span><br><span class="line">        <span class="keyword">return</span>                         Proxy.newProxyInstance(tar.getClass().getClassLoader(),tar.getClass().getInterfaces(),<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object o, Method method, Object[] objects)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">    </span><br><span class="line">        Object result=<span class="keyword">null</span>;</span><br><span class="line">        <span class="comment">//这里可以进行所谓的AOP编程</span></span><br><span class="line">        <span class="comment">//在调用具体函数方法项之前，执行功能处理</span></span><br><span class="line">        result=method.invoke(tar,objects);</span><br><span class="line">        <span class="comment">//在调用具体函数方法项之后，执行功能处理</span></span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>Client</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    ProxyHandler proxyHandler=<span class="keyword">new</span> ProxyHandler();</span><br><span class="line">    <span class="comment">//绑定该类实现的所有接口</span></span><br><span class="line">    Subject sub=(Subject)proxyHandler.bind(<span class="keyword">new</span> RealSubject());</span><br><span class="line">    sub.doSomething();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="动态代理模式详解"><a href="#动态代理模式详解" class="headerlink" title="动态代理模式详解"></a>动态代理模式详解</h4><h4 id="InvocationHandler接口介绍"><a href="#InvocationHandler接口介绍" class="headerlink" title="InvocationHandler接口介绍"></a>InvocationHandler接口介绍</h4><p>InvocationHandler 源码</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">InvocationHandler</span> </span>&#123;</span><br><span class="line">    <span class="function">Object <span class="title">invoke</span><span class="params">(Object var1, Method var2, Object[] var3)</span> <span class="keyword">throws</span>     Throwable</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>InvocationHandler接口是proxy代理实例的调用处理程序实现的一个接口，并且每个代理类的实例都关联到了一个handler，当我们通过代理对象调用一个方法的时候，这个方法的调用就会被转发为由InvocationHandler这个接口的 invoke 方法来进行调用。</p>
-<p><code>invoke(Object var1, Method var2, Object[] var3)</code>方法中有三个参数：</p>
+<h2 id="循环队列——队列的顺序表示和实现"><a href="#循环队列——队列的顺序表示和实现" class="headerlink" title="循环队列——队列的顺序表示和实现"></a>循环队列——队列的顺序表示和实现</h2><p>队列的顺序表示和实现，可以参照栈的顺序表示和实现；在c语言中不能使用动态数组来分实现循环队列，如果要使用循环队列则必须设定一个最大的长度；</p>
+<p>/source/img/20170802/004.jpg</p>
 <ul>
-<li>Object var1：指代代理的真实对象</li>
-<li>Method method：指代真实对象调用的方法</li>
-<li>Object[] args：指代真实对象调用方法时的参数</li>
+<li>初始化建空队列时，令front=rare=0,当插入新元素时rare+1;当删除头元素时front+1;在非空队列中头指针始终指向头元素，尾指针始终指向队尾元素的下一个元素；</li>
 </ul>
-<h4 id="Proxy-类介绍"><a href="#Proxy-类介绍" class="headerlink" title="Proxy 类介绍"></a>Proxy 类介绍</h4><p>Proxy用来动态创建一个代理对象的类，<br><code>newProxyInstance(ClassLoader var0, Class&lt;?&gt;[] var1, InvocationHandler var2)</code>方法中的参数</p>
+<p>/source/img/20170802/003.jpg</p>
 <ul>
-<li>ClassLoader var0：一个ClassLoader对象，即用哪个类加载器来加载这个代理类到 JVM 的方法区</li>
-<li>Class&lt;?&gt;[] var1：给代理对象提供的接口类型</li>
-<li>InvocationHandler var2：InvocationHandler的实现的实例对象,表示方法调用时会调用哪一个InvocationHandler的invoke方法</li>
+<li>当Q.rare==Q.front队列有可能是满的，也有可能是空的；有两种处理办法：一是另设一个标志位以区别是空还是满；二是约定以“队列头指针在队尾指针的下一位时为满”。下面的代码采用的是第二种方法。</li>
 </ul>
-<p>源码</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Proxy</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Object <span class="title">newProxyInstance</span><span class="params">(ClassLoader var0, Class&lt;?&gt;[] var1, InvocationHandler var2)</span> <span class="keyword">throws</span> IllegalArgumentException </span>&#123;</span><br><span class="line">        Objects.requireNonNull(var2);</span><br><span class="line">        Class[] var3 = (Class[])var1.clone();                <span class="comment">//用于将传入的Class进行复制       </span></span><br><span class="line">        SecurityManager var4 = System.getSecurityManager();</span><br><span class="line">        <span class="keyword">if</span> (var4 != <span class="keyword">null</span>) &#123;</span><br><span class="line">            checkProxyAccess(Reflection.getCallerClass(), var0, var3);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//调用 getProxyClass0() 方法</span></span><br><span class="line">        Class var5 = getProxyClass0(var0, var3);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (var4 != <span class="keyword">null</span>) &#123;</span><br><span class="line">                checkNewProxyPermission(Reflection.getCallerClass(), var5);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">final</span> Constructor var6 = var5.getConstructor(constructorParams);  <span class="comment">//通过反射类中的Constructor获取构造函数</span></span><br><span class="line">            <span class="keyword">if</span> (!Modifier.isPublic(var5.getModifiers())) &#123;</span><br><span class="line">                AccessController.doPrivileged(<span class="keyword">new</span> PrivilegedAction&lt;Void&gt;() &#123;</span><br><span class="line">                <span class="function"><span class="keyword">public</span> Void <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                    var6.setAccessible(<span class="keyword">true</span>);</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;</span><br><span class="line">           <span class="comment">// 通过Constructor返回代理类的实例</span></span><br><span class="line">            <span class="keyword">return</span> var6.newInstance(var2);</span><br><span class="line">        &#125; <span class="comment">//catch省略</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p><code>getProxyClass0()</code>源码，从缓存中获取代理类对象</p>
-<pre><code class="java">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Proxy</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>{
-       <span class="comment">//proxyClassCache对象定义</span>
-        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> WeakCache&lt;ClassLoader, Class&lt;?&gt;[], Class&lt;?&gt;&gt; proxyClassCache = <span class="keyword">new</span> WeakCache(<span class="keyword">new</span> Proxy.KeyFactory(), <span class="keyword">new</span> Proxy.ProxyClassFactory());
-
-        <span class="comment">//......</span>
-        <span class="keyword">private</span> <span class="keyword">static</span> Class&lt;?&gt; getProxyClass0(ClassLoader var0, Class&lt;?&gt;... var1) {
-        <span class="keyword">if</span> (var1.length &gt; <span class="number">65535</span>) {
-            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"interface limit exceeded"</span>);
-        } <span class="keyword">else</span> {
-            <span class="comment">// proxyClassCache 来做一个中间的缓存</span>
-            <span class="keyword">return</span> (Class)proxyClassCache.get(var0, var1);
-        }
-        }
-        <span class="comment">//......</span>
-    }
-
-```java
-
-
-
-
-
-
-
-</code></pre>
+<p>C语言代码实现</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdio.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdlib.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxsize 100</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">	<span class="keyword">int</span> *base;    <span class="comment">//用于为队列分配空间</span></span><br><span class="line">	<span class="keyword">int</span> front;</span><br><span class="line">	<span class="keyword">int</span> rear;</span><br><span class="line">&#125;sqqueue;</span><br><span class="line"></span><br><span class="line"><span class="comment">//初始化队列</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">initqueue</span><span class="params">(sqqueue &amp;sq)</span> </span>&#123;</span><br><span class="line">	<span class="comment">//构造一个空队列</span></span><br><span class="line">	sq.base = (<span class="keyword">int</span> *)<span class="built_in">malloc</span>(maxsize*<span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br><span class="line">	<span class="keyword">if</span> (!sq.base)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"构造队列失败"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	sq.front = sq.rear = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//入队</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">enqueue</span><span class="params">(sqqueue &amp;sq,<span class="keyword">int</span> e)</span> </span>&#123;</span><br><span class="line">	<span class="comment">//用于判断队列是否为满，通过查看队尾的下一个元素是不是队头</span></span><br><span class="line">	<span class="keyword">if</span> ((sq.rear+<span class="number">1</span>)%maxsize==sq.front)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"队列为满"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	sq.base[sq.rear] = e;</span><br><span class="line">	sq.rear = (sq.rear + <span class="number">1</span>) % maxsize;  <span class="comment">//转了一圈后sq.rare会超过maxsize</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//出队</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">requeue</span><span class="params">(sqqueue &amp;sq)</span> </span>&#123;</span><br><span class="line">	<span class="comment">//用于判断队是否为空</span></span><br><span class="line">	<span class="keyword">if</span> (sq.rear==sq.front)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"队列为空"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,sq.base[sq.front]);</span><br><span class="line">	sq.front = (sq.front + <span class="number">1</span>) % maxsize;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	sqqueue sq;</span><br><span class="line">	initqueue(sq);</span><br><span class="line">	enqueue(sq,<span class="number">10</span>);</span><br><span class="line">	enqueue(sq,<span class="number">15</span>);</span><br><span class="line">	requeue(sq);</span><br><span class="line">	requeue(sq);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
         </div>
         
@@ -286,13 +387,13 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-11-28T12:18:36.245Z">2019-11-28</time>
+                <time class="level-item has-text-grey" datetime="2020-02-29T02:45:08.893Z">2020-02-29</time>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    3 minutes read (About 413 words)
+                    a few seconds read (About 61 words)
                 </span>
                 
                 
@@ -301,24 +402,12 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/Java%E5%86%85%E9%83%A8%E7%B1%BB/">Java/Java基础/Java内部类</a>
+                <a class="has-link-black-ter" href="/2020/02/29/Data_Structure/2017-07-31-data-structure-search/">查找算法</a>
             
         </h1>
         <div class="content">
-            <h3 id="java-内部类"><a href="#java-内部类" class="headerlink" title="java 内部类"></a>java 内部类</h3><p>内部类依赖于外部类而存在，即内部类存在指向外部类的引用，可以访问外部类private类型的属性。</p>
-<h3 id="内部类的作用"><a href="#内部类的作用" class="headerlink" title="内部类的作用"></a>内部类的作用</h3><p>实现多重继承，每个内部类都能独立继承一个类，在Java中没有多重继承，如果一个类需要同时继承两个类，则可以使用内部类。</p>
-<p>内部类可以同时用多个实例，每个实例都有自己的状态信息；</p>
-<p>内部类有更好的封装，除了其自身的外部类，其他类都不能访问内部类；</p>
-<h3 id="内部类分类"><a href="#内部类分类" class="headerlink" title="内部类分类"></a>内部类分类</h3><h4 id="局部内部类"><a href="#局部内部类" class="headerlink" title="局部内部类"></a>局部内部类</h4><p>嵌套在方法里或者某个作用域内，内部类非公共可用，在方法外或者作用域外不能进行使用。</p>
-<h4 id="静态内部类"><a href="#静态内部类" class="headerlink" title="静态内部类"></a>静态内部类</h4><p>静态内部类创建不依赖于外部类，没有指向外部类的引用，不能使用外部类任何非static的静态成员方法，可以用来创建线程安全的单例模式</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonHolder</span> </span>&#123;  </span><br><span class="line">            <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Singleton INSTANCE = <span class="keyword">new</span> Singleton();  </span><br><span class="line">        &#125;  </span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span> <span class="params">()</span></span>&#123;&#125;  </span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">            <span class="keyword">return</span> SingletonHolder.INSTANCE; </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">```   </span><br><span class="line"></span><br><span class="line">#### 匿名内部类</span><br><span class="line"></span><br><span class="line">匿名内部类依赖于接口实现，如果匿名内部类需要访问局部变量，则该局部变量需要表示为<span class="keyword">final</span>类型</span><br><span class="line"></span><br><span class="line">```java</span><br><span class="line"></span><br><span class="line">    <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                System.out.println(<span class="string">"hello"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;).start();</span><br></pre></td></tr></table></figure>
-
-
-<h4 id="内部类与闭包"><a href="#内部类与闭包" class="headerlink" title="内部类与闭包"></a>内部类与闭包</h4><p>内部类会包含对外部类的引用，形成闭包</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">    </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Outer</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> a=<span class="number">1</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Inner</span></span>&#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">int</span> b=<span class="number">2</span>;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">multi</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> a*b;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
+            <h3 id="折半查找"><a href="#折半查找" class="headerlink" title="折半查找"></a>折半查找</h3><p>modified: 2017-07-31<br>折半查找即二分查找的实现</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">BinarySearch</span><span class="params">(<span class="keyword">int</span> data[], <span class="keyword">int</span> search,<span class="keyword">int</span> length)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> <span class="built_in">end</span> = length<span class="number">-1</span> ;</span><br><span class="line">	<span class="keyword">int</span> start = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> mid = (start + <span class="built_in">end</span>) / <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span> (start&lt;=<span class="built_in">end</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (data[mid] == search)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">return</span> mid;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (data[mid] &gt; search)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">end</span> = mid<span class="number">-1</span>;</span><br><span class="line">			mid = (start + <span class="built_in">end</span>) / <span class="number">2</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">			start = mid+<span class="number">1</span>;</span><br><span class="line">			mid = (start + <span class="built_in">end</span>) / <span class="number">2</span>;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
         </div>
         
         
@@ -340,13 +429,13 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-30T08:28:42.959Z">2019-09-30</time>
+                <time class="level-item has-text-grey" datetime="2020-02-29T02:45:08.886Z">2020-02-29</time>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    10 minutes read (About 1510 words)
+                    4 minutes read (About 564 words)
                 </span>
                 
                 
@@ -355,57 +444,26 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/09/30/Android/Other/Module%E7%9A%84.gradle%E9%85%8D%E7%BD%AE/">Android/Other/Module的.gradle配置</a>
+                <a class="has-link-black-ter" href="/2020/02/29/Data_Structure/2017-07-31-data-structure-insert-sort/">排序算法</a>
             
         </h1>
         <div class="content">
-            <h3 id="gradle介绍"><a href="#gradle介绍" class="headerlink" title="gradle介绍"></a>gradle介绍</h3><p>gradle和make以及ant不同，它基于Groovy语言，而非一种配置；</p>
-<p>Gradle是一个自动化构建的开源工具，使用基于Groovy的领域专用语言(domain specific language (DSL))，来替代使用xml文件对工程的配置。其支持增量编译，可以使用cache，</p>
-<h4 id="在Moudle的build-gradle中添加依赖包"><a href="#在Moudle的build-gradle中添加依赖包" class="headerlink" title="在Moudle的build.gradle中添加依赖包"></a>在Moudle的build.gradle中添加依赖包</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">android &#123; ... &#125;</span><br><span class="line"></span><br><span class="line">dependencies &#123;</span><br><span class="line">    <span class="comment">// 依赖于本地模块，在添加本地模块依赖时，需要在`settings.gradle`文件中添加`include:mylibrary`</span></span><br><span class="line">    <span class="function">implementation <span class="title">project</span><span class="params">(<span class="string">":mylibrary"</span>)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">    <span class="comment">// 依赖于本地库,需要将jar文件添加至 `module_name/libs/`文件夹中 </span></span></span><br><span class="line"><span class="function">    implementation <span class="title">fileTree</span><span class="params">(dir: <span class="string">'libs'</span>, include: [<span class="string">'*.jar'</span>])</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">    <span class="comment">// 依赖于远程库</span></span></span><br><span class="line"><span class="function">    implementation 'com.example.android:app-magic:12.3'</span></span><br><span class="line"><span class="function">&#125;</span></span><br></pre></td></tr></table></figure>
+            <h1 id="排序算法"><a href="#排序算法" class="headerlink" title="排序算法"></a>排序算法</h1><p>modified: 2017-08-02</p>
+<h2 id="插入排序有直接插入排序、折半插入排序、希尔排序等"><a href="#插入排序有直接插入排序、折半插入排序、希尔排序等" class="headerlink" title="插入排序有直接插入排序、折半插入排序、希尔排序等"></a>插入排序有直接插入排序、折半插入排序、希尔排序等</h2><h3 id="直接插入排序"><a href="#直接插入排序" class="headerlink" title="直接插入排序"></a>直接插入排序</h3><p>直接插入排序的核心是不断将后面的数字，不断插入前面已经排好序的数列中；在进行插入排序时需要不断将需要插入的元素与前面已经排好序的元素进行比较，并不断将已排好序的元素后移。</p>
+<pre><code>/images/20170731/insertsort.gif</code></pre><p>C语言代码实现</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">StrightInsertSort</span><span class="params">(<span class="keyword">int</span> <span class="built_in">array</span>[], <span class="keyword">int</span> length)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> tmp;     <span class="comment">//用于保存将要插入的array[i]</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; length; i++) &#123;</span><br><span class="line">		tmp = <span class="built_in">array</span>[i];</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &gt;= <span class="number">0</span>; j--)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (tmp &gt;= <span class="built_in">array</span>[j - <span class="number">1</span>] || j == <span class="number">0</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="built_in">array</span>[j] = tmp;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> &#123;</span><br><span class="line">				<span class="built_in">array</span>[j] = <span class="built_in">array</span>[j - <span class="number">1</span>];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>依赖包的配置有以下类型：<code>implementation</code>、<code>api</code>、<code>compileOnly</code>、<code>runtimeOnly</code>、<code>annotationProcessor</code>、<code>lintChecks</code>、<code>lintPublish</code><br>在上述配置中，会将所有的依赖在构建的时候进行打包；如果需要将特定的依赖打包到特定的版本中，需要在依赖配置前添加响应的前缀,下述依赖只会打包到falvor为free的生成包中。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">    freeImplementation <span class="string">'com.google.firebase:firebase-ads:9.8.0'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>如果需要将依赖作为变量，与flavor和build type进行结合，要在<code>configurations</code>代码块中进行初始化。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">configurations &#123;</span><br><span class="line">    <span class="comment">//初始化只与freeDebugRuntimeOnly相关的依赖</span></span><br><span class="line">    freeDebugRuntimeOnly &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">dependencies &#123;</span><br><span class="line">    <span class="function">freeDebugRuntimeOnly <span class="title">fileTree</span><span class="params">(dir: <span class="string">'libs'</span>, include: [<span class="string">'*.jar'</span>])</span></span></span><br><span class="line"><span class="function">&#125;</span></span><br></pre></td></tr></table></figure>
-
-
-<h3 id="在Debug模式下使用正式签名"><a href="#在Debug模式下使用正式签名" class="headerlink" title="在Debug模式下使用正式签名"></a>在Debug模式下使用正式签名</h3><p>在moudle.gradle进行配置,signingConfigs配置需要在buildTypes配置之后,否则会报错<code>ERROR: Could not get unknown property &#39;release&#39; for SigningConfig container of type org.gradle.api.internal.FactoryNamedDomainObjectContainer.</code></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">android&#123;</span><br><span class="line">       ...</span><br><span class="line">    signingConfigs &#123;</span><br><span class="line">        release &#123;</span><br><span class="line">            <span class="comment">//.jks文件放在项目目录（app目录）</span></span><br><span class="line">            <span class="function">storeFile <span class="title">file</span><span class="params">(<span class="string">"app.jks"</span>)</span><span class="comment">//签名文件名</span></span></span><br><span class="line"><span class="function">            storePassword "password"<span class="comment">//密码</span></span></span><br><span class="line"><span class="function">            keyAlias"key0"<span class="comment">//别名</span></span></span><br><span class="line"><span class="function">            keyPassword"password"<span class="comment">//密码</span></span></span><br><span class="line"><span class="function">            &#125;</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">        debug </span>&#123;</span><br><span class="line">            <span class="function">storeFile <span class="title">file</span><span class="params">(<span class="string">"app.jks"</span>)</span></span></span><br><span class="line"><span class="function">            storePassword"password"</span></span><br><span class="line"><span class="function">            keyAlias"key0"<span class="comment">//别名</span></span></span><br><span class="line"><span class="function">            keyPassword"password"</span></span><br><span class="line"><span class="function">        &#125;</span></span><br><span class="line"><span class="function">    &#125;   </span></span><br><span class="line"><span class="function">       </span></span><br><span class="line"><span class="function">    buildTypes </span>&#123;</span><br><span class="line">        release &#123;</span><br><span class="line">            minifyEnabled <span class="keyword">false</span></span><br><span class="line">            <span class="function">proguardFiles <span class="title">getDefaultProguardFile</span><span class="params">(<span class="string">'proguard-android.txt'</span>)</span>, 'proguard-rules.pro'</span></span><br><span class="line"><span class="function">            signingConfig signingConfigs.release</span></span><br><span class="line"><span class="function">        &#125;</span></span><br><span class="line"><span class="function">        debug </span>&#123;</span><br><span class="line">        signingConfig signingConfigs.release</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   ....</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="加速项目的构建速度"><a href="#加速项目的构建速度" class="headerlink" title="加速项目的构建速度"></a>加速项目的构建速度</h3><h4 id="优化项目配置"><a href="#优化项目配置" class="headerlink" title="优化项目配置"></a>优化项目配置</h4><p>有一些打包的配置，在进行开发的过程中不需要，这些不需要的配置会拖慢增量编译，以及clean up的速度；我们可以配置仅在打包的时候进行使用的编译变量，下述示例是创建一个<code>dev</code>flavor和<code>prod</code>flavor(发布版本)。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">android &#123;</span><br><span class="line">  ...</span><br><span class="line">  defaultConfig &#123;...&#125;</span><br><span class="line">  buildTypes &#123;...&#125;</span><br><span class="line">  productFlavors &#123;</span><br><span class="line">    <span class="comment">//当在构件时使用下述flavor，则会覆盖`defaultConfig`代码块；</span></span><br><span class="line">    dev &#123;</span><br><span class="line">      </span><br><span class="line">      minSdkVersion <span class="number">21</span></span><br><span class="line">      versionNameSuffix <span class="string">"-dev"</span></span><br><span class="line">      applicationIdSuffix <span class="string">'.dev'</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    prod &#123;</span><br><span class="line">      <span class="comment">// 如果使用默认配置发布版本，则这一代码块可以设置为空，但不能省略`prob`，否则所有的编译版本都会使用`dev`中的配置。</span></span><br><span class="line">      </span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>可以使用flavor维度设置，可以创建出组合的flavor；如下述示例中创建出<code>devDemo</code>和<code>prodFull</code></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">android &#123;</span><br><span class="line">  ...</span><br><span class="line">  defaultConfig &#123;...&#125;</span><br><span class="line">  buildTypes &#123;...&#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 定义需要使用的flavor dimensions，定义的顺序就是它们从高到底的优先级；使用flavor维度后，需要在每一项flavor配置中定义指定维度</span></span><br><span class="line">  flavorDimensions <span class="string">"stage"</span>, <span class="string">"mode"</span></span><br><span class="line"></span><br><span class="line">  productFlavors &#123;</span><br><span class="line">    dev &#123;</span><br><span class="line">      dimension <span class="string">"stage"</span></span><br><span class="line">      minSdkVersion <span class="number">21</span></span><br><span class="line">      versionNameSuffix <span class="string">"-dev"</span></span><br><span class="line">      applicationIdSuffix <span class="string">'.dev'</span></span><br><span class="line">      </span><br><span class="line">      <span class="comment">//可以通过配置`resConfigs`仅配置英文，以及`xxhdpi`尺寸的图片</span></span><br><span class="line">      resConfigs <span class="string">"en"</span>, <span class="string">"xxhdpi"</span></span><br><span class="line">      ...</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    prod &#123;</span><br><span class="line">      dimension <span class="string">"stage"</span></span><br><span class="line">      ...</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    demo &#123;</span><br><span class="line">      dimension <span class="string">"mode"</span></span><br><span class="line">      ...</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    full &#123;</span><br><span class="line">      dimension <span class="string">"mode"</span></span><br><span class="line">      ...</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="编译类型配置"><a href="#编译类型配置" class="headerlink" title="编译类型配置"></a>编译类型配置</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">    android &#123;</span><br><span class="line">      ...</span><br><span class="line">      buildTypes &#123;</span><br><span class="line">        debug &#123;</span><br><span class="line">          <span class="comment">//如果不需要Crashlytics 报告可以设置为`diable`加快编译速度`</span></span><br><span class="line">          ext.enableCrashlytics = <span class="keyword">false</span></span><br><span class="line">          <span class="comment">//防止Crashlytics 每次更新编译的id</span></span><br><span class="line">          ext.alwaysUpdateBuildId = <span class="keyword">false</span></span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="在Debug版本构建的过程中使用静态常量"><a href="#在Debug版本构建的过程中使用静态常量" class="headerlink" title="在Debug版本构建的过程中使用静态常量"></a>在Debug版本构建的过程中使用静态常量</h4><p>在Debug版本中总是使用静态常量，或者硬编码的方式进行编译。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">int</span> MILLIS_IN_MINUTE = <span class="number">1000</span> * <span class="number">60</span></span><br><span class="line"><span class="keyword">int</span> minutesSinceEpoch = System.currentTimeMillis() / MILLIS_IN_MINUTE</span><br><span class="line"></span><br><span class="line">android &#123;</span><br><span class="line">    ...</span><br><span class="line">    defaultConfig &#123;</span><br><span class="line">  </span><br><span class="line">        <span class="comment">//如果将下述两个值设置为动态的，会在`AndroidManifest.xml`的影响下进行更新，编译出完整版本apk</span></span><br><span class="line">        versionCode <span class="number">1</span></span><br><span class="line">        versionName <span class="string">"1.0"</span></span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//进行上述默认配置后，在进行增量变异的时候不需要重新构建`manifest`，重新构建会导致构建完整apk，拖慢构建速度。</span></span><br><span class="line">    <span class="comment">//下面的语句会在构建的时候遍历`buildType.name`并进行相应的处理</span></span><br><span class="line">    applicationVariants.all &#123; variant -&gt;</span><br><span class="line">        <span class="keyword">if</span> (variant.buildType.name == <span class="string">"release"</span>) &#123;</span><br><span class="line">            variant.mergedFlavor.versionCode = minutesSinceEpoch;</span><br><span class="line">            variant.mergedFlavor.versionName = minutesSinceEpoch + <span class="string">"-"</span> + variant.flavorName;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="使用增量注解处理（incremental-annotation-processors）"><a href="#使用增量注解处理（incremental-annotation-processors）" class="headerlink" title="使用增量注解处理（incremental annotation processors）"></a>使用增量注解处理（incremental annotation processors）</h4><p>Android Studio的Gradle插件版本高于3.3.0支持增量注解处理，如果您使用一个或多个不支持增量编译的注解处理器，则增量 Java 编译不会启用。如果需要使用不支持此优化的注解处理器，可以再 gradle.properties 文件中添加以下标记。添加后，Android Gradle 插件会在一个单独的任务中执行所有注解处理器，并允许 Java 编译任务以增量方式运行。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android.enableSeparateAnnotationProcessing = true</span><br></pre></td></tr></table></figure>
+<h3 id="折半插入排序"><a href="#折半插入排序" class="headerlink" title="折半插入排序"></a>折半插入排序</h3><p>折半插入排序是直接插入排序的一种优化，直接插入排序需要不断移动元素的位置；而折半插入排序是通过折半查找的方式，直接定位到插入元素的位置，然后进行一次元素平移；</p>
+<p>C语言代码实现</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">BInsertSort</span><span class="params">(<span class="keyword">int</span> <span class="built_in">array</span>[], <span class="keyword">int</span> length)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> tmp;</span><br><span class="line">	<span class="keyword">int</span> start, <span class="built_in">end</span>, mid;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; length; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		tmp = <span class="built_in">array</span>[i];</span><br><span class="line">		start = <span class="number">0</span>; <span class="built_in">end</span> = i - <span class="number">1</span>; mid = (<span class="built_in">end</span> + start) / <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">		<span class="comment">//判断将要插入的元素是否大于已经排好序的元素的最大值，或者已经排好序的最小值</span></span><br><span class="line">		<span class="keyword">if</span> (tmp &gt;= <span class="built_in">array</span>[i - <span class="number">1</span>])</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">array</span>[i] = tmp;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (tmp &lt;= <span class="built_in">array</span>[<span class="number">0</span>]) &#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &gt; <span class="number">0</span>; j--)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="built_in">array</span>[j] = <span class="built_in">array</span>[j - <span class="number">1</span>];</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="built_in">array</span>[<span class="number">0</span>] = tmp;</span><br><span class="line">		&#125;</span><br><span class="line">        <span class="comment">//进行折半查找排序</span></span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">while</span> (start &lt; <span class="built_in">end</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">if</span> (tmp &gt; <span class="built_in">array</span>[mid])</span><br><span class="line">				&#123;</span><br><span class="line">					start = mid + <span class="number">1</span>;</span><br><span class="line">					mid = (start + <span class="built_in">end</span>) / <span class="number">2</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">else</span> <span class="keyword">if</span> (tmp &lt; <span class="built_in">array</span>[mid])</span><br><span class="line">				&#123;</span><br><span class="line">					<span class="built_in">end</span> = mid - <span class="number">1</span>;</span><br><span class="line">					mid = (start + <span class="built_in">end</span>) / <span class="number">2</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &gt; start; j--)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="built_in">array</span>[j] = <span class="built_in">array</span>[j - <span class="number">1</span>];</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="built_in">array</span>[start] = tmp;</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
-<h4 id="其他方式"><a href="#其他方式" class="headerlink" title="其他方式"></a>其他方式</h4><ul>
-<li><p>使用确定的依赖，避免使用<code>+</code>，如：’com.android.tools.build:gradle:2.+’</p>
-</li>
-<li><p>使用离线模式进行编译</p>
-</li>
-<li><p>创建library modules，使用这种方式，该模块可以编译输出至缓存中，仅在模块编辑后才会重新编译。</p>
-</li>
-<li><p>创建自定义编译任务</p>
-</li>
-<li><p>将图片转换为WebP</p>
-<p> WebP可以像PNG一样透明，使用与JPEG一样是有损压缩，但比JPG和JPEG压缩更优秀。重新更改图片的尺寸，而非在编译时压缩可以加快编译速度。可以使用Android Studio进行图片的转换。</p>
-</li>
-<li><p>禁用PNG压缩</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">  </span><br><span class="line">  android &#123;</span><br><span class="line">    buildTypes &#123;</span><br><span class="line">        release &#123;</span><br><span class="line">            <span class="comment">//禁用PNG压缩</span></span><br><span class="line">            crunchPngs <span class="keyword">false</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 如果使用的gradle插件版本小于3.0.0，使用下述方式禁用PNG压缩</span></span><br><span class="line">    <span class="comment">//  aaptOptions &#123;</span></span><br><span class="line">    <span class="comment">//      cruncherEnabled false</span></span><br><span class="line">    <span class="comment">//  &#125;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>使用编译缓存<br>在编译缓存中会保存Gradle插件在编译过程中的输出（如：未打包的AAR文件，提前下载的远程库），当使用编译缓存，<code>clean build</code>会变得更快，因为其会调用缓存中的文件，而非重新生成。<br>在gradle.gradle.properties 中指定编译缓存的路径，默认路径为<code>&lt;user-home&gt;/.android/build-cache/</code></p>
-</li>
+<h3 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h3><p>希尔排序（Shell’s Sort）又称为“最小增量排序”（Diminishing Increment Sort），基本思想是：先将整个序列中的记录“基本有序”再对全体记录进行一次直接插入排序（当gap=0时）；</p>
+<pre><code>/images/20170731/001.png</code></pre><ul>
+<li>颜色相同的为一个分组</li>
 </ul>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// 执行绝对路径或者相对路径</span><br><span class="line">android.buildCacheDir=<span class="tag">&lt;<span class="name">path-to-directory</span>&gt;</span></span><br><span class="line">android.enableBuildCache=true</span><br></pre></td></tr></table></figure>
-
-<h4 id="打包编译多个版本的apk，待续"><a href="#打包编译多个版本的apk，待续" class="headerlink" title="打包编译多个版本的apk，待续"></a>打包编译多个版本的apk，待续</h4>
+<p>C语言代码实现</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">shell_sort</span><span class="params">(<span class="keyword">int</span> arr[], <span class="keyword">int</span> length)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> gap, i, j;</span><br><span class="line">	<span class="keyword">int</span> tmp;</span><br><span class="line">	<span class="keyword">for</span> (gap = length / <span class="number">2</span>; gap &gt; <span class="number">0</span>; gap /= <span class="number">2</span>)</span><br><span class="line">	&#123;</span><br><span class="line">        <span class="comment">//下面两个for循环是对每一个分组进行插入排序</span></span><br><span class="line">		<span class="keyword">for</span> (i = gap; i &lt; length; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			tmp = arr[i];</span><br><span class="line">			<span class="keyword">for</span> (j = i - gap; j &gt;= <span class="number">0</span> &amp;&amp; arr[j] &gt; tmp; j-=gap)</span><br><span class="line">			&#123;</span><br><span class="line">				arr[j + gap] = arr[j];</span><br><span class="line">			&#125;</span><br><span class="line">			arr[j + gap] = tmp;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
         </div>
         
         
@@ -427,13 +485,13 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-30T08:28:42.959Z">2019-09-30</time>
+                <time class="level-item has-text-grey" datetime="2020-02-29T02:45:08.862Z">2020-02-29</time>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    a few seconds read (About 20 words)
+                    4 minutes read (About 525 words)
                 </span>
                 
                 
@@ -442,129 +500,61 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/09/30/Android/Other/%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/">Android/Other/常用操作</a>
+                <a class="has-link-black-ter" href="/2020/02/29/Data_Structure/2017-07-27-data-structure-stack/">顺序栈的表示与实现</a>
             
         </h1>
         <div class="content">
-            <h3 id="查看签名文件信息"><a href="#查看签名文件信息" class="headerlink" title="查看签名文件信息"></a>查看签名文件信息</h3><p>密码是password</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -list -v -keystore application.jks -storepass password</span><br></pre></td></tr></table></figure>
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-30T08:28:42.958Z">2019-09-30</time>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    a few seconds read (About 0 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/09/30/Android/Other/Groovy%E4%BB%8B%E7%BB%8D/">Android/Other/Groovy介绍</a>
-            
-        </h1>
-        <div class="content">
-            
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-30T08:28:42.950Z">2019-09-30</time>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    4 minutes read (About 656 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/09/30/Android/Android%E5%8F%8D%E7%BC%96%E8%AF%91/Android%E5%BA%94%E7%94%A8%E9%98%B2%E6%AD%A2%E4%BA%8C%E6%AC%A1%E6%89%93%E5%8C%85/">Android/Android反编译/Android应用防止二次打包</a>
-            
-        </h1>
-        <div class="content">
-            <p>Android防止二次打包主要通过对签名文件的验证来进行</p>
-<h3 id="应用签名文件介绍"><a href="#应用签名文件介绍" class="headerlink" title="应用签名文件介绍"></a>应用签名文件介绍</h3><p>在Android Studio2.2之后多了对签名版本的选择<code>V1(Jar Signature)</code>和<code>V2(Full APK Signature)</code>V1就是传统的签名方式，V2则是Android7.0之后引入的。其区别是，V1是通过ZIP条目进行验证，这样APK 签署后可进行许多修改；而V2验证压缩文件的所有字节，而不是单个 ZIP 条目，这样在签名后无法再更改。V2的好处很明显，更安全且验证更迅速。所以，推荐在生成apk时，签名方式选择V1+V2。当然，仅仅选择V1也是可以的。如果仅选择V2呢，这样生成的apk在Android7.0及之后的版本上没有问题，不过会导致7.0以下的版本无法安装，所以要避免这种方式。</p>
-<h4 id="签名文件在gradle中配置"><a href="#签名文件在gradle中配置" class="headerlink" title="签名文件在gradle中配置"></a>签名文件在gradle中配置</h4><pre><code>signingConfigs {      
-  debug {          
-    storeFile file(&quot;./hyydev.jks&quot;)          
-    storePassword &quot;******&quot;         
-    keyAlias &quot;**&quot;          
-    keyPassword &quot;******&quot;          
-    v1SigningEnabled true          
-    v2SigningEnabled true      
-  }      
-  release {          
-    storeFile file(&quot;./hyydev.jks&quot;)          
-    storePassword &quot;******&quot;          
-    keyAlias &quot;**&quot;          
-    keyPassword &quot;******&quot;         
-    v1SigningEnabled true          
-    v2SigningEnabled true      
-  }
-}</code></pre><h3 id="应用签名文件查看"><a href="#应用签名文件查看" class="headerlink" title="应用签名文件查看"></a>应用签名文件查看</h3><ul>
-<li>已有.jks文件</li>
-</ul>
-<p>在cmd中输入</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">keytool -list -v -keystore path/android.jks -storepass password</span><br></pre></td></tr></table></figure>
-<p>![](/assets/Android safe.png)</p>
+            <p>modified: 2017-7-28<br>本文采用C语言，利用结构体来实现顺序栈</p>
 <ul>
-<li>只有.apk文件</li>
+<li>用于定义栈的大小，以及再栈满的时候，扩充栈</li>
 </ul>
-<p>使用解压工具解压APK文件，在META-INF文件夹拿到CERT.RSA文件,在CMD中输入</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -printcert -file path/android.jks</span><br></pre></td></tr></table></figure>
-<p>![](/assets/Android safe1.png)</p>
-<p><strong>两种方式获取到的签名文件是一致的，使用.jks文件需要密码，而使用.apk文件无需密码</strong></p>
-<h3 id="在Java代码中进行验证，通过PackageManager获取签名信息。"><a href="#在Java代码中进行验证，通过PackageManager获取签名信息。" class="headerlink" title="在Java代码中进行验证，通过PackageManager获取签名信息。"></a>在Java代码中进行验证，通过PackageManager获取签名信息。</h3><p>使用Java代码进行签名信息验证，通过修改smali文件可以绕过，容易破解</p>
-<h3 id="在native层进行签名验证"><a href="#在native层进行签名验证" class="headerlink" title="在native层进行签名验证"></a>在native层进行签名验证</h3><p>使用NDK开发出来的原生C++代码编译后生成的so库是一个二进制文件，可以增加了破解的难度，但在实现中将用于对比的签名HASH串明文存放在代码中，可能会被取出。</p>
-<p>因此在编写时需要对签名内容进行加密，使用自定义加密算法，在使用时进行解密。</p>
-<h3 id="在服务端对签名文件进行验证"><a href="#在服务端对签名文件进行验证" class="headerlink" title="在服务端对签名文件进行验证"></a>在服务端对签名文件进行验证</h3><p>服务器校验即将本地的程序信息，传输到服务器进行校验，然后返回一段核心代码进行执行（非校验结果，防本地修改；同时也不建议服务器下发校验信息，本地校验，原理同）</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> STACK_SIZE 50</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> STACK_INCREMENT 10</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>采用顺序结构来实现栈，使用的是结构体，以一个结构体来表示栈</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">	<span class="keyword">int</span> stackSize;  <span class="comment">//栈容量</span></span><br><span class="line">	<span class="keyword">int</span> *base;      <span class="comment">//栈底指针</span></span><br><span class="line">	<span class="keyword">int</span> *top;       <span class="comment">//栈顶指针</span></span><br><span class="line">&#125;SqStack, *pStack;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>初始化栈，base和top相当于栈中的索引,Top是栈顶，Base是栈底,传入的参数是结构体指针</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">initStack</span><span class="params">(pStack p)</span> </span>&#123;</span><br><span class="line">	p-&gt;base = (<span class="keyword">int</span> *)<span class="built_in">malloc</span>(STACK_SIZE * <span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br><span class="line">	<span class="keyword">if</span> (p-&gt;base != <span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		p-&gt;top = p-&gt;base;</span><br><span class="line">		p-&gt;stackSize = STACK_SIZE;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"分配内存失败"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>栈判空，通过判断栈顶Top指针和栈底Base指针指向的地址是否相等,栈空返回true，否则返回false</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isEmpty</span><span class="params">(pStack p)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> p-&gt;top == p-&gt;base ? <span class="literal">true</span> : <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>栈判满，通过栈顶指针的地址与栈底指针的差值与栈初始化的大小进行比较</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isFull</span><span class="params">(pStack p)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> (p-&gt;top - p-&gt;base) &gt;= STACK_SIZE ? <span class="literal">true</span> : <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>入栈，传入结构体指针和将要入栈的元素，先存储数据，然后再将栈顶指针地址加一（栈中数据存储的地址是由小至大）；</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">push</span><span class="params">(pStack p, <span class="keyword">int</span> topElement)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> *q = <span class="literal">NULL</span>;</span><br><span class="line">	<span class="keyword">if</span> (isFull(p))</span><br><span class="line">	&#123;</span><br><span class="line">		q = (<span class="keyword">int</span> *)<span class="built_in">realloc</span>(p-&gt;base, STACK_INCREMENT * <span class="keyword">sizeof</span>(<span class="keyword">int</span>));  <span class="comment">// 重新调整内存块的大小</span></span><br><span class="line"></span><br><span class="line">		p-&gt;base = q;</span><br><span class="line">		p-&gt;stackSize = p-&gt;stackSize + STACK_INCREMENT;</span><br><span class="line">	&#125;</span><br><span class="line">	*(p-&gt;top)++ = topElement;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>出栈，传入结构体指针和保存栈顶元素的指针，先将栈顶指针的地址减一，然后再取址；</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">pop</span><span class="params">(pStack p, <span class="keyword">int</span> *topElement)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (isEmpty(p))</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"空栈"</span>);</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	p-&gt;top--;</span><br><span class="line">	*topElement = *p-&gt;top;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>求栈顶元素，与栈顶元素出栈相同，只是不需要讲栈顶指针的地址减一</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getStackTop</span><span class="params">(SqStack s)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> topElement;</span><br><span class="line">	<span class="keyword">if</span> (isEmpty(&amp;s))</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	topElement = *(s.top - <span class="number">1</span>);</span><br><span class="line">	<span class="keyword">return</span> topElement;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>清空栈，不断将让栈中元素出栈，直至栈空</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">clearStack</span><span class="params">(SqStack s)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">while</span> (!isEmpty(&amp;s))</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> tmp;</span><br><span class="line">		pop(&amp;s, &amp;tmp);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>求栈当前大小</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getStackLength</span><span class="params">(SqStack s)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> *q = s.top;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span> (q != s.base)</span><br><span class="line">	&#123;</span><br><span class="line">		q--;</span><br><span class="line">		i++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> i;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
         </div>
         
@@ -587,13 +577,13 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-30T08:28:42.948Z">2019-09-30</time>
+                <time class="level-item has-text-grey" datetime="2020-02-29T02:45:08.831Z">2020-02-29</time>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    9 minutes read (About 1303 words)
+                    3 minutes read (About 379 words)
                 </span>
                 
                 
@@ -602,38 +592,37 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/09/30/Android/Advanced/%E5%BA%94%E7%94%A8%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B/">Android/Advanced/应用启动流程</a>
+                <a class="has-link-black-ter" href="/2020/02/29/Data_Structure/2017-07-27-data-structure-binary-tree-visit/">二叉树的前序、中序、后序遍历</a>
             
         </h1>
         <div class="content">
-            <p>1、Launcher通知AMS启动淘宝APP的MainActivity，也就是清单文件设置启动的Activity。<br>2、AMS记录要启动的Activity信息，并且通知Launcher进入pause状态。<br>3、Launcher进入pause状态后，通知AMS已经paused了，可以启动淘宝了。<br>4、淘宝app未开启过，所以AMS启动新的进程，并且在新进程中创建ActivityThread对象，执行其中的main函数方法。<br>5、淘宝app主线程启动完毕后通知AMS，并传入applicationThread以便通讯。<br>6、AMS通知淘宝绑定Application并启动MainActivity。<br>7、淘宝启动MainActivitiy，并且创建和关联Context,最后调用onCreate方法。</p>
-<h2 id="Android应用启动从Zygote到Activity-onCreate"><a href="#Android应用启动从Zygote到Activity-onCreate" class="headerlink" title="Android应用启动从Zygote到Activity.onCreate"></a>Android应用启动从Zygote到Activity.onCreate</h2><p>本文从点击Android应用图标开始介绍Android应用的启动过程</p>
-<h3 id="Android应用有两个方面的特点"><a href="#Android应用有两个方面的特点" class="headerlink" title="Android应用有两个方面的特点"></a>Android应用有两个方面的特点</h3><p><strong>特点一：</strong>具有多个入口，Android应用由多个组件组成，而且他们可以调用其他应用的组件。组件可以成为应用的多个入口，因此Android应用不像传统的应用只有类似于main()函数的启动入口。</p>
-<p><strong>特点二：</strong>自己的运行空间，每个Android应用都运行在独立的进程中，具有自己的Dalvik虚拟机实例，并且被指定了唯一的userId;</p>
-<p>任何用户或者其他的组件请求你的应用组件（service、activitry）执行，如果你的App没有在运行，操作系统会为App启动一个新的进程。</p>
-<p>在默认的情况下，每一个Android应用都运行在自己的进程中，即一个Linux进程，改Linux进程拥有一个可以启动的线程。 </p>
-<h3 id="Zygote：创建新的进程"><a href="#Zygote：创建新的进程" class="headerlink" title="Zygote：创建新的进程"></a>Zygote：创建新的进程</h3><p>Android操作系统在启动的过程：Boot加载系统内核，并启动init进程，init进程再创建Linux中低等级的守护进程（daemons）,例如：debug daemons、USB daemons，这些守护进程用于控制低级的硬件接口。</p>
-<p><strong>init进程会启动Zygote进程</strong></p>
-<p><strong>Zygote</strong>进程可以初始化第一个Dalvik虚拟机实例，同时也提前加载Android层通用的类和系统中不同的应用。会在套接字接口上监听创建新的虚拟机的请求，以及管理新的应用进程。一旦获取创建虚拟机的请求，Zygote会将自己fork创建一个新的进程，并提前初始化虚拟机的实例。</p>
-<p><strong>在Zygote之后，init启动运行时的进程？</strong></p>
-<p>紧接着Zygote fork并启动一个称为system server的进程，<strong>system server会启动所有的核心服务包括：activity manager service、hardware services在其自己的context中。</strong></p>
-<h3 id="用户点击图标通过Launcher启动应用的过程"><a href="#用户点击图标通过Launcher启动应用的过程" class="headerlink" title="用户点击图标通过Launcher启动应用的过程"></a>用户点击图标通过Launcher启动应用的过程</h3><p>点击事件会被转换为startActivity(intent)并通过Binder IPC将事件转换到ActivityManagerService，在ActivityManagerService中执行很多操作步骤。</p>
+            <ul>
+<li>二叉树的结构体<br>modified: 2017-07-27</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">binaryTree</span> &#123;</span></span><br><span class="line">	<span class="keyword">char</span> item;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">binaryTree</span> *<span class="title">lChild</span>;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">binaryTree</span> *<span class="title">rChild</span>;</span></span><br><span class="line"></span><br><span class="line">&#125;binaryTree, *pBinaryTree;</span><br></pre></td></tr></table></figure>
+
 <ul>
-<li>1、收集intent的目标的信息，通过调用<code>PackageManager</code>对象中的<code>resolveIntent()</code>方法，默认使用<code>PackageManager.MATCH_DEFAULT_ONLY</code> 和     <code>PackageManager.GET_SHARED_LIBRARY_FILES</code>标志。</li>
-<li>2、目标信心会被存储至intent对象中，避免重复第一步工作；</li>
-<li>3、判断用户是否有权限调用intent中的组件，通过<code>grantUriPermissionLocked()</code>方法执行；</li>
-<li>4、如果用户有足够的权限，ActivityManagerService会去检查目标activity是否需要在新的task中进行启动。task的创建依赖于intent的标志(flags)如：<code>FLAG_ACTIVITY_NEW_TASK</code> 或者其他flags<code>FLAG_ACTIVITY_CLEAR_TOP</code>；</li>
-<li>5、检查进程的<code>ProcessRecord</code>是否已经存在，如果<code>ProcessRecord</code>为空，ActivityManager需要创建一个新的进程来实例化目标组件。</li>
+<li>二叉树的初始化创建，二叉树创建的过程中按照先序遍历的方式输入一颗满二叉树，缺失的节点元素使用#补足；构建的过程中先递归创建左子树，然后递归创建右子数；’#’作为递归的结束；</li>
 </ul>
-<h3 id="在该应用启动流程中有三个不同的阶段"><a href="#在该应用启动流程中有三个不同的阶段" class="headerlink" title="在该应用启动流程中有三个不同的阶段"></a>在该应用启动流程中有三个不同的阶段</h3><ul>
-<li>1、进程创建</li>
-<li>2、绑定应用</li>
-<li>3、启动Activity/Service/调用intent receiver</li>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">pBinaryTree <span class="title">createBinaryTree</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">char</span> tmp = <span class="string">'0'</span>;</span><br><span class="line">	pBinaryTree treeNode = <span class="literal">NULL</span>;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%c"</span>, &amp;tmp);</span><br><span class="line">	<span class="keyword">if</span> (tmp == <span class="string">'#'</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		treeNode = <span class="literal">NULL</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">//为加入的节点分配新的内存空间</span></span><br><span class="line">		treeNode = (binaryTree*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(binaryTree));</span><br><span class="line">		treeNode-&gt;item = tmp;</span><br><span class="line"></span><br><span class="line">		<span class="comment">//递归调用产生二叉树</span></span><br><span class="line">		treeNode-&gt;lChild = createBinaryTree();</span><br><span class="line">		treeNode-&gt;rChild = createBinaryTree();</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> treeNode;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>先序遍历二叉树</li>
 </ul>
-<h4 id="进程创建"><a href="#进程创建" class="headerlink" title="进程创建"></a>进程创建</h4><p>ActivityManagerService通过调用<code>startProcessLocked()</code>方法来创建一个新的进程，<code>startProcessLocked</code>方法通过socket连接将参数传递给Zygote进程。Zygote将自己fork，然后调用<code>ZygoteInit.main()</code>方法，该方法会创建一个ActivityThread对象，并返回新建进程的id</p>
-<p>在默认情况先每一个进程都会获取一个线程，在主线程中有一个Looper实例通过调用<code>Looper.loop()</code>方法处理从message queue中的message，在Looper每一次运行run()方法时。Looper的作用是从message queue中取出相应message并调用相应的方法来处理它们。ActivityThread通过调用<code>Looper.prepareLoop()</code>再掉用<code>Looper.loop()</code>方法启动message loop。</p>
-<h4 id="应用绑定"><a href="#应用绑定" class="headerlink" title="应用绑定"></a>应用绑定</h4><p>下一步是将新创建的进程绑定至特定的应用上，通过调用线程中的<code>bindApplication()</code>方法来实现。该方法将<code>BIND_APPLICATION</code>信息发送至message queue，该Message通过Handler对象检索，然后调用handlerMessage()方法来触发该message具有的特殊方法——<code>handleBindApplication()</code>，该方法调用<code>makeApplication()</code>方法，<code>makeApplication()</code>方法将应用中特定的类加载到内存中执行。</p>
-<h4 id="启动Activity"><a href="#启动Activity" class="headerlink" title="启动Activity"></a>启动Activity</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">preVisitBiTree</span><span class="params">(pBinaryTree root)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (root)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">//先遍历根节点</span></span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%c"</span>, root-&gt;item);</span><br><span class="line">		<span class="comment">//遍历左子树</span></span><br><span class="line">		preVisitBiTree(root-&gt;lChild);</span><br><span class="line">		<span class="comment">//遍历右子树</span></span><br><span class="line">		preVisitBiTree(root-&gt;rChild);</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>中序遍历二叉树</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">inVisitBiTree</span><span class="params">(pBinaryTree inRoot)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (inRoot)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">//先遍历左子树</span></span><br><span class="line">		inVisitBiTree(inRoot -&gt; lChild );</span><br><span class="line">		<span class="comment">//遍历根节点</span></span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%c"</span>, inRoot-&gt;item);</span><br><span class="line">		<span class="comment">//遍历右子树</span></span><br><span class="line">		inVisitBiTree(inRoot-&gt;rChild);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>后序遍历二叉树</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">lastVisitBiTree</span><span class="params">(pBinaryTree lastRoot)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (lastRoot)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">//遍历左子树</span></span><br><span class="line">		inVisitBiTree(lastRoot-&gt;lChild);</span><br><span class="line">		<span class="comment">//遍历右子树</span></span><br><span class="line">		inVisitBiTree(lastRoot-&gt;rChild);</span><br><span class="line">		<span class="comment">//遍历根节点</span></span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%c"</span>, lastRoot-&gt;item);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="三种遍历二叉树的递归结构是相似的，只是递归遍历的先后有区别"><a href="#三种遍历二叉树的递归结构是相似的，只是递归遍历的先后有区别" class="headerlink" title="三种遍历二叉树的递归结构是相似的，只是递归遍历的先后有区别"></a>三种遍历二叉树的递归结构是相似的，只是递归遍历的先后有区别</h3><h3 id="测试："><a href="#测试：" class="headerlink" title="测试："></a>测试：</h3><p>测试用例：ABC##D##E#F##</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//构建一颗二叉树</span></span><br><span class="line">	pBinaryTree binaryTree = createBinaryTree();</span><br><span class="line">	<span class="comment">//采用先序遍历的方式遍历输出二叉树</span></span><br><span class="line">	preVisitBiTree(binaryTree);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">	<span class="comment">//采用中序遍历的方式输出二叉树</span></span><br><span class="line">	inVisitBiTree(binaryTree);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">	lastVisitBiTree(binaryTree);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"测试二叉树"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
         </div>
         
         
@@ -655,13 +644,13 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-30T08:26:59.176Z">2019-09-30</time>
+                <time class="level-item has-text-grey" datetime="2020-02-29T02:44:48.885Z">2020-02-29</time>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    6 minutes read (About 904 words)
+                    3 minutes read (About 439 words)
                 </span>
                 
                 
@@ -670,97 +659,27 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/09/30/Android/Android%E5%9F%BA%E7%A1%80/Android%E5%90%8E%E5%8F%B0%E4%BB%BB%E5%8A%A1/">Android/Android基础/Android后台任务</a>
+                <a class="has-link-black-ter" href="/2020/02/29/Other/Git/2017-07-27-remote-permission-denied/">remote: Permission to LuciusCS/test.git denied to Lrici.</a>
             
         </h1>
         <div class="content">
-            <h1 id="Android后台处理介绍"><a href="#Android后台处理介绍" class="headerlink" title="Android后台处理介绍"></a>Android后台处理介绍</h1><p>Android手机应用通过主线程来控制UI，包括计算以及View绘制；当有太多的工作在主线程中进行，会造成App假死或者运行缓慢，会给用户较差的体验。很多耗时操作包括编码与解码Bitmap、读取存储器内容或者网络处理工作可以在一个独立的后台进程中进行。</p>
-<h2 id="推荐在后台进行处理的三种情况"><a href="#推荐在后台进行处理的三种情况" class="headerlink" title="推荐在后台进行处理的三种情况"></a>推荐在后台进行处理的三种情况</h2><h3 id="App处理操作是否可以滞后进行，或者需要实时处理"><a href="#App处理操作是否可以滞后进行，或者需要实时处理" class="headerlink" title="App处理操作是否可以滞后进行，或者需要实时处理"></a>App处理操作是否可以滞后进行，或者需要实时处理</h3><p>例如：当用户需要获取数据并显示时，不能将此数据获取放在后台；如果需要将App输出的log日志传递到服务器中，则需要将传输工作放置在后台中进行</p>
-<h3 id="App的处理操作开始的时候，Android操作系统是否需要将App进行“保活”（Keep-Alive）处理"><a href="#App的处理操作开始的时候，Android操作系统是否需要将App进行“保活”（Keep-Alive）处理" class="headerlink" title="App的处理操作开始的时候，Android操作系统是否需要将App进行“保活”（Keep Alive）处理"></a>App的处理操作开始的时候，Android操作系统是否需要将App进行“保活”（Keep Alive）处理</h3><p>例如：当对Bitmap进行解码显示处理的时候，通常需要App保持运行；当使用手机播放器进行音乐播放的时候,手机播放器需要可以再后台运行。</p>
-<h3 id="App操作处理是否是由系统进行触发"><a href="#App操作处理是否是由系统进行触发" class="headerlink" title="App操作处理是否是由系统进行触发"></a>App操作处理是否是由系统进行触发</h3><p>系统触发的内容包括：手机网络状态、电量状态、存储器容量以及其他的触发。例如：当你需要在手机处于网络可应用的状态下与服务器进行通信，如果此时App进程已经死掉，你需要重新启动一个。</p>
-<h4 id="加一个选择策略图片"><a href="#加一个选择策略图片" class="headerlink" title="加一个选择策略图片"></a>加一个选择策略图片</h4><h2 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h2><p>对于处理工作只能在App前台工作的情况使用线程池，线程池提供了一组后台线程，接收任务提交队列。如果需要监控操作系统的触发机制，需要使用动态注册Broadcast receivers,去监控操作系统的状态以及触发任务。</p>
-<ul>
-<li>注：在需要线程池进行网络、存储器以及计算操作时，这些任务通常需要是独立的避免引发死锁</li>
-</ul>
-<h2 id="Foreground-Service操作"><a href="#Foreground-Service操作" class="headerlink" title="Foreground Service操作"></a>Foreground Service操作</h2><p>对于需要尽快完成的工作，使用Foreground Servie通知操作系统App正在进行一些重要的工作，不可以被杀死。Foreground Service对于用户是可见的，它显示在通知栏中。</p>
-<h2 id="Workmanager"><a href="#Workmanager" class="headerlink" title="Workmanager"></a>Workmanager</h2><p>对于那些可以进行演示进行但必须要完成的任务，可以使用WorkManager。WorkManager是Android的一个库，用以运行可以延时触发后台任务（如：网络状态触发，或者电池状态触发）。WorkManager使用的是framework层的JobScheduler,当设备的版本低于Android 6.0(API 23)，如果已经在App中添加依赖，WorkManager就会使用Workbase JobDispatcher,否则将会使用AlarmManager来对后台任务进行处理。</p>
-<h2 id="后台进程操作的限制"><a href="#后台进程操作的限制" class="headerlink" title="后台进程操作的限制"></a>后台进程操作的限制</h2><p>为了最大化利用电池以及更好的App使用体验，Android会限制App(或者一个forceground service notification)，当其对用户不可见时。</p>
-<ul>
-<li>Android 6.0(Api 23)使用休眠状态或者standby状态，当屏幕关闭或者未操作状态时，App处于standby状态时，是未使用的应用进入到网络、任务以及同步都被限制的状态。</li>
-<li>Android 7.0(Api 24)限制隐式广播。</li>
-<li>Android 8.0(Api 26)限制更多的后台操作，包括后台获取地址信息以及释放缓存。</li>
-</ul>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-30T07:19:02.876Z">2019-09-30</time>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    3 minutes read (About 440 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/09/30/Android/%E6%A1%86%E6%9E%B6/AAC/WorkManager%E4%BB%8B%E7%BB%8D/">Android/框架/AAC/WorkManager介绍</a>
-            
-        </h1>
-        <div class="content">
-            <p>WorkManager是一个Job分发服务，用来管理任务,一旦任务进入管理队里，无论是退出当前应用或重启设备，WorkManager都会保证任务的进行。</p>
-<p>在默认请状态下WorkManager会立即运行任务，但可以指定在手机在某一特殊状态下运行，如：网络状态、电池状态、或者是内存状态。</p>
-<p>当程序运行时，运行WorkManager,WorkManager会在一个新的后台子线程中进行；如果程序没有运行，WorkManager将会根据设备的API以及是否可以使用Google服务来选择合适的方式运行。当API在23及以上，WorkManager会使用功JobScheduler来运行，在API14-22将会使用Firebase JobDispatcher，如果JobDispatcher不能使用则会调用一个自定义AlarmManager以及BroadcastReceiver来实现后台运行任务。</p>
-<p>WorkManager不是为了执行所有不在主线程中的任务，如果任务不需要保证执行，则应该使用intent service或者foreground service</p>
-<p>WorkManager可以执行两种类型的任务</p>
-<ul>
-<li>只执行一次的任务，需要创建一个OneTimeWorkRequest对象，然后加入到任务队列中</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">WorkManager workManager=workManager.getInstance();</span><br><span class="line">workManager.enqueue(<span class="keyword">new</span> OneTimeWorkRequest.Builder(MyWork<span class="class">.<span class="keyword">class</span>).<span class="title">build</span>())</span>;</span><br></pre></td></tr></table></figure>
-
-<p>因为没有加其他的限制条件，所以上述任务只会执行一次；</p>
-<ul>
-<li>多次任务，如：每天将应用数据同步至服务器；</li>
-</ul>
-<p>创建多次任务时，需要使用PeriodicWorkRequest.Bulder创建一个PeriodicWorkRequest对象，指定两次任务之间的时间间隔，然后将PeriodWorkRequest加入到执行队列中</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">new PeriodicWorkRequest.Builder dataCheckBuilder&#x3D;new PeriodicWorkRequest.Builder(DataCheckWorker.class,12,TimeUnit.HOURS);</span><br><span class="line"></span><br><span class="line">PeriodicWorkRequest dataCheckWork&#x3D;dataCheckBuilder.build();</span><br><span class="line">WorkManager.getInstance().enqueue(dataCheckWork);</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            <p>modified: 2017-07-27<br>作死小能手又一次把自己玩挂了，明明有一个Github的账号，又申请了一个账号，用于测试权限的控制；然后添加到Git中，结果在Push自己原来项目的时候总是报错；</p>
+<p>remote: Permission to LuciusCS/test.git denied to Lrici.<br>fatal: unable to access ‘<a href="https://github.com/LuciusCS/test.git/&#39;">https://github.com/LuciusCS/test.git/&#39;</a>: The requested URL returned error: 403</p>
+<pre><code>/20170727/Image3.png</code></pre><p>没错，LuciusCS是我原来的账号的名字，Lrici是我现在的账号的名字；<br>都说谷歌大法好，本宝宝恨不得把所有的方法都尝试了；</p>
+<p>方法一：修改配置文件，或者只在本仓库中设置用户名</p>
+<p>git config –global user.name “name” </p>
+<p>git config –global user.email “email” </p>
+<p>方法二：重新创建生成SSH KEY</p>
+<p>方法三：删除Config文件，再重建</p>
+<p>方法四：在Git上配置多账号（特喵的，都不知道账号在哪里）</p>
+<p>方法五：按照The requested URL returned error: 403 403错误的解决方法</p>
+<p>重装大法：卸载Git，然后清除注册表（就差重装系统了）</p>
+<h2 id="以上方法都没有用！！！，以上方法都没有用！！！以上方法都没有用！！！"><a href="#以上方法都没有用！！！，以上方法都没有用！！！以上方法都没有用！！！" class="headerlink" title="以上方法都没有用！！！，以上方法都没有用！！！以上方法都没有用！！！"></a>以上方法都没有用！！！，以上方法都没有用！！！以上方法都没有用！！！</h2><p>还是显示上面的错误！！！！</p>
+<h2 id="终极方法：在凭证管理器中删除不需要账号的信息"><a href="#终极方法：在凭证管理器中删除不需要账号的信息" class="headerlink" title="终极方法：在凭证管理器中删除不需要账号的信息"></a>终极方法：在凭证管理器中删除不需要账号的信息</h2><h2 id="步骤："><a href="#步骤：" class="headerlink" title="步骤："></a>步骤：</h2><p>  Control Panel(控制面板)——&gt;User Account and family Safety(用户账号和家庭安全)——&gt;Manage Windows Credential(凭证管理)——&gt;将跟Git有关的账号删除</p>
+<pre><code>/20170727/Image1.png
+/20170727/Image4.png</code></pre><p>再次提交的时候就会让你输入账号和密码，输入完成后就可以提交啦</p>
+<pre><code>/20170727/Image5.png
+/20170727/Image6.png</code></pre>
         </div>
         
         
@@ -795,7 +714,7 @@
             
             <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
             
-            <li><a class="pagination-link has-text-black-ter" href="/page/8/">8</a></li>
+            <li><a class="pagination-link has-text-black-ter" href="/page/10/">10</a></li>
             
         </ul>
     </nav>
@@ -845,7 +764,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            72
+                            100
                         </p>
                     </a>
                 </div>
@@ -853,11 +772,11 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Categories
+                        Category
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            0
+                            1
                         </p>
                     </a>
                 </div>
@@ -869,7 +788,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            0
+                            5
                         </p>
                     </a>
                 </div>
@@ -943,13 +862,28 @@
                 Categories
             </h3>
             <ul class="menu-list">
-            
+            <li>
+        <a class="level is-marginless" href="/categories/Android/">
+            <span class="level-start">
+                <span class="level-item">Android</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li>
             </ul>
         </div>
     </div>
 </div>
     
-        
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Tag Cloud
+        </h3>
+        <a href="/tags/Android/" style="font-size: 13.33px;">Android</a> <a href="/tags/error/" style="font-size: 10px;">error</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/pat/" style="font-size: 16.67px;">pat</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 20px;">数据结构</a>
+    </div>
+</div>
     
     
         <div class="column-right-shadow is-hidden-widescreen is-sticky">
@@ -962,16 +896,16 @@
         
         <article class="media">
             
-            <a href="/2020/02/26/hello-world/" class="media-left">
+            <a href="/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-09-android-ViewModel-introduction/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Hello World">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Android lifecycle-aware components">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-26T12:43:14.002Z">2020-02-26</time></div>
-                    <a href="/2020/02/26/hello-world/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Hello World</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:21.663Z">2020-02-29</time></div>
+                    <a href="/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-09-android-ViewModel-introduction/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android lifecycle-aware components</a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
@@ -981,16 +915,16 @@
         
         <article class="media">
             
-            <a href="/2019/11/30/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="media-left">
+            <a href="/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-01-android-broadcast-introduction/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Android/框架/Retrofit 2.5 框架使用与源码分析">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Android Broadcast介绍">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-30T11:13:20.728Z">2019-11-30</time></div>
-                    <a href="/2019/11/30/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android/框架/Retrofit 2.5 框架使用与源码分析</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:21.654Z">2020-02-29</time></div>
+                    <a href="/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-01-android-broadcast-introduction/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android Broadcast介绍</a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
@@ -1000,16 +934,16 @@
         
         <article class="media">
             
-            <a href="/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/README/" class="media-left">
+            <a href="/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-07-31-android-service-introduction/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Kotlin/Kotlin基础/README">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Android Service介绍">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:23.104Z">2019-11-28</time></div>
-                    <a href="/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/README/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Kotlin/Kotlin基础/README</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:21.613Z">2020-02-29</time></div>
+                    <a href="/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-07-31-android-service-introduction/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android Service介绍</a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
@@ -1019,16 +953,16 @@
         
         <article class="media">
             
-            <a href="/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="media-left">
+            <a href="/2020/02/29/Data_Structure/2017-08-28-data-structure-huffman-tree/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Kotlin/Kotlin基础/Lambda表达式">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Huffman树的算法实现">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:23.103Z">2019-11-28</time></div>
-                    <a href="/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Kotlin/Kotlin基础/Lambda表达式</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:09.033Z">2020-02-29</time></div>
+                    <a href="/2020/02/29/Data_Structure/2017-08-28-data-structure-huffman-tree/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Huffman树的算法实现</a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
@@ -1038,16 +972,16 @@
         
         <article class="media">
             
-            <a href="/2019/11/28/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/Img/README/" class="media-left">
+            <a href="/2020/02/29/Data_Structure/2017-08-27-data-structure-heap-sort/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Java/设计模式/Img/README">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="堆排序">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:23.102Z">2019-11-28</time></div>
-                    <a href="/2019/11/28/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/Img/README/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java/设计模式/Img/README</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:09.000Z">2020-02-29</time></div>
+                    <a href="/2020/02/29/Data_Structure/2017-08-27-data-structure-heap-sort/" class="title has-link-black-ter is-size-6 has-text-weight-normal">堆排序</a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
@@ -1072,7 +1006,7 @@
                     <span class="level-item">February 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">29</span>
                 </span>
             </a>
         </li>
@@ -1111,6 +1045,41 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Android/">
+                        <span class="tag">Android</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/error/">
+                        <span class="tag">error</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/git/">
+                        <span class="tag">git</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/pat/">
+                        <span class="tag">pat</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                        <span class="tag">数据结构</span>
+                        <span class="tag is-grey">16</span>
+                    </a>
+                </div>
                 
             </div>
         </div>
@@ -1136,16 +1105,16 @@
         
         <article class="media">
             
-            <a href="/2020/02/26/hello-world/" class="media-left">
+            <a href="/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-09-android-ViewModel-introduction/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Hello World">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Android lifecycle-aware components">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-26T12:43:14.002Z">2020-02-26</time></div>
-                    <a href="/2020/02/26/hello-world/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Hello World</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:21.663Z">2020-02-29</time></div>
+                    <a href="/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-09-android-ViewModel-introduction/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android lifecycle-aware components</a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
@@ -1155,16 +1124,16 @@
         
         <article class="media">
             
-            <a href="/2019/11/30/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="media-left">
+            <a href="/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-01-android-broadcast-introduction/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Android/框架/Retrofit 2.5 框架使用与源码分析">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Android Broadcast介绍">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-30T11:13:20.728Z">2019-11-30</time></div>
-                    <a href="/2019/11/30/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android/框架/Retrofit 2.5 框架使用与源码分析</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:21.654Z">2020-02-29</time></div>
+                    <a href="/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-01-android-broadcast-introduction/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android Broadcast介绍</a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
@@ -1174,16 +1143,16 @@
         
         <article class="media">
             
-            <a href="/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/README/" class="media-left">
+            <a href="/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-07-31-android-service-introduction/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Kotlin/Kotlin基础/README">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Android Service介绍">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:23.104Z">2019-11-28</time></div>
-                    <a href="/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/README/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Kotlin/Kotlin基础/README</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:21.613Z">2020-02-29</time></div>
+                    <a href="/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-07-31-android-service-introduction/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android Service介绍</a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
@@ -1193,16 +1162,16 @@
         
         <article class="media">
             
-            <a href="/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="media-left">
+            <a href="/2020/02/29/Data_Structure/2017-08-28-data-structure-huffman-tree/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Kotlin/Kotlin基础/Lambda表达式">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Huffman树的算法实现">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:23.103Z">2019-11-28</time></div>
-                    <a href="/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Kotlin/Kotlin基础/Lambda表达式</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:09.033Z">2020-02-29</time></div>
+                    <a href="/2020/02/29/Data_Structure/2017-08-28-data-structure-huffman-tree/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Huffman树的算法实现</a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
@@ -1212,16 +1181,16 @@
         
         <article class="media">
             
-            <a href="/2019/11/28/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/Img/README/" class="media-left">
+            <a href="/2020/02/29/Data_Structure/2017-08-27-data-structure-heap-sort/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Java/设计模式/Img/README">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="堆排序">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:23.102Z">2019-11-28</time></div>
-                    <a href="/2019/11/28/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/Img/README/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java/设计模式/Img/README</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:09.000Z">2020-02-29</time></div>
+                    <a href="/2020/02/29/Data_Structure/2017-08-27-data-structure-heap-sort/" class="title has-link-black-ter is-size-6 has-text-weight-normal">堆排序</a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
@@ -1246,7 +1215,7 @@
                     <span class="level-item">February 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">29</span>
                 </span>
             </a>
         </li>
@@ -1285,6 +1254,41 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Android/">
+                        <span class="tag">Android</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/error/">
+                        <span class="tag">error</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/git/">
+                        <span class="tag">git</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/pat/">
+                        <span class="tag">pat</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                        <span class="tag">数据结构</span>
+                        <span class="tag is-grey">16</span>
+                    </a>
+                </div>
                 
             </div>
         </div>
@@ -1311,9 +1315,29 @@
                 Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> & <a
                         href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a>
                 
+                <br>
+                <span id="busuanzi_container_site_uv">
+                Visited by <span id="busuanzi_value_site_uv">0</span> users
+                </span>
+                <span id="busuanzi_container_site_pv">
+                <span id="busuanzi_value_site_pv">0</span> visits
+                </span>
+                
                 </p>
             </div>
             <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
             
             </div>
         </div>

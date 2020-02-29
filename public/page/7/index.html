@@ -66,7 +66,7 @@
     <link rel="stylesheet" href="/css/progressbar.css">
 <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
     
-    
+    <script async="" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     
 
 
@@ -127,13 +127,13 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-19T09:34:08.488Z">2019-09-19</time>
+                <time class="level-item has-text-grey" datetime="2019-09-27T08:23:54.030Z">2019-09-27</time>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    2 minutes read (About 348 words)
+                    a minute read (About 140 words)
                 </span>
                 
                 
@@ -142,29 +142,25 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/09/19/Android/%E6%A1%86%E6%9E%B6/Dagger2/">Android/框架/Dagger2</a>
+                <a class="has-link-black-ter" href="/2019/09/27/Android/%E6%A1%86%E6%9E%B6/fastjson%E7%9A%84%E4%BD%BF%E7%94%A8/">Android/框架/fastjson的使用</a>
             
         </h1>
         <div class="content">
-            <h1 id="在Android中使用Dagger2"><a href="#在Android中使用Dagger2" class="headerlink" title="在Android中使用Dagger2"></a>在Android中使用Dagger2</h1><h2 id="Dagger2介绍"><a href="#Dagger2介绍" class="headerlink" title="Dagger2介绍"></a>Dagger2介绍</h2><h3 id="为什么我们需要注解依赖注入？"><a href="#为什么我们需要注解依赖注入？" class="headerlink" title="为什么我们需要注解依赖注入？"></a>为什么我们需要注解依赖注入？</h3><p>Dependency Injection(注解依赖)是在IOC(Inversion of cnontrol)的基础上实现的，为了将类的实例的实现与类进行分离。</p>
-<p>如果一个类使用<code>new</code>操作符来实例化另外一个类，那么这两个类直接就产生依赖关系，被称为Hard dependency。</p>
-<h3 id="注入模式"><a href="#注入模式" class="headerlink" title="注入模式"></a>注入模式</h3><ul>
-<li>构造函数注入：以传递参数的方式</li>
-<li>字段注入：以变量的方式</li>
-<li>方法注入：</li>
+            <h4 id="JSONString与HashMap之间的转换"><a href="#JSONString与HashMap之间的转换" class="headerlink" title="JSONString与HashMap之间的转换"></a>JSONString与HashMap之间的转换</h4><ul>
+<li>HashMap转换为JsonString</li>
 </ul>
-<p>“依赖调用者”通过一个“连接器”从“依赖提供者”调用“依赖对象”</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;String, String&gt; hashMap = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">String JSONString=JSON.toJSONString(hashMap);</span><br></pre></td></tr></table></figure>
+
+
 <ul>
-<li>Dependency provider:使用注解<code>@Module</code>表示的类，用于提供可以进行注入的对象。类中的方法使用注解<code>@Providers</code>表示该方法的返回对象可以被依赖注入。<code>@Moudle</code>可将引用的类（非自己编码的类）的注入，如果是自己编码的类仅用<code>@Inject</code>即可</li>
-<li>Dependency consumer：注解<code>@Inject</code>用于定义一个依赖。</li>
-<li>Connection consumer and producer：使用注解<code>@Component</code>的接口定义module对象中<code>provider</code>与依赖对象之间的连接，接口的实现类由Dagger自动生成。</li>
+<li>JsonString转换为HashMap<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;String, String&gt; hashMap = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">hashMap= JSON.parseObject(JSONString, Map<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//错误方式</span></span><br><span class="line">hashMap= (Map&lt;String, String&gt;) JSON.parse(JSONString);</span><br></pre></td></tr></table></figure>
+
+</li>
 </ul>
-<h2 id="Dagger2的局限性"><a href="#Dagger2的局限性" class="headerlink" title="Dagger2的局限性"></a>Dagger2的局限性</h2><ul>
-<li>Dagger2不能自动注入域</li>
-<li>Dagger2不能注入private类型</li>
-<li>Dagger2</li>
+<p><strong>注：使用错误方式将JsonString转换为HashMap，会导致HashMap中只有一组数据</strong></p>
+<h4 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h4><ul>
+<li>在使用fastjson进行转换的过程中，需要保证Object需要有默认的构造函数，如果Object中有其他Object变量，Object变量也需要有默认构造函数，否则会造成转化失败</li>
 </ul>
-<h2 id="工程结构图"><a href="#工程结构图" class="headerlink" title="工程结构图"></a>工程结构图</h2><p>假装有图</p>
 
         </div>
         
@@ -187,13 +183,13 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-19T09:34:08.482Z">2019-09-19</time>
+                <time class="level-item has-text-grey" datetime="2019-09-21T00:52:10.111Z">2019-09-21</time>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    4 minutes read (About 597 words)
+                    13 minutes read (About 1907 words)
                 </span>
                 
                 
@@ -202,37 +198,78 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/09/19/Android/Android%E5%9F%BA%E7%A1%80/Android%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/">Android/Android基础/Android文件操作</a>
+                <a class="has-link-black-ter" href="/2019/09/21/Android/Android%20JNI/Android%20Studio%20JNI%E5%BC%95%E5%85%A5/">Android/Android JNI/Android Studio JNI引入</a>
             
         </h1>
         <div class="content">
-            <h2 id="Android文件的读和写"><a href="#Android文件的读和写" class="headerlink" title="Android文件的读和写"></a>Android文件的读和写</h2><p>1、apk资源文件在raw和assert文件夹下，只能进行读取不能进行写入，文件大小不能超过1M；<br>2、SD卡中的文件；<br>3、数据区(/data/data/..)的文件；</p>
-<h3 id="资源文件的读写"><a href="#资源文件的读写" class="headerlink" title="资源文件的读写"></a>资源文件的读写</h3><p>raw使用InputStream in = getResources().openRawResource(R.raw.test);<br>asset使用InputStream in = getResources().getAssets().open(fileName);</p>
-<h3 id="Android应用数据私有目录存储（位于应用功能安装目录下）"><a href="#Android应用数据私有目录存储（位于应用功能安装目录下）" class="headerlink" title="Android应用数据私有目录存储（位于应用功能安装目录下）"></a>Android应用数据私有目录存储（位于应用功能安装目录下）</h3><p>该目录使用不需要获取用户权限，不能被其他应用访问，当应用被卸载时，该目录会被删除。在在使用该目录时，需要使用完整的包名进行访问。</p>
-<p>文件类型：<br>/data/data/包名/cache ：存放的是APP的缓存信息<br>/data/data/包名/code_cache ：在运行时存放应用产生的编译或者优化的代码<br>/data/data/包名/files ： 存放APP的文件信息</p>
-<p>还有其他一些文件，该内部存储文件在Debug模式下，使用Android Studio的Device File Explore工具可以进行访问；以release模式进行安装，则不能进行访问；对App进行反编译，以Debug模式运行则可以进入到该文件下访问；手机在Root模式下也可访问该文件（未进行测试）。</p>
-<p>私有目录和 Context 相关，所以使用 context.getExternalXXX获取目录</p>
-<p><code>context.getCacheDir()</code>用于获取缓存目录，当Android内存不足时，可以删除该目录进行空间</p>
-<h4 id="文件读操作"><a href="#文件读操作" class="headerlink" title="文件读操作"></a>文件读操作</h4><h4 id="文件写操作"><a href="#文件写操作" class="headerlink" title="文件写操作"></a>文件写操作</h4><h3 id="Android应用数据外部存储（保存至SD卡，也可以认为非应用安装目录）"><a href="#Android应用数据外部存储（保存至SD卡，也可以认为非应用安装目录）" class="headerlink" title="Android应用数据外部存储（保存至SD卡，也可以认为非应用安装目录）"></a>Android应用数据外部存储（保存至SD卡，也可以认为非应用安装目录）</h3><p>该目录使用需要获取用户权限，能被其他应用访问，当应用被卸载时，该目录不会被删除。</p>
+            <h2 id="Android-在已有的项目中引入JNI-最简方式"><a href="#Android-在已有的项目中引入JNI-最简方式" class="headerlink" title="Android 在已有的项目中引入JNI 最简方式"></a>Android 在已有的项目中引入JNI 最简方式</h2><h3 id="JNI与NDK"><a href="#JNI与NDK" class="headerlink" title="JNI与NDK"></a>JNI与NDK</h3><p>JNI：JNI是一套编程接口，用来实现Java代码与本地的C/C++代码进行交互；<br>NDK: NDK是Google开发的一套开发和编译工具集，可以生成动态链接库，主要用于Android的JNI开发；</p>
+<h3 id="下载NDK和编译工具"><a href="#下载NDK和编译工具" class="headerlink" title="下载NDK和编译工具"></a>下载NDK和编译工具</h3><ul>
+<li>NDK:一个工具集，能够在 Android 应用中使用 C 和 C++ 代码；它提供各种平台库，可以管理原生 Activity 并访问实际设备组件，例如传感器和轻触输入。</li>
+<li>CMake：一款外部编译工具，可与 Gradle 搭配使用来编译原生库。</li>
+<li>LLDB：Android Studio 用于调试原生代码的调试程序。 </li>
+</ul>
+<p>安装方式：</p>
+<p>Android Studio Tools—&gt;SDK manager—&gt;SDK Tools 选择LLDB、CMake、NDK点击Apply进行下载</p>
+<p>![](/assets/Android JNI.png)</p>
+<p>在cpp文件夹下新建CMakeLists.txt和native-lib.cpp文件，CMakeLists.txt可以建在工程的任意位置<br>![](/assets/Android JNI1.png)</p>
+<h3 id="添加CMakeLists-txt和native-lib-cpp文件"><a href="#添加CMakeLists-txt和native-lib-cpp文件" class="headerlink" title="添加CMakeLists.txt和native-lib-cpp文件"></a>添加CMakeLists.txt和native-lib-cpp文件</h3><p>现在CMakeLists.txt中添加如下代码，native-lib-cpp可以先不添加代码</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">   # 设置cmake的最低版本</span><br><span class="line">   cmake_minimum_required(VERSION 3.4.1)</span><br><span class="line"></span><br><span class="line">  # 设置生成的so库的信息</span><br><span class="line">  add_library( </span><br><span class="line">      #生成的so库的名字</span><br><span class="line">      native-lib</span><br><span class="line">      # 生成的so库的类型，类型分为两种：</span><br><span class="line">      #  STATIC：静态库，为目标文件的归档文件</span><br><span class="line">      #  SHARED：动态库，会被动态链接，在运行时被加载</span><br><span class="line">      SHARED</span><br><span class="line">      # 设置源文件的位置，可以是很多个源文件，都需要添加进去</span><br><span class="line">      native-lib.cpp)</span><br><span class="line">  # 从系统里查找依赖库，可添加多个</span><br><span class="line">  find_library(</span><br><span class="line">      log-lib</span><br><span class="line">      # liblog.so库指定的名称为 log，libjnitest.so的名称为jnitest</span><br><span class="line">      log)</span><br><span class="line">   # 配置目标库的链接，即相互依赖关系</span><br><span class="line">target_link_libraries(</span><br><span class="line">      # 目标库（最终生成的库）</span><br><span class="line">      native-lib</span><br><span class="line">      # 需要依赖的log库，一般情况下，如果依赖的是系统中的库，需要加$&#123;&#125;进行引用</span><br><span class="line">      # 如果是第三方库，可以直接引用</span><br><span class="line">      # 每行引用一个库</span><br><span class="line">      $&#123;log-lib&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>在Andorid的Module下，右键选择 <strong>Link C++ Project with Gradle</strong>，选择新建的CMakeLists.txt文件的路径；构建完成后，在moudle的build.gradle会增加如下代码</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">android &#123;</span><br><span class="line">  …</span><br><span class="line">  externalNativeBuild &#123;</span><br><span class="line">    cmake &#123;</span><br><span class="line">        path file('src/main/cpp/CMakeLists.txt')</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在native-lib.cpp添加如下代码，方法名命名规则<code>Java_demo_lucius_baselib_MainActivity_stringFromJNI</code>，以<code>Java</code>作为开头,<code>demo_lucius_baselib_MainActivity</code>是“包名+调用类名”，<code>stringFromJNI</code>方法名。即<code>Java_{package_and_classname}_{function_name}(JNI_arguments)</code>，包名的<code>.</code>被下划线替代。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;jni.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">extern</span> <span class="string">"C"</span> JNIEXPORT jstring JNICALL</span><br><span class="line">Java_demo_lucius_baselib_MainActivity_stringFromJNI(</span><br><span class="line">    JNIEnv *env,</span><br><span class="line">    jobject <span class="comment">/* this */</span>) &#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">string</span> <span class="built_in">text</span> = <span class="string">"String from C++"</span>;</span><br><span class="line">    <span class="keyword">return</span> env-&gt;NewStringUTF(hello.c_str());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在上述函数<code>JNI_arguments</code>有<code>JNIEnv*</code>和<code>jobject</code></p>
 <ul>
-<li>首先需要获取权限</li>
+<li>JNIEnv*，代表JNI的环境，可以获取到所有的JNI方法。</li>
+<li>jobject，指向Java对象的<code>object</code>。</li>
 </ul>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">&lt;!--用于获取文件操作的权限--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.READ_EXTERNAL_STORAGE"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.WRITE_EXTERNAL_STORAGE"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<p><code>extern &quot;C&quot;</code>只会被C++编译器识别，C++编译器在编译时会按照C语言方法的命名规则，而非C++的命名规则进行编译。C和C++的有不同方法命名规则,C++支持方法的重载，同时C++使用mangling scheme识别方法的重载。</p>
+<p>在MainActivity中添加C++代码的调用，启动MainActivity后会输出”String from C++”</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        <span class="comment">//用于在运行时加载本地库</span></span><br><span class="line">        System.loadLibrary(<span class="string">"native-lib"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line"></span><br><span class="line">        System.out.println(stringFromJNI());</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">native</span> String <span class="title">stringFromJNI</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="在JNI中使用C语言，新建helloJIN-c文件"><a href="#在JNI中使用C语言，新建helloJIN-c文件" class="headerlink" title="在JNI中使用C语言，新建helloJIN.c文件"></a>在JNI中使用C语言，新建helloJIN.c文件</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;jni.h&gt;        // JNI header provided by JDK</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;      // C Standard IO Header</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Implementation of the native method sayHello()</span></span><br><span class="line"><span class="function">JNIEXPORT <span class="keyword">void</span> JNICALL <span class="title">Java_HelloJNI_sayHello</span><span class="params">(JNIEnv *env, jobject thisObj)</span> </span>&#123;</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">"Hello World!\n"</span>);</span><br><span class="line">   <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="JNI基础类型介绍"><a href="#JNI基础类型介绍" class="headerlink" title="JNI基础类型介绍"></a>JNI基础类型介绍</h3><p>在<code>jni.h</code>文件中定义了预编译类型，区分Java、C++以及C</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/* Primitive types that match up with Java equivalents. */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">uint8_t</span>  jboolean; <span class="comment">/* unsigned 8 bits */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">int8_t</span>   jbyte;    <span class="comment">/* signed 8 bits */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">uint16_t</span> jchar;    <span class="comment">/* unsigned 16 bits */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">int16_t</span>  jshort;   <span class="comment">/* signed 16 bits */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">int32_t</span>  jint;     <span class="comment">/* signed 32 bits */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">int64_t</span>  jlong;    <span class="comment">/* signed 64 bits */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">float</span>    jfloat;   <span class="comment">/* 32-bit IEEE 754 */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">double</span>   jdouble;  <span class="comment">/* 64-bit IEEE 754 */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* "cardinal indices and sizes" */</span></span><br><span class="line"><span class="keyword">typedef</span> jint     jsize;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __cplusplus</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * Reference types, in C++</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> _<span class="title">jobject</span> &#123;</span>&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> _<span class="title">jclass</span> :</span> <span class="keyword">public</span> _jobject &#123;&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> _<span class="title">jstring</span> :</span> <span class="keyword">public</span> _jobject &#123;&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> _<span class="title">jarray</span> :</span> <span class="keyword">public</span> _jobject &#123;&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> _<span class="title">jobjectArray</span> :</span> <span class="keyword">public</span> _jarray &#123;&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> _<span class="title">jbooleanArray</span> :</span> <span class="keyword">public</span> _jarray &#123;&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> _<span class="title">jbyteArray</span> :</span> <span class="keyword">public</span> _jarray &#123;&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> _<span class="title">jcharArray</span> :</span> <span class="keyword">public</span> _jarray &#123;&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> _<span class="title">jshortArray</span> :</span> <span class="keyword">public</span> _jarray &#123;&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> _<span class="title">jintArray</span> :</span> <span class="keyword">public</span> _jarray &#123;&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> _<span class="title">jlongArray</span> :</span> <span class="keyword">public</span> _jarray &#123;&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> _<span class="title">jfloatArray</span> :</span> <span class="keyword">public</span> _jarray &#123;&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> _<span class="title">jdoubleArray</span> :</span> <span class="keyword">public</span> _jarray &#123;&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> _<span class="title">jthrowable</span> :</span> <span class="keyword">public</span> _jobject &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> _jobject*       jobject;</span><br><span class="line"><span class="keyword">typedef</span> _jclass*        jclass;</span><br><span class="line"><span class="keyword">typedef</span> _jstring*       jstring;</span><br><span class="line"><span class="keyword">typedef</span> _jarray*        jarray;</span><br><span class="line"><span class="keyword">typedef</span> _jobjectArray*  jobjectArray;</span><br><span class="line"><span class="keyword">typedef</span> _jbooleanArray* jbooleanArray;</span><br><span class="line"><span class="keyword">typedef</span> _jbyteArray*    jbyteArray;</span><br><span class="line"><span class="keyword">typedef</span> _jcharArray*    jcharArray;</span><br><span class="line"><span class="keyword">typedef</span> _jshortArray*   jshortArray;</span><br><span class="line"><span class="keyword">typedef</span> _jintArray*     jintArray;</span><br><span class="line"><span class="keyword">typedef</span> _jlongArray*    jlongArray;</span><br><span class="line"><span class="keyword">typedef</span> _jfloatArray*   jfloatArray;</span><br><span class="line"><span class="keyword">typedef</span> _jdoubleArray*  jdoubleArray;</span><br><span class="line"><span class="keyword">typedef</span> _jthrowable*    jthrowable;</span><br><span class="line"><span class="keyword">typedef</span> _jobject*       jweak;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span> <span class="comment">/* not __cplusplus */</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * Reference types, in C.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">void</span>*           jobject;</span><br><span class="line"><span class="keyword">typedef</span> jobject         jclass;</span><br><span class="line"><span class="keyword">typedef</span> jobject         jstring;</span><br><span class="line"><span class="keyword">typedef</span> jobject         jarray;</span><br><span class="line"><span class="keyword">typedef</span> jarray          jobjectArray;</span><br><span class="line"><span class="keyword">typedef</span> jarray          jbooleanArray;</span><br><span class="line"><span class="keyword">typedef</span> jarray          jbyteArray;</span><br><span class="line"><span class="keyword">typedef</span> jarray          jcharArray;</span><br><span class="line"><span class="keyword">typedef</span> jarray          jshortArray;</span><br><span class="line"><span class="keyword">typedef</span> jarray          jintArray;</span><br><span class="line"><span class="keyword">typedef</span> jarray          jlongArray;</span><br><span class="line"><span class="keyword">typedef</span> jarray          jfloatArray;</span><br><span class="line"><span class="keyword">typedef</span> jarray          jdoubleArray;</span><br><span class="line"><span class="keyword">typedef</span> jobject         jthrowable;</span><br><span class="line"><span class="keyword">typedef</span> jobject         jweak;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">/* not __cplusplus */</span></span></span><br></pre></td></tr></table></figure>
+
+
+<h4 id="Java基本数据类型与Native层中的数据对应关系"><a href="#Java基本数据类型与Native层中的数据对应关系" class="headerlink" title="Java基本数据类型与Native层中的数据对应关系"></a>Java基本数据类型与Native层中的数据对应关系</h4><p>这些基本数据类型可以在Native层直接使用。</p>
+<p>![](/assets/Android JNI2.png)</p>
+<h4 id="Java引用数据类型与Native层中的数据对应关系"><a href="#Java引用数据类型与Native层中的数据对应关系" class="headerlink" title="Java引用数据类型与Native层中的数据对应关系"></a>Java引用数据类型与Native层中的数据对应关系</h4><p>Java引用数据类型不能直接在Native层使用，需要根据JNI函数进行类型的转换后，才能使用。多维数组（包括二维数组）都是引用类型，需要转化为<code>jobjectArray</code>类型进行使用。    </p>
+<p>![](/assets/Android JNI3.png)</p>
+<p>在JNI中二维数组的使用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取一维数组的引用，即jintArray类型</span></span><br><span class="line">jclass intArrayClass=env-&gt;FindClass(<span class="string">"[I"</span>);  </span><br><span class="line"><span class="comment">//构造一个指向jintArray类的一维数组对象，该对象数组初始大小为length,类型为jsize</span></span><br><span class="line">jobjectArray objectIntArray=env-&gt;NewObjectArray(length,intArrayClass,Null);</span><br></pre></td></tr></table></figure>
+
+<h4 id="jfieldID-和jmethodID"><a href="#jfieldID-和jmethodID" class="headerlink" title="jfieldID 和jmethodID"></a>jfieldID 和jmethodID</h4><p>当Native层需要调用Java的某个方法时，需用<code>jmethodID</code>表示，变量则用<code>jfieldID</code>表示。<code>jni.h</code>中对jfieldID和jmethodID的定义</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> _<span class="title">jfieldID</span>;</span>                       <span class="comment">/* opaque structure */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">jfieldID</span>* <span class="title">jfieldID</span>;</span>     <span class="comment">/* field IDs */</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> _<span class="title">jmethodID</span>;</span>                      <span class="comment">/* opaque structure */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">jmethodID</span>* <span class="title">jmethodID</span>;</span>   <span class="comment">/* method IDs */</span></span><br></pre></td></tr></table></figure>
+
+<p>在JNI规则中，用jfieldID 和jmethodID 来表示Java类的成员变量和成员函数，它们通过JNIEnv的下面两个函数可以得到，其中jclass代表Java类，name表示成员函数或成员变量的名字，sig为这个函数和变量的签名信息。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取jfieldID</span></span><br><span class="line">  <span class="function">jfieldID <span class="title">GetFieldID</span><span class="params">(jclass clazz, <span class="keyword">const</span> <span class="keyword">char</span>* name, <span class="keyword">const</span> <span class="keyword">char</span>* sig)</span></span></span><br><span class="line"><span class="function"></span>&#123; <span class="keyword">return</span> functions-&gt;GetFieldID(<span class="keyword">this</span>, clazz, name, sig); &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取jmethodID</span></span><br><span class="line"> <span class="function">jmethodID <span class="title">GetMethodID</span><span class="params">(jclass clazz, <span class="keyword">const</span> <span class="keyword">char</span>* name, <span class="keyword">const</span> <span class="keyword">char</span>* sig)</span></span></span><br><span class="line"><span class="function"></span>&#123; <span class="keyword">return</span> functions-&gt;GetMethodID(<span class="keyword">this</span>, clazz, name, sig); &#125;</span><br></pre></td></tr></table></figure>
+<p>以Java中的MD5加密在JNI层调用为例，介绍jmethodID的使用</p>
+<h4 id="JavaVM介绍"><a href="#JavaVM介绍" class="headerlink" title="JavaVM介绍"></a>JavaVM介绍</h4><p>JavaVM是虚拟机在JNI层的代表，每一个虚拟机进程只有一个JavaVM，即对JNI来说，JavaVM是一个全局变量。<code>jni.h</code>的定义中，在C++模式下，<code>JavaVM</code>是一个结构体；在C语言模式下<code>JavaVM</code>是是一个指向方法接口指针的指针。</p>
+<h4 id="JNIEnv介绍"><a href="#JNIEnv介绍" class="headerlink" title="JNIEnv介绍"></a>JNIEnv介绍</h4><p>JNIEnv是JavaVM在线程中的代表，是一个与线程相关的，代表JNI环境的结构体，不同线程的JNIEnv彼此独立。<code>jni.h</code>的定义中，在C++模式下，<code>JNIEnv</code>是一个结构体；在C语言模式下<code>JNIEnv</code>是是一个指向方法接口指针的指针。</p>
+<p><strong>作用：</strong></p>
 <ul>
-<li>需要确定写入文件目录是否存在，如果不存在，则需要新建目录</li>
+<li>调用Java函数 ：JNIEnv 代表 Java 运行环境, 可以使用 JNIEnv 调用Java中的代码;</li>
+<li>操作Java对象 : Java对象传入JNI层就是Jobject对象, 需要使用 JNIEnv来操作这个 Java 对象;</li>
 </ul>
-<h3 id="Android存储公有目录"><a href="#Android存储公有目录" class="headerlink" title="Android存储公有目录"></a>Android存储公有目录</h3><p>Andorid开发公有目录与Context无关，使用Environment进行获取</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> defined(__cplusplus)</span></span><br><span class="line"><span class="keyword">typedef</span> _JNIEnv JNIEnv;</span><br><span class="line"><span class="keyword">typedef</span> _JavaVM JavaVM;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">const</span> <span class="class"><span class="keyword">struct</span> <span class="title">JNINativeInterface</span>* <span class="title">JNIEnv</span>;</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">const</span> <span class="class"><span class="keyword">struct</span> <span class="title">JNIInvokeInterface</span>* <span class="title">JavaVM</span>;</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="JNIEnv和JavaVM调用方法"><a href="#JNIEnv和JavaVM调用方法" class="headerlink" title="JNIEnv和JavaVM调用方法"></a>JNIEnv和JavaVM调用方法</h4><ul>
+<li>对于C语言</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(*env)-&gt;方法名(env,参数列表)</span><br><span class="line">(*vm)-&gt;方法名(vm,参数列表)</span><br></pre></td></tr></table></figure>
 <ul>
-<li>Environment.DIRECTORY_PICTURES 图片目录</li>
-<li>Environment.DIRECTORY_DCIM 相册目录</li>
-<li>Environment.DIRECTORY_DOCUMENTS 文档目录</li>
-<li>Environment.DIRECTORY_DOWNLOADS 下载目录</li>
-<li>Environment.DIRECTORY_MOVIES 视频</li>
+<li>对于C++</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//有参</span></span><br><span class="line">Environment.getExternalStoragePublicDirectory(String type) ;</span><br><span class="line"><span class="comment">//无参</span></span><br><span class="line">Environment.getExternalStoragePublicDirectory();</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">env-&gt;方法名(参数列表)</span><br><span class="line">vm-&gt;方法名(参数列表)</span><br></pre></td></tr></table></figure>
 
-
-<h3 id="Android本地文件选择"><a href="#Android本地文件选择" class="headerlink" title="Android本地文件选择"></a>Android本地文件选择</h3>
+<h3 id="在"><a href="#在" class="headerlink" title="在"></a>在</h3>
         </div>
         
         
@@ -254,13 +291,13 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-19T09:34:08.480Z">2019-09-19</time>
+                <time class="level-item has-text-grey" datetime="2019-09-21T00:52:10.110Z">2019-09-21</time>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    7 minutes read (About 1024 words)
+                    a minute read (About 175 words)
                 </span>
                 
                 
@@ -269,32 +306,12 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/09/19/Android/Android%E5%9F%BA%E7%A1%80/Android%206.0%E5%8A%A8%E6%80%81%E6%9D%83%E9%99%90%E8%8E%B7%E5%8F%96/">Android/Android基础/Android 6.0动态权限获取</a>
+                <a class="has-link-black-ter" href="/2019/09/21/Android/Android%20JNI/Android%20JNI%E6%95%8F%E6%84%9F%E4%BF%A1%E6%81%AF%E4%BF%9D%E6%8A%A4/">Android/Android JNI/Android JNI敏感信息保护</a>
             
         </h1>
         <div class="content">
-            <h2 id="在Android-6-0及以上需要对手机权限进行动态获取"><a href="#在Android-6-0及以上需要对手机权限进行动态获取" class="headerlink" title="在Android 6.0及以上需要对手机权限进行动态获取"></a>在Android 6.0及以上需要对手机权限进行动态获取</h2><p>如果手机版本为Android 6.0(API 23)或更高版本，以及app的<code>targetSdkVersion</code>为23或者更高，用户在安装的时候未被提示权限获取，则用户在使用应用的时候需要动态获取权限。如果在获取用户权限时，用户选择“不再提醒”，则app再次获取权限时，系统将不再对用户进行提示。</p>
-<p><strong>同一组权限不用重复授权，即：同一组的权限只要有一个授权了，那么同一组的其他权限也就授权了，前提是在Manifest.xml中有声明。</strong> <em>同一组权限在使用某一个权限申请，而该权限未在Manifest.xml声明，则该权限组不能申请成功，不显示权限申请对话框，但会回调；同时非危险权限如<code>Manifest.permission.BLUETOOTH</code>在动态申请时同样不会出现权限申请对话框，但会回调</em></p>
-<p>Android动态权限的申请仅对下图中的9大权限组进行申请<br><img src="/assets/android_basis_permission.png" alt=""></p>
-<h3 id="一、对于可选硬件功能权限的获取"><a href="#一、对于可选硬件功能权限的获取" class="headerlink" title="一、对于可选硬件功能权限的获取"></a>一、对于可选硬件功能权限的获取</h3><p>使用蓝牙以及相机等硬件权限时，手机上可以没有蓝牙或者相机设备，因此在获取相机设备权限时，需要添加<code>&lt;uses-feature&gt;</code></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">uses-feature</span> <span class="attr">android:name</span>=<span class="string">"android.hardware.camera"</span> <span class="attr">android:required</span>=<span class="string">"false"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-<p>当声明为<code>android:required=&quot;false&quot;</code>时，用户即使没有该设备也可以进行安装，在进行权限申请时则需要<code>PackageManager.hasSystemFeature()</code>来确定该设备是否存在；当声明为<code>android:required=&quot;true&quot;</code>时，需要手机上具有该设备，否则不能进行安装操作。</p>
-<h3 id="二、代码实现"><a href="#二、代码实现" class="headerlink" title="二、代码实现"></a>二、代码实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">String[] permissions = &#123;Manifest.permission.BLUETOOTH&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(@Nullable Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">    <span class="comment">//只有系统API大于23时，才需要判断权限是否需要获取</span></span><br><span class="line">    <span class="keyword">if</span> (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.M) &#123;</span><br><span class="line">        <span class="comment">//用于判断权限是否已经获取</span></span><br><span class="line">        <span class="keyword">int</span> i = ContextCompat.checkSelfPermission(<span class="keyword">this</span>, permissions[<span class="number">0</span>]);</span><br><span class="line">        <span class="comment">//权限是否已经获取 GRANTED--授权 DINED--拒绝</span></span><br><span class="line">        <span class="keyword">if</span> (i != PackageManager.PERMISSION_GRANTED) &#123;</span><br><span class="line">            <span class="comment">//如果没有被授予该权限，提示用户请求该权限</span></span><br><span class="line">            ActivityCompat.requestPermissions(<span class="keyword">this</span>, permissions, <span class="number">1</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            Toast.makeText(<span class="keyword">this</span>,<span class="string">"权限已获取"</span>,Toast.LENGTH_LONG).show();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onRequestPermissionsResult</span><span class="params">(<span class="keyword">int</span> requestCode, @NonNull String[] permissions,</span></span></span><br><span class="line"><span class="function"><span class="params">                                       @NonNull <span class="keyword">int</span>[] grantResults)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>.onRequestPermissionsResult(requestCode, permissions, grantResults);</span><br><span class="line">    <span class="keyword">if</span> (requestCode==<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="comment">//未获取到权限</span></span><br><span class="line">        <span class="keyword">if</span> (grantResults[<span class="number">0</span>] != PackageManager.PERMISSION_GRANTED) &#123;</span><br><span class="line">            <span class="comment">//判断用户是否点击了不再提醒；检测该权限是否还可以再申请</span></span><br><span class="line">            <span class="keyword">boolean</span> result = <span class="keyword">this</span>.shouldShowRequestPermissionRationale(permissions[<span class="number">0</span>]);</span><br><span class="line">            <span class="comment">//如果不可以再申请</span></span><br><span class="line">            <span class="keyword">if</span> (!result) &#123;</span><br><span class="line">                <span class="comment">//用户需要继续使用App</span></span><br><span class="line">                <span class="comment">//提示用户去应用设置界面手动开启权限，各大厂商权限开启的方法各不相同，需要进行不同厂商适配，因此只给予提示</span></span><br><span class="line">                LogUtils.printInfo(<span class="string">"请到设置界面开启相应权限"</span>);</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="comment">//如果可以再申请</span></span><br><span class="line">                Toast.makeText(<span class="keyword">this</span>,<span class="string">"请开启权限权限"</span>,Toast.LENGTH_LONG).show();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="三、连续多次申请权限出现问题"><a href="#三、连续多次申请权限出现问题" class="headerlink" title="三、连续多次申请权限出现问题"></a>三、连续多次申请权限出现问题</h3><p>在进行连续多次申请时，在回调函数<code>onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,@NonNull int[] grantResults)</code>的<code>permissions</code>数组会返回长度为零的数组，因为在Activity的<code>requestPermissions()</code>方法源码中，mHasCurrentPermissionsRequest标记当前是否有正在请求的权限，方法是异步执行的，如果你在申请权限的时候连续多次执行此方法，会直接执行<code>onRequestPermissionsResult</code>方法，返回的permissions和grantResults都是长度为0的空数组。在返回结果处理时需要对数组长度进行判断；</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Activity源码</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">requestPermissions</span><span class="params">(@NonNull String[] permissions, <span class="keyword">int</span> requestCode)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//省略部分代码</span></span><br><span class="line">    <span class="keyword">if</span> (mHasCurrentPermissionsRequest) &#123;</span><br><span class="line">        Log.w(TAG, <span class="string">"Can request only one set of permissions at a time"</span>);</span><br><span class="line">        <span class="comment">// Dispatch the callback with empty arrays which means a cancellation.</span></span><br><span class="line">        onRequestPermissionsResult(requestCode, <span class="keyword">new</span> String[<span class="number">0</span>], <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">0</span>]);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    Intent intent = getPackageManager().buildRequestPermissionsIntent(permissions);</span><br><span class="line">    startActivityForResult(REQUEST_PERMISSIONS_WHO_PREFIX, intent, requestCode, <span class="keyword">null</span>);</span><br><span class="line">    mHasCurrentPermissionsRequest = <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<h3 id="四、其他"><a href="#四、其他" class="headerlink" title="四、其他"></a>四、其他</h3><p>有些apk需要系统权限，比如实现关机指令，需要在AndroidMainfest.xml进行声明；用到系统权限的apk，签名必须使用系统签名，否则安装不上。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-
+            <h1 id="Android-JNI对敏感信息进行保护"><a href="#Android-JNI对敏感信息进行保护" class="headerlink" title="Android JNI对敏感信息进行保护"></a>Android JNI对敏感信息进行保护</h1><h2 id="Android反编译"><a href="#Android反编译" class="headerlink" title="Android反编译"></a>Android反编译</h2><p>在Android开发的过程中我们通常使用混淆、加壳的方式来对apk文件进行加固，但是Java开发中的，一些常量不能被混淆，对于常量我们需要做特殊处理。</p>
+<h2 id="将敏感信息保存使用native代码实现"><a href="#将敏感信息保存使用native代码实现" class="headerlink" title="将敏感信息保存使用native代码实现"></a>将敏感信息保存使用native代码实现</h2><p>相对于java代码容易被反编译，使用NDK开发出来的原生C++代码编译后生成的so库是一个二进制文件，可以增加了破解的难度；如果将整个so文件拷贝进行调用，那么敏感信息依旧会被提取。</p>
 
         </div>
         
@@ -317,13 +334,13 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-11T11:02:43.459Z">2019-09-11</time>
+                <time class="level-item has-text-grey" datetime="2019-09-21T00:51:16.731Z">2019-09-21</time>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    a few seconds read (About 6 words)
+                    a few seconds read (About 14 words)
                 </span>
                 
                 
@@ -332,11 +349,11 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/09/11/Directory/Other%20Directory/">Directory/Other Directory</a>
+                <a class="has-link-black-ter" href="/2019/09/21/Other/Git/Git%E5%87%BA%E7%8E%B0%E9%97%AE%E9%A2%98/">Other/Git/Git出现问题</a>
             
         </h1>
         <div class="content">
-            <h1 id="其他文章目录"><a href="#其他文章目录" class="headerlink" title="其他文章目录"></a>其他文章目录</h1>
+            <h3 id="fatal-unable-to-access-‘https-github-com-LuciusCS-AndroidProject-git-39-Empty-reply-from-server"><a href="#fatal-unable-to-access-‘https-github-com-LuciusCS-AndroidProject-git-39-Empty-reply-from-server" class="headerlink" title="fatal: unable to access ‘https://github.com/LuciusCS/AndroidProject.git/&#39;: Empty reply from server"></a>fatal: unable to access ‘<a href="https://github.com/LuciusCS/AndroidProject.git/&#39;">https://github.com/LuciusCS/AndroidProject.git/&#39;</a>: Empty reply from server</h3>
         </div>
         
         
@@ -358,51 +375,7 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-11T08:04:40.931Z">2019-09-11</time>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    a few seconds read (About 9 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/09/11/Other/README/">Other/README</a>
-            
-        </h1>
-        <div class="content">
-            <h2 id="Other目录"><a href="#Other目录" class="headerlink" title="Other目录"></a>Other目录</h2><ul>
-<li><a href="Git/Git.html">Git基础</a></li>
-</ul>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-11T08:04:40.930Z">2019-09-11</time>
+                <time class="level-item has-text-grey" datetime="2019-09-19T09:41:14.780Z">2019-09-19</time>
                 
                 
                 <span class="level-item has-text-grey">
@@ -417,7 +390,7 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/09/11/Other/Img/README/">Other/Img/README</a>
+                <a class="has-link-black-ter" href="/2019/09/19/Other/Git/README/">Other/Git/README</a>
             
         </h1>
         <div class="content">
@@ -443,7 +416,168 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-11T01:29:47.705Z">2019-09-11</time>
+                <time class="level-item has-text-grey" datetime="2019-09-19T09:41:14.780Z">2019-09-19</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    7 minutes read (About 1028 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/09/19/Other/Git/Git/">Other/Git/Git</a>
+            
+        </h1>
+        <div class="content">
+            <h2 id="常用Git操作"><a href="#常用Git操作" class="headerlink" title="常用Git操作"></a>常用Git操作</h2><h3 id="一、将本地已有仓库推送到远程仓库"><a href="#一、将本地已有仓库推送到远程仓库" class="headerlink" title="一、将本地已有仓库推送到远程仓库"></a>一、将本地已有仓库推送到远程仓库</h3><ul>
+<li><p>1、将本地仓库与远程仓库建立关联</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add github git@github.com:Lucius&#x2F;GitTest.git</span><br></pre></td></tr></table></figure>
+<p>  查看本地仓库与远程仓库关联情况</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote -v</span><br></pre></td></tr></table></figure>
+<p>  删除与远程仓库关联 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote rm origin</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>2、设置用户名和密码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config -global user.name &quot;&quot;</span><br><span class="line">git config -global user.email &quot;&quot;</span><br></pre></td></tr></table></figure></li>
+<li><p>3、设置SSH Key,<br>  生成SSH Key</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;your_email@example.com&quot;</span><br></pre></td></tr></table></figure></li>
+<li><ul>
+<li>-t 指定密钥类型，默认是 rsa ，可以省略。 **</li>
+</ul>
+</li>
+<li><ul>
+<li>-C 设置注释文字，比如邮箱。 **</li>
+</ul>
+</li>
+<li><ul>
+<li>-f 指定密钥文件存储文件名。 **<br><img src="/assets/GitImg1.png" alt=""><br>在GitHub中设置SSH，即将.ssh.id_rsa.pub中的内容添加到Key中<br><img src="/assets/GitImg2.png" alt=""></li>
+</ul>
+</li>
+<li><p>4、建立本地到上游（远端）仓的链接，建立链接后代码才能提交上去</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch --set-upstream-to&#x3D;origin</span><br></pre></td></tr></table></figure>
+<p><img src="/assets/GitImg3.png" alt=""><br>  当本地仓库与远程仓库没有相同的commit时，git不允许提交会出现<code>fatal: refusing to merge unrelated histories</code>错误，需要使用下面命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull origin master --allow-unrelated-histories</span><br></pre></td></tr></table></figure></li>
+<li><p>5、将本地仓库推送至远端</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
+<p>如果出现Permission denied(publickey)，则说明第3步中的公钥配置错误<br><img src="/assets/GitImg4.png" alt=""><br>推送正常<br><img src="/assets/GitImg5.png" alt=""></p>
+</li>
+</ul>
+<h3 id="二、将本地分支提交到远程"><a href="#二、将本地分支提交到远程" class="headerlink" title="二、将本地分支提交到远程"></a>二、将本地分支提交到远程</h3><ul>
+<li><p>1、建立本地到上游（远端）仓的链接</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch --set-upstream-to&#x3D;origin</span><br></pre></td></tr></table></figure>
+<p><img src="/assets/GitImg6.png" alt=""></p>
+</li>
+<li><p>2、拉取远程分支内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull --allow-unrelated-histories</span><br></pre></td></tr></table></figure></li>
+<li><p>3、将本地分支推送至远程</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin EditBranch</span><br></pre></td></tr></table></figure>
+<p><img src="/assets/GitImg7.png" alt=""></p>
+</li>
+</ul>
+<h3 id="三、合并多次提交"><a href="#三、合并多次提交" class="headerlink" title="三、合并多次提交"></a>三、合并多次提交</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rebase -i HEAD~3</span><br></pre></td></tr></table></figure>
+
+<p>如果在合并的过程中出现冲突需要先解决冲突，再进行合并</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rebase --continue</span><br></pre></td></tr></table></figure>
+
+<p>如果放弃本次合并，使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rebase --abort</span><br></pre></td></tr></table></figure>
+<h3 id="四、Git多用户进行管理"><a href="#四、Git多用户进行管理" class="headerlink" title="四、Git多用户进行管理"></a>四、Git多用户进行管理</h3><p>需要为每一个仓库设置user、email</p>
+<ul>
+<li>第一步：取消git的global用户以及邮箱</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global --unset user.name</span><br><span class="line">git config --global --unset user.email</span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li>第二步：在不同的仓库中配置不同的user、email,然后就可以愉快地使用了,第一次为仓库添加user、email在push的时候需要输入密码进行验证。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config  user.email &quot;xxxx@xx.com&quot;</span><br><span class="line">git config  user.name &quot;xxxx&quot;</span><br></pre></td></tr></table></figure>
+
+<h3 id="五、git-reset-–hard-–soft与git-revert"><a href="#五、git-reset-–hard-–soft与git-revert" class="headerlink" title="五、git reset –hard –soft与git revert"></a>五、git reset –hard –soft与git revert</h3><p><code>git reset --hard HEAD~1</code>修改版本库、修改暂存区、修改工作区；将版本库回退一个版本，但是不仅仅将本地版本库的头指针全部重置到指定版本，也会重置暂存区，并将工作代码也回退到这个版本。</p>
+<p><code>git reset --soft HEAD~1</code>修改版本库、保留暂存区、保留工作区；将版本库回退一个版本，且将这次提交之后的所有变更都移动到暂存区。</p>
+<h4 id="git-revert与git-reset区别"><a href="#git-revert与git-reset区别" class="headerlink" title="git revert与git reset区别"></a><code>git revert</code>与<code>git reset</code>区别</h4><ul>
+<li><code>git reset</code>指向原地或者向前移动指针,直接删除commit，<code>git revert</code>创建一个逆向commit来覆盖之前commit,指针向后移动。</li>
+<li>在后续合并旧版本时，<code>git revert</code>的部分不再出现；而<code>git reset</code>在合并旧版本时，这些被回滚的提交还会再次被引入。</li>
+</ul>
+<h4 id="撤销-git-reset"><a href="#撤销-git-reset" class="headerlink" title="撤销 git reset"></a>撤销 git reset</h4><p><code>git reflog</code> 查看操作历史，找到之前 HEAD 的 hash 值，然后 <code>git reset --hard</code> 到那个 hash 即可</p>
+<h3 id="六、git-cherry-pick使用方法"><a href="#六、git-cherry-pick使用方法" class="headerlink" title="六、git cherry-pick使用方法"></a>六、<code>git cherry-pick</code>使用方法</h3><p>将某一个分支的提交，引入到当前分支的提交上，即合并某一分支的部分提交。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git cherry-pick &lt;commit id&gt;:单独合并一个提交</span><br><span class="line">git cherry-pick -x &lt;commit id&gt;：同上，不同点：保留原提交者信息。</span><br><span class="line"></span><br><span class="line">git cherry-pick &lt;start-commit-id&gt;..&lt;end-commit-id&gt;：(左开右闭，不包含start-commit-id)的提交cherry-pick到当前分支</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="七、修改git-urls的路径方式"><a href="#七、修改git-urls的路径方式" class="headerlink" title="七、修改git urls的路径方式"></a>七、修改git urls的路径方式</h3><h4 id="将urls由SSH模式修改为Https模式"><a href="#将urls由SSH模式修改为Https模式" class="headerlink" title="将urls由SSH模式修改为Https模式"></a>将urls由SSH模式修改为Https模式</h4><h4 id="将usrls由Https模式修改为SSH模式"><a href="#将usrls由Https模式修改为SSH模式" class="headerlink" title="将usrls由Https模式修改为SSH模式"></a>将usrls由Https模式修改为SSH模式</h4><h3 id="八、建立本地分支，并推送至远程"><a href="#八、建立本地分支，并推送至远程" class="headerlink" title="八、建立本地分支，并推送至远程"></a>八、建立本地分支，并推送至远程</h3><h3 id="九、更新fork的代码"><a href="#九、更新fork的代码" class="headerlink" title="九、更新fork的代码"></a>九、更新fork的代码</h3><p>在被下载到本地仓库中，添加源分支地址到项目远程分支列表中，</p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-09-19T09:41:14.779Z">2019-09-19</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    2 minutes read (About 257 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/09/19/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/">Java/设计模式/观察者模式</a>
+            
+        </h1>
+        <div class="content">
+            <h2 id="观察者模式、订阅者模式、回调函数对比"><a href="#观察者模式、订阅者模式、回调函数对比" class="headerlink" title="观察者模式、订阅者模式、回调函数对比"></a>观察者模式、订阅者模式、回调函数对比</h2><p>在观察者模式中，观察者需要直接订阅目标事件；在目标事件发出内容改变的事件，直接接收事件，并作出响应；</p>
+<p>在发布订阅模式中，发布者和订阅者之间多了一个发布通道；一方面发布者接收事件，另一方面向订阅者发布事件；订阅者需要从事件通道订阅事件，以避免发布者和订阅者之间产生依赖关系；订阅模式有一个统一的调度中心</p>
+<p>在观察者模式以及回调函数中，观察者模式需要维护一个观察者列表，而在回调函数中“被观察者”只保留一个“观察者”</p>
+<h3 id="本篇观察者模式主要在Android中实现"><a href="#本篇观察者模式主要在Android中实现" class="headerlink" title="本篇观察者模式主要在Android中实现"></a>本篇观察者模式主要在Android中实现</h3><h3 id="在Java提供了Observer接口和Observable类方便快速实现观察者模式"><a href="#在Java提供了Observer接口和Observable类方便快速实现观察者模式" class="headerlink" title="在Java提供了Observer接口和Observable类方便快速实现观察者模式"></a>在Java提供了Observer接口和Observable类方便快速实现观察者模式</h3>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-09-19T09:41:14.778Z">2019-09-19</time>
                 
                 
                 <span class="level-item has-text-grey">
@@ -458,7 +592,7 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/09/11/Kotlin/README/">Kotlin/README</a>
+                <a class="has-link-black-ter" href="/2019/09/19/Java/Java%E8%99%9A%E6%8B%9F%E6%9C%BA/README/">Java/Java虚拟机/README</a>
             
         </h1>
         <div class="content">
@@ -484,13 +618,13 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-11T01:29:47.705Z">2019-09-11</time>
+                <time class="level-item has-text-grey" datetime="2019-09-19T09:41:14.778Z">2019-09-19</time>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    a few seconds read (About 42 words)
+                    a few seconds read (About 18 words)
                 </span>
                 
                 
@@ -499,15 +633,12 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/09/11/Java/README/">Java/README</a>
+                <a class="has-link-black-ter" href="/2019/09/19/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/README/">Java/设计模式/README</a>
             
         </h1>
         <div class="content">
-            <h1 id="Java目录"><a href="#Java目录" class="headerlink" title="Java目录"></a>Java目录</h1><ul>
-<li><a href="Java基础/README.md">Java基础</a></li>
-<li><a href="Java多线程/README.md">Java多线程</a></li>
-<li><a href="Java虚拟机/README.md">Java虚拟机</a></li>
-<li><a href="设计模式/README.md">Java设计模式</a></li>
+            <h2 id="Java设计模式目录"><a href="#Java设计模式目录" class="headerlink" title="Java设计模式目录"></a>Java设计模式目录</h2><ul>
+<li><a href="观察者模式.html">观察者模式</a></li>
 </ul>
 
         </div>
@@ -531,13 +662,13 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-11T01:29:47.699Z">2019-09-11</time>
+                <time class="level-item has-text-grey" datetime="2019-09-19T09:41:14.777Z">2019-09-19</time>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    a few seconds read (About 0 words)
+                    15 minutes read (About 2299 words)
                 </span>
                 
                 
@@ -546,52 +677,76 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/09/11/Directory/README/">Directory/README</a>
+                <a class="has-link-black-ter" href="/2019/09/19/Java/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/Java%E7%BA%BF%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1/">Java/Java多线程/Java线程间通信</a>
             
         </h1>
         <div class="content">
-            
-        </div>
-        
-        
-        
-    </div>
-</div>
+            <h1 id="线程间通信"><a href="#线程间通信" class="headerlink" title="线程间通信"></a>线程间通信</h1><ul>
+<li>使用单向管道（Pipe）传递数据</li>
+<li>共享内存（Shared Memory）通信</li>
+<li>使用阻塞队列（Blocking Queue）实现生产者-消费者模式</li>
+<li>处理消息队列（Message Queue）</li>
+</ul>
+<h2 id="wait-notify机制"><a href="#wait-notify机制" class="headerlink" title="wait/notify机制"></a>wait/notify机制</h2><p>等待/通知机制主要由Object类中的三个方法进行保证</p>
+<p>1、wait()；notify();notifyAll()<br>上述三个方法均为Object类中声明的方法，而非在Thread类中进行声明；每一个对象都拥有monitor，等待该对象的锁，应该通过操作该对象进行操作，而非通过当前线程来操作；<code>wait();notify();notifyAll()</code>只有在被<code>synchronized</code>修饰的方法中，或者在锁中，可以进行调用，如果在其他地点调用，则会抛出<code>IllegalMonitorStateException</code>异常。</p>
+<p>1)wait()<br>让当前线程（Thread.cocurrentThread()方法所返回的线程）释放对象所锁并进入阻塞状态,等待另一线程改变外界变量唤醒；调用<code>notify()</code>或者<code>notifyAll()</code>时唤醒当前线程。<code>wait()</code>也可以作为任务同步的一种方式。</p>
+<p><strong>注：调用<code>sleep()</code>和<code>yield()</code>方法不能释放当前的对象锁</strong><br><code>wait()</code>方法有两种用法：</p>
+<ul>
+<li><code>wait(long timeout)</code>等待一定的时间，但与<code>sleep()</code>方法不同，其会释放对象锁</li>
+<li>使用<code>wait()</code>等待<code>notify()</code>或者<code>notifyAll()</code>唤醒。 </li>
+</ul>
+<p>2)notify()<br>唤醒一个正在等待相应对象锁的线程，使其进入就绪队列；</p>
+<p>3)notifyAll()<br>唤醒所有正在等待相应对象锁的线程，相对于，使他们进入就绪队列，在调用该方法时，首先需要获取到对象锁，在可以进行调用;通过<code>synchronized(x)</code>来获取对象锁。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">synchronized</span>(x) &#123; </span><br><span class="line">  x.notifyAll();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
+<p>2、方法调用与线程状态关系</p>
+<p>每个对象锁都有两个队列，一个是就绪队列，一个是阻塞队列</p>
+<h2 id="Condition"><a href="#Condition" class="headerlink" title="Condition"></a>Condition</h2><p>Condition是在Java 1.5中出现的，用于替代传统的Object的wait()/notify(),它的使用依赖于Lock;Condition的await()/sigmal()比Object的wait()/notify()更高效与安全。Condition的await()/signal()的使用都必须在lock的保护之内，即在lock.lock()与lock.unlock()之间使用；</p>
+<p>对应关系</p>
+<ul>
+<li>Condition中的await()对应Object的wait()</li>
+<li>Condition中的signal()对应Object的notify()</li>
+<li>Condition中的signalAll()对应Object中的notifyAll();</li>
+</ul>
+<p><strong>Condition实现一种分组机制，将所有对临街资源进行访问的线程进行分组，以便实现线程间更精细化的操作，例如通知部分线程；多个线程可以竞争一把锁，一把锁也可以关联多个Condition,以便多个线程进行通信和协同</strong></p>
+<h3 id="生产者消费者模型"><a href="#生产者消费者模型" class="headerlink" title="生产者消费者模型"></a>生产者消费者模型</h3><p>线程锁控制代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Service</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//线程锁</span></span><br><span class="line">    <span class="keyword">private</span> ReentrantLock lock=<span class="keyword">new</span> ReentrantLock();</span><br><span class="line">    <span class="comment">//生产者线程控制</span></span><br><span class="line">    <span class="keyword">private</span> Condition conditionCustomer=lock.newCondition();</span><br><span class="line">    <span class="comment">//消费者线程控制</span></span><br><span class="line">    <span class="keyword">private</span> Condition conditionProducer=lock.newCondition();</span><br><span class="line">    <span class="comment">//用于表示需要生产</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> hasValue=<span class="keyword">false</span>;</span><br><span class="line">    <span class="comment">//用于随机消费时间；</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Random rand = <span class="keyword">new</span> Random(<span class="number">2000</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//用于生产者</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">produce</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            lock.lock();</span><br><span class="line">            <span class="keyword">while</span> (hasValue)&#123;</span><br><span class="line">                System.out.println(<span class="string">"生产线程："</span>+Thread.currentThread().getName()+<span class="string">"await"</span>);</span><br><span class="line">                conditionCustomer.await();</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(<span class="string">"线程："</span>+Thread.currentThread().getName()+<span class="string">"生产中"</span>);</span><br><span class="line">            Thread.sleep(rand.nextInt(<span class="number">500</span>));</span><br><span class="line">            hasValue=<span class="keyword">true</span>;</span><br><span class="line">            System.out.println(<span class="string">"线程："</span>+Thread.currentThread().getName()+<span class="string">"生产完毕"</span>);</span><br><span class="line">            System.out.println(Thread.currentThread().getName()+<span class="string">"唤醒所有消费者线程 "</span>+<span class="string">"...."</span>);</span><br><span class="line">            System.out.println(<span class="string">"+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++."</span>);</span><br><span class="line">            <span class="comment">//唤起所有的消费者线程</span></span><br><span class="line">            conditionProducer.signalAll();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            lock.unlock();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//用于消费者</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">custome</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            lock.lock();</span><br><span class="line">            <span class="keyword">while</span> (!hasValue)&#123;</span><br><span class="line">                System.out.println(<span class="string">"消费线程："</span>+Thread.currentThread().getName()+<span class="string">"await"</span>);</span><br><span class="line">                conditionProducer.await();</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(<span class="string">"线程："</span>+Thread.currentThread().getName()+<span class="string">"消费中"</span>);</span><br><span class="line">            Thread.sleep(rand.nextInt(<span class="number">4000</span>));</span><br><span class="line">            hasValue=<span class="keyword">false</span>;</span><br><span class="line">            System.out.println(<span class="string">"线程："</span>+Thread.currentThread().getName()+<span class="string">"消费完毕"</span>);</span><br><span class="line">            System.out.println(Thread.currentThread().getName()+<span class="string">"唤醒所有生产者线程 "</span>);</span><br><span class="line">            System.out.println(<span class="string">"+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++."</span>);</span><br><span class="line">            <span class="comment">//唤起所有的生产者线程</span></span><br><span class="line">            conditionCustomer.signalAll();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">            lock.unlock();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>消费者线程</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CustomerThread</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Service service;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">CustomerThread</span><span class="params">(Service service)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.service = service;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>)&#123;</span><br><span class="line">            service.custome();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>测试代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Customer_ServiceMain</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        Service service=<span class="keyword">new</span> Service();</span><br><span class="line">        CustomerThread[] customerThread=<span class="keyword">new</span> CustomerThread[<span class="number">10</span>];</span><br><span class="line">        ProducerThread[] producerThreads=<span class="keyword">new</span> ProducerThread[<span class="number">10</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">3</span>;i++)&#123;</span><br><span class="line">            customerThread[i]=<span class="keyword">new</span> CustomerThread(service);</span><br><span class="line">            customerThread[i].setName(<span class="string">"生产者Thread："</span>+i);</span><br><span class="line">            producerThreads[i]=<span class="keyword">new</span> ProducerThread(service);</span><br><span class="line">            producerThreads[i].setName(<span class="string">"消费者Thread："</span>+i);</span><br><span class="line">            customerThread[i].start();</span><br><span class="line">            producerThreads[i].start();</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果,出现未被唤起的线程，我认为是当前线程正在执行生产或者消费任务，无需进行唤起操作。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++.</span><br><span class="line">消费线程：生产者Thread：1await</span><br><span class="line">消费线程：生产者Thread：0await</span><br><span class="line">线程：消费者Thread：2生产中</span><br><span class="line">线程：消费者Thread：2生产完毕</span><br><span class="line">消费者Thread：2唤醒所有消费者线程 ....</span><br><span class="line">+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++.</span><br><span class="line">生产线程：消费者Thread：2await</span><br><span class="line">生产线程：消费者Thread：1await</span><br><span class="line">生产线程：消费者Thread：0await</span><br><span class="line">线程：生产者Thread：2消费中</span><br><span class="line">线程：生产者Thread：2消费完毕</span><br><span class="line">生产者Thread：2唤醒所有生产者线程 </span><br><span class="line">+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++.</span><br><span class="line">生产线程：消费者Thread：1await</span><br><span class="line">生产线程：消费者Thread：0await</span><br><span class="line">线程：生产者Thread：2消费中</span><br><span class="line">线程：生产者Thread：2消费完毕</span><br><span class="line">生产者Thread：2唤醒所有生产者线程 </span><br><span class="line">+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++.</span><br><span class="line">消费线程：生产者Thread：2await</span><br><span class="line">消费线程：生产者Thread：1await</span><br><span class="line">消费线程：生产者Thread：0await</span><br><span class="line">线程：消费者Thread：2生产中</span><br><span class="line">线程：消费者Thread：2生产完毕</span><br><span class="line">消费者Thread：2唤醒所有消费者线程 ....</span><br><span class="line">+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++.</span><br></pre></td></tr></table></figure>
 
 
+<h3 id="线程间通信管道模式"><a href="#线程间通信管道模式" class="headerlink" title="线程间通信管道模式"></a>线程间通信管道模式</h3><h4 id="CountDownLatch的使用"><a href="#CountDownLatch的使用" class="headerlink" title="CountDownLatch的使用"></a>CountDownLatch的使用</h4><p>用于同步一个或者多个任务，强制它们等待一系列的其他任务操作的结束。</p>
+<p>任务执行线程</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Task</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Random random = <span class="keyword">new</span> Random(<span class="number">100</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> CountDownLatch latch;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//使用CountDownLatch会被自动要求加上此构造函数</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Task</span><span class="params">(CountDownLatch latch, String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.latch = latch;</span><br><span class="line">        <span class="keyword">this</span>.setName(name);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            doWork();</span><br><span class="line">            <span class="comment">//用于倒数技术</span></span><br><span class="line">            latch.countDown();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doWork</span><span class="params">()</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        <span class="comment">//random.nextInt(2000)在Java中是线程安全的来自TIJ</span></span><br><span class="line">        TimeUnit.MILLISECONDS.sleep(random.nextInt(<span class="number">1000</span>));</span><br><span class="line">        System.out.println(<span class="keyword">this</span>.getName() + <span class="string">"completed"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>等待任务执行完毕，需要唤醒的线程</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WaitingTask</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">   </span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">final</span> CountDownLatch latch;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">WaitingTask</span><span class="params">(CountDownLatch latch)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">this</span>.latch = latch;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       <span class="keyword">try</span> &#123;</span><br><span class="line">           latch.await();</span><br><span class="line">           System.out.println(<span class="string">"Latch阻塞运行至waiting class"</span>);</span><br><span class="line">       &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">           e.printStackTrace();</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>测试代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestCountDown</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> SIZE = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">        ExecutorService exec = Executors.newFixedThreadPool(<span class="number">5</span>);</span><br><span class="line">        <span class="comment">//所有需要同时结束的线程，需要使用同一个CountDownLatch对象，构造函数用于表示需要等待的线程的个数</span></span><br><span class="line">        CountDownLatch latch = <span class="keyword">new</span> CountDownLatch(SIZE);</span><br><span class="line">      <span class="comment">// for (int i=0;i&lt;10;i++)&#123;   //可以有多个等待线程</span></span><br><span class="line">        exec.execute(<span class="keyword">new</span> WaitingTask(latch));</span><br><span class="line">      <span class="comment">// &#125;</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; SIZE; i++) &#123;</span><br><span class="line">            exec.execute(<span class="keyword">new</span> Task(latch,<span class="string">"线程"</span>+i));</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">"启动所有任务"</span>);</span><br><span class="line">        exec.shutdown();  <span class="comment">//任务只有在执行完毕后才会结束</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>任务执行结果</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">启动所有任务</span><br><span class="line">线程0completed</span><br><span class="line">线程4completed</span><br><span class="line">线程1completed</span><br><span class="line">线程2completed</span><br><span class="line">线程3completed</span><br><span class="line">Latch阻塞运行至waiting class</span><br><span class="line"></span><br><span class="line">Process finished with exit code 0</span><br></pre></td></tr></table></figure>
 
 
+<h4 id="CyclicBarrier的使用"><a href="#CyclicBarrier的使用" class="headerlink" title="CyclicBarrier的使用"></a>CyclicBarrier的使用</h4><p><code>CyclicBarrier</code>类用于创建一组并行的类，等待它们全部执行完成进入后续的任务(类似于<code>join</code>)，与<code>CountDownLatch</code>类的使用类似，<code>CountDownLatch</code>类只能执行一次，而<code>CyclicBarrier</code>可以进行多次使用。<br>以运动员百米跑步测试为例，有五名运动员，会进行多次百米测试，只有所有运动员都跑完一百米后才进入下一轮；</p>
+<p>运动员代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Athlete</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//用于表示耗时</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">double</span> time =<span class="number">90</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Random rand = <span class="keyword">new</span> Random(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> CyclicBarrier cyclicBarrier;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Athlete</span><span class="params">(CyclicBarrier cyclicBarrier)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.cyclicBarrier=cyclicBarrier;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">double</span> <span class="title">getTime</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> time;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">while</span> (!Thread.interrupted())&#123;</span><br><span class="line">                <span class="keyword">synchronized</span> (<span class="keyword">this</span>)&#123;</span><br><span class="line">                    time =(<span class="keyword">double</span>)(rand.nextInt(<span class="number">20</span>)+<span class="number">90</span>)/<span class="number">10</span>;</span><br><span class="line">                    System.out.println(getName()+<span class="string">"跑步耗时："</span>+ getTime());</span><br><span class="line">                &#125;</span><br><span class="line">                Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">                cyclicBarrier.await();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (BrokenBarrierException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>所有运动员跑完标志输出代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RunningCtrl</span> <span class="keyword">extends</span> <span class="title">Thread</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">RunningCtrl</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.run();</span><br><span class="line">        System.out.println(<span class="string">"++++++++++++++++++++++++++++++++"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<p>测试代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CyclicBarrierMain</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        RunningCtrl  runningCtrl=<span class="keyword">new</span> RunningCtrl();</span><br><span class="line">        CyclicBarrier cyclicBarrier = <span class="keyword">new</span> CyclicBarrier(<span class="number">5</span>,runningCtrl);</span><br><span class="line">        ExecutorService exec = Executors.newCachedThreadPool();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;<span class="number">5</span>; i++) &#123;</span><br><span class="line">            Athlete athlete = <span class="keyword">new</span> Athlete(cyclicBarrier);</span><br><span class="line">            athlete.setName(<span class="string">"选手："</span>+i);</span><br><span class="line">            exec.execute(athlete);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-11T01:29:47.698Z">2019-09-11</time>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    a few seconds read (About 0 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/09/11/Directory/Android%20Directory/">Directory/Android Directory</a>
-            
-        </h1>
-        <div class="content">
-            
+<p>运行结果</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">选手：0跑步耗时：9.5</span><br><span class="line">选手：1跑步耗时：9.8</span><br><span class="line">选手：4跑步耗时：10.4</span><br><span class="line">选手：2跑步耗时：9.7</span><br><span class="line">选手：3跑步耗时：10.3</span><br><span class="line">++++++++++++++++++++++++++++++++</span><br><span class="line">选手：0跑步耗时：10.4</span><br><span class="line">选手：2跑步耗时：9.8</span><br><span class="line">选手：1跑步耗时：9.6</span><br><span class="line">选手：4跑步耗时：9.4</span><br><span class="line">选手：3跑步耗时：10.8</span><br><span class="line">++++++++++++++++++++++++++++++++</span><br><span class="line">选手：4跑步耗时：9.9</span><br><span class="line">选手：1跑步耗时：10.7</span><br><span class="line">选手：3跑步耗时：9.2</span><br><span class="line">选手：2跑步耗时：9.3</span><br><span class="line">选手：0跑步耗时：10.3</span><br><span class="line">++++++++++++++++++++++++++++++++</span><br><span class="line">选手：1跑步耗时：10.4</span><br><span class="line">选手：2跑步耗时：9.2</span><br><span class="line">选手：0跑步耗时：9.9</span><br><span class="line">选手：3跑步耗时：10.2</span><br><span class="line">选手：4跑步耗时：10.6</span><br><span class="line">++++++++++++++++++++++++++++++++</span><br><span class="line">选手：4跑步耗时：10.2</span><br><span class="line">选手：2跑步耗时：10.9</span><br><span class="line">选手：0跑步耗时：10.6</span><br><span class="line">选手：3跑步耗时：10.0</span><br><span class="line">选手：1跑步耗时：10.4</span><br><span class="line">++++++++++++++++++++++++++++++++</span><br><span class="line">选手：2跑步耗时：10.8</span><br><span class="line">选手：4跑步耗时：10.9</span><br><span class="line">选手：1跑步耗时：10.7</span><br><span class="line">选手：3跑步耗时：10.3</span><br><span class="line">选手：0跑步耗时：9.2</span><br><span class="line">++++++++++++++++++++++++++++++++</span><br></pre></td></tr></table></figure>
+
+<h4 id="DelayQueue的使用"><a href="#DelayQueue的使用" class="headerlink" title="DelayQueue的使用"></a><code>DelayQueue</code>的使用</h4><p><code>DelayQueue</code>是一个无界的阻塞队列，实现<code>Delayed</code>接口。只有当<code>delay</code>被激发时，该对象才能从队列中获取数据</p>
+<h3 id="线程间通信管道模式-1"><a href="#线程间通信管道模式-1" class="headerlink" title="线程间通信管道模式"></a>线程间通信管道模式</h3>
         </div>
         
         
@@ -627,6 +782,10 @@
             <li><a class="pagination-link is-current" href="/page/7/">7</a></li>
             
             <li><a class="pagination-link has-text-black-ter" href="/page/8/">8</a></li>
+            
+            <li><a class="pagination-link has-text-black-ter" href="/page/9/">9</a></li>
+            
+            <li><a class="pagination-link has-text-black-ter" href="/page/10/">10</a></li>
             
         </ul>
     </nav>
@@ -676,7 +835,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            72
+                            100
                         </p>
                     </a>
                 </div>
@@ -684,11 +843,11 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Categories
+                        Category
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            0
+                            1
                         </p>
                     </a>
                 </div>
@@ -700,7 +859,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            0
+                            5
                         </p>
                     </a>
                 </div>
@@ -774,13 +933,28 @@
                 Categories
             </h3>
             <ul class="menu-list">
-            
+            <li>
+        <a class="level is-marginless" href="/categories/Android/">
+            <span class="level-start">
+                <span class="level-item">Android</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li>
             </ul>
         </div>
     </div>
 </div>
     
-        
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Tag Cloud
+        </h3>
+        <a href="/tags/Android/" style="font-size: 13.33px;">Android</a> <a href="/tags/error/" style="font-size: 10px;">error</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/pat/" style="font-size: 16.67px;">pat</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 20px;">数据结构</a>
+    </div>
+</div>
     
     
         <div class="column-right-shadow is-hidden-widescreen is-sticky">
@@ -793,16 +967,16 @@
         
         <article class="media">
             
-            <a href="/2020/02/26/hello-world/" class="media-left">
+            <a href="/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-09-android-ViewModel-introduction/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Hello World">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Android lifecycle-aware components">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-26T12:43:14.002Z">2020-02-26</time></div>
-                    <a href="/2020/02/26/hello-world/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Hello World</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:21.663Z">2020-02-29</time></div>
+                    <a href="/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-09-android-ViewModel-introduction/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android lifecycle-aware components</a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
@@ -812,16 +986,16 @@
         
         <article class="media">
             
-            <a href="/2019/11/30/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="media-left">
+            <a href="/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-01-android-broadcast-introduction/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Android/框架/Retrofit 2.5 框架使用与源码分析">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Android Broadcast介绍">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-30T11:13:20.728Z">2019-11-30</time></div>
-                    <a href="/2019/11/30/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android/框架/Retrofit 2.5 框架使用与源码分析</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:21.654Z">2020-02-29</time></div>
+                    <a href="/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-01-android-broadcast-introduction/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android Broadcast介绍</a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
@@ -831,16 +1005,16 @@
         
         <article class="media">
             
-            <a href="/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/README/" class="media-left">
+            <a href="/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-07-31-android-service-introduction/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Kotlin/Kotlin基础/README">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Android Service介绍">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:23.104Z">2019-11-28</time></div>
-                    <a href="/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/README/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Kotlin/Kotlin基础/README</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:21.613Z">2020-02-29</time></div>
+                    <a href="/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-07-31-android-service-introduction/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android Service介绍</a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
@@ -850,16 +1024,16 @@
         
         <article class="media">
             
-            <a href="/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="media-left">
+            <a href="/2020/02/29/Data_Structure/2017-08-28-data-structure-huffman-tree/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Kotlin/Kotlin基础/Lambda表达式">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Huffman树的算法实现">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:23.103Z">2019-11-28</time></div>
-                    <a href="/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Kotlin/Kotlin基础/Lambda表达式</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:09.033Z">2020-02-29</time></div>
+                    <a href="/2020/02/29/Data_Structure/2017-08-28-data-structure-huffman-tree/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Huffman树的算法实现</a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
@@ -869,16 +1043,16 @@
         
         <article class="media">
             
-            <a href="/2019/11/28/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/Img/README/" class="media-left">
+            <a href="/2020/02/29/Data_Structure/2017-08-27-data-structure-heap-sort/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Java/设计模式/Img/README">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="堆排序">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:23.102Z">2019-11-28</time></div>
-                    <a href="/2019/11/28/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/Img/README/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java/设计模式/Img/README</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:09.000Z">2020-02-29</time></div>
+                    <a href="/2020/02/29/Data_Structure/2017-08-27-data-structure-heap-sort/" class="title has-link-black-ter is-size-6 has-text-weight-normal">堆排序</a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
@@ -903,7 +1077,7 @@
                     <span class="level-item">February 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">29</span>
                 </span>
             </a>
         </li>
@@ -942,6 +1116,41 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Android/">
+                        <span class="tag">Android</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/error/">
+                        <span class="tag">error</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/git/">
+                        <span class="tag">git</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/pat/">
+                        <span class="tag">pat</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                        <span class="tag">数据结构</span>
+                        <span class="tag is-grey">16</span>
+                    </a>
+                </div>
                 
             </div>
         </div>
@@ -967,16 +1176,16 @@
         
         <article class="media">
             
-            <a href="/2020/02/26/hello-world/" class="media-left">
+            <a href="/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-09-android-ViewModel-introduction/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Hello World">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Android lifecycle-aware components">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-26T12:43:14.002Z">2020-02-26</time></div>
-                    <a href="/2020/02/26/hello-world/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Hello World</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:21.663Z">2020-02-29</time></div>
+                    <a href="/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-09-android-ViewModel-introduction/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android lifecycle-aware components</a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
@@ -986,16 +1195,16 @@
         
         <article class="media">
             
-            <a href="/2019/11/30/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="media-left">
+            <a href="/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-01-android-broadcast-introduction/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Android/框架/Retrofit 2.5 框架使用与源码分析">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Android Broadcast介绍">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-30T11:13:20.728Z">2019-11-30</time></div>
-                    <a href="/2019/11/30/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android/框架/Retrofit 2.5 框架使用与源码分析</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:21.654Z">2020-02-29</time></div>
+                    <a href="/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-01-android-broadcast-introduction/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android Broadcast介绍</a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
@@ -1005,16 +1214,16 @@
         
         <article class="media">
             
-            <a href="/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/README/" class="media-left">
+            <a href="/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-07-31-android-service-introduction/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Kotlin/Kotlin基础/README">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Android Service介绍">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:23.104Z">2019-11-28</time></div>
-                    <a href="/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/README/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Kotlin/Kotlin基础/README</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:21.613Z">2020-02-29</time></div>
+                    <a href="/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-07-31-android-service-introduction/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android Service介绍</a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
@@ -1024,16 +1233,16 @@
         
         <article class="media">
             
-            <a href="/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="media-left">
+            <a href="/2020/02/29/Data_Structure/2017-08-28-data-structure-huffman-tree/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Kotlin/Kotlin基础/Lambda表达式">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Huffman树的算法实现">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:23.103Z">2019-11-28</time></div>
-                    <a href="/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Kotlin/Kotlin基础/Lambda表达式</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:09.033Z">2020-02-29</time></div>
+                    <a href="/2020/02/29/Data_Structure/2017-08-28-data-structure-huffman-tree/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Huffman树的算法实现</a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
@@ -1043,16 +1252,16 @@
         
         <article class="media">
             
-            <a href="/2019/11/28/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/Img/README/" class="media-left">
+            <a href="/2020/02/29/Data_Structure/2017-08-27-data-structure-heap-sort/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Java/设计模式/Img/README">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="堆排序">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:23.102Z">2019-11-28</time></div>
-                    <a href="/2019/11/28/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/Img/README/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java/设计模式/Img/README</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:09.000Z">2020-02-29</time></div>
+                    <a href="/2020/02/29/Data_Structure/2017-08-27-data-structure-heap-sort/" class="title has-link-black-ter is-size-6 has-text-weight-normal">堆排序</a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
@@ -1077,7 +1286,7 @@
                     <span class="level-item">February 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">29</span>
                 </span>
             </a>
         </li>
@@ -1116,6 +1325,41 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Android/">
+                        <span class="tag">Android</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/error/">
+                        <span class="tag">error</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/git/">
+                        <span class="tag">git</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/pat/">
+                        <span class="tag">pat</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                        <span class="tag">数据结构</span>
+                        <span class="tag is-grey">16</span>
+                    </a>
+                </div>
                 
             </div>
         </div>
@@ -1142,9 +1386,29 @@
                 Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> & <a
                         href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a>
                 
+                <br>
+                <span id="busuanzi_container_site_uv">
+                Visited by <span id="busuanzi_value_site_uv">0</span> users
+                </span>
+                <span id="busuanzi_container_site_pv">
+                <span id="busuanzi_value_site_pv">0</span> visits
+                </span>
+                
                 </p>
             </div>
             <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
             
             </div>
         </div>
