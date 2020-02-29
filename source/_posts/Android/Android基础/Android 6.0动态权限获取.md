@@ -1,9 +1,21 @@
+---
+title: Android 6.0及以上手机权限进行动态获取
+thumbnail: /assets/android_basis_permission.png
+toc: true
+
+categories: Android
+tags: [Android]
+---
+
+
 ## 在Android 6.0及以上需要对手机权限进行动态获取
 
 如果手机版本为Android 6.0(API 23)或更高版本，以及app的`targetSdkVersion`为23或者更高，用户在安装的时候未被提示权限获取，则用户在使用应用的时候需要动态获取权限。如果在获取用户权限时，用户选择“不再提醒”，则app再次获取权限时，系统将不再对用户进行提示。
 
-**同一组权限不用重复授权，即：同一组的权限只要有一个授权了，那么同一组的其他权限也就授权了，前提是在Manifest.xml中有声明。** *同一组权限在使用某一个权限申请，而该权限未在Manifest.xml声明，则该权限组不能申请成功，不显示权限申请对话框，但会回调；同时非危险权限如`Manifest.permission.BLUETOOTH`在动态申请时同样不会出现权限申请对话框，但会回调*
+<!--more-->
 
+**同一组权限不用重复授权，即：同一组的权限只要有一个授权了，那么同一组的其他权限也就授权了，前提是在Manifest.xml中有声明。** *同一组权限在使用某一个权限申请，而该权限未在Manifest.xml声明，则该权限组不能申请成功，不显示权限申请对话框，但会回调；同时非危险权限如`Manifest.permission.BLUETOOTH`在动态申请时同样不会出现权限申请对话框，但会回调*
+< !--more-->
 Android动态权限的申请仅对下图中的9大权限组进行申请
 ![](/assets/android_basis_permission.png)
 

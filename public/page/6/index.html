@@ -66,7 +66,7 @@
     <link rel="stylesheet" href="/css/progressbar.css">
 <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
     
-    
+    <script async="" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     
 
 
@@ -127,222 +127,7 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-19T09:41:14.772Z">2019-09-19</time>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    12 minutes read (About 1849 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/09/19/Java/Java%E5%9F%BA%E7%A1%80/Java%E6%B3%9B%E5%9E%8B/">Java/Java基础/Java泛型</a>
-            
-        </h1>
-        <div class="content">
-            <h1 id="Generics-泛型"><a href="#Generics-泛型" class="headerlink" title="Generics(泛型)"></a>Generics(泛型)</h1><p>一个接口或类可能被声明为一个或者多个类型的参数，该类或接口写在尖括号中，提供的实体类需要属于该接口或类。</p>
-<p>Generic Programming(泛型编程)，泛型类可以是编码更安全以及方便阅读，尤其是在集合类中；Java中的泛型与C++中的模板类有着相似之处。Generic Programming(泛型编程)可以使得对象(object)在多种场合下被重复使用。例如：ArrayList类可以表示各种不同类的集合。</p>
-<p>如果没有泛型，参数的类型会被忽略，</p>
-<h2 id="装箱和拆箱"><a href="#装箱和拆箱" class="headerlink" title="装箱和拆箱"></a>装箱和拆箱</h2><p>在Java中使用引用类型或基础类型，引用类型有class、interface、array所有的引用类型都是类对象，；每一个基础类型都在java.lang包中有一个相应的引用类型。</p>
-<p>将基础类型转换为引用类型称为装箱，将引用类型转换为基础类型称为拆箱。在自动装箱的过程中value会被缓存，当int值在-128~127之间、char值在 ‘\u0000’在’\u007f’、byte类型、boolean类型，<strong>会返回之前缓存的对象</strong>，</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">int</span> a=<span class="number">100</span>;</span><br><span class="line"><span class="keyword">int</span> b=<span class="number">100</span>;</span><br><span class="line"><span class="keyword">int</span> c=<span class="number">200</span>;</span><br><span class="line"><span class="keyword">int</span> d=<span class="number">200</span>;</span><br><span class="line">System.out.println(a==b);</span><br><span class="line">System.out.println(c==d);</span><br></pre></td></tr></table></figure>
-<p>输出结果为</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">true</span>;</span><br><span class="line"><span class="keyword">false</span>;</span><br></pre></td></tr></table></figure>
-
-<p>Java通过泛型可以自动进行装箱与拆箱。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Integer i=<span class="keyword">new</span> Integer(xx);</span><br></pre></td></tr></table></figure>
-<p><strong>会触发自动装箱</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Integer i=xx;</span><br></pre></td></tr></table></figure>
-<p><strong>不会触发自动装箱</strong></p>
-<p><strong>注意：</strong>操作符<code>==</code> 在基础类型中以及引用类型中采用不同的定义方式，在<code>int</code>类型中，<code>==</code>用于通过值的大小定义的，而在<code>Integer</code>中是通过对象定义的。在比较两个类对象时应使用euqal</p>
-<h2 id="遍历循环"><a href="#遍历循环" class="headerlink" title="遍历循环"></a>遍历循环</h2><p>for循环可以被用于实现Iterable<E>接口的任何类中，</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Integer&gt;ints=Arrays.asList(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>);</span><br><span class="line"><span class="keyword">int</span> s=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> n:ints)&#123;</span><br><span class="line">   s+=n;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>等价于</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(Iterators&lt;Integer&gt;it=ints.iterator();it.hasNext();)&#123;</span><br><span class="line">   <span class="keyword">int</span> n=it.next();</span><br><span class="line">   s+=n;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="Iterable接口"><a href="#Iterable接口" class="headerlink" title="Iterable接口"></a>Iterable<E>接口</h2><p>所有的<code>Collection</code>都实现了Iterable<E>接口</p>
-<h2 id="泛型方法和可变参数-Generic-Methods-and-Varargs"><a href="#泛型方法和可变参数-Generic-Methods-and-Varargs" class="headerlink" title="泛型方法和可变参数(Generic Methods and Varargs)"></a>泛型方法和可变参数(Generic Methods and Varargs)</h2><p>将任意类型的array转换成List</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">List</span></span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span>&lt;T&gt; List&lt;T&gt; <span class="title">toList</span><span class="params">(T[] arr)</span></span>&#123;</span><br><span class="line">       List&lt;T&gt;list=<span class="keyword">new</span> ArrayList&lt;T&gt;();</span><br><span class="line">       <span class="keyword">for</span>(T elt:arr)list.add(elt);</span><br><span class="line">       <span class="keyword">return</span> list;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>将参数写进数组中显的麻烦，可变参数的作用是将数组参数使用一种更方便与简洁的编码方式来代替，将<code>T[]</code>使用<code>T...</code>来替代。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Lists</span></span>&#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">static</span>&lt;T&gt;List&lt;T&gt;toList(T...arr)&#123;</span><br><span class="line">            List&lt;T&gt;list=<span class="keyword">new</span> ArrayList&lt;T&gt;();</span><br><span class="line">            <span class="keyword">for</span>(T elt:arr)list.add(elt);</span><br><span class="line">            <span class="keyword">return</span> list;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>调用方式</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Integer&gt; ints = Lists.toList(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>); </span><br><span class="line">List&lt;String&gt; words = Lists.toList(<span class="string">"hello"</span>, <span class="string">"world"</span>);</span><br></pre></td></tr></table></figure>
-
-<h3 id="子类型和通配符-SubTyping-and-Wildcards"><a href="#子类型和通配符-SubTyping-and-Wildcards" class="headerlink" title="子类型和通配符(SubTyping and Wildcards)"></a>子类型和通配符(SubTyping and Wildcards)</h3><p><strong>子类型和替换原则</strong></p>
-<p>子类型具有传递性，即A是B的子类型，B是C的子类型，那么A也是C的子类型。在替换原则中当需要某一类型时可以提供该类型的子类型。如：Integer、Double都是Number的子类型。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Number&gt;nums=<span class="keyword">new</span> ArrayList&lt;Number&gt;();</span><br><span class="line">nums.add(<span class="number">2</span>);</span><br><span class="line">nums.add(<span class="number">3.14</span>);</span><br></pre></td></tr></table></figure>
-
-<p>根据替换规则可以在Number的List中添加<code>Integer</code>和<code>Double</code>类型的对象。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Integer&gt;ints=<span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">ints.add(<span class="number">2</span>);</span><br><span class="line">ints.add(<span class="number">3</span>);</span><br><span class="line">List&lt;Number&gt;nums=ints;    <span class="comment">//在编译时报错</span></span><br><span class="line">nums.add(<span class="number">3.14</span>);</span><br></pre></td></tr></table></figure>
-
-<p>报错的原因是List<Integer>不是List<Number>的子类型，反过来写也不要可以。但可以使用<code>List&lt;? extends Number&gt;nums=ints</code>，因为List<Integer>是List&lt;? extends Number&gt;的子类型。</p>
-<h3 id="带有extends的通配符"><a href="#带有extends的通配符" class="headerlink" title="带有extends的通配符"></a>带有extends的通配符</h3><p>以Collection接口中的addAll方法为例</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Collection</span>&lt;<span class="title">E</span>&gt;</span>&#123;</span><br><span class="line"> </span><br><span class="line"> ...</span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">addAll</span><span class="params">(Collection&lt;? extends E&gt;c)</span></span>;</span><br><span class="line"> ...</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><code>? extends E</code>表示可以使用E的子类型作为参数添加到Collection中</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">List&lt;Number&gt;nums=<span class="keyword">new</span> ArrayList&lt;Number&gt;();</span><br><span class="line">List&lt;Integer&gt;ints=Array.asList(<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line">List&lt;Double&gt;dbls=Array.asList(<span class="number">2.23</span>,<span class="number">3.55</span>);</span><br><span class="line">nums.addAll(ints);</span><br><span class="line">nums.addAll(dbls);</span><br></pre></td></tr></table></figure>
-<p>在此情况下是被允许的，因为List<Number>是Collection<Number>的一个子类型，同时ints的数据类型List<Integer>是Collection&lt;? extends Number&gt;的子类型。如果addAll(Collection&lt;? extends E&gt;c)中没有通配符，那么上面的语句在编译时会报错。</p>
-<h3 id="带有super的通配符"><a href="#带有super的通配符" class="headerlink" title="带有super的通配符"></a>带有super的通配符</h3><p>将一个List拷贝到另外一个List</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt;<span class="function"><span class="keyword">void</span> <span class="title">copy</span><span class="params">(List&lt;? <span class="keyword">super</span> T&gt;dst,List&lt;? extend T&gt;src)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;src.size();i++)&#123;</span><br><span class="line">       dst.set(i,src.get(i));</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><code>? super T</code>的表达方式表示目的List中的元素是T的supertype,源List是T的subtype;<br>典型例子</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Object&gt;objs=Array.&lt;Object&gt;asList(<span class="number">2</span>,<span class="number">3</span>,<span class="string">"four"</span>);</span><br><span class="line">List&lt;Integer&gt;ints=Array.asList(<span class="number">5</span>,<span class="number">6</span>);</span><br><span class="line">Collection.copy(objs,ints);</span><br><span class="line">Collection.&lt;Object&gt;copy(objs,ints);</span><br><span class="line">Collection.&lt;Number&gt;copy(objs,ints);</span><br><span class="line">Collection.&lt;Integer&gt;copy(objs,ints);</span><br></pre></td></tr></table></figure>
-
-<p>通过泛型方法，可以通过显式的方式指定复制的类型，上述四种写法都是正确的。</p>
-<h3 id="Get和Put原则"><a href="#Get和Put原则" class="headerlink" title="Get和Put原则"></a>Get和Put原则</h3><p>？？？？协变（covariance）与逆变（contravariance）统称为变体或变型（variance）   不变（invariant）的</p>
-<h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><p>在Java中数组的子类型是协变（covariance）的，当S是T的子类型时，可认为S[]是T[]的子类型。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Integer[] ints=<span class="keyword">new</span> Integer[]&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line">Number[] nums=ints;</span><br><span class="line">num[<span class="number">2</span>]=<span class="number">3.14</span>;  <span class="comment">//运行时错误</span></span><br></pre></td></tr></table></figure>
-
-<p>Integer[]可被视为Number[]的子类型，根据替换原则第二行是正确的。当一个数组被赋值后，就会被打上它的实例的标签（在这种状态下是Integer）,因此第三行赋值为Double类型在运行是会出错。</p>
-<p>与数组的替换原则相反的是，泛型的子类型时不变的（invarient）,即List<S>不会被认为是List<T>的子类型。引入通配符协变(convariance)泛型，在此情况下当S是T的子类型时，List<S>会被认为是List&lt;? extends T&gt;的子类型。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Integer&gt;ints=Array.asList(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>);</span><br><span class="line">List&lt;Number nums&gt;=ints;      <span class="comment">//在编译时会报错</span></span><br><span class="line">List&lt;? extends Number&gt;nums1=ints; <span class="comment">//编译通过</span></span><br><span class="line">nums1.set(<span class="number">2</span>,<span class="number">3.14</span>)           <span class="comment">//编译错误</span></span><br></pre></td></tr></table></figure>
-
-<p>第四行中的赋值，在数组中是运行时报错而在List是运行时报错，根据Get和Put原则不能为已经声明的具有extends的通配符赋值不同的类型。</p>
-<p>在通配符中同时会给泛型引入逆变（contravariance），在此情况下当S是T的超类型，List<S>被认为是List&lt;? super T&gt;的子类型，数组不支持子类型的逆变。</p>
-<p>Arrays和Collection各有自己的优势，Collection支持很多操作而Arrays中没有。基础类型（primary type）的数组，具有更高的效率，因为其没有装箱和拆箱操作，基础类型的数组没有自己的子类型，因此在数组中存储是不进行类型验证，因此其存储错误在代码运行时进行检验；而Collection的数据存储在代码编译的过程中进行错误检验。</p>
-<h3 id="通配符VS（Versus）类型参数（Wildcard-Versus-Type-Parameters）"><a href="#通配符VS（Versus）类型参数（Wildcard-Versus-Type-Parameters）" class="headerlink" title="通配符VS（Versus）类型参数（Wildcard Versus Type Parameters）"></a>通配符VS（Versus）类型参数（Wildcard Versus Type Parameters）</h3><ul>
-<li>使用通配符判断Collection中是否有指定的对象</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Collection</span>&lt;<span class="title">E</span>&gt;</span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">contains</span><span class="params">(Object o)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">containsAll</span><span class="params">(Collection&lt;?&gt;c)</span></span>;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line">Object obj=<span class="string">"one"</span>;</span><br><span class="line">List&lt;Object&gt;objs=Arrays.&lt;Object&gt;asList(<span class="string">"one"</span>,<span class="number">2</span>,<span class="number">3.14</span>,<span class="number">4</span>);</span><br><span class="line">List&lt;Integer&gt;ints=Arrays.asList(<span class="number">2</span>,<span class="number">4</span>);</span><br><span class="line">objs.contains(obj);</span><br><span class="line">objs.containsAll(ints);</span><br><span class="line">ints.contains(obj);</span><br><span class="line">ints.containsAll(objs);</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-
-<p>在<code>containsAll(Collection&lt;?&gt;c)</code>方法中 <code>Collection&lt;?&gt;c</code>是<code>Collection&lt;?&gt;c</code>的缩写(abbreviation)，继承Object是通配符常用的方式。</p>
-<ul>
-<li>类型参数<br>可以通过类型参数来替换通配符的编码方式</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Collection</span>&lt;<span class="title">E</span>&gt;</span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">contains</span><span class="params">(E o)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">containsAll</span><span class="params">(Collection&lt;? extend E&gt;c)</span></span>;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>但实际在编译的过程中使用</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">Object obj=<span class="string">"one"</span>;</span><br><span class="line">List&lt;Object&gt;objs=Arrays.&lt;Object&gt;asList(<span class="string">"one"</span>,<span class="number">2</span>,<span class="number">3.14</span>,<span class="number">4</span>);</span><br><span class="line">List&lt;Integer&gt;ints=Arrays.asList(<span class="number">2</span>,<span class="number">4</span>);</span><br><span class="line">objs.contains(obj);</span><br><span class="line">objs.containsAll(ints);</span><br><span class="line">ints.contains(obj);     <span class="comment">//编译时报错</span></span><br><span class="line">ints.containsAll(objs); <span class="comment">//编译时报错</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-
-<p>两行代码在编译时报错，因为类型声明后只能来判断list是否含有该类型的对象，或者该类型的子类型对象，所以判断非类型声明的中对象会报错。</p>
-<h3 id=""><a href="#" class="headerlink" title=""></a></h3>
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-19T09:41:14.769Z">2019-09-19</time>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    3 minutes read (About 501 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/09/19/Java/Java%E5%9F%BA%E7%A1%80/Java%E5%85%B3%E9%94%AE%E5%AD%97/">Java/Java基础/Java关键字</a>
-            
-        </h1>
-        <div class="content">
-            <h2 id="Java关键字介绍"><a href="#Java关键字介绍" class="headerlink" title="Java关键字介绍"></a>Java关键字介绍</h2><h3 id="static"><a href="#static" class="headerlink" title="static"></a>static</h3><h3 id="volatile"><a href="#volatile" class="headerlink" title="volatile"></a>volatile</h3><h3 id="final"><a href="#final" class="headerlink" title="final"></a>final</h3><p>final关键字在不同的上下文环境中可能有不同含义，主要含义是“不可改变的”；</p>
-<h4 id="在数据中使用final"><a href="#在数据中使用final" class="headerlink" title="在数据中使用final"></a>在数据中使用final</h4><p>一个数据不可改变有两种原因：</p>
-<ul>
-<li>在编译时不可改变；当一个数据值需要在编译时使用，那么在定义时就需要进行赋初值。当一个数据同时被static以及final修饰时，表示在编译时不可改变。</li>
-<li>在运行时赋初值后不可改变；</li>
-</ul>
-<p>当final修饰基础类型时，基础类型的值不可改变；当final修饰引用类型时，一旦该引用类型被初始化为Object后，其不可以引用另外的Object，但其引用的Object可以被修改。</p>
-<h4 id="在方法中使用final"><a href="#在方法中使用final" class="headerlink" title="在方法中使用final"></a>在方法中使用final</h4><p> final作为方法参数使用时，表示该引用不能被修改；</p>
-<p> final直接修饰方法时，有两个原因</p>
-<ul>
-<li>防止子类修改该方法，避免该方法被重写(overridden)</li>
-<li>在早起Java实现中，使用final可以加快编译效率（现在已经不需要考虑）</li>
-</ul>
-<h4 id="在类中使用final"><a href="#在类中使用final" class="headerlink" title="在类中使用final"></a>在类中使用final</h4><p>禁止该类被继承</p>
-<h3 id="transient"><a href="#transient" class="headerlink" title="transient"></a>transient</h3><h3 id="long关键字"><a href="#long关键字" class="headerlink" title="long关键字"></a>long关键字</h3><p>在Java开发过程中，如果需要long类型的变量，需要在变量后加<code>l</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">long a&#x3D;1000000000000l;</span><br><span class="line">&#x2F;&#x2F;long b&#x3D;1000000000000;        &#x2F;&#x2F;会报出Integer number too large</span><br><span class="line">&#x2F;&#x2F;long b &#x3D; (long)1000000000000;使用强制类型转换，依旧会报出Integer number too large</span><br><span class="line">&#x2F;&#x2F;long b1&#x3D;100*1000*1000*1000;  &#x2F;&#x2F;b1会输出一个奇怪的值 1215752192</span><br><span class="line">&#x2F;&#x2F;这是因为100*1000*1000*1000是按照整型变量来进行计算，结果超出整型变量的表示范围</span><br><span class="line">&#x2F;&#x2F;long b1&#x3D;(long)(100*1000*1000*1000);;  &#x2F;&#x2F;使用功强制类型转换，b1会输出一个奇怪的值 1215752192</span><br><span class="line">long b1&#x3D;100l*1000l*1000l*1000l;   &#x2F;&#x2F;正确写法</span><br><span class="line">&#x2F;&#x2F;long b1&#x3D;100*1000*1000l*1000l;     &#x2F;&#x2F;可以看到结果依旧正确，这是因为100*1000没有超出整型变量表示范围，如果超出则显示错误结果</span><br></pre></td></tr></table></figure>
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-19T09:41:14.768Z">2019-09-19</time>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    a few seconds read (About 0 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/09/19/Java/Java%E5%9F%BA%E7%A1%80/Java%20%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E6%93%8D%E4%BD%9C/">Java/Java基础/Java 输入输出操作</a>
-            
-        </h1>
-        <div class="content">
-            
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-19T09:41:14.749Z">2019-09-19</time>
+                <time class="level-item has-text-grey" datetime="2019-09-30T07:19:02.859Z">2019-09-30</time>
                 
                 
                 <span class="level-item has-text-grey">
@@ -357,7 +142,7 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/09/19/Android/%E6%A1%86%E6%9E%B6/AAC/Room%E5%92%8CLifecycle%E6%9E%84%E5%BB%BA%E7%A8%8B%E5%BA%8F/">Android/框架/AAC/Room和Lifecycle构建程序</a>
+                <a class="has-link-black-ter" href="/2019/09/30/Android/%E6%A1%86%E6%9E%B6/AAC/Lifecycle%E5%92%8CRoom%E7%9A%84%E4%BD%BF%E7%94%A8/">Android/框架/AAC/Lifecycle和Room的使用</a>
             
         </h1>
         <div class="content">
@@ -513,13 +298,13 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-19T09:41:14.748Z">2019-09-19</time>
+                <time class="level-item has-text-grey" datetime="2019-09-30T07:19:02.853Z">2019-09-30</time>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    4 minutes read (About 581 words)
+                    a minute read (About 182 words)
                 </span>
                 
                 
@@ -528,27 +313,128 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/09/19/Android/%E6%A1%86%E6%9E%B6/AAC/Android%20Architecture%20Components/">Android/框架/AAC/Android Architecture Components</a>
+                <a class="has-link-black-ter" href="/2019/09/30/Android/%E6%A1%86%E6%9E%B6/AAC/DataBinding%E7%9A%84%E4%BD%BF%E7%94%A8/">Android/框架/AAC/DataBinding的使用</a>
             
         </h1>
         <div class="content">
-            <h1 id="结构化组件介绍"><a href="#结构化组件介绍" class="headerlink" title="结构化组件介绍"></a>结构化组件介绍</h1><p>结构化组件(Android Architecture Components)是Android Jetpack的一部分，这些集合库可以使得开发更容易测试与维护。</p>
+            <h2 id="Databinding点击事件的几种实现方式"><a href="#Databinding点击事件的几种实现方式" class="headerlink" title="Databinding点击事件的几种实现方式"></a>Databinding点击事件的几种实现方式</h2><p>代码片段</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;BaseActivity中</span><br><span class="line">public void click(View view)&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public void click1()&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public void click2(int id)&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;xml文件中</span><br><span class="line">&lt;variable</span><br><span class="line">    name&#x3D;&quot;activity&quot;</span><br><span class="line">    type&#x3D;&quot;.BaseActivity&quot; &#x2F;&gt;</span><br><span class="line"></span><br><span class="line">&lt;variable</span><br><span class="line">    name&#x3D;&quot;user&quot;</span><br><span class="line">    type&#x3D;&quot;.User&quot; &#x2F;&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="1、-activity-click"><a href="#1、-activity-click" class="headerlink" title="1、@{activity.click}"></a>1、@{activity.click}</h3><p><code>click</code>函数带有参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;TextView</span><br><span class="line">     android:layout_width&#x3D;&quot;match_parent&quot;</span><br><span class="line">     android:layout_height&#x3D;&quot;wrap_content&quot;</span><br><span class="line">     android:text&#x3D;&quot;点击事件&quot;</span><br><span class="line">     android:onClick&#x3D;&quot;@&#123;activity.click&#125;&quot;</span><br><span class="line">&#x2F;&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2、-gt-activity-click"><a href="#2、-gt-activity-click" class="headerlink" title="2、@{()-&gt;activity.click()}"></a>2、@{()-&gt;activity.click()}</h3><p><code>click</code>函数无参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;TextView</span><br><span class="line">    android:layout_width&#x3D;&quot;match_parent&quot;</span><br><span class="line">    android:layout_height&#x3D;&quot;wrap_content&quot;</span><br><span class="line">    android:text&#x3D;&quot;点击事件&quot;</span><br><span class="line">    android:onClick&#x3D;&quot;@&#123;()-&gt;activity.click1()&#125;&quot;</span><br><span class="line">&#x2F;&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3、-activity-click"><a href="#3、-activity-click" class="headerlink" title="3、@{activity::click}"></a>3、@{activity::click}</h3><p><code>click</code>带参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;TextView</span><br><span class="line">    android:layout_width&#x3D;&quot;match_parent&quot;</span><br><span class="line">    android:layout_height&#x3D;&quot;wrap_content&quot;</span><br><span class="line">    android:text&#x3D;&quot;点击事件&quot;</span><br><span class="line">    android:onClick&#x3D;&quot;@&#123;activity::click&#125;&quot;</span><br><span class="line">&#x2F;&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4、-gt-activity-click-user-id"><a href="#4、-gt-activity-click-user-id" class="headerlink" title="4、@{()-&gt;activity.click(user.id)}"></a>4、@{()-&gt;activity.click(user.id)}</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;TextView</span><br><span class="line">    android:layout_width&#x3D;&quot;match_parent&quot;</span><br><span class="line">    android:layout_height&#x3D;&quot;wrap_content&quot;</span><br><span class="line">    android:text&#x3D;&quot;点击事件&quot;</span><br><span class="line">    android:onClick&#x3D;&quot;@&#123;()-&gt;activity.click2(user.id)&#125;&quot;</span><br><span class="line">&#x2F;&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5、-gt-activity-click-3"><a href="#5、-gt-activity-click-3" class="headerlink" title="5、@{()-&gt;activity.click(3)}"></a>5、@{()-&gt;activity.click(3)}</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;TextView</span><br><span class="line">    android:layout_width&#x3D;&quot;match_parent&quot;</span><br><span class="line">    android:layout_height&#x3D;&quot;wrap_content&quot;</span><br><span class="line">    android:text&#x3D;&quot;点击事件&quot;</span><br><span class="line">    android:onClick&#x3D;&quot;@&#123;()-&gt;activity.click2(3)&#125;&quot;</span><br><span class="line">&#x2F;&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="6、自定义View中DataBinding的点击事件"><a href="#6、自定义View中DataBinding的点击事件" class="headerlink" title="6、自定义View中DataBinding的点击事件"></a>6、自定义View中DataBinding的点击事件</h3><h3 id="7、在RecyclerView中的item添加点击事件"><a href="#7、在RecyclerView中的item添加点击事件" class="headerlink" title="7、在RecyclerView中的item添加点击事件"></a>7、在RecyclerView中的item添加点击事件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 按钮点击</span><br><span class="line">        holder.getBinding.getRoot().findViewById(R.id.btn_edit)</span><br><span class="line">        .setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onClick(View view) &#123;</span><br><span class="line">                &#x2F;&#x2F; todo</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="DataBinding赋值操作"><a href="#DataBinding赋值操作" class="headerlink" title="DataBinding赋值操作"></a>DataBinding赋值操作</h2><p>方法一：</p>
+<h2 id="Databinding特殊用法"><a href="#Databinding特殊用法" class="headerlink" title="Databinding特殊用法"></a>Databinding特殊用法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;CheckBox</span><br><span class="line">    android:id&#x3D;&quot;@+id&#x2F;showName&quot;</span><br><span class="line">    android:layout_width&#x3D;&quot;wrap_content&quot;</span><br><span class="line">    android:layout_height&#x3D;&quot;wrap_content&quot;&#x2F;&gt;</span><br><span class="line">&lt;TextView</span><br><span class="line">    android:text&#x3D;&quot;@&#123;user.firstName&#125;&quot;</span><br><span class="line">    android:layout_width&#x3D;&quot;wrap_content&quot;</span><br><span class="line">    android:layout_height&#x3D;&quot;wrap_content&quot;</span><br><span class="line">    android:visibility&#x3D;&quot;@&#123;showName.checked ? View.VISIBLE :             View.GONE&#125;&quot;</span><br><span class="line">    &#x2F;&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p><strong>在Databinding使用的过程中，布局文件需要按照规范来写，类的报名应全部为小写，否则会报出错误</strong></p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-09-30T07:19:02.847Z">2019-09-30</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    4 minutes read (About 604 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/09/30/Android/View/Materials%20Design/">Android/View/Materials Design</a>
+            
+        </h1>
+        <div class="content">
+            <h2 id="CoordinatorLayout"><a href="#CoordinatorLayout" class="headerlink" title="CoordinatorLayout"></a>CoordinatorLayout</h2><p> CoordinatorLayout布局遵循Materials Design风格，可以实现各种控件之间的联动效果，在联动控件实现的过程中需要Behavior来协助。</p>
+<p> CoordinatorLayout是一个顶级父View，其子View包括FloatingActionButton、SnackBar</p>
+<p> <strong>CoordinatorLayout+AppBarLayout+CollapsingToolbarLayout 需要结合起来使用</strong></p>
+<h2 id="AppBarLayout"><a href="#AppBarLayout" class="headerlink" title="AppBarLayout"></a>AppBarLayout</h2><p> AppBarLayout是LinearLayout的子类，必须在它的子View上设置app:layout_scrollFlags属性，或者在代码中调用setScrollFlags()设置这个属性。</p>
+<p> AppBarLayout有五种滚动标识：</p>
 <ul>
-<li>使用life-aware components组件可以用于管理activity以及fragment的生命周期。用于配置信息的改变、避免内存泄漏以及更加方便在UI中加载数据。</li>
-<li>使用LiveData建立数据对象，当底层数据发生改变时通知View进行刷新。</li>
-<li>ViewModel可以保存与UI相关的数据，保证用户在屏幕旋转时数据不会被销毁</li>
-<li>Room是SQLite数据库对象的映射，使用Room可以很容易将SQLite数据表转换为Java对象。Room提供了在编译过程中对SQLite声明的check，可以返回RxJava、Flowable以及LiveData的observables。</li>
+<li><p>scroll：所有想滚动出屏幕的view都要设置这个flag，否则view将会被固定在屏幕顶部</p>
+</li>
+<li><p>enterAlways：让任意向下的滚动都会导致该view变为可见</p>
+</li>
+<li><p>enterAlwaysCollapsed：假设定义minHeight同时定义enterAlways，view将会在达到最小高度时显示，直至展开玩。</p>
+</li>
+<li><p>exitUntilCollapsed：当定义minHeight，view在滚到最小布局时折叠</p>
+</li>
+<li><p>snap：当一个滚动事件结束，如果视图部分是可见的，那么它将滚动到收缩或展开</p>
+<h2 id="CollapsingToolbarLayout"><a href="#CollapsingToolbarLayout" class="headerlink" title="CollapsingToolbarLayout"></a>CollapsingToolbarLayout</h2><p>CollapsingToolbarLayout作用是提供一个可以折叠的ToolBar，它继承自FrameLayout，</p>
+<h2 id="Behavior"><a href="#Behavior" class="headerlink" title="Behavior"></a>Behavior</h2><p>Behavior只有是CoordinatorLayout的直接View才有意义，只要将Behavior绑定到CoordinatorLayout的直接子元素上，就能对触摸事件（touch event）、window inserts、layout以及嵌套滑动(nested scrolling)等动作进行拦截。Behavior不能直接发挥作用，必须绑定到CoordinatorLayout的子元素上。</p>
+</li>
 </ul>
-<h2 id="结构化组件推荐"><a href="#结构化组件推荐" class="headerlink" title="结构化组件推荐"></a>结构化组件推荐</h2><p>结构化组件的工作原理介绍如图所示，</p>
-<ul>
-<li>Entity(实体)：当使用结构化组件时，使用注解的方式表示数据库中的一张数据表。</li>
-<li>SQLite database:在手机中将数据存储在SQLite数据中，Room持久化库创建和控制这一个数据库。</li>
-<li>Dao：用于获取数据的Object，将Sql语句映射为<code>Funcation</code>，通常需要在<code>SQLite OpenHelper</code>中进行定义，但使用Room持久化层，只需调用方法即可，不需要再<code>SQLite OpenHelper</code>中进行定义。</li>
-<li>Room Database：Room数据库层是在SQLite Database的上一层，用于处理复杂的任务（之前是在<code>SQLite Openhelper</code>中进行处理），Room数据库使用Dao来操作SQLite Database。</li>
-<li>Repository：使用Repository来操作多种数据源。</li>
-<li>ViewModel：向UI界面提供数据，作为Repository与UI数据媒介，向UI隐藏数据源，</li>
-<li>LiveData：是一个数据持有类，可以被订阅（感知），持有/缓存最新的数据。当数据发生改变时，将会通知它的订阅者。<code>LiveData</code>可以感知组件的生命周期，UI组件只是订阅与之相关的生命周期，不会停止或者暂停订阅，<code>LiveData</code>可以自动感知与它相关的组件的生命周期的改变。</li>
-</ul>
+<h1 id="SnackBar"><a href="#SnackBar" class="headerlink" title="SnackBar"></a>SnackBar</h1><p>SnackBar是Material Design的一个组件，可以对用户的操作在屏幕低端提供一个轻量的操作提示。在SnackBar中可以添加Action,如：取消；SnackBar主要用于给用户相应提示，同时需要用户进行可选择的操作。</p>
+<p>如：用户删除订单时，在屏幕下方显示“删除”、“取消”Action Button；</p>
+<p>###SnackBar的使用方式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h1 id="Toast"><a href="#Toast" class="headerlink" title="Toast"></a>Toast</h1><p>Toast是在SnackBar之前就存在的操作提示，可以显示在APP的任意位置，</p>
+<h3 id="SnackBar和Toast之间的对比"><a href="#SnackBar和Toast之间的对比" class="headerlink" title="SnackBar和Toast之间的对比"></a>SnackBar和Toast之间的对比</h3><table>
+<thead>
+<tr>
+<th>不同</th>
+<th>Toast</th>
+<th>SnackBar</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>Toast从API1就存在</td>
+<td>SnackBar在API23添加</td>
+</tr>
+<tr>
+<td>2</td>
+<td>不需要Activity，可以显示在Android Home或者其他应用才</td>
+<td>只能显示在某一个Activity中</td>
+</tr>
+<tr>
+<td>3</td>
+<td>不能根据用户的操作执行Action</td>
+<td>可以根据用户的操作执行Action</td>
+</tr>
+<tr>
+<td>4</td>
+<td>在用户滑动时不能消失</td>
+<td>在用户滑动时可以消失</td>
+</tr>
+</tbody></table>
 
         </div>
         
@@ -571,253 +457,7 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-19T09:41:14.746Z">2019-09-19</time>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    6 minutes read (About 870 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/09/19/Android/View/%E4%BD%BF%E7%94%A8RecyclerView%E5%92%8CSearchView%E5%AE%9E%E7%8E%B0%E6%9F%A5%E6%89%BE%E5%88%A0%E9%99%A4/">Android/View/使用RecyclerView和SearchView实现查找删除</a>
-            
-        </h1>
-        <div class="content">
-            <h1 id="使用SearchView以及RecyclerView实现条目删选"><a href="#使用SearchView以及RecyclerView实现条目删选" class="headerlink" title="使用SearchView以及RecyclerView实现条目删选"></a>使用SearchView以及RecyclerView实现条目删选</h1><p>## 使用SearchView以及RecyclerView实现条目删选</p>
-<h2 id="SearchView介绍"><a href="#SearchView介绍" class="headerlink" title="SearchView介绍"></a>SearchView介绍</h2><p>SearchView继承图 <img src="https://img-blog.csdn.net/20180609094538321?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NDIyNzQz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="SearchView&#x7EE7;&#x627F;&#x56FE;"> SearchView为用户提供一个接口，用户在输入到搜索信息后，会从数据源对数据进行筛选，然后获取筛选列表</p>
-<h2 id="RecyclerView介绍"><a href="#RecyclerView介绍" class="headerlink" title="RecyclerView介绍"></a>RecyclerView介绍</h2><p>RecyclerView是一个比ListView布局更加强大的与灵活的布局方式，在使用的过程中可以通LayoutManager布局管理器控制每一个item的布局方式,通过ItemAnimator每一个Item增加与删除的动画效果，通过ItemDecoration设置Item之间的间隔控制，如果要是打算为每一个item添加点击事件，自己写吧，哈哈哈哈哈。</p>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="搜索框的添加"><a href="#搜索框的添加" class="headerlink" title="搜索框的添加"></a>搜索框的添加</h3><p>1、在res/menu文件夹下添加menu_main，即MainActivity的菜单栏</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;menu xmlns:android&#x3D;&quot;http:&#x2F;&#x2F;schemas.android.com&#x2F;apk&#x2F;res&#x2F;android&quot;</span><br><span class="line">    xmlns:app&#x3D;&quot;http:&#x2F;&#x2F;schemas.android.com&#x2F;apk&#x2F;res-auto&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;item</span><br><span class="line">        android:id&#x3D;&quot;@+id&#x2F;action_search&quot;</span><br><span class="line">        android:icon&#x3D;&quot;@android:drawable&#x2F;ic_menu_search&quot;</span><br><span class="line">        android:title&#x3D;&quot;@string&#x2F;action_search&quot;</span><br><span class="line">        app:actionViewClass&#x3D;&quot;android.support.v7.widget.SearchView&quot;</span><br><span class="line">        app:showAsAction&#x3D;&quot;always|collapseActionView&quot; &#x2F;&gt;</span><br><span class="line"></span><br><span class="line">&lt;&#x2F;menu&gt;</span><br></pre></td></tr></table></figure>
-
-<p>2、在MainActivity中添加搜索框，以及为搜索框添加文字输入监听事件</p>
-<p>注：有时会出现下面的错误，这时需要将MainActivity导入的import android.widget.SearchView;替换为import android.support.v7.widget.SearchView</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.lang.ClassCastException: android.support.v7.widget.SearchView cannot be cast to android.widget.SearchView</span><br></pre></td></tr></table></figure>
-
-<p>MainActivity中的代码</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> <span class="keyword">implements</span> <span class="title">SearchView</span>.<span class="title">OnQueryTextListener</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onCreateOptionsMenu</span><span class="params">(Menu menu)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        getMenuInflater().inflate(R.menu.menu_main,menu);</span><br><span class="line">        MenuItem menuItem=menu.findItem(R.id.action_search);</span><br><span class="line">        SearchView searchView=(SearchView) MenuItemCompat.getActionView(menuItem);</span><br><span class="line">        searchView.setOnQueryTextListener(<span class="keyword">this</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onQueryTextSubmit</span><span class="params">(String query)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onQueryTextChange</span><span class="params">(String newText)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>显示效果如图所示：</p>
-<p>![这里写图片描述](<a href="https://img-blog.csdn.net/20180609095410214?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NDIyNzQz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70\">https://img-blog.csdn.net/20180609095410214?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NDIyNzQz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70\</a>)</p>
-<h3 id="RecylerViewAdapter编写"><a href="#RecylerViewAdapter编写" class="headerlink" title="RecylerViewAdapter编写"></a>RecylerViewAdapter编写</h3><p>1、在build.gradle(Module:app)中添加依赖</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">    implementation &#39;com.android.support:recyclerview-v7:27.1.0&#39;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>2、RecyclerView列表中每一个item布局文件item_recyclerview的编写</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;LinearLayout xmlns:android&#x3D;&quot;http:&#x2F;&#x2F;schemas.android.com&#x2F;apk&#x2F;res&#x2F;android&quot;</span><br><span class="line">    xmlns:app&#x3D;&quot;http:&#x2F;&#x2F;schemas.android.com&#x2F;apk&#x2F;res-auto&quot;</span><br><span class="line">    android:layout_width&#x3D;&quot;match_parent&quot;</span><br><span class="line">    android:layout_height&#x3D;&quot;wrap_content&quot;</span><br><span class="line">    android:orientation&#x3D;&quot;vertical&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;android.support.v7.widget.CardView</span><br><span class="line">        android:layout_width&#x3D;&quot;match_parent&quot;</span><br><span class="line">        android:layout_height&#x3D;&quot;50dp&quot;</span><br><span class="line">        app:cardCornerRadius&#x3D;&quot;5dp&quot;&gt;</span><br><span class="line"></span><br><span class="line">        &lt;TextView</span><br><span class="line">            android:id&#x3D;&quot;@+id&#x2F;word_tv&quot;</span><br><span class="line">            android:layout_width&#x3D;&quot;match_parent&quot;</span><br><span class="line">            android:layout_height&#x3D;&quot;wrap_content&quot;</span><br><span class="line">            android:gravity&#x3D;&quot;center&quot;</span><br><span class="line">            android:layout_gravity&#x3D;&quot;center&quot;</span><br><span class="line">            android:text&#x3D;&quot;word&quot;</span><br><span class="line">            android:textSize&#x3D;&quot;25sp&quot; &#x2F;&gt;</span><br><span class="line">    &lt;&#x2F;android.support.v7.widget.CardView&gt;</span><br><span class="line">&lt;&#x2F;LinearLayout&gt;</span><br></pre></td></tr></table></figure>
-
-<p>3、RecylerViewAdapter编写</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">public class RecyclerViewAdapter extends RecyclerView.Adapter&lt;RecyclerViewAdapter.ViewHolder&gt;&#123;</span><br><span class="line"></span><br><span class="line">    private List&lt;String&gt;strings;</span><br><span class="line"></span><br><span class="line">    public RecyclerViewAdapter(List&lt;String&gt;strings) &#123;</span><br><span class="line">        this.strings&#x3D;strings;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @NonNull</span><br><span class="line">    @Override</span><br><span class="line">    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) &#123;</span><br><span class="line">        View view &#x3D; LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recyclerview, parent, false);</span><br><span class="line">        ViewHolder viewHolder&#x3D;new ViewHolder(view);</span><br><span class="line">        return viewHolder;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onBindViewHolder(@NonNull ViewHolder holder, int position) &#123;</span><br><span class="line">        ((ViewHolder)holder).words.setText(strings.get(position));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public int getItemCount() &#123;</span><br><span class="line">        return strings.size();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public class ViewHolder extends RecyclerView.ViewHolder&#123;</span><br><span class="line"></span><br><span class="line">        TextView words;</span><br><span class="line"></span><br><span class="line">        public ViewHolder(View itemView) &#123;</span><br><span class="line">            super(itemView);</span><br><span class="line">            words&#x3D;(TextView)itemView.findViewById(R.id.word_tv);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="在MainActivity中添加RecyclerView布局"><a href="#在MainActivity中添加RecyclerView布局" class="headerlink" title="在MainActivity中添加RecyclerView布局"></a>在MainActivity中添加RecyclerView布局</h3><p>1、在布局文件activity_main中添加RecyclerView布局</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;android.support.v7.widget.RecyclerView</span><br><span class="line">    android:id&#x3D;&quot;@+id&#x2F;main_recyclerview&quot;</span><br><span class="line">    android:layout_width&#x3D;&quot;match_parent&quot;</span><br><span class="line">    android:layout_height&#x3D;&quot;wrap_content&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;&#x2F;android.support.v7.widget.RecyclerView&gt;</span><br></pre></td></tr></table></figure>
-
-<p>2、在MainActivity中为RecyclerView添加适配器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;省略部分代码</span><br><span class="line"></span><br><span class="line">private RecyclerView recyclerView;</span><br><span class="line">private RecyclerViewAdapter recyclerViewAdapter;</span><br><span class="line"></span><br><span class="line">private List&lt;String&gt;words;</span><br><span class="line"></span><br><span class="line">private RecyclerView.LayoutManager layoutManager;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@Override</span><br><span class="line">protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">    super.onCreate(savedInstanceState);</span><br><span class="line">    setContentView(R.layout.activity_main);</span><br><span class="line">    recyclerView&#x3D;findViewById(R.id.main_recyclerview);</span><br><span class="line">    layoutManager&#x3D;new LinearLayoutManager(MainActivity.this);</span><br><span class="line">    words&#x3D;new ArrayList&lt;&gt;();</span><br><span class="line">    words.add(&quot;abc&quot;);</span><br><span class="line">    words.add(&quot;abc&quot;);</span><br><span class="line">    words.add(&quot;abc&quot;);</span><br><span class="line">    recyclerViewAdapter&#x3D;new RecyclerViewAdapter(words);</span><br><span class="line">    recyclerView.setLayoutManager(layoutManager);</span><br><span class="line">    recyclerView.setAdapter(recyclerViewAdapter);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>结果显示：</p>
-<p>![这里写图片描述](<a href="https://img-blog.csdn.net/20180609101323167?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NDIyNzQz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70\">https://img-blog.csdn.net/20180609101323167?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NDIyNzQz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70\</a>)</p>
-<h3 id="在MainActivity中添加筛选方法"><a href="#在MainActivity中添加筛选方法" class="headerlink" title="在MainActivity中添加筛选方法"></a>在MainActivity中添加筛选方法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">private List&lt;String&gt;filter(List&lt;String&gt;strings,String text)&#123;</span><br><span class="line">    filterString&#x3D;new ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    for (String word:words)&#123;</span><br><span class="line">        if (word.contains(text))</span><br><span class="line">            filterString.add(word);</span><br><span class="line">    &#125;</span><br><span class="line">    return filterString;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="在RecyclerViewAdapter中设置筛选后的单词的显示"><a href="#在RecyclerViewAdapter中设置筛选后的单词的显示" class="headerlink" title="在RecyclerViewAdapter中设置筛选后的单词的显示"></a>在RecyclerViewAdapter中设置筛选后的单词的显示</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F;省略部分代码</span><br><span class="line">public void setFilter(List&lt;String&gt;filterWords)&#123;</span><br><span class="line">       words&#x3D;filterWords;</span><br><span class="line">       notifyDataSetChanged();</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="当检测到SearchView中输入变化时进行单词筛选"><a href="#当检测到SearchView中输入变化时进行单词筛选" class="headerlink" title="当检测到SearchView中输入变化时进行单词筛选"></a>当检测到SearchView中输入变化时进行单词筛选</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">public boolean onQueryTextChange(String newText) &#123;</span><br><span class="line"></span><br><span class="line">    filterString&#x3D;filter(words,newText);</span><br><span class="line">    recyclerViewAdapter.setFilter(filterString);</span><br><span class="line">    return true;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h2><p>![这里写图片描述](<a href="https://img-blog.csdn.net/20180609101729113?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NDIyNzQz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70\">https://img-blog.csdn.net/20180609101729113?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NDIyNzQz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70\</a>)</p>
-<p><a href="https://download.csdn.net/download/qq_36422743/10468538%20源码地址">源码地址</a></p>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-19T09:41:14.745Z">2019-09-19</time>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    5 minutes read (About 680 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/09/19/Android/View/CountDownView/">Android/View/CountDownView</a>
-            
-        </h1>
-        <div class="content">
-            <h1 id="使用自定义View实现倒计时功能"><a href="#使用自定义View实现倒计时功能" class="headerlink" title="使用自定义View实现倒计时功能"></a>使用自定义View实现倒计时功能</h1><p>当手机应用在安装后进行资源加载初始化的时候，为提高用户的使用体验，通常会以倒计时的形式给予用户一一定的提示。</p>
-<h2 id="倒计时控件实现的功能"><a href="#倒计时控件实现的功能" class="headerlink" title="倒计时控件实现的功能"></a>倒计时控件实现的功能</h2><ul>
-<li>显示时间进度</li>
-<li>计时结束后将会自动跳转到下一个Activity中</li>
-</ul>
-<p>实现效果如图所示</p>
-<p>在本篇博客中的代码会有部分缺省，源码链接</p>
-<h2 id="对自定义View的尺寸进行测量并绘制中间的大圆"><a href="#对自定义View的尺寸进行测量并绘制中间的大圆" class="headerlink" title="对自定义View的尺寸进行测量并绘制中间的大圆"></a>对自定义View的尺寸进行测量并绘制中间的大圆</h2><p>View在绘制的过程中对于尺寸的测量主要在OnMeasure中进行，绘制中间的大圆需要指定圆心、半径、画笔样式、背景样式等信息。倒计时功能控件显示的为圆，因此以View中的长和宽的最小值作为直径。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">public class CountDownView extends android.support.v7.widget.AppCompatTextView &#123;</span><br><span class="line"></span><br><span class="line">    private int circleRadius;</span><br><span class="line"></span><br><span class="line">    private int circleColor&#x3D;0xff33b5e5;</span><br><span class="line"></span><br><span class="line">    private Paint circlePaint;</span><br><span class="line">    private Rect bounds;</span><br><span class="line"></span><br><span class="line">    private int centerX;</span><br><span class="line">    private int centerY;</span><br><span class="line"></span><br><span class="line">    public CountDownView(Context context) &#123;</span><br><span class="line">        super(context);</span><br><span class="line">        init();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void init()&#123;</span><br><span class="line">        circlePaint&#x3D;new Paint();</span><br><span class="line">        bounds&#x3D;new Rect();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public CountDownView(Context context, AttributeSet attrs) &#123;</span><br><span class="line">        super(context, attrs);</span><br><span class="line">        init();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public CountDownView(Context context, AttributeSet attrs, int defStyleAttr) &#123;</span><br><span class="line">        super(context, attrs, defStyleAttr);</span><br><span class="line">        init();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) &#123;</span><br><span class="line">        super.onMeasure(widthMeasureSpec,heightMeasureSpec);</span><br><span class="line"></span><br><span class="line">        circleRadius&#x3D;getMeasuredWidth()&gt;getMeasuredHeight()?getMeasuredHeight()&#x2F;2:getMeasuredWidth()&#x2F;2;</span><br><span class="line">        setMeasuredDimension(getMeasuredWidth(),getMeasuredHeight());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onDraw(Canvas canvas) &#123;</span><br><span class="line">        super.onDraw(canvas);</span><br><span class="line">        getDrawingRect(bounds);      &#x2F;&#x2F;获取控件的边界</span><br><span class="line"></span><br><span class="line">        centerX&#x3D;bounds.centerX();</span><br><span class="line">        centerY&#x3D;bounds.centerY();</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F;绘制中间的大圆的背景</span><br><span class="line">        circlePaint.setAntiAlias(true);</span><br><span class="line">        circlePaint.setStyle(Paint.Style.FILL);</span><br><span class="line">        circlePaint.setColor(circleColor);</span><br><span class="line">        canvas.drawCircle(bounds.centerX(),bounds.centerY(),circleRadius,circlePaint);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在activity_main.xml中添加自定义控件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;LinearLayout xmlns:android&#x3D;&quot;http:&#x2F;&#x2F;schemas.android.com&#x2F;apk&#x2F;res&#x2F;android&quot;</span><br><span class="line">    xmlns:app&#x3D;&quot;http:&#x2F;&#x2F;schemas.android.com&#x2F;apk&#x2F;res-auto&quot;</span><br><span class="line">    xmlns:tools&#x3D;&quot;http:&#x2F;&#x2F;schemas.android.com&#x2F;tools&quot;</span><br><span class="line">    android:layout_width&#x3D;&quot;match_parent&quot;</span><br><span class="line">    android:layout_height&#x3D;&quot;match_parent&quot;</span><br><span class="line">    android:gravity&#x3D;&quot;center&quot;</span><br><span class="line">    tools:context&#x3D;&quot;.MainActivity&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;com.example.wyw.countdowndemo.CountDownView</span><br><span class="line">        android:layout_width&#x3D;&quot;100dp&quot;</span><br><span class="line">        android:layout_height&#x3D;&quot;100dp&quot;</span><br><span class="line">        &#x2F;&gt;</span><br><span class="line"></span><br><span class="line">&lt;&#x2F;LinearLayout&gt;</span><br></pre></td></tr></table></figure>
-
-<p>运行结果</p>
-<h2 id="绘制进度边框"><a href="#绘制进度边框" class="headerlink" title="绘制进度边框"></a>绘制进度边框</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">private int cirlceBoundColor&#x3D;0xff00ddff;</span><br><span class="line"></span><br><span class="line">@Override</span><br><span class="line">protected void onDraw(Canvas canvas) &#123;</span><br><span class="line"></span><br><span class="line">    circlePaint.setStyle(Paint.Style.STROKE);</span><br><span class="line">    circlePaint.setStrokeWidth(5);</span><br><span class="line">    circlePaint.setColor(cirlceBoundColor);</span><br><span class="line">    canvas.drawCircle(bounds.centerX(),bounds.centerY(),circleRadius-8,circlePaint);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="绘制进度条的一条弧线"><a href="#绘制进度条的一条弧线" class="headerlink" title="绘制进度条的一条弧线"></a>绘制进度条的一条弧线</h2><p>进度条的绘制过程弧线不断增加绘制角度，然后更新视图显示的，先绘制一条角度为45度的弧线</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">private RectF arcRectF;</span><br><span class="line">private int processColor&#x3D;0xff99cc00;</span><br><span class="line"></span><br><span class="line">public void init()&#123;</span><br><span class="line">    arcRectF&#x3D;new RectF();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@Override</span><br><span class="line">protected void onDraw(Canvas canvas) &#123;</span><br><span class="line"></span><br><span class="line">    circlePaint.setColor(processColor);</span><br><span class="line">    &#x2F;&#x2F;设置线冒样式</span><br><span class="line">    circlePaint.setStrokeCap(Paint.Cap.ROUND);</span><br><span class="line">    arcRectF.set(bounds.left+8,bounds.top+8,bounds.right-8,bounds.bottom-8);</span><br><span class="line">    canvas.drawArc(arcRectF,-90,40,false,circlePaint);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="进度条按照通过Timer不断控制绘制角度的增加"><a href="#进度条按照通过Timer不断控制绘制角度的增加" class="headerlink" title="进度条按照通过Timer不断控制绘制角度的增加"></a>进度条按照通过Timer不断控制绘制角度的增加</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">private int currentDrawTime;    &#x2F;&#x2F;已经绘制的次数</span><br><span class="line">private Timer timer;</span><br><span class="line"></span><br><span class="line">public void init()&#123;</span><br><span class="line">    timer&#x3D;new Timer();</span><br><span class="line">    arcRectF&#x3D;new RectF();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@Override</span><br><span class="line">protected void onDraw(Canvas canvas) &#123;</span><br><span class="line"></span><br><span class="line">    arcRectF.set(bounds.left+8,bounds.top+8,bounds.right-8,bounds.bottom-8);</span><br><span class="line">    canvas.drawArc(arcRectF,-90,currentDrawTime*45,false,circlePaint);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public void drawProcess()&#123;</span><br><span class="line"></span><br><span class="line">    currentDrawTime&#x3D;0;</span><br><span class="line">    timer.schedule(new TimerTask() &#123;</span><br><span class="line">        @Override</span><br><span class="line">        public void run() &#123;</span><br><span class="line">           postInvalidate();</span><br><span class="line">           currentDrawTime++;</span><br><span class="line">           if (currentDrawTime&#x3D;&#x3D;8)</span><br><span class="line">               timer.cancel();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,500,500);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="倒计时时间绘制，倒计时的绘制，需要根据timer来进行倒计时"><a href="#倒计时时间绘制，倒计时的绘制，需要根据timer来进行倒计时" class="headerlink" title="倒计时时间绘制，倒计时的绘制，需要根据timer来进行倒计时"></a>倒计时时间绘制，倒计时的绘制，需要根据timer来进行倒计时</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">protected void onDraw(Canvas canvas) &#123;</span><br><span class="line"> Paint paint &#x3D; getPaint();</span><br><span class="line">    float textY &#x3D; centerY - (circlePaint.descent() + circlePaint.ascent()) &#x2F; 2;</span><br><span class="line">    paint.setAntiAlias(true);  &#x2F;&#x2F;防锯齿</span><br><span class="line">    paint.setColor(Color.WHITE);</span><br><span class="line">    paint.setTextAlign(Paint.Align.CENTER);</span><br><span class="line">    canvas.drawText((4000-500*currentDrawTime)&#x2F;500+&quot;s&quot;,centerY,textY,paint);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-19T09:41:14.744Z">2019-09-19</time>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    3 minutes read (About 423 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/09/19/Android/Ble/Android%20ble%204.0/">Android/Ble/Android ble 4.0</a>
-            
-        </h1>
-        <div class="content">
-            <h1 id="Android-蓝牙4-0开发"><a href="#Android-蓝牙4-0开发" class="headerlink" title="Android 蓝牙4.0开发"></a>Android 蓝牙4.0开发</h1><p>这是一条优雅的分割线</p>
-<h3 id="写在前面："><a href="#写在前面：" class="headerlink" title="写在前面："></a>写在前面：</h3><p>本篇教程使用的蓝牙版本为4.0，测试系统版本为Android 7.0</p>
-<p>尽管蓝牙已经推出5.0版本了，不过目前手机上大部分适配的还是4.0 4.2，但蓝牙的教程以及Demo还是较少，尤其是可以运行的Demo,现有的Demo中以及教程中没有注明可以使用的版本以及运行的环境。</p>
-<h3 id="首先对蓝牙进行非专业的介绍，"><a href="#首先对蓝牙进行非专业的介绍，" class="headerlink" title="首先对蓝牙进行非专业的介绍，"></a>首先对蓝牙进行非专业的介绍，</h3><p>蓝牙4.0又被称为低功耗蓝牙，即BLE，是基于GATT协议实现，而蓝牙4.0以下是传统蓝牙，基于socket的方式实现。所以蓝牙4.0以上没有使用官方文档介绍的 BluetoothSocket，敲重点！！！！</p>
-<h3 id="对GATT的介绍"><a href="#对GATT的介绍" class="headerlink" title="对GATT的介绍"></a>对GATT的介绍</h3><p>按照惯例先上代码</p>
-<p>优雅的代码</p>
-<p>##3 权限的获取</p>
-<p>蓝牙4.0有一个坑爹的权限是位置信息的获取</p>
-<h3 id="蓝牙搜索"><a href="#蓝牙搜索" class="headerlink" title="蓝牙搜索"></a>蓝牙搜索</h3><p>蓝牙的搜索有三种方式</p>
-<ul>
-<li>方法一：<code>BluetoothAdapter.startDiscovery()</code>是通用的扫描方法，扫描时间持续10秒后会自动停止；当扫描到蓝牙设备后，会发出广播通知；<br>蓝牙扫描广播接收器</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//注册此广播，监听BluetoothDevice.ACTION_FOUND，以接收系统消息取得扫描结果</span></span><br><span class="line"><span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">DeviceReceiver</span> <span class="keyword">extends</span> <span class="title">BroadcastReceiver</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onReceive</span><span class="params">(Context context, Intent intent)</span> </span>&#123;</span><br><span class="line">        String action = intent.getAction();</span><br><span class="line">        <span class="keyword">if</span>(BluetoothDevice.ACTION_FOUND.equals(action))&#123;</span><br><span class="line">            BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);  </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>方法二：<code>BluetoothAdapter.startScan(ScanCallback callback)</code>在<code>ScanCallback</code>的<code>onScanResult(int callbackType, ScanResult result)</code>方法中，通过<code>result.getDevice()</code>可获取扫描到的Ble设备</li>
-<li>方法三：<code>BluetoothAdapter.startLeScan(BluetoothAdapter.LeScanCallback callback)</code><br>该方法已经被舍弃</li>
-</ul>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-19T09:34:08.500Z">2019-09-19</time>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    a minute read (About 169 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/09/19/Other/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/">Other/函数式编程</a>
-            
-        </h1>
-        <div class="content">
-            <h2 id="函数式编程（FP）"><a href="#函数式编程（FP）" class="headerlink" title="函数式编程（FP）"></a>函数式编程（FP）</h2><p>“函数式编程”, 又称泛函编程, 是一种”编程范式”（programming paradigm），也就是如何编写程序的方法论。它的基础是 λ 演算（lambda calculus）。λ演算可以接受函数当作输入（参数）和输出（返回值）。和指令式编程相比，函数式编程的思维方式更加注重函数的计算。它的主要思想是把问题的解决方案写成一系列嵌套的函数调用。<br>函数式编程关心数据的映射，命令式编程关心解决问题的步骤；</p>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-19T09:34:08.488Z">2019-09-19</time>
+                <time class="level-item has-text-grey" datetime="2019-09-30T07:19:02.841Z">2019-09-30</time>
                 
                 
                 <span class="level-item has-text-grey">
@@ -832,11 +472,443 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/09/19/Android/%E6%A1%86%E6%9E%B6/RxJava2.0/">Android/框架/RxJava2.0</a>
+                <a class="has-link-black-ter" href="/2019/09/30/Android/View/ActionBar%E5%92%8CToolBar%E7%9A%84%E4%BD%BF%E7%94%A8/">Android/View/ActionBar和ToolBar的使用</a>
             
         </h1>
         <div class="content">
             
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-09-30T07:19:02.841Z">2019-09-30</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    4 minutes read (About 566 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/09/30/Android/View/LayoutInflater%E4%BD%BF%E7%94%A8/">Android/View/LayoutInflater使用</a>
+            
+        </h1>
+        <div class="content">
+            <p>LayoutInflater用于给相应的View对象实例化一个layout(即：将一个xml文件转化为一个View对象),在开发过程中不会直接使用，而是通过Activity.getLayoutInflater()或者Context.getSystemService(Class)方法，获取一个标准的实例，该实例已经与当前Context相关联。</p>
+<ul>
+<li><p>LayoutInflater通常用于动态载入的页面，使用LayoutInflater的inflate方法动态接入layout文件。</p>
+</li>
+<li><p>findViewById用于已载入的界面，使用findViewById来获取其中的界面元素</p>
+</li>
+</ul>
+<h2 id="获取LayoutInflater实例的方法"><a href="#获取LayoutInflater实例的方法" class="headerlink" title="获取LayoutInflater实例的方法"></a>获取LayoutInflater实例的方法</h2><ul>
+<li><p>1、通过系统服务获取布局加载器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LayoutInflater inflater &#x3D; (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);</span><br></pre></td></tr></table></figure></li>
+<li><p>2、通过activity中的getLayoutInflater()方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LayoutInflater inflater &#x3D; getLayoutInflater();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>3、通过LayoutInflater的from静态方法</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LayoutInflater inflater &#x3D; LayoutInflater.from(this)</span><br></pre></td></tr></table></figure>
+
+<p><strong>这三种方式本质都是调用Context.getSystemService()</strong></p>
+<h2 id="使用inflate方法加载布局"><a href="#使用inflate方法加载布局" class="headerlink" title="使用inflate方法加载布局"></a>使用inflate方法加载布局</h2><p>LayoutInflater提供四种加载布局的方法</p>
+<ul>
+<li>public View inflate (int resource, ViewGroup root)</li>
+<li>public View inflate (int resource, ViewGroup root, boolean attachToRoot)</li>
+<li>public View inflate (XmlPullParser parser, ViewGroup root)</li>
+<li>public View inflate (XmlPullParser parser, ViewGroup root, boolean attachToRoot)</li>
+</ul>
+<p><strong>ViewGroup root：指实例的布局所要放入的根视图</strong><br><strong>boolean attachToToot：指是否附加到传入的根视图</strong></p>
+<p>1、当root为null，attachToRoot为任何值都毫无意义，只会单纯加载布局文件。<br>2、当root不为null，attachToRoot设为true,第一个参数指定的layout文件将会inflate并且绑定到root上。<br>3、当root不为null，attachToRoot为false，此时View并没有添加到root,但view的layout属性被保留下来，如果调用addView(View child)，layout属性会自动生效。</p>
+<p><strong>即attachToRoot为true,布局文件的View将会与root绑定，如果为false View将会通过其他方式添加到ViewGroup中，为false时返回View</strong></p>
+<h3 id="示例：将button布局添加到LinearLayout上"><a href="#示例：将button布局添加到LinearLayout上" class="headerlink" title="示例：将button布局添加到LinearLayout上"></a>示例：将button布局添加到LinearLayout上</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;Button xmlns:android&#x3D;”http:&#x2F;&#x2F;schemas.android.com&#x2F;apk&#x2F;res&#x2F;android&quot;</span><br><span class="line"> android:layout_width&#x3D;”match_parent”</span><br><span class="line"> android:layout_height&#x3D;”wrap_content”</span><br><span class="line"> android:text&#x3D;”@string&#x2F;action_attach_to_root_true”</span><br><span class="line"> android:id&#x3D;”@+id&#x2F;button_ok”&gt;</span><br><span class="line">&lt;&#x2F;Button&gt;</span><br></pre></td></tr></table></figure>
+<p>Button的layout params类型是LinearLayout.LayoutParams</p>
+<p><strong>将attachRoot设置为true</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">inflater.inflate(R.layout.view_button, mLinearLayout, true);</span><br></pre></td></tr></table></figure>
+<p><strong>将attachRoot设置为false</strong><br>当attachRoot设置为false后，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Button btn &#x3D; (Button)inflater.inflate</span><br><span class="line">                (R.layout.view_button,parent,false);</span><br><span class="line">parent.addView(btn);</span><br></pre></td></tr></table></figure>
+
+<p>同样的在RecyclerView中需要将attachRoot设置为false，因为在RecyclerView中时由RecyclerView来决定什么时候将childView inflate而不是开发人员。    </p>
+<p><strong>在AlertDialog使用功时，无需传递ViewGroup参数，指定为null即可</strong></p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-09-30T07:19:02.827Z">2019-09-30</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    2 minutes read (About 258 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/09/30/Android/Android%E5%9F%BA%E7%A1%80/%E5%BC%82%E6%AD%A5%E6%93%8D%E4%BD%9CAsynctask/">Android/Android基础/异步操作Asynctask</a>
+            
+        </h1>
+        <div class="content">
+            <p><strong>知识点：AsyncTask适合短时间的异步操作，如果需要长时间操作，最好使用线程池Executor</strong></p>
+<p>一个AsyncTask对象被创建出来后,就只能执行一个异步任务。</p>
+<p>AsyncTask&lt;Params,Progress,Result&gt;是一个抽象类，继承AsyncTask需要指定三个泛型参数</p>
+<ul>
+<li>Params：启动任务时输入的参数类型</li>
+<li>Progress：后台任务执行中返回进度值的类型</li>
+<li>Result：后台任务执行完成后返回结果类型</li>
+</ul>
+<p>AsyncTask中三个重要函数</p>
+<ul>
+<li>doInBackground：异步执行后台线程要完成的任务在此方法中进行</li>
+<li>onPreExecute：执行后台耗时操作前调用，通常用于初始化操作</li>
+<li>onPostExecute：当doInbackground方法完成后，系统自动调用此方法，并将doInBackground方法的返回值传入此方法中，通过此方法更新UI</li>
+<li>onProgressUpdate：当在doInBackground方法中调用publishProgress方法更新任务进度后，可以在此方法中更细UI进度。</li>
+</ul>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-09-30T07:19:02.820Z">2019-09-30</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    7 minutes read (About 998 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/09/30/Android/Android%E5%9F%BA%E7%A1%80/Handler%20Looper%E4%BB%8B%E7%BB%8D/">Android/Android基础/Handler Looper介绍</a>
+            
+        </h1>
+        <div class="content">
+            <h1 id="Handler介绍"><a href="#Handler介绍" class="headerlink" title="Handler介绍"></a>Handler介绍</h1><p>Handler直接继承于Object类</p>
+<p>Handler与一个线程的<code>MessageQueue</code>进行绑定，可以用于<code>Message</code>的发送与处理以及<code>Runnable</code>对象的处理。Handler对象被创建时，就与创建自己的线程以及该线程的<code>Message Queue</code>相绑定，它可以将messages以及runnables对象传递到<code>Message Queue</code>，并对<code>Message Queue</code>中的messages以及runnables对象进行处理。</p>
+<p>Handler使用的两个主要方面：<br>1、对messages以及runnables在将来某一个节点执行进行调度；<br>2、在非当前线程执行其他操作</p>
+<p>Handler对Message的调度通过<code>post(Runnable)</code>, <code>postAtTime(Runnable, long)</code>, <code>postDelayed(Runnable, Object, long)</code>, <code>sendEmptyMessage(int)</code>, <code>sendMessage(Message)</code>, <code>sendMessageAtTime(Message, long)</code>, 以及·、<code>sendMessageDelayed(Message, long)</code>等方法进行，<code>post</code>方法可以将<code>Runnable</code>对象插入到队列中，当消息队列收到<code>Runnable</code>对象时，可以执行。<code>sendMessage</code>方法可以将<code>Message</code>对象（其中包含大量数据）插入到队列中，通过<code>HandlerMessage</code>方法进行处理。</p>
+<p>当向Handler发送消息时，既可以立刻处理消息，也可以指定延时处理。</p>
+<p>当应用程序创建一个进程之后，它的主线程用于持有的<code>Message Queue</code>用于管理“顶级”的应用对象(<code>Activity</code> <code>Broadcast Receiver</code>等)和他们创建的窗口。当创建自己的线程时，可以通过<code>Handler</code>与应用的主线程进行信息交换。</p>
+<h1 id="Looper介绍"><a href="#Looper介绍" class="headerlink" title="Looper介绍"></a>Looper介绍</h1><p>Looper直接继承于Object</p>
+<p>Looper类用于运行一个线程中的message loop，线程在默认状态下没有message loop与之相关联；需要通过调用thread类中的<code>prepare()</code>方法来运行一个loop，<code>loop()</code>方法用来处理message。</p>
+<p>与message loop进行大部分交互都是通过<code>Handler</code>类来进行。</p>
+<p>下列代码是实现一个<code>Looper</code>线程的方式，通过分离开的<code>prepare()</code>以及<code>loop()</code>方法初始化一个Handler与Looper进行交互。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LooperThread</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">     <span class="keyword">public</span> Handler mHandler;</span><br><span class="line"></span><br><span class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">         Looper.prepare();</span><br><span class="line"></span><br><span class="line">         mHandler = <span class="keyword">new</span> Handler() &#123;</span><br><span class="line">             <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handleMessage</span><span class="params">(Message msg)</span> </span>&#123;</span><br><span class="line">                 <span class="comment">// process incoming messages here</span></span><br><span class="line">             &#125;</span><br><span class="line">         &#125;;</span><br><span class="line"></span><br><span class="line">         Looper.loop();</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="MessageQueue介绍"><a href="#MessageQueue介绍" class="headerlink" title="MessageQueue介绍"></a>MessageQueue介绍</h1><p>MessageQueue直接继承于Object</p>
+<p>Message不能直接添加至<code>Message Queue</code>中，需要通过与<code>Looper</code>相关联的<code>Handler</code>对象来实现。通过<code>Looper.myQueue</code>方法可以从当前线程中获取<code>MessageQueue</code></p>
+<h3 id="从源码角度分析Handler、Looper、MessageQueue三者之间的关系"><a href="#从源码角度分析Handler、Looper、MessageQueue三者之间的关系" class="headerlink" title="从源码角度分析Handler、Looper、MessageQueue三者之间的关系"></a>从源码角度分析Handler、Looper、MessageQueue三者之间的关系</h3><p><code>Handler</code>默认构造函数<code>Handler()</code>，将自己与当前线程的<code>Looper</code>进行绑定，如果当前线程中没有<code>Looper</code>对象，会报出异常。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">  </span><br><span class="line">&#x2F;&#x2F;Handler源码117行</span><br><span class="line">public Handler() &#123;</span><br><span class="line">    this(null, false);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;Handler源码131行</span><br><span class="line">  public Handler(Callback callback) &#123;</span><br><span class="line">    this(callback, false);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过<code>Looper.prepare();</code>为当前线程设置一个<code>Looper</code><br>具体流程：<br>其中<code>prepare()</code>方法是<code>Looper</code>类中的静态方法；在<code>prepare(boolean quitAllowed)</code>方法中调用<code>sThreadLocal.set(new Looper(quitAllowed));</code>当前线程设置一个新的<code>Looper</code>在构造函数<code>Looper(boolean quitAllowed)</code>中，该<code>Looper</code>创建了一个新的<code>MessageQueue</code>(mQueue = new MessageQueue(quitAllowed););</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#x2F;&#x2F;Looper源码97行</span><br><span class="line">   public static void prepare() &#123;</span><br><span class="line">    prepare(true);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">private static void prepare(boolean quitAllowed) &#123;</span><br><span class="line">    if (sThreadLocal.get() !&#x3D; null) &#123;</span><br><span class="line">        throw new RuntimeException(&quot;Only one Looper may be created per thread&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    sThreadLocal.set(new Looper(quitAllowed));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;Looper源码267行</span><br><span class="line">    private Looper(boolean quitAllowed) &#123;</span><br><span class="line">    mQueue &#x3D; new MessageQueue(quitAllowed);</span><br><span class="line">    mThread &#x3D; Thread.currentThread();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>在Handler源码的192行中，通过<code>mLooper = Looper.myLooper();</code>来获取当前线程中的<code>Looper</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">   &#x2F;&#x2F;Handler源码192行</span><br><span class="line">public Handler(Callback callback, boolean async) &#123;</span><br><span class="line">    </span><br><span class="line">      mLooper &#x3D; Looper.myLooper();</span><br><span class="line">      if (mLooper &#x3D;&#x3D; null) &#123;</span><br><span class="line">          throw new RuntimeException(</span><br><span class="line">              &quot;Can&#39;t create handler inside thread &quot; + Thread.currentThread()</span><br><span class="line">                      + &quot; that has not called Looper.prepare()&quot;);</span><br><span class="line">      &#125;</span><br><span class="line">      mQueue &#x3D; mLooper.mQueue;</span><br><span class="line">      mCallback &#x3D; callback;</span><br><span class="line">      mAsynchronous &#x3D; async;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"> &#x2F;&#x2F;Looper71行</span><br><span class="line">  static final ThreadLocal&lt;Looper&gt; sThreadLocal &#x3D; new ThreadLocal&lt;Looper&gt;();</span><br><span class="line"></span><br><span class="line"> &#x2F;&#x2F;Looper97行</span><br><span class="line"></span><br><span class="line"> &#x2F;&#x2F;Looper源码254行</span><br><span class="line">   public static @Nullable Looper myLooper() &#123;</span><br><span class="line">      return sThreadLocal.get();</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="Handler发送消息机制"><a href="#Handler发送消息机制" class="headerlink" title="Handler发送消息机制"></a>Handler发送消息机制</h2><p>Handler调用<code>sendMessage(Message msg)</code>方法最终会一步一步调用<code>sendMessageAtTime(Message msg, long uptimeMillis)</code>在该方法中通过<code>MessageQueue queue = mQueue;</code>获取到MessageQueue，调用  用<code>enqueueMessage(MessageQueue queue, Message msg, long uptimeMillis)</code>方法将<code>Message</code>加入到消息队列中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;Handler源码中的689行</span><br><span class="line">    public boolean sendMessageAtTime(Message msg, long uptimeMillis) &#123;</span><br><span class="line">     MessageQueue queue &#x3D; mQueue;</span><br><span class="line">     if (queue &#x3D;&#x3D; null) &#123;</span><br><span class="line">         RuntimeException e &#x3D; new RuntimeException(</span><br><span class="line">                 this + &quot; sendMessageAtTime() called with no mQueue&quot;);</span><br><span class="line">         Log.w(&quot;Looper&quot;, e.getMessage(), e);</span><br><span class="line">         return false;</span><br><span class="line">     &#125;</span><br><span class="line">     return enqueueMessage(queue, msg, uptimeMillis);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Handler消息处理机制"><a href="#Handler消息处理机制" class="headerlink" title="Handler消息处理机制"></a>Handler消息处理机制</h2>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-09-30T07:19:02.815Z">2019-09-30</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    a minute read (About 170 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/09/30/Android/Android%E5%9F%BA%E7%A1%80/getSystemService%E7%9A%84%E4%BD%BF%E7%94%A8/">Android/Android基础/getSystemService的使用</a>
+            
+        </h1>
+        <div class="content">
+            <p>getSystemService是Activity的一个方法，根据传入的name得到对应的Object,然后转换成相应的服务对象；</p>
+<table>
+<thead>
+<tr>
+<th>传入的Name</th>
+<th>返回的对象</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>WINDOW_SERVICE</td>
+<td>WindowManager</td>
+<td>管理打开的窗口程序</td>
+</tr>
+<tr>
+<td>LAYOUT_INFLATER_SERVICE</td>
+<td>LayoutInflater</td>
+<td>取得xml里定义的view</td>
+</tr>
+<tr>
+<td>ACTIVITY_SERVICE</td>
+<td>ActivityManager</td>
+<td>管理应用程序的系统状态</td>
+</tr>
+<tr>
+<td>POWER_SERVICE</td>
+<td>PowerManger</td>
+<td>电源的服务</td>
+</tr>
+<tr>
+<td>ALARM_SERVICE</td>
+<td>AlarmManager</td>
+<td>闹钟的服务</td>
+</tr>
+<tr>
+<td>NOTIFICATION_SERVICE</td>
+<td>NotificationManager</td>
+<td>状态栏的服务</td>
+</tr>
+<tr>
+<td>KEYGUARD_SERVICE</td>
+<td>KeyguardManager</td>
+<td>键盘锁的服务</td>
+</tr>
+<tr>
+<td>LOCATION_SERVICE</td>
+<td>LocationManager</td>
+<td>位置的服务，如GPS</td>
+</tr>
+<tr>
+<td>SEARCH_SERVICE</td>
+<td>SearchManager</td>
+<td>搜索的服务</td>
+</tr>
+<tr>
+<td>VEBRATOR_SERVICE</td>
+<td>Vebrator</td>
+<td>手机震动的服务</td>
+</tr>
+<tr>
+<td>CONNECTIVITY_SERVICE</td>
+<td>Connectivity</td>
+<td>网络连接的服务</td>
+</tr>
+<tr>
+<td>WIFI_SERVICE</td>
+<td>WifiManager</td>
+<td>Wi-Fi服务</td>
+</tr>
+<tr>
+<td>TELEPHONY_SERVICE</td>
+<td>TeleponyManager</td>
+<td>电话服务</td>
+</tr>
+</tbody></table>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-09-27T08:23:54.079Z">2019-09-27</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    a few seconds read (About 0 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/09/27/Java/Java%E5%9F%BA%E7%A1%80/Img/README/">Java/Java基础/Img/README</a>
+            
+        </h1>
+        <div class="content">
+            
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-09-27T08:23:54.079Z">2019-09-27</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    4 minutes read (About 663 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/09/27/Java/Java%E5%9F%BA%E7%A1%80/Java%E9%9B%86%E5%90%88/">Java/Java基础/Java集合</a>
+            
+        </h1>
+        <div class="content">
+            <h2 id="Queue-接口"><a href="#Queue-接口" class="headerlink" title="Queue 接口"></a>Queue 接口</h2><h1 id="Collection的使用方法"><a href="#Collection的使用方法" class="headerlink" title="Collection的使用方法"></a>Collection的使用方法</h1><p>接口<code>Collection</code>继承自<code>Iterable</code>接口    </p>
+<p>用于表示一系列的独立元素，其中List按照元素插入的顺序存储，Set中不能含有相同的元素，Queue用于队列的表示，并按照插入的顺序进行存储。</p>
+<h3 id="BlockingQueue接口"><a href="#BlockingQueue接口" class="headerlink" title="BlockingQueue接口"></a>BlockingQueue接口</h3><p>实现类 </p>
+<ul>
+<li>ArrayBlockingQueue 有界阻塞队列，内部使用数组实现，初始化大小后无法改变大小</li>
+<li>DelayQueue 注入其中的元素必须实现 java.util.concurrent.Delayed 接口</li>
+<li>LinkedBlockingQueue 内部以链表的形式实现</li>
+<li>PriorityBlockingQueue 无界并发队列</li>
+<li>SynchronousQueue 其是一个特殊的队列，内部只能容纳单个元素；</li>
+</ul>
+<p>方法</p>
+<ul>
+<li>add 增加一个元索，如果队列已满，则抛出一个IIIegaISlabEepeplian异常</li>
+<li>remove   移除并返回队列头部的元素，如果队列为空，则抛出一个NoSuchElementException异常</li>
+<li>element  返回队列头部的元素，如果队列为空，则抛出一个NoSuchElementException异常</li>
+<li>offer  添加一个元素并返回true，如果队列已满，则返回false</li>
+<li>poll  移除并返问队列头部的元素，，如果队列为空，则返回null</li>
+<li>peek  返回队列头部的元素，如果队列为空，则返回null</li>
+<li>put  添加一个元素，如果队列满，则阻塞</li>
+<li>take 移除并返回队列头部的元素，如果队列为空，则阻塞</li>
+</ul>
+<h2 id="List接口：实现类-ArrayList-LinkedList-Vector"><a href="#List接口：实现类-ArrayList-LinkedList-Vector" class="headerlink" title="List接口：实现类 ArrayList LinkedList Vector"></a>List接口：实现类 ArrayList LinkedList Vector</h2><h3 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a>ArrayList</h3><p>ArrayList使用数组实现，在频繁做增删元素的时候效率会降低，底层需要判断新建一个多长的数组存放操作之后的数组；其可以精确设置数组长度；查询快，增删慢；</p>
+<p>ArrayList在循环中删除元素可能会出现问题：<br>1、使用for(;;)正序删除，会有元素发生位移，导致删除遗漏<br>2、使用for-each进行删除，实际是调用它的迭代器来实现，</p>
+<h3 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList</h3><p>LinkedList使用双向链表实现；增删快，查询慢（按照下标增删元素一样慢） </p>
+<h3 id="Vector"><a href="#Vector" class="headerlink" title="Vector"></a>Vector</h3><p>Vector使用数组实现，线程安全，ArrrayList线程不安全；Java不建议使用此类，使用ArrayList进行代替；</p>
+<p><strong>Java Doc里建议用Deque替代Stack接口完成栈的功能</strong></p>
+<h2 id="Set接口：实现类-Hashset、TreeSet"><a href="#Set接口：实现类-Hashset、TreeSet" class="headerlink" title="Set接口：实现类 Hashset、TreeSet"></a>Set接口：实现类 Hashset、TreeSet</h2><ul>
+<li>Hashset：按照哈希算法存取集合中的对象，存取速度快</li>
+<li>TreeSet：实现Sorted接口，能够对集合中的对象进行排序</li>
+</ul>
+<h2 id="Map接口"><a href="#Map接口" class="headerlink" title="Map接口"></a>Map接口</h2><h3 id="HashMap遍历"><a href="#HashMap遍历" class="headerlink" title="HashMap遍历"></a>HashMap遍历</h3><h2 id="Iterable和Iterator-迭代器"><a href="#Iterable和Iterator-迭代器" class="headerlink" title="Iterable和Iterator(迭代器)"></a>Iterable和Iterator(迭代器)</h2>
         </div>
         
         
@@ -873,7 +945,9 @@
             
             <li><a class="pagination-link has-text-black-ter" href="/page/7/">7</a></li>
             
-            <li><a class="pagination-link has-text-black-ter" href="/page/8/">8</a></li>
+            <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
+            
+            <li><a class="pagination-link has-text-black-ter" href="/page/10/">10</a></li>
             
         </ul>
     </nav>
@@ -923,7 +997,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            72
+                            100
                         </p>
                     </a>
                 </div>
@@ -931,11 +1005,11 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Categories
+                        Category
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            0
+                            1
                         </p>
                     </a>
                 </div>
@@ -947,7 +1021,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            0
+                            5
                         </p>
                     </a>
                 </div>
@@ -1021,13 +1095,28 @@
                 Categories
             </h3>
             <ul class="menu-list">
-            
+            <li>
+        <a class="level is-marginless" href="/categories/Android/">
+            <span class="level-start">
+                <span class="level-item">Android</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li>
             </ul>
         </div>
     </div>
 </div>
     
-        
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Tag Cloud
+        </h3>
+        <a href="/tags/Android/" style="font-size: 13.33px;">Android</a> <a href="/tags/error/" style="font-size: 10px;">error</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/pat/" style="font-size: 16.67px;">pat</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 20px;">数据结构</a>
+    </div>
+</div>
     
     
         <div class="column-right-shadow is-hidden-widescreen is-sticky">
@@ -1040,16 +1129,16 @@
         
         <article class="media">
             
-            <a href="/2020/02/26/hello-world/" class="media-left">
+            <a href="/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-09-android-ViewModel-introduction/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Hello World">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Android lifecycle-aware components">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-26T12:43:14.002Z">2020-02-26</time></div>
-                    <a href="/2020/02/26/hello-world/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Hello World</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:21.663Z">2020-02-29</time></div>
+                    <a href="/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-09-android-ViewModel-introduction/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android lifecycle-aware components</a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
@@ -1059,16 +1148,16 @@
         
         <article class="media">
             
-            <a href="/2019/11/30/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="media-left">
+            <a href="/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-01-android-broadcast-introduction/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Android/框架/Retrofit 2.5 框架使用与源码分析">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Android Broadcast介绍">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-30T11:13:20.728Z">2019-11-30</time></div>
-                    <a href="/2019/11/30/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android/框架/Retrofit 2.5 框架使用与源码分析</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:21.654Z">2020-02-29</time></div>
+                    <a href="/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-01-android-broadcast-introduction/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android Broadcast介绍</a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
@@ -1078,16 +1167,16 @@
         
         <article class="media">
             
-            <a href="/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/README/" class="media-left">
+            <a href="/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-07-31-android-service-introduction/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Kotlin/Kotlin基础/README">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Android Service介绍">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:23.104Z">2019-11-28</time></div>
-                    <a href="/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/README/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Kotlin/Kotlin基础/README</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:21.613Z">2020-02-29</time></div>
+                    <a href="/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-07-31-android-service-introduction/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android Service介绍</a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
@@ -1097,16 +1186,16 @@
         
         <article class="media">
             
-            <a href="/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="media-left">
+            <a href="/2020/02/29/Data_Structure/2017-08-28-data-structure-huffman-tree/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Kotlin/Kotlin基础/Lambda表达式">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Huffman树的算法实现">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:23.103Z">2019-11-28</time></div>
-                    <a href="/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Kotlin/Kotlin基础/Lambda表达式</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:09.033Z">2020-02-29</time></div>
+                    <a href="/2020/02/29/Data_Structure/2017-08-28-data-structure-huffman-tree/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Huffman树的算法实现</a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
@@ -1116,16 +1205,16 @@
         
         <article class="media">
             
-            <a href="/2019/11/28/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/Img/README/" class="media-left">
+            <a href="/2020/02/29/Data_Structure/2017-08-27-data-structure-heap-sort/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Java/设计模式/Img/README">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="堆排序">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:23.102Z">2019-11-28</time></div>
-                    <a href="/2019/11/28/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/Img/README/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java/设计模式/Img/README</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:09.000Z">2020-02-29</time></div>
+                    <a href="/2020/02/29/Data_Structure/2017-08-27-data-structure-heap-sort/" class="title has-link-black-ter is-size-6 has-text-weight-normal">堆排序</a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
@@ -1150,7 +1239,7 @@
                     <span class="level-item">February 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">29</span>
                 </span>
             </a>
         </li>
@@ -1189,6 +1278,41 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Android/">
+                        <span class="tag">Android</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/error/">
+                        <span class="tag">error</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/git/">
+                        <span class="tag">git</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/pat/">
+                        <span class="tag">pat</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                        <span class="tag">数据结构</span>
+                        <span class="tag is-grey">16</span>
+                    </a>
+                </div>
                 
             </div>
         </div>
@@ -1214,16 +1338,16 @@
         
         <article class="media">
             
-            <a href="/2020/02/26/hello-world/" class="media-left">
+            <a href="/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-09-android-ViewModel-introduction/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Hello World">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Android lifecycle-aware components">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-26T12:43:14.002Z">2020-02-26</time></div>
-                    <a href="/2020/02/26/hello-world/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Hello World</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:21.663Z">2020-02-29</time></div>
+                    <a href="/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-09-android-ViewModel-introduction/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android lifecycle-aware components</a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
@@ -1233,16 +1357,16 @@
         
         <article class="media">
             
-            <a href="/2019/11/30/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="media-left">
+            <a href="/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-01-android-broadcast-introduction/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Android/框架/Retrofit 2.5 框架使用与源码分析">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Android Broadcast介绍">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-30T11:13:20.728Z">2019-11-30</time></div>
-                    <a href="/2019/11/30/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android/框架/Retrofit 2.5 框架使用与源码分析</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:21.654Z">2020-02-29</time></div>
+                    <a href="/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-01-android-broadcast-introduction/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android Broadcast介绍</a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
@@ -1252,16 +1376,16 @@
         
         <article class="media">
             
-            <a href="/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/README/" class="media-left">
+            <a href="/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-07-31-android-service-introduction/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Kotlin/Kotlin基础/README">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Android Service介绍">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:23.104Z">2019-11-28</time></div>
-                    <a href="/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/README/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Kotlin/Kotlin基础/README</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:21.613Z">2020-02-29</time></div>
+                    <a href="/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-07-31-android-service-introduction/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android Service介绍</a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
@@ -1271,16 +1395,16 @@
         
         <article class="media">
             
-            <a href="/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="media-left">
+            <a href="/2020/02/29/Data_Structure/2017-08-28-data-structure-huffman-tree/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Kotlin/Kotlin基础/Lambda表达式">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Huffman树的算法实现">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:23.103Z">2019-11-28</time></div>
-                    <a href="/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Kotlin/Kotlin基础/Lambda表达式</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:09.033Z">2020-02-29</time></div>
+                    <a href="/2020/02/29/Data_Structure/2017-08-28-data-structure-huffman-tree/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Huffman树的算法实现</a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
@@ -1290,16 +1414,16 @@
         
         <article class="media">
             
-            <a href="/2019/11/28/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/Img/README/" class="media-left">
+            <a href="/2020/02/29/Data_Structure/2017-08-27-data-structure-heap-sort/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Java/设计模式/Img/README">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="堆排序">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:23.102Z">2019-11-28</time></div>
-                    <a href="/2019/11/28/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/Img/README/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java/设计模式/Img/README</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:09.000Z">2020-02-29</time></div>
+                    <a href="/2020/02/29/Data_Structure/2017-08-27-data-structure-heap-sort/" class="title has-link-black-ter is-size-6 has-text-weight-normal">堆排序</a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
@@ -1324,7 +1448,7 @@
                     <span class="level-item">February 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">29</span>
                 </span>
             </a>
         </li>
@@ -1363,6 +1487,41 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Android/">
+                        <span class="tag">Android</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/error/">
+                        <span class="tag">error</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/git/">
+                        <span class="tag">git</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/pat/">
+                        <span class="tag">pat</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                        <span class="tag">数据结构</span>
+                        <span class="tag is-grey">16</span>
+                    </a>
+                </div>
                 
             </div>
         </div>
@@ -1389,9 +1548,29 @@
                 Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> & <a
                         href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a>
                 
+                <br>
+                <span id="busuanzi_container_site_uv">
+                Visited by <span id="busuanzi_value_site_uv">0</span> users
+                </span>
+                <span id="busuanzi_container_site_pv">
+                <span id="busuanzi_value_site_pv">0</span> visits
+                </span>
+                
                 </p>
             </div>
             <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
             
             </div>
         </div>

@@ -1,4 +1,11 @@
-# Retrofit 2.5 框架使用与源码分析
+---
+thumbnail: /assets/Android JNI.png
+toc: true
+categories: Android
+tags: [Android]
+description: 测试摘要
+---
+
 
 ## Retrofit 框架使用
 
@@ -8,10 +15,12 @@
 使用PostMan进行请求测试
 请求：`https://api.github.com/search/repositories?q=android`
 
+<!--more-->
 返回值：
 
 Header:
 ![](/assets/Retrofit.png)
+
 
 Body:
 ```json

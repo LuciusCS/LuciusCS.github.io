@@ -66,7 +66,7 @@
     <link rel="stylesheet" href="/css/progressbar.css">
 <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
     
-    
+    <script async="" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     
 
 
@@ -127,13 +127,13 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-30T07:19:02.871Z">2019-09-30</time>
+                <time class="level-item has-text-grey" datetime="2020-02-29T02:44:34.997Z">2020-02-29</time>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    2 minutes read (About 243 words)
+                    7 minutes read (About 1017 words)
                 </span>
                 
                 
@@ -142,93 +142,41 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/09/30/Android/%E6%A1%86%E6%9E%B6/AAC/Room%E6%95%B0%E6%8D%AE%E5%BA%93/">Android/框架/AAC/Room数据库</a>
+                <a class="has-link-black-ter" href="/2020/02/29/PAT/2017-08-01-pat-advanced-1060/">PAT甲级1060. Are They Equal</a>
             
         </h1>
         <div class="content">
-            <h3 id="1、数据库在表中可以指定多个主键"><a href="#1、数据库在表中可以指定多个主键" class="headerlink" title="1、数据库在表中可以指定多个主键"></a>1、数据库在表中可以指定多个主键</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@Entity</span>(primaryKeys = &#123;<span class="string">"firstName"</span>, <span class="string">"lastName"</span>&#125;)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span></span>&#123;</span><br><span class="line">     </span><br><span class="line">     <span class="keyword">public</span> String firstName;</span><br><span class="line">     <span class="keyword">public</span> String lastName;</span><br><span class="line">     </span><br><span class="line">     </span><br><span class="line">     <span class="comment">//使用Ignore使得该变量不生成表段名</span></span><br><span class="line">     </span><br><span class="line">     <span class="meta">@Ignore</span></span><br><span class="line">     Bitmap bitmap;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>如果有类继承自上述Person类，但不想bitmap生成数据表中的列，可以使用ignoredColumns</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public class RemotePerson extends Person &#123;</span><br><span class="line">    @PrimaryKey</span><br><span class="line">    public int id;</span><br><span class="line"></span><br><span class="line">    public boolean hasVpn;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="2、Entity进行嵌套"><a href="#2、Entity进行嵌套" class="headerlink" title="2、Entity进行嵌套"></a>2、Entity进行嵌套</h3><p>如果定义的Entity类中有某一对象，并且在表列字段生成该对象的变量，使用@Embedded</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public class Address &#123;</span><br><span class="line">    public String street;</span><br><span class="line">    public String state;</span><br><span class="line">    public String city;</span><br><span class="line"></span><br><span class="line">    @ColumnInfo(name &#x3D; &quot;post_code&quot;)</span><br><span class="line">    public int postCode;</span><br><span class="line">&#125;    </span><br><span class="line"></span><br><span class="line">@Entity</span><br><span class="line">public class Person&#123;</span><br><span class="line">    @PrimaryKey</span><br><span class="line">    public int id;</span><br><span class="line"></span><br><span class="line">    public String firstName;</span><br><span class="line"></span><br><span class="line">    @Embedded</span><br><span class="line">    public Address address;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这样在Person表中有id,firstName,street,state,city,post_code等字段</p>
-<h3 id="3、插入数据产生冲突时操作"><a href="#3、插入数据产生冲突时操作" class="headerlink" title="3、插入数据产生冲突时操作"></a>3、插入数据产生冲突时操作</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Dao</span><br><span class="line">public interface UserDao&#123;</span><br><span class="line">    &#x2F;&#x2F;插入如果冲突则替换    </span><br><span class="line">    @Insert(onConflict &#x3D; OnConflictStrategy.REPLACE)</span><br><span class="line">    public void insertUser(User ... users);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="用于对数据表中某一列进行更新"><a href="#用于对数据表中某一列进行更新" class="headerlink" title="用于对数据表中某一列进行更新"></a>用于对数据表中某一列进行更新</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@Query(&quot;UPDATE item SET quantity &#x3D; quantity + 1 WHERE id &#x3D; :id&quot;)</span><br><span class="line">void updateQuantity(int id)</span><br><span class="line">&#x2F;&#x2F;item为表名</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-        </div>
-        
-        
-        
-    </div>
-</div>
+            <p>modified: 2017-08-01<br>If a machine can save only 3 significant digits, the float numbers 12300 and 12358.9 are considered equal since they are both saved as 0.123*105 with simple chopping. Now given the number of significant digits on a machine and two float numbers, you are supposed to tell if they are treated equal in that machine.</p>
+<p>Input Specification:</p>
+<p>Each input file contains one test case which gives three numbers N, A and B, where N (&lt;100) is the number of significant digits, and A and B are the two float numbers to be compared. Each float number is non-negative, no greater than 10100, and that its total digit number is less than 100.</p>
+<p>Output Specification:</p>
+<p>For each test case, print in a line “YES” if the two numbers are treated equal, and then the number in the standard form “0.d1…dN*10^k” (d1&gt;0 unless the number is 0); or “NO” if they are not treated equal, and then the two numbers in their standard form. All the terms must be separated by a space, with no extra space at the end of a line.</p>
+<p>Note: Simple chopping is assumed without rounding.</p>
+<p>Sample Input 1:</p>
+<p>3 12300 12358.9</p>
+<p>Sample Output 1:</p>
+<p>YES 0.123*10^5</p>
+<p>Sample Input 2:</p>
+<p>3 120 128</p>
+<p>Sample Output 2:</p>
+<p>NO 0.120<em>10^3 0.128</em>10^3</p>
+<h3 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h3><p>将两个不超过10^100的浮点数按照输入输入的精确度表示，然后比较两个浮点数是否相同，如果相同则输出 YES，并将使用科学计数法表示的数字输出；如果不相同，则输出NO，并将两个数字以科学计数法输出；</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>题目要求不超过10^100，那么这个浮点数只能用数组来表示；数字大小的比较可以通过比较其所对应的的ASCII，即不用char来表示每一个数字，通过字符的比较即可得到数字是否相同;</p>
+<p>void getRidZero() 这一个函数用于将num[]数组清除前导零和小数点，然后将剩下的复制到数组pNum()中；同时将小数点的位置以及给予的浮点数第一个非零的数字记录在decimalPoint和index中；</p>
+<p>void formatPrint()这一个函数用于将浮点数格式化输出；其中decimalPoint-index表示的是科学计数法的指数；decimalPoint1-index&gt;=0说明原来的数大于0，如：123.2223；如果decimalPoint1-index&lt;=0则说明是纯小数，如：0.00123，它的index=4,decimalPoint=1,小数点占了一位，因此指数需要将decimalPoint-index的值+1；</p>
+<p>对于两个0比较，如：0000和000.000则先判断是否都为0，然后再输出；</p>
+<p>数组的大小开到10000，是开始时开到100，发现没有AC，是因为题目给出的是数字位数不超过100，但数字的前导零的个数是不确定的；</p>
+<p>需要注意的要点：结尾需要使用0进行补足</p>
+<h3 id="C语言代码"><a href="#C语言代码" class="headerlink" title="C语言代码"></a>C语言代码</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdbool.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//用于将数组的前导零和小数点去掉，并将num[]数组的其他字符保存在 pNUm[]中</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getRidZero</span><span class="params">(<span class="keyword">char</span>  num[<span class="number">10000</span>], <span class="keyword">int</span> *index, <span class="keyword">int</span> *decimalPoint, <span class="keyword">char</span>  pNum[<span class="number">10000</span>])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//做一个循环除去开头的零和小数点</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10000</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (num[i] != <span class="string">'0'</span>&amp;&amp;num[i] != <span class="string">'.'</span>&amp;&amp;num[i] != <span class="string">'\0'</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			*index = i;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="comment">//用于获取小数点的位置</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10000</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (num[i] == <span class="string">'\0'</span> || num[i] == <span class="string">'.'</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			*decimalPoint = i;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = *index; i &lt; <span class="number">10000</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (num[i] == <span class="string">'\0'</span> || num[i] &lt; <span class="number">0</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			pNum[j] = <span class="string">'0'</span>;</span><br><span class="line">			j++;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (num[i] == <span class="string">'.'</span>)</span><br><span class="line">		&#123;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">			pNum[j] = num[i];</span><br><span class="line">			j++;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//用于将pNum[]中保存的数按照科学计数法输出</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">formatPrint</span><span class="params">(<span class="keyword">int</span> accuracy, <span class="keyword">char</span>  pNum[<span class="number">10000</span>], <span class="keyword">int</span> decimalPoint, <span class="keyword">int</span> index)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"0."</span>);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; accuracy; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%C"</span>, pNum[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (decimalPoint - index &gt;= <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"*10^%d"</span>, decimalPoint - index);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"*10^%d"</span>, decimalPoint - index + <span class="number">1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span>  accuracy;</span><br><span class="line">	<span class="keyword">char</span> num1[<span class="number">10000</span>];</span><br><span class="line">	<span class="keyword">char</span> num2[<span class="number">10000</span>];</span><br><span class="line"></span><br><span class="line">	<span class="keyword">char</span> pNum1[<span class="number">10000</span>];</span><br><span class="line">	<span class="keyword">char</span> pNum2[<span class="number">10000</span>];</span><br><span class="line"></span><br><span class="line">	<span class="comment">//用于记录小数点的位置</span></span><br><span class="line">	<span class="keyword">int</span> decimalPoint1 = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> decimalPoint2 = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//用于记录数字开始的位置</span></span><br><span class="line">	<span class="keyword">int</span> index1 = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> index2 = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">bool</span> equal = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d %s %s"</span>, &amp;accuracy, num1, num2);</span><br><span class="line">	getRidZero(num1, &amp;index1, &amp;decimalPoint1, pNum1);</span><br><span class="line">	getRidZero(num2, &amp;index2, &amp;decimalPoint2, pNum2);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; accuracy; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (pNum1[i] != pNum2[i])</span><br><span class="line">		&#123;</span><br><span class="line">			equal = <span class="literal">false</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> ((index1 - decimalPoint1) != (index2 - decimalPoint2))</span><br><span class="line">	&#123;</span><br><span class="line">		equal = <span class="literal">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">bool</span> notZero = <span class="literal">false</span>;</span><br><span class="line">	<span class="comment">//判断00000000 和000000.000000000</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5000</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (pNum1[i] != <span class="string">'0'</span> || pNum2[i] != <span class="string">'0'</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="comment">//证明不是0</span></span><br><span class="line">			notZero = <span class="literal">true</span>;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (!notZero)  <span class="comment">//证明都是0   然后输出 0.0000*10^0 ，是第六个测试点</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"YES 0."</span>);</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; accuracy; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"%C"</span>, <span class="string">'0'</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"*10^%d"</span>, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (equal)    <span class="comment">//如果两个数相等</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"YES "</span>);</span><br><span class="line"></span><br><span class="line">		formatPrint(accuracy, pNum1, decimalPoint1, index1);</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span>          <span class="comment">//如果两个数不想等</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"NO "</span>);</span><br><span class="line">		formatPrint(accuracy, pNum1, decimalPoint1, index1);</span><br><span class="line"></span><br><span class="line">		<span class="comment">//输出第二个数</span></span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">" "</span>);</span><br><span class="line">		formatPrint(accuracy, pNum2, decimalPoint2, index2);</span><br><span class="line">	&#125;</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-30T07:19:02.865Z">2019-09-30</time>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    5 minutes read (About 734 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/09/30/Android/%E6%A1%86%E6%9E%B6/AAC/Paging%E5%92%8CRoom%E4%BD%BF%E7%94%A8/">Android/框架/AAC/Paging和Room使用</a>
-            
-        </h1>
-        <div class="content">
-            <h1 id="Android框架组件paging-room的使用"><a href="#Android框架组件paging-room的使用" class="headerlink" title="Android框架组件paging+room的使用"></a>Android框架组件paging+room的使用</h1><h2 id="简介："><a href="#简介：" class="headerlink" title="简介："></a>简介：</h2><h3 id="DataSource"><a href="#DataSource" class="headerlink" title="DataSource"></a>DataSource</h3><p>DataSource持有数据库的数据或者来自于网络的数据提供给PagedLists使用，PagedListed由LivePagedListBuilder产生，具有多个可以进行选择的参数。PagedList会持有DataSource的一个副本，</p>
-<p>创建一个<code>PagedList</code>被观察者的对象，需要将一个<code>DataSource.Factory</code>的实例传递给<code>LivePagedListBuilder</code>对象。一个DataSource对象为单一的<code>PagedList</code>加载pages。当数据更新时，工厂类会创建一个<code>PagedSource</code>的实例，如：数据库的表更新或者网络数据更新。Room持久化数据层可以提供<code>DataSource.Factory</code>对象，或者可以自己创建<code>DataSource.Factory</code></p>
-<p>Room持久化数据层提供与Paging library相关的dataSource相关的原生支持。对于通过Room从数据库中查询的数据，Room从Dao中返回一个DataSource.Factory，并将DataSource的实现类返回给用户。相应代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Query</span>(<span class="string">"SELECT * FROM COUNTRIES"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> DataSource.<span class="function">Factory&lt;Integer,Country&gt; <span class="title">getCountries</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
-
-<h3 id="PagedList"><a href="#PagedList" class="headerlink" title="PagedList"></a>PagedList</h3><p>PagedList是paging库的一个重要组成类，可以使得RecyclerView从DataSource中加载大量的数据。PagedList采用异步的方式将数据加载在界面中。</p>
-<h3 id="PagedListAdapter"><a href="#PagedListAdapter" class="headerlink" title="PagedListAdapter"></a>PagedListAdapter</h3><p>PagedListAdapter是一个<code>RecyclerView.Adapter</code>用于表示来自PagedList的数据。PagedListAdapter listens to PagedList loading callbacks as pages are loaded, and uses DiffUtil to compute fine grained updates as new PagedLists are received and then display the list to user in your UI with a recyclerView. ？？？</p>
-<h2 id="将架构组件添加到项目中"><a href="#将架构组件添加到项目中" class="headerlink" title="将架构组件添加到项目中"></a>将架构组件添加到项目中</h2><p>在build.gradle中添加下面的依赖</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"> &#x2F;&#x2F;recyclerView</span><br><span class="line"> implementation &#39;com.android.support:recyclerview-v7:27.1.0&#39;</span><br><span class="line"></span><br><span class="line"> &#x2F;&#x2F; ViewModel and LiveData</span><br><span class="line"> implementation &quot;android.arch.lifecycle:extensions:1.1.1&quot;</span><br><span class="line"> annotationProcessor &quot;android.arch.lifecycle:compiler:1.1.1&quot;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; Room</span><br><span class="line"> implementation &quot;android.arch.persistence.room:runtime:1.1.1&quot;</span><br><span class="line"> annotationProcessor &quot;android.arch.persistence.room:compiler:1.1.1&quot;</span><br><span class="line"></span><br><span class="line"> &#x2F;&#x2F; Paging</span><br><span class="line"> implementation &quot;android.arch.paging:runtime:1.0.1&quot;</span><br></pre></td></tr></table></figure>
-
-<h2 id="创建DataSource"><a href="#创建DataSource" class="headerlink" title="创建DataSource"></a>创建DataSource</h2><h3 id="创建实体"><a href="#创建实体" class="headerlink" title="创建实体"></a>创建实体</h3><h3 id="创建Dao层"><a href="#创建Dao层" class="headerlink" title="创建Dao层"></a>创建Dao层</h3><p>DataSource.Factory(在Room中实现)创建</p>
-<h3 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h3><h3 id="创建ViewModel"><a href="#创建ViewModel" class="headerlink" title="创建ViewModel"></a>创建ViewModel</h3><p>LivePagedListBuilder会使用</p>
-<p>LivePagedListBuilder需要创建PageList对象，当一个新的PagedList被创建出，Livedata会将新的PagedList传递到ViewModel中，相应的数据也将传送给UI，当UI观察到PagedList发生变化，会使用它的PagedListAdapter更新RecyclerView的界面，显示出PagedList中的数据。</p>
-<p>创建和配置LiveData，需要使用LivePagedBuilder以及DataSource.Factory,并对PagedList的部分属性进行设置，主要包括以下几个方法：</p>
-<ul>
-<li>setPageSize(int)：</li>
-<li>setPrefetchDistance(int)：</li>
-<li>setInitialLoadSizeHint(int)：设置页面中第一次显示的数量</li>
-<li>setEnablePlaceholders(boolean) ：</li>
-</ul>
-<p>在<code>onCreate</code>方法中，需要对ViewModel进行实例化，在ViewModel中LiveData类发送新的PagedList到ViewModel, 再相应地传递到UI中，UI观察到PagedList发生改变，会调用PagedListAdapter更新显示在RecyclerView中的数据。</p>
-<h2 id="创建Adapter"><a href="#创建Adapter" class="headerlink" title="创建Adapter"></a>创建Adapter</h2><p>使用PagedAdapter将PagedList数据与RecyclerView进行绑定，使用<code>DiffCallback</code>来帮助PagedAdapter区分不同的适配元素，在实现DiffCallback类的时候需要重写两个方法：</p>
-<ul>
-<li>areItemsTheSame:判断是否指向了同一个数据元素。</li>
-<li>areContentsTheSame:判断</li>
+<h3 id="测试用例"><a href="#测试用例" class="headerlink" title="测试用例"></a>测试用例</h3><ul>
+<li>5　0000.0000123　0.0000123</li>
+<li>4　000123　　　　　00123.005</li>
+<li>4　00000　　　　　000.000001</li>
+<li>4　00.000　　　　　00000</li>
+<li>4　0.01　　　　　　0.01000005</li>
 </ul>
 
         </div>
@@ -252,13 +200,13 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-30T07:19:02.859Z">2019-09-30</time>
+                <time class="level-item has-text-grey" datetime="2020-02-29T02:44:34.950Z">2020-02-29</time>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    15 minutes read (About 2247 words)
+                    3 minutes read (About 470 words)
                 </span>
                 
                 
@@ -267,141 +215,31 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/09/30/Android/%E6%A1%86%E6%9E%B6/AAC/Lifecycle%E5%92%8CRoom%E7%9A%84%E4%BD%BF%E7%94%A8/">Android/框架/AAC/Lifecycle和Room的使用</a>
+                <a class="has-link-black-ter" href="/2020/02/29/PAT/2017-08-01-pat-advanced-1011/">PAT甲级1011. World Cup Betting </a>
             
         </h1>
         <div class="content">
-            <h1 id="使用框架组件Room和Lifecycle来创建应用"><a href="#使用框架组件Room和Lifecycle来创建应用" class="headerlink" title="使用框架组件Room和Lifecycle来创建应用"></a>使用框架组件Room和Lifecycle来创建应用</h1><h2 id="在build-gradle-Module-app-中添加依赖"><a href="#在build-gradle-Module-app-中添加依赖" class="headerlink" title="在build.gradle(Module:app)中添加依赖"></a>在build.gradle(Module:app)中添加依赖</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;Room组件</span><br><span class="line">implementation &quot;android.arch.persistence.room:runtime:$rootProject.roomVersion&quot;</span><br><span class="line">annotationProcessor &quot;android.arch.persistence.room:compiler:$rootProject.roomVersion&quot;</span><br><span class="line">androidTestImplementation &quot;android.arch.persistence.room:testing:$rootProject.roomVersion&quot;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;lifestyle组件</span><br><span class="line">implementation &quot;android.arch.lifecycle:extensions:$rootProject.archLifecycleVersion&quot;</span><br><span class="line">annotationProcessor &quot;android.arch.lifecycle:compiler:$rootProject.archLifecycleVersion&quot;</span><br></pre></td></tr></table></figure>
-
-<h2 id="创建一个Entity实体"><a href="#创建一个Entity实体" class="headerlink" title="创建一个Entity实体"></a>创建一个Entity实体</h2><p>在应用中数据是words，每一个word都是一个实体，创建一个<code>Word</code>类，同时需要创建构造函数以及<code>getter</code>方法，只要这样Room才会实例化<code>Object</code></p>
-<p>假装右图！！！！</p>
-<p>代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Word</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span> String mWord;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">Word</span><span class="params">(@NonNull String word)</span> </span>&#123;<span class="keyword">this</span>.mWord = word;&#125;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">getWord</span><span class="params">()</span></span>&#123;<span class="keyword">return</span> <span class="keyword">this</span>.mWord;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>要使得<code>Word</code>类对Room数据库有意义，需要为其添加注解。注解定义了该类的每一部分与数据库中的实体的关系，Room通过注解的信息生成相应代码。</p>
-<ul>
-<li><p><code>@Entity(tableName = &quot;word_table&quot;)</code></p>
-<p>每一个<code>@Entity</code>类代表数据表中的一个实体。</p>
-</li>
-<li><p><code>@PrimaryKey</code></p>
-<p>每一个实体都需要一个主键，为了表示方便，在这里将每一个<code>word</code>自身作为其主键。</p>
-</li>
-<li><p><code>@NonNull</code></p>
-<p>声明参数、域或者方法的返回值不为空。</p>
-</li>
-<li><p><code>@ColumnInfo(name = &quot;word&quot;)</code></p>
-<p>当需要指定与类中的成员变量不同的列名时使用。</p>
-</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Entity</span>(tableName = <span class="string">"word_table"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Word</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">   <span class="meta">@PrimaryKey</span></span><br><span class="line">   <span class="meta">@NonNull</span></span><br><span class="line">   <span class="meta">@ColumnInfo</span>(name = <span class="string">"word"</span>)</span><br><span class="line">   <span class="keyword">private</span> String mWord;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">Word</span><span class="params">(String word)</span> </span>&#123;<span class="keyword">this</span>.mWord = word;&#125;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">getWord</span><span class="params">()</span></span>&#123;<span class="keyword">return</span> <span class="keyword">this</span>.mWord;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="创建Dao"><a href="#创建Dao" class="headerlink" title="创建Dao"></a>创建Dao</h2><p>在<code>Dao</code>(data access object)中，指定sql查询语句并将其与调用方法相联结。Dao需要为接口或者抽象类，<strong>在默认状态下，所有的查询语句都需要在单独的线程中运行</strong>。Room使用<code>Dao</code>可以使得代码更加简洁。</p>
-<ul>
-<li>创建一个新的接口声明为<code>WordDao</code></li>
-<li>使用功注解<code>@Dao</code>来定义该类为Room的一个Dao类</li>
-<li>声明插入一个word的方法<code>void insert(Word word)</code></li>
-<li>为该方法添加<code>@Insert</code>注解，<strong>在方法中不需要提供任何sql语句</strong>（还有<code>@Delete</code>以及<code>@Update</code>等注解）。</li>
-<li>声明一个删除所有words的方法<code>void deleteAll();</code></li>
-<li>使用<code>@Query</code>注解，用于查询以及其他操作，<code>@Query(&quot;DELETE FROM word_table&quot;)</code>。</li>
-<li>创建一个获取所有单词的方法，<code>getAllWords();</code>返回值为List,通过注解的方式为此方法添加SQL查询语句<code>@Query(&quot;SELECT * from word_table ORDER BY word ASC&quot;)</code></li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@Dao</span><br><span class="line">public interface WordDao &#123;</span><br><span class="line"></span><br><span class="line">   @Insert</span><br><span class="line">   void insert(Word word);</span><br><span class="line"></span><br><span class="line">   @Query(&quot;DELETE FROM word_table&quot;)</span><br><span class="line">   void deleteAll();</span><br><span class="line"></span><br><span class="line">   @Query(&quot;SELECT * from word_table ORDER BY word ASC&quot;)</span><br><span class="line">   List&lt;Word&gt; getAllWords();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="LiveData类的使用"><a href="#LiveData类的使用" class="headerlink" title="LiveData类的使用"></a>LiveData类的使用</h2><p>当数据发生改变时，通常需要进行更新UI或者显示UI的操作，需要观察到数据的改变。通过复杂的组件观察到数据改变会很麻烦，在组件之间会有各种依赖关系的产生。</p>
-<p><code>LiveData</code>是一个数据生命周期观察库(lifecycle_library)，为了解决上面的问题，使用<code>LiveData</code>类型的数据返回值，当数据库更新时，Room会生成所有必要的代码来更新<code>LiveData</code></p>
-<blockquote>
-<p>当你需要离开Room独立使用<code>LiveData</code>时，你需要更新数据，因为<code>LiveData</code>方法没有公有的方法来更新已经存储的数据。</p>
-</blockquote>
-<p>在<code>WordDao</code>中，将<code>getAllWords</code>的返回值包裹在<code>LiveData</code>中</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Query</span>(<span class="string">"SELECT * from word_table ORDER BY word ASC"</span>)</span><br><span class="line">LiveData&lt;List&lt;Word&gt;&gt; getAllWords();</span><br></pre></td></tr></table></figure>
-
-<h2 id="添加Room数据库"><a href="#添加Room数据库" class="headerlink" title="添加Room数据库"></a>添加Room数据库</h2><h3 id="Room数据库层介绍"><a href="#Room数据库层介绍" class="headerlink" title="Room数据库层介绍"></a>Room数据库层介绍</h3><p>Room是在SQLite数据库上面的数据库层，Room可以处理之前需要在<code>SQLiteOpenHelper</code>中处理的单调的工作。</p>
-<ul>
-<li>Room使用Dao来查询数据库。</li>
-<li>在默认状态下，Room不可以在主线程中操作数据库，<code>LiveData</code>通过自动的方式在后台进程中实现异步查询。</li>
-<li>Room在编译的时候检查数据库的Sql语句</li>
-<li>Room类需要时抽象类并继承自RoomDatabase</li>
-<li>Room数据库在整个App中需要以单例模式初始化。</li>
-</ul>
-<h3 id="实现Room数据库"><a href="#实现Room数据库" class="headerlink" title="实现Room数据库"></a>实现Room数据库</h3><ol>
-<li>创建一个<code>public abstract</code>类继承自<code>RoomDatabase</code>，<code>public abstract class WordRoomDatabase extends RoomDatabase {}</code></li>
-<li>将类使用注解为Room数据库，声明属于数据库的实体类并设置版本号，列出的实体类将在数据库中创建出相应的数据表。<code>@Database(entities = {Word.class}, version = 1)</code></li>
-<li>定义与数据库操作相关的Dao，并使用抽象方法，代码如下：</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Database</span>(entities = &#123;Word<span class="class">.<span class="keyword">class</span>&#125;, <span class="title">version</span> </span>= <span class="number">1</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">WordRoomDatabase</span> <span class="keyword">extends</span> <span class="title">RoomDatabase</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> WordDao <span class="title">wordDao</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>4.将<code>WordRoomDatabase</code>设置为单例模式，防止多次实例化数据库同时出现同时打开的问题。</p>
-<p>代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> WordRoomDatabase INSTANCE;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> WordRoomDatabase <span class="title">getDatabase</span><span class="params">(<span class="keyword">final</span> Context context)</span> </span>&#123;</span><br><span class="line">   <span class="keyword">if</span> (INSTANCE == <span class="keyword">null</span>) &#123;</span><br><span class="line">       <span class="keyword">synchronized</span> (WordRoomDatabase<span class="class">.<span class="keyword">class</span>) </span>&#123;</span><br><span class="line">           <span class="keyword">if</span> (INSTANCE == <span class="keyword">null</span>) &#123;</span><br><span class="line">               <span class="comment">// Create database here</span></span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">return</span> INSTANCE;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>5.添加获取到数据库的代码</p>
-<p>代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">INSTANCE = Room.databaseBuilder(context.getApplicationContext(),</span><br><span class="line">       WordRoomDatabase.class, "word_database")</span><br><span class="line">       .build();</span><br></pre></td></tr></table></figure>
-
-<p>完整代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Database</span>(entities = &#123;Word<span class="class">.<span class="keyword">class</span>&#125;, <span class="title">version</span> </span>= <span class="number">1</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">WordRoomDatabase</span> <span class="keyword">extends</span> <span class="title">RoomDatabase</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> WordDao <span class="title">wordDao</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">static</span> WordRoomDatabase INSTANCE;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">static</span> WordRoomDatabase <span class="title">getDatabase</span><span class="params">(<span class="keyword">final</span> Context context)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">if</span> (INSTANCE == <span class="keyword">null</span>) &#123;</span><br><span class="line">           <span class="keyword">synchronized</span> (WordRoomDatabase<span class="class">.<span class="keyword">class</span>) </span>&#123;</span><br><span class="line">               <span class="keyword">if</span> (INSTANCE == <span class="keyword">null</span>) &#123;</span><br><span class="line">                   INSTANCE = Room.databaseBuilder(context.getApplicationContext(),</span><br><span class="line">                           WordRoomDatabase.class, "word_database")</span><br><span class="line">                           .build();                </span><br><span class="line"></span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> INSTANCE;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="创建一个Repository"><a href="#创建一个Repository" class="headerlink" title="创建一个Repository"></a>创建一个Repository</h2><h3 id="Repository介绍"><a href="#Repository介绍" class="headerlink" title="Repository介绍"></a>Repository介绍</h3><p>Repository是一个抽象类用于获取到多种数据源中的数据，Repository不属于结构化组件库，推荐使用它，用于将代码组件分离，<code>Repository</code>类用于操作数据。</p>
-<p>假装有图<del>~</del></p>
-<p>Repository用于管理查询(query)线程，可以使用多个后台线程。在大多数情况下，Repository实现的逻辑用于决定从网络中获取数据还是从本地缓存中获取。</p>
-<h3 id="实现Repository"><a href="#实现Repository" class="headerlink" title="实现Repository"></a>实现Repository</h3><p>1.创建一个名为<code>WordRepository</code>的公有类</p>
-<p>2.创建Dao类型的成员变量以及word列表</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> WordDao mWordDao;</span><br><span class="line"><span class="keyword">private</span> LiveData&lt;List&lt;Word&gt;&gt; mAllWords;</span><br></pre></td></tr></table></figure>
-
-<p>3.添加构造函数，获得数据库的控制并初始化成员变量</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">WordRepository(Application application) &#123;</span><br><span class="line">    WordRoomDatabase db = WordRoomDatabase.getDatabase(application);</span><br><span class="line">    mWordDao = db.wordDao();</span><br><span class="line">    mAllWords = mWordDao.getAllWords();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>4.添加<code>getAllWords()</code>方法，并使用进行封装，Room将所有的查询放置在独立的线程，当数据发生改变时，已经被订阅的<code>LiveData</code>将会通知订阅者。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">LiveData&lt;List&lt;Word&gt;&gt; getAllWords() &#123;</span><br><span class="line">   <span class="keyword">return</span> mAllWords;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>5.封装<code>insert()</code>方法，<code>insert()</code>方法的调用需要在独立的非UI线程中进行，Room可以保证不会在主线程中进行耗时操作。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insert</span> <span class="params">(Word word)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">new</span> insertAsyncTask(mWordDao).execute(word);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>6.<code>insertAsyncTask</code>方法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">private static class insertAsyncTask extends AsyncTask&lt;Word, Void, Void&gt; &#123;</span><br><span class="line"></span><br><span class="line">    private WordDao mAsyncTaskDao;</span><br><span class="line"></span><br><span class="line">    insertAsyncTask(WordDao dao) &#123;</span><br><span class="line">        mAsyncTaskDao &#x3D; dao;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected Void doInBackground(final Word... params) &#123;</span><br><span class="line">        mAsyncTaskDao.insert(params[0]);</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>完整代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">public class WordRepository &#123;</span><br><span class="line"></span><br><span class="line">   private WordDao mWordDao;</span><br><span class="line">   private LiveData&lt;List&lt;Word&gt;&gt; mAllWords;</span><br><span class="line"></span><br><span class="line">   WordRepository(Application application) &#123;</span><br><span class="line">       WordRoomDatabase db &#x3D; WordRoomDatabase.getDatabase(application);</span><br><span class="line">       mWordDao &#x3D; db.wordDao();</span><br><span class="line">       mAllWords &#x3D; mWordDao.getAllWords();</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   LiveData&lt;List&lt;Word&gt;&gt; getAllWords() &#123;</span><br><span class="line">       return mAllWords;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   public void insert (Word word) &#123;</span><br><span class="line">       new insertAsyncTask(mWordDao).execute(word);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   private static class insertAsyncTask extends AsyncTask&lt;Word, Void, Void&gt; &#123;</span><br><span class="line"></span><br><span class="line">       private WordDao mAsyncTaskDao;</span><br><span class="line"></span><br><span class="line">       insertAsyncTask(WordDao dao) &#123;</span><br><span class="line">           mAsyncTaskDao &#x3D; dao;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       @Override</span><br><span class="line">       protected Void doInBackground(final Word... params) &#123;</span><br><span class="line">           mAsyncTaskDao.insert(params[0]);</span><br><span class="line">           return null;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="创建一个ViewModel"><a href="#创建一个ViewModel" class="headerlink" title="创建一个ViewModel"></a>创建一个ViewModel</h2><p><code>ViewModel</code>是用于向UI提供数据以及服务信息配置改变，<code>ViewModel</code>起着Repository与UI之间的交流中心的作用。可以使用<code>ViewModel</code>在fragment之间共享数据。<code>ViewModel</code>也是lifecycle library的一部分。</p>
-<p><code>ViewModel</code>使用的是life-conscious的方式操作APP的UI数据，将UI从Activity以及Fragment类中分离出来，使得编码的过程更加符合以下原则：<code>Activity</code>以及<code>Fragment</code>的主要作用是在屏幕中绘制UI，而<code>ViewModel</code>的作用是控制操作UI需要的所有的数据。</p>
-<p>在<code>ViewModel</code>中使用<code>LiveData</code>来表示那些UI显示过程中会发生改变的数据，使用<code>LiveData</code>主要有以下的优点：</p>
-<ul>
-<li>可以使用为数据添加一个观察者（而不是轮询的方式），只有当数据确实发生改变的时候才更新UI。</li>
-<li>Repository以及UI通过<code>ViewModel</code>彻底分离开来，在<code>ViewModel</code>中不会调用数据库中的内容。</li>
-</ul>
-<h3 id="实现ViewModel"><a href="#实现ViewModel" class="headerlink" title="实现ViewModel"></a>实现ViewModel</h3><ul>
-<li>创建<code>WordViewModel</code>类，继承自<code>AndroidViewModel</code></li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WordViewModel</span> <span class="keyword">extends</span> <span class="title">AndroidViewModel</span> </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>创建Repository的成员变量</p>
-<p>```java</p>
-<p>private WordRepository mRepository;</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">* 创建LiveData成员变量用于缓存word列表</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;java</span><br><span class="line"></span><br><span class="line">  private LiveData&lt;List&lt;Word&gt;&gt; mAllWords;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>创建构造函数</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">WordViewModel</span> <span class="params">(Application application)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>(application);</span><br><span class="line">    mRepository = <span class="keyword">new</span> WordRepository(application);</span><br><span class="line">    mAllWords = mRepository.getAllWords();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>创建<code>getter</code>方法获取所有的word，对于UI来说数据的获取已经被完全隐藏。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LiveData&lt;List&lt;Word&gt;&gt; getAllWords() &#123; return mAllWords; &#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>创建<code>insert()</code>方法，用于调用Repostory中的<code>insert()</code>方法，这样随UI可以完全隐藏<code>insert()</code>方法的实现。</li>
-</ul>
-<p><code>WordViewModel</code>类的完整实现方法如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WordViewModel</span> <span class="keyword">extends</span> <span class="title">AndroidViewModel</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span> WordRepository mRepository;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span> LiveData&lt;List&lt;Word&gt;&gt; mAllWords;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">WordViewModel</span> <span class="params">(Application application)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">super</span>(application);</span><br><span class="line">       mRepository = <span class="keyword">new</span> WordRepository(application);</span><br><span class="line">       mAllWords = mRepository.getAllWords();</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   LiveData&lt;List&lt;Word&gt;&gt; getAllWords() &#123; <span class="keyword">return</span> mAllWords; &#125;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insert</span><span class="params">(Word word)</span> </span>&#123; mRepository.insert(word); &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>注：不可以向</strong><code>ViewModel</code><strong>实例中传递</strong><code>Context</code><strong>参数，也不可以在其实实例化Activity、Fragment或者View以及他们的context。</strong></p>
-<p><strong>Activity在设备进行旋转的时候，在ViewModel的生命周期中，它有可能会被创建或者被销毁多次。如果你在</strong><code>ViewModel</code><strong>中引用了Activity，当Activity被销毁的时候，你将会指向一个空的引用，会造成内存泄漏。</strong></p>
-
+            <p>modified: 2017-08-01<br>With the 2010 FIFA World Cup running, football fans the world over were becoming increasingly excited as the best players from the best teams doing battles for the World Cup trophy in South Africa. Similarly, football betting fans were putting their money where their mouths were, by laying all manner of World Cup bets.</p>
+<p>Chinese Football Lottery provided a “Triple Winning” game. The rule of winning was simple: first select any three of the games. Then for each selected game, bet on one of the three possible results – namely W for win, T for tie, and L for lose. There was an odd assigned to each result. The winner’s odd would be the product of the three odds times 65%.</p>
+<p>For example, 3 games’ odds are given as the following:</p>
+<p> W    T    L</p>
+<p>1.1  2.5  1.7</p>
+<p>1.2  3.0  1.6</p>
+<p>4.1  1.2  1.1</p>
+<p>To obtain the maximum profit, one must buy W for the 3rd game, T for the 2nd game, and T for the 1st game. If each bet takes 2 yuans, then the maximum profit would be (4.1<em>3.0</em>2.5<em>65%-1)</em>2 = 37.98 yuans (accurate up to 2 decimal places).</p>
+<p>Input</p>
+<p>Each input file contains one test case. Each case contains the betting information of 3 games. Each game occupies a line with three distinct odds corresponding to W, T and L.</p>
+<p>Output</p>
+<p>For each test case, print in one line the best bet of each game, and the maximum profit accurate up to 2 decimal places. The characters and the number must be separated by one space.</p>
+<p>Sample Input</p>
+<p>1.1 2.5 1.7</p>
+<p>1.2 3.0 1.6</p>
+<p>4.1 1.2 1.1</p>
+<p>Sample Output</p>
+<p>T T W 37.98</p>
+<h3 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h3><p>题目中给了一大堆规则，其实就是查找到每一行的最大值将它们相乘，计算结果=（相乘的结果*65%-1）X2，计算结果保留两位小数；输出最大值所对应的的列，以及将计算结果；</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>设置一个结果变量result，找出每一行中的最大的数与结果变量相乘result *= tmp，可以避免每次查找都需要对最大的数进行记录；然后记录位置，将最大的数对应的结果类型赋值给 outChar[3];</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdio.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdlib.h"</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> <span class="built_in">line</span>[<span class="number">3</span>] = &#123;<span class="string">'W'</span>,<span class="string">'T'</span>,<span class="string">'L'</span>&#125;;</span><br><span class="line">	<span class="keyword">char</span> outChar[<span class="number">3</span>];</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> index;</span><br><span class="line">	<span class="keyword">float</span> in,tmp;</span><br><span class="line">	<span class="keyword">float</span> result=<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span>  i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		index = <span class="number">0</span>;</span><br><span class="line">		tmp = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;<span class="number">3</span>; j++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">"%f"</span>,&amp;in);</span><br><span class="line">			<span class="keyword">if</span> (tmp&lt;in)</span><br><span class="line">			&#123;</span><br><span class="line">				tmp = in;</span><br><span class="line">				index = j;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line">		result *= tmp;</span><br><span class="line">		outChar[i]=<span class="built_in">line</span>[index];</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%c "</span>,outChar[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%.2f"</span>, (result*<span class="number">0.65</span> - <span class="number">1</span>) * <span class="number">2</span>);</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
         </div>
         
         
@@ -423,13 +261,13 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-30T07:19:02.853Z">2019-09-30</time>
+                <time class="level-item has-text-grey" datetime="2020-02-29T02:44:34.944Z">2020-02-29</time>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    a minute read (About 182 words)
+                    4 minutes read (About 628 words)
                 </span>
                 
                 
@@ -438,33 +276,33 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/09/30/Android/%E6%A1%86%E6%9E%B6/AAC/DataBinding%E7%9A%84%E4%BD%BF%E7%94%A8/">Android/框架/AAC/DataBinding的使用</a>
+                <a class="has-link-black-ter" href="/2020/02/29/PAT/2017-07-31-pat-advanced-1006/">PAT甲级1006. Sign In and Sign Out</a>
             
         </h1>
         <div class="content">
-            <h2 id="Databinding点击事件的几种实现方式"><a href="#Databinding点击事件的几种实现方式" class="headerlink" title="Databinding点击事件的几种实现方式"></a>Databinding点击事件的几种实现方式</h2><p>代码片段</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;BaseActivity中</span><br><span class="line">public void click(View view)&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public void click1()&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public void click2(int id)&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;xml文件中</span><br><span class="line">&lt;variable</span><br><span class="line">    name&#x3D;&quot;activity&quot;</span><br><span class="line">    type&#x3D;&quot;.BaseActivity&quot; &#x2F;&gt;</span><br><span class="line"></span><br><span class="line">&lt;variable</span><br><span class="line">    name&#x3D;&quot;user&quot;</span><br><span class="line">    type&#x3D;&quot;.User&quot; &#x2F;&gt;</span><br></pre></td></tr></table></figure>
+            <p>modified: 2017-07-31<br>At the beginning of every day, the first person who signs in the computer room will unlock the door, and the last one who signs out will lock the door. Given the records of signing in’s and out’s, you are supposed to find the ones who have unlocked and locked the door on that day.</p>
+<p>Input Specification:</p>
+<p>Each input file contains one test case. Each case contains the records for one day. The case starts with a positive integer M, which is the total number of records, followed by M lines, each in the format:</p>
+<p>ID_number Sign_in_time Sign_out_time</p>
+<p>where times are given in the format HH:MM:SS, and ID number is a string with no more than 15 characters.</p>
+<p>Output Specification:</p>
+<p>For each test case, output in one line the ID numbers of the persons who have unlocked and locked the door on that day. The two ID numbers must be separated by one space.</p>
+<p>Note: It is guaranteed that the records are consistent. That is, the sign in time must be earlier than the sign out time for each person, and there are no two persons sign in or out at the same moment.</p>
+<p>Sample Input:</p>
+<p>3</p>
+<p>CS301111 15:30:28 17:00:10</p>
+<p>SC3021234 08:00:00 11:25:25</p>
+<p>CS301133 21:45:00 21:58:40</p>
+<p>Sample Output:</p>
+<p>SC3021234 CS301133</p>
+<h3 id="题目要求："><a href="#题目要求：" class="headerlink" title="题目要求："></a>题目要求：</h3><p>每天，第一个登录电脑的人开门，最后一个退出电脑的人关门；已知每个人登录和退出电脑的时间，需要找出开门的人和关门的人；</p>
+<p>输入包括记录的条数，以及每个人的ID、登录、退出时间；ID字符串不超过15个字符，时间输入格式为HH:MM:SS；</p>
+<p>输出要求：输出开门的人和关门的人ID，ID之间使用空格隔开；</p>
+<p>题目的输入保证每个人登录时间早于退出时间，并且没有任何两个人的登录退出时间是相同的；</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>方法一：直接使用int strcmp(const char *str1, const char *str2)比较输入的登录时间与输出时间的字符串的大小,因为数字对应的ASCII码是由小至大，所以可以用字符比较的方式，下面的代码即为方法一</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdio.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdlib.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"string.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdbool.h"</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">user</span> &#123;</span></span><br><span class="line">	<span class="keyword">char</span> name[<span class="number">20</span>];</span><br><span class="line">	<span class="keyword">char</span> inTime[<span class="number">20</span>];</span><br><span class="line">	<span class="keyword">char</span> outTime[<span class="number">20</span>];</span><br><span class="line">&#125;user;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	user user[<span class="number">100</span>];</span><br><span class="line">	<span class="keyword">int</span> num;</span><br><span class="line">	<span class="keyword">int</span> unLockedIndex;</span><br><span class="line">	<span class="keyword">int</span> lockedIndex;</span><br><span class="line">	<span class="keyword">char</span> inTimeTmp[<span class="number">20</span>];</span><br><span class="line">	<span class="built_in">strcpy</span>(inTimeTmp,<span class="string">"23:59:59"</span>);</span><br><span class="line">	<span class="keyword">char</span> outTimeTmp[<span class="number">20</span>];</span><br><span class="line">	<span class="built_in">strcpy</span>(outTimeTmp, <span class="string">"00:00:00"</span>);</span><br><span class="line">	unLockedIndex = <span class="number">0</span>;</span><br><span class="line">	lockedIndex = <span class="number">0</span>;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;num);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; num; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%s"</span>,&amp;user[i].name);</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%s"</span>, &amp;user[i].inTime);</span><br><span class="line">		<span class="comment">//大于零表示第二个字符串小于第一个</span></span><br><span class="line">		<span class="keyword">if</span> (<span class="built_in">strcmp</span>(inTimeTmp, user[i].inTime)&gt;<span class="number">0</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">strcpy</span>(inTimeTmp, user[i].inTime);</span><br><span class="line">			unLockedIndex = i;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%s"</span>, &amp;user[i].outTime);</span><br><span class="line">		<span class="comment">//表示第二个字符串大于第一个</span></span><br><span class="line">		<span class="keyword">if</span> (<span class="built_in">strcmp</span>(outTimeTmp, user[i].outTime)&lt;<span class="number">0</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="built_in">strcpy</span>(outTimeTmp, user[i].outTime);</span><br><span class="line">				lockedIndex = i;</span><br><span class="line">			&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%s %s"</span>,user[unLockedIndex].name,user[lockedIndex].name);</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="1、-activity-click"><a href="#1、-activity-click" class="headerlink" title="1、@{activity.click}"></a>1、@{activity.click}</h3><p><code>click</code>函数带有参数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;TextView</span><br><span class="line">     android:layout_width&#x3D;&quot;match_parent&quot;</span><br><span class="line">     android:layout_height&#x3D;&quot;wrap_content&quot;</span><br><span class="line">     android:text&#x3D;&quot;点击事件&quot;</span><br><span class="line">     android:onClick&#x3D;&quot;@&#123;activity.click&#125;&quot;</span><br><span class="line">&#x2F;&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="2、-gt-activity-click"><a href="#2、-gt-activity-click" class="headerlink" title="2、@{()-&gt;activity.click()}"></a>2、@{()-&gt;activity.click()}</h3><p><code>click</code>函数无参数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;TextView</span><br><span class="line">    android:layout_width&#x3D;&quot;match_parent&quot;</span><br><span class="line">    android:layout_height&#x3D;&quot;wrap_content&quot;</span><br><span class="line">    android:text&#x3D;&quot;点击事件&quot;</span><br><span class="line">    android:onClick&#x3D;&quot;@&#123;()-&gt;activity.click1()&#125;&quot;</span><br><span class="line">&#x2F;&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="3、-activity-click"><a href="#3、-activity-click" class="headerlink" title="3、@{activity::click}"></a>3、@{activity::click}</h3><p><code>click</code>带参数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;TextView</span><br><span class="line">    android:layout_width&#x3D;&quot;match_parent&quot;</span><br><span class="line">    android:layout_height&#x3D;&quot;wrap_content&quot;</span><br><span class="line">    android:text&#x3D;&quot;点击事件&quot;</span><br><span class="line">    android:onClick&#x3D;&quot;@&#123;activity::click&#125;&quot;</span><br><span class="line">&#x2F;&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="4、-gt-activity-click-user-id"><a href="#4、-gt-activity-click-user-id" class="headerlink" title="4、@{()-&gt;activity.click(user.id)}"></a>4、@{()-&gt;activity.click(user.id)}</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;TextView</span><br><span class="line">    android:layout_width&#x3D;&quot;match_parent&quot;</span><br><span class="line">    android:layout_height&#x3D;&quot;wrap_content&quot;</span><br><span class="line">    android:text&#x3D;&quot;点击事件&quot;</span><br><span class="line">    android:onClick&#x3D;&quot;@&#123;()-&gt;activity.click2(user.id)&#125;&quot;</span><br><span class="line">&#x2F;&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="5、-gt-activity-click-3"><a href="#5、-gt-activity-click-3" class="headerlink" title="5、@{()-&gt;activity.click(3)}"></a>5、@{()-&gt;activity.click(3)}</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;TextView</span><br><span class="line">    android:layout_width&#x3D;&quot;match_parent&quot;</span><br><span class="line">    android:layout_height&#x3D;&quot;wrap_content&quot;</span><br><span class="line">    android:text&#x3D;&quot;点击事件&quot;</span><br><span class="line">    android:onClick&#x3D;&quot;@&#123;()-&gt;activity.click2(3)&#125;&quot;</span><br><span class="line">&#x2F;&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="6、自定义View中DataBinding的点击事件"><a href="#6、自定义View中DataBinding的点击事件" class="headerlink" title="6、自定义View中DataBinding的点击事件"></a>6、自定义View中DataBinding的点击事件</h3><h3 id="7、在RecyclerView中的item添加点击事件"><a href="#7、在RecyclerView中的item添加点击事件" class="headerlink" title="7、在RecyclerView中的item添加点击事件"></a>7、在RecyclerView中的item添加点击事件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 按钮点击</span><br><span class="line">        holder.getBinding.getRoot().findViewById(R.id.btn_edit)</span><br><span class="line">        .setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onClick(View view) &#123;</span><br><span class="line">                &#x2F;&#x2F; todo</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br></pre></td></tr></table></figure>
-
-<h2 id="DataBinding赋值操作"><a href="#DataBinding赋值操作" class="headerlink" title="DataBinding赋值操作"></a>DataBinding赋值操作</h2><p>方法一：</p>
-<h2 id="Databinding特殊用法"><a href="#Databinding特殊用法" class="headerlink" title="Databinding特殊用法"></a>Databinding特殊用法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;CheckBox</span><br><span class="line">    android:id&#x3D;&quot;@+id&#x2F;showName&quot;</span><br><span class="line">    android:layout_width&#x3D;&quot;wrap_content&quot;</span><br><span class="line">    android:layout_height&#x3D;&quot;wrap_content&quot;&#x2F;&gt;</span><br><span class="line">&lt;TextView</span><br><span class="line">    android:text&#x3D;&quot;@&#123;user.firstName&#125;&quot;</span><br><span class="line">    android:layout_width&#x3D;&quot;wrap_content&quot;</span><br><span class="line">    android:layout_height&#x3D;&quot;wrap_content&quot;</span><br><span class="line">    android:visibility&#x3D;&quot;@&#123;showName.checked ? View.VISIBLE :             View.GONE&#125;&quot;</span><br><span class="line">    &#x2F;&gt;</span><br></pre></td></tr></table></figure>
-
-<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p><strong>在Databinding使用的过程中，布局文件需要按照规范来写，类的报名应全部为小写，否则会报出错误</strong></p>
-
+<h3 id="方法二：将输入的时间转换为秒，然后再比较大小"><a href="#方法二：将输入的时间转换为秒，然后再比较大小" class="headerlink" title="方法二：将输入的时间转换为秒，然后再比较大小"></a>方法二：将输入的时间转换为秒，然后再比较大小</h3>
         </div>
         
         
@@ -486,13 +324,13 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-30T07:19:02.847Z">2019-09-30</time>
+                <time class="level-item has-text-grey" datetime="2020-02-29T02:44:34.934Z">2020-02-29</time>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    4 minutes read (About 604 words)
+                    3 minutes read (About 513 words)
                 </span>
                 
                 
@@ -501,66 +339,23 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/09/30/Android/View/Materials%20Design/">Android/View/Materials Design</a>
+                <a class="has-link-black-ter" href="/2020/02/29/PAT/2017-07-27-pat-advanced-1008/">PAT甲级1008. Elevator</a>
             
         </h1>
         <div class="content">
-            <h2 id="CoordinatorLayout"><a href="#CoordinatorLayout" class="headerlink" title="CoordinatorLayout"></a>CoordinatorLayout</h2><p> CoordinatorLayout布局遵循Materials Design风格，可以实现各种控件之间的联动效果，在联动控件实现的过程中需要Behavior来协助。</p>
-<p> CoordinatorLayout是一个顶级父View，其子View包括FloatingActionButton、SnackBar</p>
-<p> <strong>CoordinatorLayout+AppBarLayout+CollapsingToolbarLayout 需要结合起来使用</strong></p>
-<h2 id="AppBarLayout"><a href="#AppBarLayout" class="headerlink" title="AppBarLayout"></a>AppBarLayout</h2><p> AppBarLayout是LinearLayout的子类，必须在它的子View上设置app:layout_scrollFlags属性，或者在代码中调用setScrollFlags()设置这个属性。</p>
-<p> AppBarLayout有五种滚动标识：</p>
-<ul>
-<li><p>scroll：所有想滚动出屏幕的view都要设置这个flag，否则view将会被固定在屏幕顶部</p>
-</li>
-<li><p>enterAlways：让任意向下的滚动都会导致该view变为可见</p>
-</li>
-<li><p>enterAlwaysCollapsed：假设定义minHeight同时定义enterAlways，view将会在达到最小高度时显示，直至展开玩。</p>
-</li>
-<li><p>exitUntilCollapsed：当定义minHeight，view在滚到最小布局时折叠</p>
-</li>
-<li><p>snap：当一个滚动事件结束，如果视图部分是可见的，那么它将滚动到收缩或展开</p>
-<h2 id="CollapsingToolbarLayout"><a href="#CollapsingToolbarLayout" class="headerlink" title="CollapsingToolbarLayout"></a>CollapsingToolbarLayout</h2><p>CollapsingToolbarLayout作用是提供一个可以折叠的ToolBar，它继承自FrameLayout，</p>
-<h2 id="Behavior"><a href="#Behavior" class="headerlink" title="Behavior"></a>Behavior</h2><p>Behavior只有是CoordinatorLayout的直接View才有意义，只要将Behavior绑定到CoordinatorLayout的直接子元素上，就能对触摸事件（touch event）、window inserts、layout以及嵌套滑动(nested scrolling)等动作进行拦截。Behavior不能直接发挥作用，必须绑定到CoordinatorLayout的子元素上。</p>
-</li>
-</ul>
-<h1 id="SnackBar"><a href="#SnackBar" class="headerlink" title="SnackBar"></a>SnackBar</h1><p>SnackBar是Material Design的一个组件，可以对用户的操作在屏幕低端提供一个轻量的操作提示。在SnackBar中可以添加Action,如：取消；SnackBar主要用于给用户相应提示，同时需要用户进行可选择的操作。</p>
-<p>如：用户删除订单时，在屏幕下方显示“删除”、“取消”Action Button；</p>
-<p>###SnackBar的使用方式</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-<h1 id="Toast"><a href="#Toast" class="headerlink" title="Toast"></a>Toast</h1><p>Toast是在SnackBar之前就存在的操作提示，可以显示在APP的任意位置，</p>
-<h3 id="SnackBar和Toast之间的对比"><a href="#SnackBar和Toast之间的对比" class="headerlink" title="SnackBar和Toast之间的对比"></a>SnackBar和Toast之间的对比</h3><table>
-<thead>
-<tr>
-<th>不同</th>
-<th>Toast</th>
-<th>SnackBar</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>1</td>
-<td>Toast从API1就存在</td>
-<td>SnackBar在API23添加</td>
-</tr>
-<tr>
-<td>2</td>
-<td>不需要Activity，可以显示在Android Home或者其他应用才</td>
-<td>只能显示在某一个Activity中</td>
-</tr>
-<tr>
-<td>3</td>
-<td>不能根据用户的操作执行Action</td>
-<td>可以根据用户的操作执行Action</td>
-</tr>
-<tr>
-<td>4</td>
-<td>在用户滑动时不能消失</td>
-<td>在用户滑动时可以消失</td>
-</tr>
-</tbody></table>
-
+            <p>modified: 2017-07-27<br>The highest building in our city has only one elevator. A request list is made up with N positive numbers. The numbers denote at which floors the elevator will stop, in specified order. It costs 6 seconds to move the elevator up one floor, and 4 seconds to move down one floor. The elevator will stay for 5 seconds at each stop.</p>
+<p>For a given request list, you are to compute the total time spent to fulfill the requests on the list. The elevator is on the 0th floor at the beginning and does not have to return to the ground floor when the requests are fulfilled.</p>
+<p>Input Specification:</p>
+<p>Each input file contains one test case. Each case contains a positive integer N, followed by N positive numbers. All the numbers in the input are less than 100.</p>
+<p>Output Specification:</p>
+<p>For each test case, print the total time on a single line.</p>
+<p>Sample Input:<br>3 2 3 1</p>
+<p>Sample Output:<br>41</p>
+<h3 id="题目要求："><a href="#题目要求：" class="headerlink" title="题目要求："></a>题目要求：</h3><p>一部电梯，给N个正整数，表示电梯将依次在哪一层楼停止，上升一层楼需要6S，下降一层楼需要4S，电梯在每一层楼停止5S；</p>
+<p>给予的每一列数需要计算电梯停过每一层楼索要要的总的时间，开始时电梯在0层，且结束后电梯不要要回到0层；</p>
+<p>每一个输入包括，一个正整数N，在这个正整数之后是N个正整数这个是重点！！！坑爹的题目给了输入的例子：3X6+4X1+6X1+4X2+5=41！！！2X6+1x6+2X4+3x5=41！！！）</font>本宝宝才不会告诉你：我的神奇脑回路；所有的输入数不超过100个；</p>
+<h3 id="解题思路："><a href="#解题思路：" class="headerlink" title="解题思路："></a>解题思路：</h3><p>首先将输入的数字存储在一个数组中（题目给出的输入不超过100，所以可以定义长度为100的数组），然后循环比较数组的每一个元素与前后元素的大小，确定是上升还是下降；并计算时间；</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdlib.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdio.h"</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">char</span> ch;</span><br><span class="line">	<span class="keyword">int</span> <span class="built_in">floor</span>[<span class="number">101</span>];</span><br><span class="line">	<span class="comment">//用于对输入的楼层数进行计数</span></span><br><span class="line">	<span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> time =<span class="number">0</span> ;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;<span class="built_in">floor</span>[count++]);</span><br><span class="line">	<span class="keyword">while</span> (ch=getchar()!=<span class="string">'\n'</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;<span class="built_in">floor</span>[count++]);</span><br><span class="line">	&#125;</span><br><span class="line">	time += <span class="number">6</span> * <span class="built_in">floor</span>[<span class="number">1</span>]+<span class="number">5</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt; count; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (<span class="built_in">floor</span>[i]&gt;<span class="built_in">floor</span>[i<span class="number">-1</span>])</span><br><span class="line">		&#123;</span><br><span class="line">			time += <span class="number">6</span> * (<span class="built_in">floor</span>[i] - <span class="built_in">floor</span>[i - <span class="number">1</span>])+<span class="number">5</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">			time += <span class="number">4</span> * (<span class="built_in">floor</span>[i<span class="number">-1</span>] - <span class="built_in">floor</span>[i])+<span class="number">5</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d"</span>,time);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
         </div>
         
         
@@ -582,13 +377,13 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-30T07:19:02.841Z">2019-09-30</time>
+                <time class="level-item has-text-grey" datetime="2020-02-29T02:44:34.914Z">2020-02-29</time>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    a few seconds read (About 0 words)
+                    5 minutes read (About 717 words)
                 </span>
                 
                 
@@ -597,144 +392,36 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/09/30/Android/View/ActionBar%E5%92%8CToolBar%E7%9A%84%E4%BD%BF%E7%94%A8/">Android/View/ActionBar和ToolBar的使用</a>
+                <a class="has-link-black-ter" href="/2020/02/29/PAT/2017-07-27-pat-advanced-1007/">PAT甲级1007. Maximum Subsequence Sum</a>
             
         </h1>
         <div class="content">
-            
-        </div>
-        
-        
-        
-    </div>
-</div>
+            <p>modified: 2017-07-27<br>Given a sequence of K integers { N1, N2, …, NK }. A continuous subsequence is defined to be { Ni, Ni+1, …, Nj } where 1 &lt;= i &lt;= j &lt;= K. The Maximum Subsequence is the continuous subsequence which has the largest sum of its elements. For example, given sequence { -2, 11, -4, 13, -5, -2 }, its maximum subsequence is { 11, -4, 13 } with the largest sum being 20.</p>
+<p>Now you are supposed to find the largest sum, together with the first and the last numbers of the maximum subsequence.</p>
+<p>Input Specification:</p>
+<p>Each input file contains one test case. Each case occupies two lines. The first line contains a positive integer K (&lt;= 10000). The second line contains K numbers, separated by a space.</p>
+<p>Output Specification:</p>
+<p>For each test case, output in one line the largest sum, together with the first and the last numbers of the maximum subsequence. The numbers must be separated by one space, but there must be no extra space at the end of a line. In case that the maximum subsequence is not unique, output the one with the smallest indices i and j (as shown by the sample case). If all the K numbers are negative, then its maximum sum is defined to be 0, and you are supposed to output the first and the last numbers of the whole sequence.</p>
+<p>Sample Input:</p>
+<p>10</p>
+<p>-10 1 2 3 4 -5 -23 3 7 -21</p>
+<p>Sample Output:</p>
+<p>10 1 4</p>
+<h3 id="题目要求："><a href="#题目要求：" class="headerlink" title="题目要求："></a>题目要求：</h3><p>给定一列数，然后求出这一列数中和最大的子列；第一行为输入的数列的数字个数，第二行为给定的数列；要求输出最大和子列的和、最大和子列的首元素、最大和子列末尾元素；数与数之间使用空格隔开，最后一个数后面没有空格；若给定的子列有多个最大和子列，那么按照第一个和子列输出；若给定的数列全部是负数，那么最大子列的和为0，最大子列的首元素为给定数列的首元素，最大子列的末尾元素为给定子列的末尾元素；</p>
+<h3 id="解题思路："><a href="#解题思路：" class="headerlink" title="解题思路："></a>解题思路：</h3><p>sum，为最大子列的的和，sumTemp为最大子列的临时值，leftTmp为sumTemp的下标；依次输入数字，sumTmp+=input,如果sumTmp&lt;0,都应该将leftTmp右移，并令sumTmp=0,相当于将临时子数列舍弃，重新构建一个临时子数列;因为sumTmp&lt;0时无论后面输入的数如何，前面的临时子数列和都会让整体的临时子数列的和减小；</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdio.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdlib.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdbool.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> count, sum = <span class="number">-1</span>, sumTmp = <span class="number">0</span>, left = <span class="number">0</span>, leftTmp = <span class="number">0</span>, right = <span class="number">0</span>, input, first, last;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">int</span> num[<span class="number">10000</span>];</span><br><span class="line"></span><br><span class="line">	<span class="keyword">bool</span> positive = <span class="literal">false</span>, half_positive = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;count);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; count; i++)</span><br><span class="line">	&#123;</span><br><span class="line"></span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;input);</span><br><span class="line">		num[i] = input;</span><br><span class="line">		<span class="keyword">if</span> (input &gt;= <span class="number">0</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			positive = <span class="literal">true</span>;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		sumTmp = sumTmp + input;</span><br><span class="line">		<span class="keyword">if</span> (sum &lt; sumTmp)</span><br><span class="line">		&#123;</span><br><span class="line">			left = leftTmp;</span><br><span class="line">			right = i;</span><br><span class="line">			sum = sumTmp;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (sumTmp &lt; <span class="number">0</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			leftTmp=i+<span class="number">1</span>;</span><br><span class="line">			sumTmp = <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (positive)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d %d %d"</span>, sum, num[left], num[right]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d %d %d"</span>, <span class="number">0</span>, num[<span class="number">0</span>], num[count<span class="number">-1</span>]);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-30T07:19:02.841Z">2019-09-30</time>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    4 minutes read (About 566 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/09/30/Android/View/LayoutInflater%E4%BD%BF%E7%94%A8/">Android/View/LayoutInflater使用</a>
-            
-        </h1>
-        <div class="content">
-            <p>LayoutInflater用于给相应的View对象实例化一个layout(即：将一个xml文件转化为一个View对象),在开发过程中不会直接使用，而是通过Activity.getLayoutInflater()或者Context.getSystemService(Class)方法，获取一个标准的实例，该实例已经与当前Context相关联。</p>
+<h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h3><p>又一次看错了题目，以为输出的是最大子数列的和、最大子数列的下标和上标！！！！即使输出的是上标和下标也会通过测试用例，并且通过平台的部分测试；</p>
+<p>本题中容易被忽略的数列类型有如下：</p>
 <ul>
-<li><p>LayoutInflater通常用于动态载入的页面，使用LayoutInflater的inflate方法动态接入layout文件。</p>
+<li><p>连续0</p>
+<p>5</p>
+<p>0 0 -1 -1 0</p>
 </li>
-<li><p>findViewById用于已载入的界面，使用findViewById来获取其中的界面元素</p>
+<li><p>前面都为负、最后一位为0</p>
+<p>5</p>
+<p>-1 -1 -1 -1 0</p>
 </li>
-</ul>
-<h2 id="获取LayoutInflater实例的方法"><a href="#获取LayoutInflater实例的方法" class="headerlink" title="获取LayoutInflater实例的方法"></a>获取LayoutInflater实例的方法</h2><ul>
-<li><p>1、通过系统服务获取布局加载器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LayoutInflater inflater &#x3D; (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);</span><br></pre></td></tr></table></figure></li>
-<li><p>2、通过activity中的getLayoutInflater()方法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LayoutInflater inflater &#x3D; getLayoutInflater();</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>3、通过LayoutInflater的from静态方法</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LayoutInflater inflater &#x3D; LayoutInflater.from(this)</span><br></pre></td></tr></table></figure>
-
-<p><strong>这三种方式本质都是调用Context.getSystemService()</strong></p>
-<h2 id="使用inflate方法加载布局"><a href="#使用inflate方法加载布局" class="headerlink" title="使用inflate方法加载布局"></a>使用inflate方法加载布局</h2><p>LayoutInflater提供四种加载布局的方法</p>
-<ul>
-<li>public View inflate (int resource, ViewGroup root)</li>
-<li>public View inflate (int resource, ViewGroup root, boolean attachToRoot)</li>
-<li>public View inflate (XmlPullParser parser, ViewGroup root)</li>
-<li>public View inflate (XmlPullParser parser, ViewGroup root, boolean attachToRoot)</li>
-</ul>
-<p><strong>ViewGroup root：指实例的布局所要放入的根视图</strong><br><strong>boolean attachToToot：指是否附加到传入的根视图</strong></p>
-<p>1、当root为null，attachToRoot为任何值都毫无意义，只会单纯加载布局文件。<br>2、当root不为null，attachToRoot设为true,第一个参数指定的layout文件将会inflate并且绑定到root上。<br>3、当root不为null，attachToRoot为false，此时View并没有添加到root,但view的layout属性被保留下来，如果调用addView(View child)，layout属性会自动生效。</p>
-<p><strong>即attachToRoot为true,布局文件的View将会与root绑定，如果为false View将会通过其他方式添加到ViewGroup中，为false时返回View</strong></p>
-<h3 id="示例：将button布局添加到LinearLayout上"><a href="#示例：将button布局添加到LinearLayout上" class="headerlink" title="示例：将button布局添加到LinearLayout上"></a>示例：将button布局添加到LinearLayout上</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;Button xmlns:android&#x3D;”http:&#x2F;&#x2F;schemas.android.com&#x2F;apk&#x2F;res&#x2F;android&quot;</span><br><span class="line"> android:layout_width&#x3D;”match_parent”</span><br><span class="line"> android:layout_height&#x3D;”wrap_content”</span><br><span class="line"> android:text&#x3D;”@string&#x2F;action_attach_to_root_true”</span><br><span class="line"> android:id&#x3D;”@+id&#x2F;button_ok”&gt;</span><br><span class="line">&lt;&#x2F;Button&gt;</span><br></pre></td></tr></table></figure>
-<p>Button的layout params类型是LinearLayout.LayoutParams</p>
-<p><strong>将attachRoot设置为true</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">inflater.inflate(R.layout.view_button, mLinearLayout, true);</span><br></pre></td></tr></table></figure>
-<p><strong>将attachRoot设置为false</strong><br>当attachRoot设置为false后，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Button btn &#x3D; (Button)inflater.inflate</span><br><span class="line">                (R.layout.view_button,parent,false);</span><br><span class="line">parent.addView(btn);</span><br></pre></td></tr></table></figure>
-
-<p>同样的在RecyclerView中需要将attachRoot设置为false，因为在RecyclerView中时由RecyclerView来决定什么时候将childView inflate而不是开发人员。    </p>
-<p><strong>在AlertDialog使用功时，无需传递ViewGroup参数，指定为null即可</strong></p>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-30T07:19:02.827Z">2019-09-30</time>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    2 minutes read (About 258 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/09/30/Android/Android%E5%9F%BA%E7%A1%80/%E5%BC%82%E6%AD%A5%E6%93%8D%E4%BD%9CAsynctask/">Android/Android基础/异步操作Asynctask</a>
-            
-        </h1>
-        <div class="content">
-            <p><strong>知识点：AsyncTask适合短时间的异步操作，如果需要长时间操作，最好使用线程池Executor</strong></p>
-<p>一个AsyncTask对象被创建出来后,就只能执行一个异步任务。</p>
-<p>AsyncTask&lt;Params,Progress,Result&gt;是一个抽象类，继承AsyncTask需要指定三个泛型参数</p>
-<ul>
-<li>Params：启动任务时输入的参数类型</li>
-<li>Progress：后台任务执行中返回进度值的类型</li>
-<li>Result：后台任务执行完成后返回结果类型</li>
-</ul>
-<p>AsyncTask中三个重要函数</p>
-<ul>
-<li>doInBackground：异步执行后台线程要完成的任务在此方法中进行</li>
-<li>onPreExecute：执行后台耗时操作前调用，通常用于初始化操作</li>
-<li>onPostExecute：当doInbackground方法完成后，系统自动调用此方法，并将doInBackground方法的返回值传入此方法中，通过此方法更新UI</li>
-<li>onProgressUpdate：当在doInBackground方法中调用publishProgress方法更新任务进度后，可以在此方法中更细UI进度。</li>
 </ul>
 
         </div>
@@ -758,13 +445,13 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-30T07:19:02.820Z">2019-09-30</time>
+                <time class="level-item has-text-grey" datetime="2020-02-29T02:44:34.908Z">2020-02-29</time>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    7 minutes read (About 998 words)
+                    3 minutes read (About 389 words)
                 </span>
                 
                 
@@ -773,39 +460,22 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/09/30/Android/Android%E5%9F%BA%E7%A1%80/Handler%20Looper%E4%BB%8B%E7%BB%8D/">Android/Android基础/Handler Looper介绍</a>
+                <a class="has-link-black-ter" href="/2020/02/29/PAT/2017-07-27-pat-advanced-1005/">PAT甲级1005. Spell It Right</a>
             
         </h1>
         <div class="content">
-            <h1 id="Handler介绍"><a href="#Handler介绍" class="headerlink" title="Handler介绍"></a>Handler介绍</h1><p>Handler直接继承于Object类</p>
-<p>Handler与一个线程的<code>MessageQueue</code>进行绑定，可以用于<code>Message</code>的发送与处理以及<code>Runnable</code>对象的处理。Handler对象被创建时，就与创建自己的线程以及该线程的<code>Message Queue</code>相绑定，它可以将messages以及runnables对象传递到<code>Message Queue</code>，并对<code>Message Queue</code>中的messages以及runnables对象进行处理。</p>
-<p>Handler使用的两个主要方面：<br>1、对messages以及runnables在将来某一个节点执行进行调度；<br>2、在非当前线程执行其他操作</p>
-<p>Handler对Message的调度通过<code>post(Runnable)</code>, <code>postAtTime(Runnable, long)</code>, <code>postDelayed(Runnable, Object, long)</code>, <code>sendEmptyMessage(int)</code>, <code>sendMessage(Message)</code>, <code>sendMessageAtTime(Message, long)</code>, 以及·、<code>sendMessageDelayed(Message, long)</code>等方法进行，<code>post</code>方法可以将<code>Runnable</code>对象插入到队列中，当消息队列收到<code>Runnable</code>对象时，可以执行。<code>sendMessage</code>方法可以将<code>Message</code>对象（其中包含大量数据）插入到队列中，通过<code>HandlerMessage</code>方法进行处理。</p>
-<p>当向Handler发送消息时，既可以立刻处理消息，也可以指定延时处理。</p>
-<p>当应用程序创建一个进程之后，它的主线程用于持有的<code>Message Queue</code>用于管理“顶级”的应用对象(<code>Activity</code> <code>Broadcast Receiver</code>等)和他们创建的窗口。当创建自己的线程时，可以通过<code>Handler</code>与应用的主线程进行信息交换。</p>
-<h1 id="Looper介绍"><a href="#Looper介绍" class="headerlink" title="Looper介绍"></a>Looper介绍</h1><p>Looper直接继承于Object</p>
-<p>Looper类用于运行一个线程中的message loop，线程在默认状态下没有message loop与之相关联；需要通过调用thread类中的<code>prepare()</code>方法来运行一个loop，<code>loop()</code>方法用来处理message。</p>
-<p>与message loop进行大部分交互都是通过<code>Handler</code>类来进行。</p>
-<p>下列代码是实现一个<code>Looper</code>线程的方式，通过分离开的<code>prepare()</code>以及<code>loop()</code>方法初始化一个Handler与Looper进行交互。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LooperThread</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">     <span class="keyword">public</span> Handler mHandler;</span><br><span class="line"></span><br><span class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">         Looper.prepare();</span><br><span class="line"></span><br><span class="line">         mHandler = <span class="keyword">new</span> Handler() &#123;</span><br><span class="line">             <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handleMessage</span><span class="params">(Message msg)</span> </span>&#123;</span><br><span class="line">                 <span class="comment">// process incoming messages here</span></span><br><span class="line">             &#125;</span><br><span class="line">         &#125;;</span><br><span class="line"></span><br><span class="line">         Looper.loop();</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="MessageQueue介绍"><a href="#MessageQueue介绍" class="headerlink" title="MessageQueue介绍"></a>MessageQueue介绍</h1><p>MessageQueue直接继承于Object</p>
-<p>Message不能直接添加至<code>Message Queue</code>中，需要通过与<code>Looper</code>相关联的<code>Handler</code>对象来实现。通过<code>Looper.myQueue</code>方法可以从当前线程中获取<code>MessageQueue</code></p>
-<h3 id="从源码角度分析Handler、Looper、MessageQueue三者之间的关系"><a href="#从源码角度分析Handler、Looper、MessageQueue三者之间的关系" class="headerlink" title="从源码角度分析Handler、Looper、MessageQueue三者之间的关系"></a>从源码角度分析Handler、Looper、MessageQueue三者之间的关系</h3><p><code>Handler</code>默认构造函数<code>Handler()</code>，将自己与当前线程的<code>Looper</code>进行绑定，如果当前线程中没有<code>Looper</code>对象，会报出异常。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">  </span><br><span class="line">&#x2F;&#x2F;Handler源码117行</span><br><span class="line">public Handler() &#123;</span><br><span class="line">    this(null, false);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;Handler源码131行</span><br><span class="line">  public Handler(Callback callback) &#123;</span><br><span class="line">    this(callback, false);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>通过<code>Looper.prepare();</code>为当前线程设置一个<code>Looper</code><br>具体流程：<br>其中<code>prepare()</code>方法是<code>Looper</code>类中的静态方法；在<code>prepare(boolean quitAllowed)</code>方法中调用<code>sThreadLocal.set(new Looper(quitAllowed));</code>当前线程设置一个新的<code>Looper</code>在构造函数<code>Looper(boolean quitAllowed)</code>中，该<code>Looper</code>创建了一个新的<code>MessageQueue</code>(mQueue = new MessageQueue(quitAllowed););</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#x2F;&#x2F;Looper源码97行</span><br><span class="line">   public static void prepare() &#123;</span><br><span class="line">    prepare(true);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">private static void prepare(boolean quitAllowed) &#123;</span><br><span class="line">    if (sThreadLocal.get() !&#x3D; null) &#123;</span><br><span class="line">        throw new RuntimeException(&quot;Only one Looper may be created per thread&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    sThreadLocal.set(new Looper(quitAllowed));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;Looper源码267行</span><br><span class="line">    private Looper(boolean quitAllowed) &#123;</span><br><span class="line">    mQueue &#x3D; new MessageQueue(quitAllowed);</span><br><span class="line">    mThread &#x3D; Thread.currentThread();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<p>在Handler源码的192行中，通过<code>mLooper = Looper.myLooper();</code>来获取当前线程中的<code>Looper</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">   &#x2F;&#x2F;Handler源码192行</span><br><span class="line">public Handler(Callback callback, boolean async) &#123;</span><br><span class="line">    </span><br><span class="line">      mLooper &#x3D; Looper.myLooper();</span><br><span class="line">      if (mLooper &#x3D;&#x3D; null) &#123;</span><br><span class="line">          throw new RuntimeException(</span><br><span class="line">              &quot;Can&#39;t create handler inside thread &quot; + Thread.currentThread()</span><br><span class="line">                      + &quot; that has not called Looper.prepare()&quot;);</span><br><span class="line">      &#125;</span><br><span class="line">      mQueue &#x3D; mLooper.mQueue;</span><br><span class="line">      mCallback &#x3D; callback;</span><br><span class="line">      mAsynchronous &#x3D; async;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"> &#x2F;&#x2F;Looper71行</span><br><span class="line">  static final ThreadLocal&lt;Looper&gt; sThreadLocal &#x3D; new ThreadLocal&lt;Looper&gt;();</span><br><span class="line"></span><br><span class="line"> &#x2F;&#x2F;Looper97行</span><br><span class="line"></span><br><span class="line"> &#x2F;&#x2F;Looper源码254行</span><br><span class="line">   public static @Nullable Looper myLooper() &#123;</span><br><span class="line">      return sThreadLocal.get();</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="Handler发送消息机制"><a href="#Handler发送消息机制" class="headerlink" title="Handler发送消息机制"></a>Handler发送消息机制</h2><p>Handler调用<code>sendMessage(Message msg)</code>方法最终会一步一步调用<code>sendMessageAtTime(Message msg, long uptimeMillis)</code>在该方法中通过<code>MessageQueue queue = mQueue;</code>获取到MessageQueue，调用  用<code>enqueueMessage(MessageQueue queue, Message msg, long uptimeMillis)</code>方法将<code>Message</code>加入到消息队列中</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;Handler源码中的689行</span><br><span class="line">    public boolean sendMessageAtTime(Message msg, long uptimeMillis) &#123;</span><br><span class="line">     MessageQueue queue &#x3D; mQueue;</span><br><span class="line">     if (queue &#x3D;&#x3D; null) &#123;</span><br><span class="line">         RuntimeException e &#x3D; new RuntimeException(</span><br><span class="line">                 this + &quot; sendMessageAtTime() called with no mQueue&quot;);</span><br><span class="line">         Log.w(&quot;Looper&quot;, e.getMessage(), e);</span><br><span class="line">         return false;</span><br><span class="line">     &#125;</span><br><span class="line">     return enqueueMessage(queue, msg, uptimeMillis);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Handler消息处理机制"><a href="#Handler消息处理机制" class="headerlink" title="Handler消息处理机制"></a>Handler消息处理机制</h2>
+            <p>modified: 2017-07-27<br>Given a non-negative integer N, your task is to compute the sum of all the digits of N, and output every digit of the sum in English.</p>
+<p>Input Specification:</p>
+<p>Each input file contains one test case. Each case occupies one line which contains an N (&lt;= 10100).</p>
+<p>Output Specification:</p>
+<p>For each test case, output in one line the digits of the sum in English words. There must be one space between two consecutive words, but no extra space at the end of a line.</p>
+<p>Sample Input:<br>12345</p>
+<p>Sample Output:<br>one five</p>
+<h3 id="题目要求："><a href="#题目要求：" class="headerlink" title="题目要求："></a>题目要求：</h3><p>任给一个非负整数N，计算整数的每一位的和，并输出每一位的英文；</p>
+<p>输入：输入的N&lt;=10100</p>
+<p>输出：计算的每一位的和的每一位对应一个英文单词，而且英文单词之间需要有一个空格，最后一位之后没有空格</p>
+<h3 id="解题思路："><a href="#解题思路：" class="headerlink" title="解题思路："></a>解题思路：</h3><p>首先将整数的每一位进行分离，然后计算出和，计算出和后也需要将每一位分离；将整数的每一位分离的方法采用除10取余的方式；和的每一位分离时，是从整数的最小位开始，而整数输出需要从最高位开始，因此需要将分离的数位存储在一个数组中；</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdlib.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdio.h"</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">char</span> ch;</span><br><span class="line">	<span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> words[<span class="number">4</span>];</span><br><span class="line">	<span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">	ch = getchar();</span><br><span class="line">	<span class="keyword">while</span> (ch != <span class="string">'\n'</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		sum += ch - <span class="string">'0'</span>;</span><br><span class="line">		ch = getchar();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span> (sum / <span class="number">10</span> &gt; <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		words[count++] = sum % <span class="number">10</span>;</span><br><span class="line">		sum = sum / <span class="number">10</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	words[count++] = sum % <span class="number">10</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = count - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">switch</span> (words[i])</span><br><span class="line">		&#123;</span><br><span class="line">		<span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"zero"</span>);</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"one"</span>);</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"two"</span>);</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"three"</span>);</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> <span class="number">4</span>:</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"four"</span>);</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> <span class="number">5</span>:</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"five"</span>);</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> <span class="number">6</span>:</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"six"</span>);</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> <span class="number">7</span>:</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"seven"</span>);</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> <span class="number">8</span>:</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"eight"</span>);</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> <span class="number">9</span>:</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"nine"</span>);</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">default</span>:</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (i!=<span class="number">0</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">" "</span>);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
         </div>
         
         
@@ -827,13 +497,13 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-30T07:19:02.815Z">2019-09-30</time>
+                <time class="level-item has-text-grey" datetime="2020-02-29T02:44:34.886Z">2020-02-29</time>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    a minute read (About 170 words)
+                    4 minutes read (About 633 words)
                 </span>
                 
                 
@@ -842,88 +512,203 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/09/30/Android/Android%E5%9F%BA%E7%A1%80/getSystemService%E7%9A%84%E4%BD%BF%E7%94%A8/">Android/Android基础/getSystemService的使用</a>
+                <a class="has-link-black-ter" href="/2020/02/29/PAT/2017-07-27-pat-advanced-1002/">PAT甲级1002. A+B for Polynomials</a>
             
         </h1>
         <div class="content">
-            <p>getSystemService是Activity的一个方法，根据传入的name得到对应的Object,然后转换成相应的服务对象；</p>
-<table>
-<thead>
-<tr>
-<th>传入的Name</th>
-<th>返回的对象</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>WINDOW_SERVICE</td>
-<td>WindowManager</td>
-<td>管理打开的窗口程序</td>
-</tr>
-<tr>
-<td>LAYOUT_INFLATER_SERVICE</td>
-<td>LayoutInflater</td>
-<td>取得xml里定义的view</td>
-</tr>
-<tr>
-<td>ACTIVITY_SERVICE</td>
-<td>ActivityManager</td>
-<td>管理应用程序的系统状态</td>
-</tr>
-<tr>
-<td>POWER_SERVICE</td>
-<td>PowerManger</td>
-<td>电源的服务</td>
-</tr>
-<tr>
-<td>ALARM_SERVICE</td>
-<td>AlarmManager</td>
-<td>闹钟的服务</td>
-</tr>
-<tr>
-<td>NOTIFICATION_SERVICE</td>
-<td>NotificationManager</td>
-<td>状态栏的服务</td>
-</tr>
-<tr>
-<td>KEYGUARD_SERVICE</td>
-<td>KeyguardManager</td>
-<td>键盘锁的服务</td>
-</tr>
-<tr>
-<td>LOCATION_SERVICE</td>
-<td>LocationManager</td>
-<td>位置的服务，如GPS</td>
-</tr>
-<tr>
-<td>SEARCH_SERVICE</td>
-<td>SearchManager</td>
-<td>搜索的服务</td>
-</tr>
-<tr>
-<td>VEBRATOR_SERVICE</td>
-<td>Vebrator</td>
-<td>手机震动的服务</td>
-</tr>
-<tr>
-<td>CONNECTIVITY_SERVICE</td>
-<td>Connectivity</td>
-<td>网络连接的服务</td>
-</tr>
-<tr>
-<td>WIFI_SERVICE</td>
-<td>WifiManager</td>
-<td>Wi-Fi服务</td>
-</tr>
-<tr>
-<td>TELEPHONY_SERVICE</td>
-<td>TeleponyManager</td>
-<td>电话服务</td>
-</tr>
-</tbody></table>
+            <p>modified: 2017-07-27</p>
+<p>This time, you are supposed to find A+B where A and B are two polynomials.</p>
+<p>Input</p>
+<p>Each input file contains one test case. Each case occupies 2 lines, and each line contains the information of a polynomial: K N1 aN1 N2 aN2 … NK aNK, where K is the number of nonzero terms in the polynomial, Ni and aNi (i=1, 2, …, K) are the exponents and coefficients, respectively. It is given that 1 &lt;= K &lt;= 10，0 &lt;= NK &lt; … &lt; N2 &lt; N1 &lt;=1000.</p>
+<p>Output</p>
+<p>For each test case you should output the sum of A and B in one line, with the same format as the input. Notice that there must be NO extra space at the end of each line. Please be accurate to 1 decimal place.</p>
+<p>Sample Input</p>
+<p>2 1 2.4 0 3.2</p>
+<p>2 2 1.5 1 0.5</p>
+<p>Sample Output</p>
+<p>3 2 1.5 1 2.9 0 3.2</p>
+<h3 id="题目要求："><a href="#题目要求：" class="headerlink" title="题目要求："></a>题目要求：</h3><p>两个多项式相加，多项式的输入为  K N1 aN1 N2 aN2 … 其中K代表项数，N1…代表指数，aN1代表系数，每个多项式的项数不超过10；要求将两个多项式相加后输出非零项，输出格式与输入格式相同，系数保留一位小数；相邻两个输出数字之间需要有空格，输出最后没有空格；</p>
+<h3 id="解题思路："><a href="#解题思路：" class="headerlink" title="解题思路："></a>解题思路：</h3><p>定义三个float类型的数组，两个用于保存输入的多项式，一个用于保存输出的多项式；输入的奇数项是指数，偶数项是系数，所以可以对指数进行比较，如果相同则将指数和相加后的系数保存在第三个数组中，不同则将指数较大的项的指数和系数保存在第三个数组中；</p>
+<ul>
+<li>本题目采用C语言进行编写</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> k1, k2, k3, count1 = <span class="number">0</span>, count2 = <span class="number">0</span>, count3 = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">float</span> NA1[<span class="number">20</span>] = &#123; <span class="number">0</span> &#125;;</span><br><span class="line">	<span class="keyword">float</span> NA2[<span class="number">20</span>] = &#123; <span class="number">0</span> &#125;;</span><br><span class="line">	<span class="keyword">float</span> NA3[<span class="number">40</span>] = &#123; <span class="number">0</span> &#125;;</span><br><span class="line">	<span class="keyword">char</span> ch;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;k1);</span><br><span class="line">	<span class="keyword">while</span> (ch = getchar() != <span class="string">'\n'</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%f"</span>, &amp;NA1[count1++]);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;k2);</span><br><span class="line">	<span class="keyword">while</span> (ch = getchar() != <span class="string">'\n'</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%f"</span>, &amp;NA2[count2++]);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	count1 = count2 = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span> (count1 &lt; <span class="number">2</span> * k1  &amp;&amp; count2 &lt; <span class="number">2</span> * k2)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (NA1[count1] == NA2[count2])</span><br><span class="line">		&#123;</span><br><span class="line">			NA3[count3++] = NA1[count1++];</span><br><span class="line">			count2 += <span class="number">1</span>;</span><br><span class="line">			NA3[count3++] = NA1[count1++] + NA2[count2++];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (NA1[count1] &gt; NA2[count2])</span><br><span class="line">		&#123;</span><br><span class="line">			NA3[count3++] = NA1[count1++];</span><br><span class="line">			NA3[count3++] = NA1[count1++];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">			NA3[count3++] = NA2[count2++];</span><br><span class="line">			NA3[count3++] = NA2[count2++];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span> (count1 &lt; <span class="number">2</span> * k1) &#123;</span><br><span class="line">		NA3[count3++] = NA1[count1++];</span><br><span class="line">		NA3[count3++] = NA1[count1++];</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span> (count2 &lt; <span class="number">2</span> * k2)</span><br><span class="line">	&#123;</span><br><span class="line">		NA3[count3++] = NA2[count2++];</span><br><span class="line">		NA3[count3++] = NA2[count2++];</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	k3 = (count3 + <span class="number">1</span>) / <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; count3; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (i % <span class="number">2</span> == <span class="number">0</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (NA3[i + <span class="number">1</span>] == <span class="number">0</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				i++;</span><br><span class="line">				k3--;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d"</span>, k3);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; count3; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (i % <span class="number">2</span> == <span class="number">0</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (NA3[i + <span class="number">1</span>] == <span class="number">0</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				i++;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">			&#123;</span><br><span class="line">				<span class="built_in">printf</span>(<span class="string">" "</span>);</span><br><span class="line">				<span class="built_in">printf</span>(<span class="string">"%d"</span>, (<span class="keyword">int</span>)NA3[i]);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">" "</span>);</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"%.1f"</span>, NA3[i]);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h3><p>在多项式相加中易被忽略的测试实例有：相加后的第一项为零，相加后最后一项为零，相加后整体为0；数据输出若系数为4，则应输出4.0才可通过测试；输出空格的技巧，除了项数不需要输出空格，其他空格都在数据输出之前；</p>
 
         </div>
         
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-02-29T02:44:34.831Z">2020-02-29</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    2 minutes read (About 371 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/02/29/PAT/2017-07-27-pat-advanced-1001/">PAT甲级1001. A+B Format</a>
+            
+        </h1>
+        <div class="content">
+            <p>modified: 2017-07-27</p>
+<ul>
+<li>A+B Format (20)</li>
+</ul>
+<p>Calculate a + b and output the sum in standard format – that is, the digits must be separated into groups of three by commas (unless there are less than four digits).</p>
+<p>Input</p>
+<p>Each input file contains one test case. Each case contains a pair of integers a and b where -1000000 &lt;= a, b &lt;= 1000000. The numbers are separated by a space.</p>
+<p>Output</p>
+<p>For each test case, you should output the sum of a and b in one line. The sum must be written in the standard format.</p>
+<p>Sample Input<br>-1000000 9</p>
+<p>Sample Output<br>-999,991</p>
+<h3 id="题目要求："><a href="#题目要求：" class="headerlink" title="题目要求："></a>题目要求：</h3><p>计算a+b然后格式化输出结果，格式化输出要求：结果如果超过四位，就用小数点每三位隔开输出；</p>
+<p>输入：输入两个在[-1000000,1000000]的a,b两个数</p>
+<p>输出：应该在一行格式化输出</p>
+<h3 id="解题思路："><a href="#解题思路：" class="headerlink" title="解题思路："></a>解题思路：</h3><p>a,b的和的取值范围为[-1000000,1000000]没有超过C语言int类型数据的范围，所以不用担心溢出的问题，结果每三位需要输出一个逗号，将结果不断除1000取余，就会没一次得到少于三位的余数，需要对余数进行判断，不足三位的需要用0补足最高位，但最后一次取余不需要用零来补位。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdio.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdlib.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> a = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> b = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> c = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> num = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> tmp[<span class="number">3</span>];</span><br><span class="line"></span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;a, &amp;b);</span><br><span class="line">	c = a + b;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (c &lt; <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%c"</span>, <span class="string">'-'</span>);</span><br><span class="line">		c = -c;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span> (c/<span class="number">1000</span>&gt;=<span class="number">1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		tmp[num] = c % <span class="number">1000</span>;</span><br><span class="line">		num++;</span><br><span class="line">		c = c / <span class="number">1000</span>;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	tmp[num] = c;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span>  i = num; i &gt;=<span class="number">0</span>; i--)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (i==num)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"%d"</span>, tmp[i]);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (tmp[i]&lt;<span class="number">10</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="built_in">printf</span>(<span class="string">"%s%d"</span>, <span class="string">",00"</span>, tmp[i]);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span> (tmp[i]&lt;<span class="number">100</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="built_in">printf</span>(<span class="string">"%s%d"</span>, <span class="string">",0"</span>, tmp[i]);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">			&#123;</span><br><span class="line">				<span class="built_in">printf</span>(<span class="string">"%s%d"</span>, <span class="string">","</span>, tmp[i]);</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/2020/02/27/hello-world/" class="image is-7by1">
+            <img class="thumbnail" src="/assets/Android%20JNI.png" alt="Hello World">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-02-27T03:04:11.132Z">2020-02-27</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    a minute read (About 124 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/02/27/hello-world/">Hello World</a>
+            
+        </h1>
+        <div class="content">
+            <p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2020/02/27/hello-world/#more">Read More</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/2019/11/30/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="image is-7by1">
+            <img class="thumbnail" src="/assets/Android%20JNI.png" alt="Android/框架/Retrofit 2.5 框架使用与源码分析">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-11-30T11:13:20.728Z">2019-11-30</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Android/">Android</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    14 minutes read (About 2117 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/11/30/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">Android/框架/Retrofit 2.5 框架使用与源码分析</a>
+            
+        </h1>
+        <div class="content">
+            <h2 id="Retrofit-框架使用"><a href="#Retrofit-框架使用" class="headerlink" title="Retrofit 框架使用"></a>Retrofit 框架使用</h2><h4 id="请求内容与返回值"><a href="#请求内容与返回值" class="headerlink" title="请求内容与返回值"></a>请求内容与返回值</h4><p>使用PostMan进行请求测试<br>请求：<code>https://api.github.com/search/repositories?q=android</code></p>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2019/11/30/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/#more">Read More</a>
+                </div>
+            </div>
+        </div>
         
         
     </div>
@@ -958,7 +743,7 @@
             
             <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
             
-            <li><a class="pagination-link has-text-black-ter" href="/page/8/">8</a></li>
+            <li><a class="pagination-link has-text-black-ter" href="/page/10/">10</a></li>
             
         </ul>
     </nav>
@@ -1008,7 +793,7 @@
                     </p>
                     <a href="/archives">
                         <p class="title has-text-weight-normal">
-                            72
+                            100
                         </p>
                     </a>
                 </div>
@@ -1016,11 +801,11 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Categories
+                        Category
                     </p>
                     <a href="/categories">
                         <p class="title has-text-weight-normal">
-                            0
+                            1
                         </p>
                     </a>
                 </div>
@@ -1032,7 +817,7 @@
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            0
+                            5
                         </p>
                     </a>
                 </div>
@@ -1106,13 +891,28 @@
                 Categories
             </h3>
             <ul class="menu-list">
-            
+            <li>
+        <a class="level is-marginless" href="/categories/Android/">
+            <span class="level-start">
+                <span class="level-item">Android</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li>
             </ul>
         </div>
     </div>
 </div>
     
-        
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Tag Cloud
+        </h3>
+        <a href="/tags/Android/" style="font-size: 13.33px;">Android</a> <a href="/tags/error/" style="font-size: 10px;">error</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/pat/" style="font-size: 16.67px;">pat</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 20px;">数据结构</a>
+    </div>
+</div>
     
     
         <div class="column-right-shadow is-hidden-widescreen is-sticky">
@@ -1125,16 +925,16 @@
         
         <article class="media">
             
-            <a href="/2020/02/26/hello-world/" class="media-left">
+            <a href="/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-09-android-ViewModel-introduction/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Hello World">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Android lifecycle-aware components">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-26T12:43:14.002Z">2020-02-26</time></div>
-                    <a href="/2020/02/26/hello-world/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Hello World</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:21.663Z">2020-02-29</time></div>
+                    <a href="/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-09-android-ViewModel-introduction/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android lifecycle-aware components</a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
@@ -1144,16 +944,16 @@
         
         <article class="media">
             
-            <a href="/2019/11/30/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="media-left">
+            <a href="/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-01-android-broadcast-introduction/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Android/框架/Retrofit 2.5 框架使用与源码分析">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Android Broadcast介绍">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-30T11:13:20.728Z">2019-11-30</time></div>
-                    <a href="/2019/11/30/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android/框架/Retrofit 2.5 框架使用与源码分析</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:21.654Z">2020-02-29</time></div>
+                    <a href="/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-01-android-broadcast-introduction/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android Broadcast介绍</a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
@@ -1163,16 +963,16 @@
         
         <article class="media">
             
-            <a href="/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/README/" class="media-left">
+            <a href="/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-07-31-android-service-introduction/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Kotlin/Kotlin基础/README">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Android Service介绍">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:23.104Z">2019-11-28</time></div>
-                    <a href="/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/README/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Kotlin/Kotlin基础/README</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:21.613Z">2020-02-29</time></div>
+                    <a href="/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-07-31-android-service-introduction/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android Service介绍</a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
@@ -1182,16 +982,16 @@
         
         <article class="media">
             
-            <a href="/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="media-left">
+            <a href="/2020/02/29/Data_Structure/2017-08-28-data-structure-huffman-tree/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Kotlin/Kotlin基础/Lambda表达式">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Huffman树的算法实现">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:23.103Z">2019-11-28</time></div>
-                    <a href="/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Kotlin/Kotlin基础/Lambda表达式</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:09.033Z">2020-02-29</time></div>
+                    <a href="/2020/02/29/Data_Structure/2017-08-28-data-structure-huffman-tree/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Huffman树的算法实现</a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
@@ -1201,16 +1001,16 @@
         
         <article class="media">
             
-            <a href="/2019/11/28/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/Img/README/" class="media-left">
+            <a href="/2020/02/29/Data_Structure/2017-08-27-data-structure-heap-sort/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Java/设计模式/Img/README">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="堆排序">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:23.102Z">2019-11-28</time></div>
-                    <a href="/2019/11/28/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/Img/README/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java/设计模式/Img/README</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:09.000Z">2020-02-29</time></div>
+                    <a href="/2020/02/29/Data_Structure/2017-08-27-data-structure-heap-sort/" class="title has-link-black-ter is-size-6 has-text-weight-normal">堆排序</a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
@@ -1235,7 +1035,7 @@
                     <span class="level-item">February 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">29</span>
                 </span>
             </a>
         </li>
@@ -1274,6 +1074,41 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Android/">
+                        <span class="tag">Android</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/error/">
+                        <span class="tag">error</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/git/">
+                        <span class="tag">git</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/pat/">
+                        <span class="tag">pat</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                        <span class="tag">数据结构</span>
+                        <span class="tag is-grey">16</span>
+                    </a>
+                </div>
                 
             </div>
         </div>
@@ -1299,16 +1134,16 @@
         
         <article class="media">
             
-            <a href="/2020/02/26/hello-world/" class="media-left">
+            <a href="/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-09-android-ViewModel-introduction/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Hello World">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Android lifecycle-aware components">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-26T12:43:14.002Z">2020-02-26</time></div>
-                    <a href="/2020/02/26/hello-world/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Hello World</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:21.663Z">2020-02-29</time></div>
+                    <a href="/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-09-android-ViewModel-introduction/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android lifecycle-aware components</a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
@@ -1318,16 +1153,16 @@
         
         <article class="media">
             
-            <a href="/2019/11/30/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="media-left">
+            <a href="/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-01-android-broadcast-introduction/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Android/框架/Retrofit 2.5 框架使用与源码分析">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Android Broadcast介绍">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-30T11:13:20.728Z">2019-11-30</time></div>
-                    <a href="/2019/11/30/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android/框架/Retrofit 2.5 框架使用与源码分析</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:21.654Z">2020-02-29</time></div>
+                    <a href="/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-01-android-broadcast-introduction/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android Broadcast介绍</a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
@@ -1337,16 +1172,16 @@
         
         <article class="media">
             
-            <a href="/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/README/" class="media-left">
+            <a href="/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-07-31-android-service-introduction/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Kotlin/Kotlin基础/README">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Android Service介绍">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:23.104Z">2019-11-28</time></div>
-                    <a href="/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/README/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Kotlin/Kotlin基础/README</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:21.613Z">2020-02-29</time></div>
+                    <a href="/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-07-31-android-service-introduction/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android Service介绍</a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
@@ -1356,16 +1191,16 @@
         
         <article class="media">
             
-            <a href="/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="media-left">
+            <a href="/2020/02/29/Data_Structure/2017-08-28-data-structure-huffman-tree/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Kotlin/Kotlin基础/Lambda表达式">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Huffman树的算法实现">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:23.103Z">2019-11-28</time></div>
-                    <a href="/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Kotlin/Kotlin基础/Lambda表达式</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:09.033Z">2020-02-29</time></div>
+                    <a href="/2020/02/29/Data_Structure/2017-08-28-data-structure-huffman-tree/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Huffman树的算法实现</a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
@@ -1375,16 +1210,16 @@
         
         <article class="media">
             
-            <a href="/2019/11/28/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/Img/README/" class="media-left">
+            <a href="/2020/02/29/Data_Structure/2017-08-27-data-structure-heap-sort/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Java/设计模式/Img/README">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="堆排序">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:23.102Z">2019-11-28</time></div>
-                    <a href="/2019/11/28/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/Img/README/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java/设计模式/Img/README</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:09.000Z">2020-02-29</time></div>
+                    <a href="/2020/02/29/Data_Structure/2017-08-27-data-structure-heap-sort/" class="title has-link-black-ter is-size-6 has-text-weight-normal">堆排序</a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
@@ -1409,7 +1244,7 @@
                     <span class="level-item">February 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">29</span>
                 </span>
             </a>
         </li>
@@ -1448,6 +1283,41 @@
                 Tags
             </h3>
             <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Android/">
+                        <span class="tag">Android</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/error/">
+                        <span class="tag">error</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/git/">
+                        <span class="tag">git</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/pat/">
+                        <span class="tag">pat</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                        <span class="tag">数据结构</span>
+                        <span class="tag is-grey">16</span>
+                    </a>
+                </div>
                 
             </div>
         </div>
@@ -1474,9 +1344,29 @@
                 Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> & <a
                         href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a>
                 
+                <br>
+                <span id="busuanzi_container_site_uv">
+                Visited by <span id="busuanzi_value_site_uv">0</span> users
+                </span>
+                <span id="busuanzi_container_site_pv">
+                <span id="busuanzi_value_site_pv">0</span> visits
+                </span>
+                
                 </p>
             </div>
             <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
             
             </div>
         </div>

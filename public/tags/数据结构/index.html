@@ -1,0 +1,1621 @@
+<!DOCTYPE html>
+<html  lang="en">
+<head>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 4.2.0" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>Tag: 数据结构 - Android Development</title>
+
+
+    <meta name="description" content="程序员">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Android Development">
+<meta property="og:url" content="http://yoursite.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/index.html">
+<meta property="og:site_name" content="Android Development">
+<meta property="og:description" content="程序员">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/images/og_image.png">
+<meta property="article:author" content="Lucius Zhao">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/images/og_image.png">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/favicon.svg">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+    
+    
+    
+    
+    
+    
+    
+    <link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+    
+    <script async="" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.svg" alt="Android Development" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">Home</a>
+                
+                <a class="navbar-item"
+                href="/archives">Archives</a>
+                
+                <a class="navbar-item"
+                href="/categories">Categories</a>
+                
+                <a class="navbar-item"
+                href="/tags">Tags</a>
+                
+                <a class="navbar-item"
+                href="/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                
+                
+                <a class="navbar-item search" title="Search" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    <div class="card-content">
+        <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+            <li><a href="/tags">Tags</a></li>
+            <li class="is-active"><a href="#" aria-current="page">数据结构</a></li>
+        </ul>
+        </nav>
+    </div>
+</div>
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-02-29T02:45:09.033Z">2020-02-29</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    4 minutes read (About 571 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/02/29/Data_Structure/2017-08-28-data-structure-huffman-tree/">Huffman树的算法实现</a>
+            
+        </h1>
+        <div class="content">
+            <p>modified  2017-08-27</p>
+<h2 id="Huffman树"><a href="#Huffman树" class="headerlink" title="Huffman树"></a>Huffman树</h2><p>Huffman树，又称最优二叉树或哈夫曼树，是一类加权路径长度最短的二叉树；</p>
+<h3 id="Huffman算法"><a href="#Huffman算法" class="headerlink" title="Huffman算法"></a>Huffman算法</h3><p>设给定的权重集合为{7，5，2，4，6}，构造Huffman树的过程如下图所示。首先构造每棵树只有一个结点的森林，然后每次选择两个根结点权重最小的二叉树，以它们为左、右子树构造新的二叉树，最后得到一棵二叉树<br>/source/img/DataStructure/huffman_tree2.jpg</p>
+<h3 id="构造Huffman树的算法实现"><a href="#构造Huffman树的算法实现" class="headerlink" title="构造Huffman树的算法实现"></a>构造Huffman树的算法实现</h3><ul>
+<li>Huffman树的结点结构定义</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">HuffmanNode</span> &#123;</span></span><br><span class="line">	<span class="keyword">char</span> data;              <span class="comment">//数据</span></span><br><span class="line">	<span class="keyword">int</span> weight;             <span class="comment">//权重</span></span><br><span class="line">	<span class="keyword">int</span> lChild, rChild, parent; <span class="comment">//指针</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Huffman树的结构定义</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">HuffmanTree</span> &#123;</span></span><br><span class="line">	HuffmanNode elem[totalNumber];  <span class="comment">//树的存储数组</span></span><br><span class="line">	<span class="keyword">int</span> n;                          <span class="comment">//当前外结点的个数</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>构造Huffman树</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">createHuffmanTree</span><span class="params">(HuffmanTree &amp;HT,<span class="keyword">int</span> weight[],<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	<span class="comment">//给出n个权重的数组，构造Huffman树HT</span></span><br><span class="line">	<span class="keyword">int</span> p1,p2, min1, min2;                   <span class="comment">//p1记最小的位置，p2记次小的位置，min1是最小的值，min2是次小的值</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">		HT.elem[i].weight = weight[i];        <span class="comment">//权重传到树中</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">2</span>*n<span class="number">-1</span>; i++)            <span class="comment">//元素初始化</span></span><br><span class="line">		HT.elem[i].parent = HT.elem[i].lChild = HT.elem[i].rChild = <span class="number">-1</span>;</span><br><span class="line">	p1 = p2 = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> ( <span class="keyword">int</span> i = n; i &lt;<span class="number">2</span>*n<span class="number">-1</span>; i++)          <span class="comment">//逐个非叶节点构造</span></span><br><span class="line">	&#123;</span><br><span class="line">		min1 = min2 = <span class="number">100</span>;</span><br><span class="line">		<span class="keyword">for</span> ( <span class="keyword">int</span> j = <span class="number">0</span>; j &lt; i; j++)          <span class="comment">//寻找具有最小、次小值的根建树</span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (HT.elem[j].parent== <span class="number">-1</span>) &#123;    <span class="comment">//父指针为-1，则此时该节点没有父亲</span></span><br><span class="line">				<span class="keyword">if</span> (HT.elem[j].weight&lt;min1)   <span class="comment">//比原来最小的还要小</span></span><br><span class="line">				&#123;</span><br><span class="line">					p2 = p1;                   </span><br><span class="line">					min2 = min1;               <span class="comment">//原来最小的变为最小</span></span><br><span class="line">					p1 = j;</span><br><span class="line">					min1 = HT.elem[j].weight;   <span class="comment">//记下新的最小值</span></span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">else</span> <span class="keyword">if</span> (HT.elem[j].weight&lt;min2) <span class="comment">//比原来的次小还要小</span></span><br><span class="line">				&#123;</span><br><span class="line">					p2 = j;</span><br><span class="line">					min2 = HT.elem[j].weight;    <span class="comment">//记下新的次小值</span></span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		HT.elem[i].lChild = p1;</span><br><span class="line">		HT.elem[i].rChild = p2;        <span class="comment">//左最小，右次小链接</span></span><br><span class="line">		HT.elem[i].weight = HT.elem[p1].weight + HT.elem[p2].weight;</span><br><span class="line">		HT.elem[p1].parent = HT.elem[p2].parent =i ;          <span class="comment">//链接父节点</span></span><br><span class="line">	&#125;</span><br><span class="line">	HT.n = <span class="number">2</span> * n - <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="上图构建Huffman树之后的结果"><a href="#上图构建Huffman树之后的结果" class="headerlink" title="上图构建Huffman树之后的结果"></a>上图构建Huffman树之后的结果</h5><p>/source/img/DataStructure/huffman_tree.png<br>/source/img/DataStructure/huffman_tree1.png</p>
+<ul>
+<li>上述代码运行</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> weight[<span class="number">5</span>] = &#123;<span class="number">7</span>,<span class="number">5</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>&#125;;</span><br><span class="line">	HuffmanTree ht;</span><br><span class="line">    createHuffmanTree(ht,weight,<span class="number">5</span>);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">9</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d %d %d\n"</span>,ht.elem[i].parent, ht.elem[i].lChild, ht.elem[i].rChild);</span><br><span class="line">	&#125;</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>运行结果<br>/source/img/DataStructure/huffman_tree3.png</li>
+</ul>
+<p><a href="https://github.com/LuciusCS/DataStructure/blob/master/DataStructure/DataStructure/6.5HuffmanTree.cpp">源码地址</a></p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-02-29T02:45:09.000Z">2020-02-29</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3 minutes read (About 385 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/02/29/Data_Structure/2017-08-27-data-structure-heap-sort/">堆排序</a>
+            
+        </h1>
+        <div class="content">
+            <p>modified: 2017-08-27</p>
+<h3 id="堆排序原理"><a href="#堆排序原理" class="headerlink" title="堆排序原理"></a>堆排序原理</h3><p>在<a href="https://luciuscs.github.io/2017/08/26/data-structure-build-heap.html">建堆</a>完毕后,堆排序就是每次将堆顶元素与最后一个元素进行交换，再进行一次针对堆顶元素向下（0，n-2）调整的过程，直至堆中只有一个元素为止。</p>
+<h4 id="使用最大堆将元素按照从小到大的顺序进行排序（最小堆排序方式类似）"><a href="#使用最大堆将元素按照从小到大的顺序进行排序（最小堆排序方式类似）" class="headerlink" title="使用最大堆将元素按照从小到大的顺序进行排序（最小堆排序方式类似）"></a>使用最大堆将元素按照从小到大的顺序进行排序（最小堆排序方式类似）</h4><ul>
+<li>采用自上而下的调整方法,M标记的是子树的根,这里比在构建最大堆多一个参数n是为了标记每次调整的最末尾元素</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">shiftHeapSort</span><span class="params">(MaxHeapSort &amp;H, <span class="keyword">int</span> m,<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> tmp = H.heap[m];</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span> * m + <span class="number">1</span>; i &lt;= n - <span class="number">1</span>; i = i * <span class="number">2</span> + <span class="number">1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (i&lt;n - <span class="number">1</span> &amp;&amp; H.heap[i]&lt;H.heap[i + <span class="number">1</span>])</span><br><span class="line">		&#123;</span><br><span class="line">			i++;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (tmp&gt;H.heap[i])</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">			H.heap[m] = H.heap[i];</span><br><span class="line">			H.heap[i] = tmp;</span><br><span class="line">			m = i;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>创建最大堆</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">createHeapSort</span><span class="params">(MaxHeapSort &amp;H, <span class="keyword">int</span> arr[], <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	<span class="comment">//将数组的内容赋值给堆中的元素</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		H.heap[i] = arr[i];</span><br><span class="line">	&#125;</span><br><span class="line">	H.n = n;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = (n - <span class="number">2</span>) / <span class="number">2</span>; i &gt;= <span class="number">0</span>; i--)</span><br><span class="line">	&#123;</span><br><span class="line">		shiftHeapSort(H, i,H.n);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>对最大堆进行排序</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	 </span><br><span class="line">	<span class="keyword">int</span> a[<span class="number">7</span>] = &#123;<span class="number">7</span>,<span class="number">6</span>,<span class="number">5</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>&#125;;</span><br><span class="line">	<span class="comment">//首先构建最大堆</span></span><br><span class="line">	MaxHeapSort H;</span><br><span class="line">	createHeapSort(H, a, <span class="number">7</span>);</span><br><span class="line">	<span class="comment">//最大堆排序是将每次将堆定的元素与与最后一个元素进行交换，然后再将堆调整为最大堆</span></span><br><span class="line">	<span class="keyword">int</span> tmp;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = H.n<span class="number">-1</span>; i &gt;=<span class="number">0</span>; i--)</span><br><span class="line">	&#123;</span><br><span class="line">		tmp = H.heap[<span class="number">0</span>];</span><br><span class="line">		H.heap[<span class="number">0</span>] = H.heap[i];</span><br><span class="line">		H.heap[i] = tmp;</span><br><span class="line">		<span class="comment">//将其再次调整为最大堆</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = i/<span class="number">2</span>; j &gt;=<span class="number">0</span>; j--)</span><br><span class="line">		&#123;</span><br><span class="line">			shiftHeapSort(H,j,i);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">7</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,H.heap[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>运行结果<br>/source/img/DataStructure/heap_sort.jpg</li>
+</ul>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-02-29T02:45:08.988Z">2020-02-29</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3 minutes read (About 514 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/02/29/Data_Structure/2017-08-27-data-structure-adjacency-list/">图的邻接表存储</a>
+            
+        </h1>
+        <div class="content">
+            <p>modified: 2017-08-27</p>
+<h3 id="邻接表"><a href="#邻接表" class="headerlink" title="邻接表"></a>邻接表</h3><blockquote>
+<p>邻接表（Adjacency List）是图的一种链式存储结构，在邻接表中，对图的每一个顶点建立一个单链表;</p>
+</blockquote>
+<p>/source/img/DataStructure/adjacency_list.jpg</p>
+<ul>
+<li>使用邻接表表示图的数据结构</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">EdgeNode</span> &#123;</span>       <span class="comment">//边结点的定义</span></span><br><span class="line">	<span class="keyword">int</span> dest;                   <span class="comment">//边的另一个定点的位置</span></span><br><span class="line">	<span class="keyword">int</span> cost;                   <span class="comment">//边上的权重</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">EdgeNode</span> *<span class="title">link</span>;</span>      <span class="comment">//下一条边链指针</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">VertexNode</span> &#123;</span>       <span class="comment">//顶点的定义</span></span><br><span class="line">	<span class="keyword">char</span> data;              </span><br><span class="line">	<span class="class"><span class="keyword">struct</span>  <span class="title">EdgeNode</span> *<span class="title">first</span>;</span>     <span class="comment">//边链表的头指针</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">ALGraph</span> &#123;</span>          <span class="comment">//图的定义</span></span><br><span class="line">	VertexNode VerticesList[maxVertices];     <span class="comment">//顶点表（各边链表的头结点）</span></span><br><span class="line">	<span class="keyword">int</span> numVertices, numEdge;      <span class="comment">//图中实际顶点的个数和边的条数</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>初始化邻接表</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">initGraph</span><span class="params">(ALGraph &amp;G)</span> </span>&#123;</span><br><span class="line">	G.numEdge = <span class="number">0</span>;</span><br><span class="line">	G.numVertices = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; maxVertices; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		G.VerticesList[i].first = <span class="literal">NULL</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>获取顶点在图的数组中的位置，如果不存在则返回-1</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getVertices</span><span class="params">(ALGraph G,<span class="keyword">char</span> x)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; G.numVertices; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (G.VerticesList[i].data==x)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">return</span> i;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>创建一个带权的有向图</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">createGraph</span><span class="params">(ALGraph &amp;G, <span class="keyword">int</span> numVertices, <span class="keyword">int</span> numEdge)</span> </span>&#123;</span><br><span class="line">	<span class="comment">//从键盘输入n个顶点和m条边的信息</span></span><br><span class="line">	G.numVertices = numVertices;</span><br><span class="line">	G.numEdge = numEdge;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"请输入顶点\n"</span>);</span><br><span class="line">	<span class="keyword">for</span> ( <span class="keyword">int</span> i = <span class="number">0</span>; i &lt; numVertices; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%c"</span>,&amp;G.VerticesList[i].data);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"请输入顶点和权重\n"</span>);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; G.numEdge;)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">char</span> e1, e2;</span><br><span class="line">		<span class="keyword">int</span> weight;</span><br><span class="line">		getchar();</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%c %c %d"</span>,&amp;e1,&amp;e2,&amp;weight);</span><br><span class="line">		<span class="keyword">if</span> (getVertices(G,e1)!=<span class="number">-1</span>&amp;&amp; getVertices(G, e2) != <span class="number">-1</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			EdgeNode *p, *q;</span><br><span class="line">			p = G.VerticesList[getVertices(G, e1)].first;</span><br><span class="line">			q = (EdgeNode *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(EdgeNode));</span><br><span class="line">			<span class="keyword">if</span> (p==<span class="literal">NULL</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				G.VerticesList[getVertices(G, e1)].first = q;</span><br><span class="line">				q-&gt;dest = getVertices(G, e2);</span><br><span class="line">				q-&gt;cost = weight;</span><br><span class="line">				q-&gt;link = <span class="literal">NULL</span>;</span><br><span class="line">				i++;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">while</span> (p-&gt;link != <span class="literal">NULL</span>)</span><br><span class="line">				&#123;</span><br><span class="line">					p = p-&gt;link;</span><br><span class="line">				&#125;</span><br><span class="line">				p-&gt;link= q;</span><br><span class="line">				q-&gt;dest = getVertices(G, e2);</span><br><span class="line">				q-&gt;cost = weight;</span><br><span class="line">				q-&gt;link = <span class="literal">NULL</span>;</span><br><span class="line">				i++;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		  <span class="built_in">printf</span>(<span class="string">"顶点输入错误，请重新输入\n"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li>测试代码（以上面的无向图为例，因为<code>createGraph</code>为构建有向图，只需将无向图看作双向有向图即可）</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	ALGraph G;</span><br><span class="line">	initGraph(G);</span><br><span class="line">	createGraph(G, <span class="number">4</span>, <span class="number">3</span>);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%c "</span>,G.VerticesList[i]);</span><br><span class="line">		EdgeNode *p = G.VerticesList[i].first;</span><br><span class="line">		<span class="keyword">while</span> (p!= <span class="literal">NULL</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"%d "</span>, p-&gt;dest);</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"%d "</span>,p-&gt;cost);</span><br><span class="line">			p = p-&gt;link;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>运行结果<br>/source/img/DataStructure/adjacency_list1.png</li>
+</ul>
+<p><a href="https://github.com/LuciusCS/DataStructure/blob/master/DataStructure/DataStructure/7.2AdjacencyList.cpp">源码下载</a></p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-02-29T02:45:08.970Z">2020-02-29</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    8 minutes read (About 1137 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/02/29/Data_Structure/2017-08-26-data-structure-build-heap/">创建大根堆与小根堆</a>
+            
+        </h1>
+        <div class="content">
+            <p>modified: 2017-08-26</p>
+<h3 id="堆的概念"><a href="#堆的概念" class="headerlink" title="堆的概念"></a>堆的概念</h3><blockquote>
+<p>n个元素序列{k0,k1,k2…ki…kn-1},当且仅当满足下列关系时称之为堆：<br>(ki &lt;= k2i+1,ki &lt;= k2i+2)或者(ki &gt;= k2i+1,ki &gt;= k2i+2), (i = 0,1,2,3,4…(n-2)/2)</p>
+</blockquote>
+<p>注：i从0开始与从1开始，需要改变末尾元素的下标值</p>
+<h4 id="堆的性质"><a href="#堆的性质" class="headerlink" title="堆的性质"></a>堆的性质</h4><blockquote>
+<ul>
+<li>堆是一棵完全二叉树，即除了最底层，其他层的节点都被元素填满，且最底层尽可能地从左到右填入。</li>
+<li>任意节点小于（或大于）它的所有后裔，最小元（或最大元）在堆的根上（堆序性）</li>
+</ul>
+</blockquote>
+<p>大根堆与小根堆</p>
+<p>/source/img/DataStructure/heap.jpg</p>
+<h3 id="小根堆的建立源码"><a href="#小根堆的建立源码" class="headerlink" title="小根堆的建立源码:"></a>小根堆的建立<a href="https://github.com/LuciusCS/DataStructure/blob/master/DataStructure/DataStructure/BuildMinHeap.cpp">源码</a>:</h3><h4 id="小根堆的建立过程"><a href="#小根堆的建立过程" class="headerlink" title="小根堆的建立过程"></a>小根堆的建立过程</h4><p>如果元素数组的初始排列是{53，17，78，09，45，65，87，23}，现在把它视为完全二叉树的顺序存储，从编号最大的分支结点i=」(n-2)/2 」=3开始，轮流以i=3,2,1,0为根，将它们控制的子树调整为小根堆，其过程如图所示：</p>
+<p>/source/img/DataStructure/heap1.jpg</p>
+<ul>
+<li>小根堆的结构定义</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">minHeap</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> heap[HeapSize];      <span class="comment">//存放小根堆中元素的数组</span></span><br><span class="line">    <span class="keyword">int</span> n;                  <span class="comment">//小根堆当前元素的个数，初始值为0</span></span><br><span class="line">&#125;minHeap;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>自顶向下调整</li>
+</ul>
+<p>自顶向下调整，在调整的过程中要将根结点的所有子树调节为最小堆</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">shifDown</span><span class="params">(minHeap &amp;H, <span class="keyword">int</span> m)</span> </span>&#123;</span><br><span class="line">	<span class="comment">//m是开始调整的结点,n是调整结束的点</span></span><br><span class="line">	<span class="keyword">int</span> tmp = H.heap[m];  <span class="comment">//j是i的左子女</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">2</span> * m + <span class="number">1</span>; j &lt;= H.n<span class="number">-1</span>; j=<span class="number">2</span>*j+<span class="number">1</span>) &#123;</span><br><span class="line">		<span class="keyword">if</span> (j&lt;H.n<span class="number">-1</span>&amp;&amp;H.heap[j]&gt;H.heap[j + <span class="number">1</span>])</span><br><span class="line">			j++;</span><br><span class="line">		<span class="keyword">if</span> (tmp &lt;= H.heap[j])</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			tmp = H.heap[m];</span><br><span class="line">			H.heap[m] = H.heap[j];</span><br><span class="line">			H.heap[j] = tmp;</span><br><span class="line">			m = j;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>构建小根堆</li>
+</ul>
+<p>构建的是从下到上，调整的时候是从上至下</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">createMinHeap</span><span class="params">(minHeap &amp;H, <span class="keyword">int</span> arr[], <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">for</span> ( <span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">		H.heap[i] = arr[i];</span><br><span class="line">	H.n = n;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = (H.n - <span class="number">2</span>) / <span class="number">2</span>; i &gt;=<span class="number">0</span>;i--) &#123;   <span class="comment">//自底向上逐步扩大小根堆</span></span><br><span class="line">		shifDown(H,i);                       <span class="comment">//局部自上向下筛选</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>自底向上调整小根堆</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">shifUp</span><span class="params">(minHeap &amp;H,<span class="keyword">int</span> start)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> j= start;</span><br><span class="line">	<span class="keyword">int</span> i = (j - <span class="number">1</span>) / <span class="number">2</span>;</span><br><span class="line">	<span class="keyword">int</span> tmp = H.heap[start];</span><br><span class="line">	<span class="keyword">while</span> (j&gt;<span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (H.heap[i] &lt;= tmp) <span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">			H.heap[j] = H.heap[i];</span><br><span class="line">			j = i;</span><br><span class="line">			i = (i - <span class="number">1</span>) / <span class="number">2</span>;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	H.heap[j] = tmp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>小根堆的插入，采用局部自下向上调整</li>
+</ul>
+<p>小根堆的插入，应该插入堆的最后，堆中插入元素后应该使用<code>shifUp</code>自下向上，一层一层向上调整；</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Insert</span><span class="params">(minHeap &amp;H,<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (H.n==HeapSize)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"堆满"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	H.heap[H.n] = x;</span><br><span class="line">	shifUp(H, H.n);</span><br><span class="line">	H.n++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>小根堆的删除</li>
+</ul>
+<p>小根堆的删除最小元素，即删除堆顶元素；在把最小元素删除后，一般以堆的最后一个结点填补取走的堆顶元素，并将堆的实际元素个数减1，删除一个元素后会破坏堆，采用<code>shiftDown</code>从堆顶向下进行调整</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Remove</span><span class="params">(minHeap &amp;H,<span class="keyword">int</span> &amp;x)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (!H.n)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;               <span class="comment">//堆空返回0</span></span><br><span class="line">	x = H.heap[<span class="number">0</span>];</span><br><span class="line">	H.heap[<span class="number">0</span>] = H.heap[H.n - <span class="number">1</span>];</span><br><span class="line">	H.n--;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = (H.n - <span class="number">2</span>) / <span class="number">2</span>; i &gt;= <span class="number">0</span>; i--) &#123;   <span class="comment">//自底向上逐步扩大小根堆</span></span><br><span class="line">		shifDown(H, i);                          <span class="comment">//局部自上向下筛选</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>运行测试</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> arr[<span class="number">8</span>] = &#123; <span class="number">53</span>,<span class="number">17</span>,<span class="number">78</span>,<span class="number">9</span>,<span class="number">45</span>,<span class="number">65</span>,<span class="number">87</span>,<span class="number">23</span>&#125;;</span><br><span class="line">	minHeap H;</span><br><span class="line">	createMinHeap(H,arr,<span class="number">8</span>);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"小根堆的建立\n"</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">8</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">" %d "</span>,H.heap[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"\n小根堆的插入元素10\n"</span>);</span><br><span class="line">	Insert(H,<span class="number">10</span>);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">9</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">" %d "</span>, H.heap[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> x;</span><br><span class="line">	x=Remove(H);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"\n小根堆的删除\n"</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"删除的元素为\n%d\n"</span>,x);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"删除堆顶元素，进行调整后的元素为\n"</span>);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">8</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">" %d "</span>, H.heap[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>运行结果</li>
+</ul>
+<p>/source/img/DataStructure/heap8.jpg</p>
+<h3 id="大根堆的建立源码"><a href="#大根堆的建立源码" class="headerlink" title="大根堆的建立源码"></a>大根堆的建立<a href="https://github.com/LuciusCS/DataStructure/blob/master/DataStructure/DataStructure/BuildMaxHeap.cpp">源码</a></h3><p>大根堆的建立过程与小根堆的建立过程是相似的；</p>
+<ul>
+<li>大根堆的结构定义</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">MaxHeap</span> &#123;</span></span><br><span class="line">	<span class="keyword">int</span> heap[HeapSize];</span><br><span class="line">	<span class="keyword">int</span> n;</span><br><span class="line">&#125;MaxHeap;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>采用自上而下的调整方法</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">shiftHeap</span><span class="params">(MaxHeap &amp;H,<span class="keyword">int</span> m)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> tmp = H.heap[m];</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>*m+<span class="number">1</span>; i &lt;=H.n<span class="number">-1</span> ; i=i*<span class="number">2</span>+<span class="number">1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (i&lt;H.n<span class="number">-1</span>&amp;&amp;H.heap[i]&lt;H.heap[i+<span class="number">1</span>])</span><br><span class="line">		&#123;</span><br><span class="line">			i++;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (tmp&gt;H.heap[i])</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">			H.heap[m] = H.heap[i];</span><br><span class="line">			H.heap[i] = tmp;</span><br><span class="line">			m = i;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>大根堆的建立</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">createHeap</span><span class="params">(MaxHeap &amp;H, <span class="keyword">int</span> arr[],<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	<span class="comment">//将数组的内容赋值给堆中的元素</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		H.heap[i] = arr[i];</span><br><span class="line">	&#125;</span><br><span class="line">	H.n = n;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = (n<span class="number">-2</span>)/<span class="number">2</span>; i &gt;=<span class="number">0</span>; i--)</span><br><span class="line">	&#123;</span><br><span class="line">		shiftHeap(H, i);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>代码测试</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> arr[<span class="number">8</span>] = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>&#125;;</span><br><span class="line">	MaxHeap H;</span><br><span class="line">	createHeap(H, arr,<span class="number">8</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"大根堆的创建结果\n"</span>);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span>  i = <span class="number">0</span>; i &lt; <span class="number">8</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">" %d "</span>,H.heap[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>测试结果</li>
+</ul>
+<p>/source/img/DataStructure/heap3.jpg</p>
+<ul>
+<li>结果以树的形式表示<br>/source/img/DataStructure/heap2.jpg</li>
+</ul>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-02-29T02:45:08.960Z">2020-02-29</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    4 minutes read (About 574 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/02/29/Data_Structure/2017-08-26-data-structure-adjaceny-matrix/">图的邻接矩阵表示</a>
+            
+        </h1>
+        <div class="content">
+            <p>modified: 2017-08-04</p>
+<h3 id="邻接矩阵"><a href="#邻接矩阵" class="headerlink" title="邻接矩阵"></a>邻接矩阵</h3><blockquote>
+<p>邻接矩阵（adjacency materix）表示又称为数组表示，它使用了两个数组存储图，首先将所有顶点的组织信息组织成一个顶点表，然后利用一个称之为邻接矩阵的二维数组来表示各顶点间的邻接关系。</p>
+</blockquote>
+<p>有向图的邻接矩阵表示:</p>
+<p>/source/img/DataStructure/adjacency_matrix.jpg</p>
+<p>无向图的邻接矩阵的表示(图中边的权重为1)：</p>
+<p>/source/img/DataStructure/adjacency_matrix1.png</p>
+<h3 id="带权无向图邻接矩阵的代码实现"><a href="#带权无向图邻接矩阵的代码实现" class="headerlink" title="带权无向图邻接矩阵的代码实现"></a>带权无向图邻接矩阵的代码实现</h3><ul>
+<li>图的结构定义</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">MGraph</span> &#123;</span></span><br><span class="line">	<span class="keyword">int</span> numVertices, numEdges;                          <span class="comment">//图中实际顶点的个数和边的条数</span></span><br><span class="line">	<span class="keyword">char</span> VerticesList[maxVertices];                     <span class="comment">//顶点数组</span></span><br><span class="line">	<span class="keyword">int</span> Edge[maxVertices][maxVertices];                 <span class="comment">//邻接矩阵，使用二维数组表示</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>图的初始化</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InitGraph</span><span class="params">(MGraph &amp;G)</span> </span>&#123;</span><br><span class="line">	G.numVertices = <span class="number">0</span>;</span><br><span class="line">	G.numEdges = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; maxVertices; i++)                <span class="comment">//邻接矩阵初始化</span></span><br><span class="line">	&#123;</span><br><span class="line">		G.VerticesList[i] = <span class="string">'0'</span>; </span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; maxVertices; j++)            <span class="comment">//若为非带权图，全部赋值为0</span></span><br><span class="line">			G.Edge[i][j] = ((i == j) ? <span class="number">0</span> : maxWeight);   <span class="comment">//maxWeight代表无穷大</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>从顶点数组中找出顶点的位置，若输入的顶点不在数组中则返回-1</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">GetVertexPos</span><span class="params">(MGraph G, <span class="keyword">char</span> x)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; G.numVertices; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (G.VerticesList[i] == x)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">return</span> i;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>输入创建使用邻接矩阵表示的带权无向图</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">CreateGraph</span><span class="params">(MGraph &amp;G, <span class="keyword">int</span> numVertex, <span class="keyword">int</span> numEdge)</span> </span>&#123;</span><br><span class="line">	<span class="comment">//从键盘输入n个顶点和m条边的信息，建立一个带权的无向图</span></span><br><span class="line">	<span class="keyword">char</span> e;</span><br><span class="line">	G.numVertices = numVertex;</span><br><span class="line">	G.numEdges = numEdge;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"请输入顶点\n"</span>);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; numVertex; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%c"</span>, &amp;e);</span><br><span class="line">		G.VerticesList[i] = e;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"请输入顶点和权重\n"</span>);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; numEdge;)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">char</span> e1, e2;</span><br><span class="line">		<span class="keyword">int</span> weight;</span><br><span class="line">		getchar();                  <span class="comment">//如果不使用getchar(),则缓冲区内还会有回车键</span></span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%c %c %d"</span>, &amp;e1, &amp;e2, &amp;weight);</span><br><span class="line">		<span class="keyword">if</span> (GetVertexPos(G, e1) !=<span class="number">-1</span>&amp;&amp; GetVertexPos(G, e2) !=<span class="number">-1</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			G.Edge[GetVertexPos(G, e1)][GetVertexPos(G, e2)] = weight;</span><br><span class="line">			G.Edge[GetVertexPos(G, e2)][GetVertexPos(G, e1)] = weight;     </span><br><span class="line">			i++;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"输入顶点错误，请重新输入\n"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注：若需要带权的有向图只需将<code>G.Edge[GetVertexPos(G, e2)][GetVertexPos(G, e1)] = weight;</code>注释即可</p>
+<ul>
+<li>以下图为例测试</li>
+</ul>
+<p>/source/img/DataStructure/adjacency_matrix2.png</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	MGraph G;</span><br><span class="line">	InitGraph(G);</span><br><span class="line">	CreateGraph(G, <span class="number">5</span>, <span class="number">7</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"\n结果输出\n"</span>);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">7</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">7</span>; j++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"%d "</span>,G.Edge[i][j]);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>测试结果<br>/source/img/DataStructure/adjacency_matrix3.png</li>
+</ul>
+<p><a href="https://github.com/LuciusCS/DataStructure/blob/master/DataStructure/DataStructure/7.2AdjacencyMatrix.cpp">源码下载</a></p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-02-29T02:45:08.951Z">2020-02-29</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    14 minutes read (About 2055 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/02/29/Data_Structure/2017-08-08-data-structure-threaded-binary-tree/">线索化二叉树</a>
+            
+        </h1>
+        <div class="content">
+            <p>modified: 2017-08-04<br>使用二叉树作为存储结构时，只能找到结点的左、右孩子的信息，而不能直接得到结点的前驱和后继的信息；</p>
+<p>在有n个结点的二叉树中有n+1个空指针，利用这n+1个空指保存前驱和后继的信息；若结点有左子树，则其lChild指向其左孩子，否则指向其前驱；若结点有右子树，则其rChild指向其右孩子，否则指向其后继；为避免结点指向前驱与后继发生混淆，则在结点上增加两个标志域。</p>
+<p>/source/img/DataStructure/threaded_binary_tree.jpg</p>
+<p>以这种结点结构构成的二叉链表作为二叉树的存储结构，叫做线索链表，其中指向结点的前驱和后继的指针叫做线索；加上线索的二叉树叫做线索二叉树（Threaded Binary Tree）</p>
+<p>根据中序遍历的规律可知，结点的后继应是遍历其右子树时访问的第一个结点，即右子树最左下的结点；在中序线索树中找结点前驱的规律是：若其左标志位‘1’，则左链为线索，指示其前驱，否则遍历左子树最后访问的一个结点(左子树最右下的结点)为其前驱。</p>
+<p>为了方便代码的解释可能不会直接将代码完整地贴在文章中，源码地址：<a href="https://github.com/LuciusCS/DataStructure/blob/master/DataStructure/DataStructure/6.3ThreadingBinaryTree.cpp">二叉线索树源码</a></p>
+<p>如果二叉树的构造、以及遍历不熟悉的可以先看<a href="https://luciuscs.github.io/2017/07/27/data-structure-binary-tree-visit.html">二叉树</a>；</p>
+<h3 id="线索二叉树的结构体"><a href="#线索二叉树的结构体" class="headerlink" title="线索二叉树的结构体"></a>线索二叉树的结构体</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//声明一个枚举类型来表示指针域的状态,Link=0表示指向左右孩子，Thread表示指向前驱或后继</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">enum</span> &#123;</span><br><span class="line">	Link = <span class="number">0</span>, Thread = <span class="number">1</span>     <span class="comment">//Link==0:指针，Thread==1,线索</span></span><br><span class="line">&#125;PointerTag;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">BinaryTree</span> &#123;</span></span><br><span class="line">	<span class="keyword">char</span> item;</span><br><span class="line">	BinaryTree *lChild;</span><br><span class="line">	BinaryTree *rChild;</span><br><span class="line">	PointerTag lTag, rTag;</span><br><span class="line">&#125;BinaryTree, *pBinaryTree;</span><br></pre></td></tr></table></figure>
+
+<h3 id="二叉树的先序构造"><a href="#二叉树的先序构造" class="headerlink" title="二叉树的先序构造"></a>二叉树的先序构造</h3><p>要进行二叉树的线索化，需要先构造一棵二叉树；这里采用的是二叉树的先序构造法：在进行二叉树先序构造时，输入的序列为一个二叉树的先序遍历；在进行先序遍历时如果没有孩子，则将孩子置为’#’，第一个被遍历的结点不需要加上’#’</p>
+<p>如图：先序遍历的结果为：cba###d#e#f##<br>/source/img/DataStructure/binary_tree.jpg</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">pBinaryTree <span class="title">createBinaryTree</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	pBinaryTree treeNode=<span class="literal">NULL</span>;</span><br><span class="line">	<span class="keyword">char</span> tmp = <span class="string">'0'</span>;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%c"</span>, &amp;tmp);</span><br><span class="line">	<span class="keyword">if</span> (tmp == <span class="string">'#'</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		treeNode = <span class="literal">NULL</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		treeNode = (BinaryTree *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(BinaryTree));</span><br><span class="line">		treeNode-&gt;item = tmp;</span><br><span class="line">		</span><br><span class="line">		treeNode-&gt;lChild=createBinaryTree();</span><br><span class="line">		<span class="keyword">if</span> (treeNode-&gt;lChild)</span><br><span class="line">			treeNode-&gt;lTag = Link;</span><br><span class="line">		treeNode-&gt;rChild=createBinaryTree();</span><br><span class="line">		<span class="keyword">if</span> (treeNode-&gt;rChild)</span><br><span class="line">			treeNode-&gt;rTag = Link;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> treeNode;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="二叉树的线索化，代码过程说明："><a href="#二叉树的线索化，代码过程说明：" class="headerlink" title="二叉树的线索化，代码过程说明："></a>二叉树的线索化，代码过程说明：</h3><p>将二叉树线索化的实质是将二叉链表中的空指针改为指向前驱或者后继的线索，而前驱或后继的信息只有在遍历时才能得到，因此线索化二叉树的过程即在遍历的过程中修改空指针的过程；</p>
+<p><font color="LightCoral">注：由于二叉树的第一个结点没有前驱，最后一个结点没有后继，二叉树在线索化的过程中需要引入头结点；二叉树先序遍历的第一个结点的前驱是头结点，最后一个结点的后继的后继也是头结点。</font></p>
+<ul>
+<li><a href="https://luciuscs.github.io/2017/07/27/data-structure-binary-tree-visit.html">二叉树</a>的中序遍历</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">inVisitBiTree</span><span class="params">(pBinaryTree biTree)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (biTree)</span><br><span class="line">	&#123;</span><br><span class="line">		inVisitBiTree(biTree-&gt;lChild);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%c"</span>,biTree-&gt;item);</span><br><span class="line">		inVisitBiTree(biTree-&gt;rChild);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li>二叉树线索化函数的整体框架</li>
+</ul>
+<p>二叉树的中序线索化的实质是在二叉树中序遍历的过程中，将空指针改为前驱或者后继的过程；首先进行的是二叉树的遍历（不需要输出结点的值）；</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InThreading</span><span class="params">(pBinaryTree biTree)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (biTree)</span><br><span class="line">	&#123;</span><br><span class="line">		InThreading(biTree-&gt;lChild);</span><br><span class="line">		<span class="comment">//printf("%c",biTree-&gt;item);  </span></span><br><span class="line">         &#123;</span><br><span class="line">           <span class="comment">//进行指针修改的代码块；</span></span><br><span class="line">         &#125;</span><br><span class="line">		InThreading(biTree-&gt;rChild);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li>对访问结点记录，即对前驱的记录</li>
+</ul>
+<p>在进行中序遍历过程中打印的操作其实就是后面结点的前驱；用一个全局变量pre指针记录前一个被访问过的结点；</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InThreading</span><span class="params">(pBinaryTree biTree)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (biTree)</span><br><span class="line">	&#123;</span><br><span class="line">		InThreading(biTree-&gt;lChild);</span><br><span class="line">		<span class="comment">//printf("%c",biTree-&gt;item);  </span></span><br><span class="line">         &#123;</span><br><span class="line">           <span class="comment">//进行指针修改的代码块，两个大括号是为了方便说明；</span></span><br><span class="line">         &#125;</span><br><span class="line">		pre = binaryTree;   <span class="comment">//保持pre指向前驱；</span></span><br><span class="line">		InThreading(binaryTree-&gt;rChild);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><font color="LightCoral">全局变量会被赋初值head，在下文中有介绍：</font></p>
+<p>如果访问过的结点没有左孩子，那么左孩子的指针应该指向前驱，即左孩子的指针指向pre，并将令lTag=Thread;</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InThreading</span><span class="params">(pBinaryTree biTree)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (biTree)</span><br><span class="line">	&#123;</span><br><span class="line">		InThreading(biTree-&gt;lChild);</span><br><span class="line">		<span class="comment">//printf("%c",biTree-&gt;item);  </span></span><br><span class="line">         &#123;</span><br><span class="line">           <span class="comment">//进行指针修改的代码块，两个大括号是为了方便说明；</span></span><br><span class="line">	       	<span class="keyword">if</span> (!binaryTree-&gt;lChild)</span><br><span class="line">		&#123;</span><br><span class="line">			binaryTree-&gt;lTag = Thread;</span><br><span class="line">			binaryTree-&gt;lChild = pre;</span><br><span class="line">		&#125;</span><br><span class="line">         &#125;</span><br><span class="line">        pre-&gt;biTree;</span><br><span class="line">		InThreading(biTree-&gt;rChild);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>对后继的记录</li>
+</ul>
+<p>如果访问过的结点没有右孩子，那么右孩子的指针应该指向后继；我们定义的全局变量pre对访问过的结点进行了记录,因此我们只需要将pre的右孩子指向下一个结点即可；</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InThreading</span><span class="params">(pBinaryTree biTree)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (binaryTree)</span><br><span class="line">	&#123;</span><br><span class="line">		InThreading(binaryTree-&gt;lChild);</span><br><span class="line">		<span class="comment">//如果没有左孩子时前驱线索</span></span><br><span class="line">		<span class="keyword">if</span> (!binaryTree-&gt;lChild)</span><br><span class="line">		&#123;</span><br><span class="line">			binaryTree-&gt;lTag = Thread;</span><br><span class="line">			binaryTree-&gt;lChild = pre;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//当没有右孩子，后继线索</span></span><br><span class="line">		<span class="keyword">if</span> (!pre-&gt;rChild)</span><br><span class="line">		&#123;</span><br><span class="line">			pre-&gt;rTag = Thread;</span><br><span class="line">			pre-&gt;rChild = binaryTree;</span><br><span class="line">		&#125;</span><br><span class="line">		pre = binaryTree;   <span class="comment">//保持pre指向前驱；</span></span><br><span class="line">		InThreading(binaryTree-&gt;rChild);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><font face="黑体">在进行二叉树线索化时，其实是对每一个结点进行线索化，当每一个结点都线索化后，整个树的线索化也就做好了。</font><br><font color="LightCoral">注：这里有一个疑问就是为什么在指向前驱结点的时候不使用pre记录的结点；在一次递归的结束时将pre-&gt;biTree，即pre一直指向的是刚刚访问的结点；在中序遍历中，pre所在的结点是是其左子树的后继；只有一次遍历结束时才进行判断，然后改变指针（这里有些绕，最好逐语句跑一下代码）</font></p>
+<h3 id="为已经线索化的二叉树添加头结点"><a href="#为已经线索化的二叉树添加头结点" class="headerlink" title="为已经线索化的二叉树添加头结点"></a>为已经线索化的二叉树添加头结点</h3><p>/source/img/DataStructure/thread_binary_tree.jpg</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InOrderThreading</span><span class="params">(pBinaryTree &amp;binarytree,pBinaryTree &amp;head)</span> </span>&#123;</span><br><span class="line">	head = (pBinaryTree )<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(BinaryTree));</span><br><span class="line"></span><br><span class="line">	<span class="comment">//初始化头结点</span></span><br><span class="line">	head-&gt;lTag = Link;</span><br><span class="line">	head-&gt;rTag = Thread;</span><br><span class="line">	head-&gt;rChild = head;  <span class="comment">//头指针回指</span></span><br><span class="line">	<span class="keyword">if</span> (!binarytree) &#123;</span><br><span class="line">		 head-&gt;lChild =head;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		head-&gt;lChild = binarytree;  <span class="comment">//当binaryTree非空时，指向二叉树的根结点</span></span><br><span class="line">		pre = head;   <span class="comment">//定义的全局变量第一次赋值使用</span></span><br><span class="line">		InThreading(binarytree);</span><br><span class="line">		<span class="comment">//对最后一个结点线索化</span></span><br><span class="line">		pre-&gt;rTag = Thread;</span><br><span class="line">		pre-&gt;rChild = head;</span><br><span class="line">		head-&gt;rChild = pre;   <span class="comment">//头结点指向中序遍历的最后一个结点</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="对于中序线索树的中序遍历"><a href="#对于中序线索树的中序遍历" class="headerlink" title="对于中序线索树的中序遍历"></a>对于中序线索树的中序遍历</h3><p>先从线索树的根出发，一直沿左指针，找到“最左”（它一定是中序的第一个结点）；然后反复找结点的中序后继</p>
+<p>一个结点的右指针如果是线索，则右指针的下一个线索就是要遍历的结点，如果右指针不是线索，则它的中序后继是其右子树的“最左”结点。</p>
+<pre><code>/source/img/DataStructure/thread_binary_tree.jpg</code></pre><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InVisitThreadTree</span><span class="params">(pBinaryTree binarytree)</span> </span>&#123;</span><br><span class="line">	pBinaryTree pBTree;</span><br><span class="line">	pBTree = binarytree-&gt;lChild;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//当未遍历迭代完整棵二叉树继续循环；空树或者遍历结束时，pBTree=binaryTree</span></span><br><span class="line">	<span class="keyword">while</span> (pBTree != binarytree)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">//找到最左元素</span></span><br><span class="line">		<span class="keyword">while</span> (pBTree-&gt;lTag == Link)</span><br><span class="line">		&#123;</span><br><span class="line">			pBTree = pBTree-&gt;lChild;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%c"</span>, pBTree-&gt;item);</span><br><span class="line"></span><br><span class="line">		<span class="comment">//如果右孩子是线索，则其指向的是下一个访问的结点</span></span><br><span class="line">		<span class="keyword">while</span> ((pBTree-&gt;rChild != binarytree) &amp;&amp; (pBTree-&gt;rTag == Thread))</span><br><span class="line">		&#123;</span><br><span class="line">			pBTree = pBTree-&gt;rChild;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"%c"</span>, pBTree-&gt;item);</span><br><span class="line">		&#125;</span><br><span class="line">		pBTree = pBTree-&gt;rChild;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="测试-cba-d-e-f"><a href="#测试-cba-d-e-f" class="headerlink" title="测试:cba###d#e#f##"></a>测试:cba###d#e#f##</h3><p><font color="LightCoral">需要定义一个全局变量，InVisitThreadTree()函数传入的参数是Head，因为线索二叉树的头结点是Head!!!</font></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义全局变量</span></span><br><span class="line">pBinaryTree pre;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	pBinaryTree TbinaryTree, Head;</span><br><span class="line">	TbinaryTree = createBinaryTree();</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"二叉树的先序遍历\n"</span>);</span><br><span class="line">	preVisitBiTree(TbinaryTree);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"\n二叉树的中序遍历\n"</span>);</span><br><span class="line">	inVisitBiTree(TbinaryTree);</span><br><span class="line">	InOrderThreading(TbinaryTree, Head);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"\n中序线索二叉树的中序遍历\n"</span>);</span><br><span class="line">	InVisitThreadTree(Head);</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>测试结果：</p>
+<p>/source/img/DataStructure/binary_tree_result.png</p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-02-29T02:45:08.943Z">2020-02-29</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3 minutes read (About 377 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/02/29/Data_Structure/2017-08-04-data-structure-quick-sort/">快速排序</a>
+            
+        </h1>
+        <div class="content">
+            <p>modified: 2017-08-02<br>快速排序可以理解为：快速排序=挖坑填数+分治算法；</p>
+<p>快速排序(Quick Sort)使用分治法（Divide and conquer）策略来把一个序列分为两个子序列，左右两个序列分别大于基准数和小于基准数，递归结束后所有的数都将有序；</p>
+<p>步骤为：</p>
+<ul>
+<li>从数列中选出一个元素，作为基准（pivot）</li>
+<li>将数列中比基准小的数放在基准前面，将数列中比基准大的数放在基准的后面；在这一次分割结束后将基准放在中间的位置。</li>
+<li>递归地把小于基准元素的子序列和大于基准的子序列进行排序</li>
+</ul>
+<p>递归到最底部时，数列的大小为零或一，也就是已经排好的序列；算法在每次迭代中，至少会把一个元素排到它最后的位置去。 </p>
+<ul>
+<li>进行一次排序的过程(挖坑填数)</li>
+</ul>
+<pre><code>/images/DataStructure/quick_sort.jpg</code></pre><ul>
+<li>快速排序的全过程</li>
+</ul>
+<pre><code>/images/DataStructure/quick_sort_01.jpg</code></pre><p>使用C语言实现代码</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdio.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdlib.h"</span></span></span><br><span class="line"><span class="comment">//分治算法是基于递归的</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">quickSort</span><span class="params">(<span class="keyword">int</span> arr[],<span class="keyword">int</span> left,<span class="keyword">int</span> right)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (left&lt;right)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> i = left, j = right, tmp = arr[left];   <span class="comment">//将最左边的数选为基准数字</span></span><br><span class="line">		<span class="comment">//先从右向左搜索比tmp小的数</span></span><br><span class="line">		<span class="keyword">while</span> (i&lt;j)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">while</span> (i&lt;j&amp;&amp;tmp &lt;= arr[j])</span><br><span class="line">				j--;</span><br><span class="line">			<span class="keyword">if</span> (i&lt;j)</span><br><span class="line">				arr[i++] = arr[j];   <span class="comment">//将右边的数挖出放到左边的位置</span></span><br><span class="line">			<span class="comment">//从左至右搜索比tmp大的数</span></span><br><span class="line">			<span class="keyword">while</span> (i&lt;j&amp;&amp;tmp &gt;arr[i])</span><br><span class="line">				i++;</span><br><span class="line">			<span class="keyword">if</span> (i&lt;j)</span><br><span class="line">				arr[j--] = arr[i];   <span class="comment">//将左边的数挖出放入右边的空位</span></span><br><span class="line">		&#125;</span><br><span class="line">		arr[i] = tmp;     </span><br><span class="line">		quickSort(arr, left, i - <span class="number">1</span>);   <span class="comment">//递归调用</span></span><br><span class="line">		quickSort(arr, i + <span class="number">1</span>, right);  <span class="comment">//递归调用</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a[<span class="number">5</span>] = &#123; <span class="number">5</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span> &#125;;</span><br><span class="line">	quickSort(a, <span class="number">0</span>, <span class="number">4</span>);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d"</span>,a[i]);</span><br><span class="line">	&#125;</span><br><span class="line">		</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-02-29T02:45:08.936Z">2020-02-29</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    4 minutes read (About 578 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/02/29/Data_Structure/2017-08-04-data-structure-merge-sort/">归并排序</a>
+            
+        </h1>
+        <div class="content">
+            <p>modified: 2017-08-04</p>
+<p>归并排序（Merge Sort）是建立在归并操作上的一种有效的排序算法，效率为O（n log n）；该算法是采用分治法一种典型的应用，且各层分治递归可以同时进行。</p>
+<p>归并排序的基本思路是</p>
+<ul>
+<li>将序列每相邻两个数字进行归并操作，形成n/2个序列，排序后每个序列包含两个元素；</li>
+<li>将上述序列再次归并，形成n/4个序列，每个序列包含四个元素；</li>
+<li>重复步骤2，直到所有元素排序完毕；</li>
+</ul>
+<pre><code>/images/DataStructure/Merge_sort.gif
+
+
+
+/images/DataStructure/Merge_sort_01.gif</code></pre><p>要理解归并算法首先要理解归并操作（Merge），归并操作（Merge）也叫归并算法，指的是将两个已经排好的序列合并成一个序列的操作；归并算法依赖于归并操作。</p>
+<p>使用C语言实现一个数组的左右两部分有序数列的归并操作，即将左右两部分看成两个有序数列合并成一个有序数列</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//a[]是要进行排序的数组，first、mid、last分别代表左侧有序部分数组的起始位置，</span></span><br><span class="line"><span class="comment">//左右有序两部分的分界点，右侧有序部分的终点，</span></span><br><span class="line"><span class="comment">//tmp[]是大小为last-first的数组，用于临时存放排序的数列</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">mergeArray</span><span class="params">(<span class="keyword">int</span> a[],<span class="keyword">int</span> first,<span class="keyword">int</span> mid,<span class="keyword">int</span> last,<span class="keyword">int</span> tmp[])</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i = first;</span><br><span class="line">	<span class="keyword">int</span> j = mid+<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">int</span> k = <span class="number">0</span>;    <span class="comment">//K用作tmp[]的索引</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//将a[]左右有序的两部分按照由小到大的顺序存入tmp[]中</span></span><br><span class="line">	<span class="keyword">while</span> (i&lt;=mid&amp;&amp;j&lt;=last)</span><br><span class="line">		a[i] &lt; a[j] ? tmp[k++] = a[i++] : tmp[k++] = a[j++];</span><br><span class="line">	<span class="keyword">while</span> (i &lt;= mid)</span><br><span class="line">		tmp[k++] = a[i++];</span><br><span class="line">	<span class="keyword">while</span> (j &lt;= last)</span><br><span class="line">		tmp[k++] = a[j++];</span><br><span class="line">   </span><br><span class="line">	<span class="keyword">while</span> (k &gt; <span class="number">0</span>)</span><br><span class="line">		a[--j] = tmp[--k];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">mergeSort</span><span class="params">(<span class="keyword">int</span> a[],<span class="keyword">int</span> first,<span class="keyword">int</span> last,<span class="keyword">int</span> tmp[])</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (first&lt;last)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> mid = (first + last) / <span class="number">2</span>;</span><br><span class="line">		mergeSort(a,first,mid,tmp);  <span class="comment">//左边有序</span></span><br><span class="line">		mergeSort(a, mid+<span class="number">1</span>, last, tmp);<span class="comment">//右边有序</span></span><br><span class="line">		mergeArray(a,first,mid,last,tmp);  <span class="comment">//将两个数组合并</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">`</span><br></pre></td></tr></table></figure>
+<p>有序数组的归并以及归并排序的测试</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> a[<span class="number">7</span>] = &#123;<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line">	<span class="keyword">int</span> tmp[<span class="number">7</span>];</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"测试数组归并\n"</span>);</span><br><span class="line"></span><br><span class="line">	mergeArray(a, <span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, tmp);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">7</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, a[i]);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"测试数组归并排序\n"</span>);</span><br><span class="line">	mergeSort(a,<span class="number">0</span>,<span class="number">6</span>,tmp);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">7</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, a[i]);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-02-29T02:45:08.927Z">2020-02-29</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    2 minutes read (About 258 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/02/29/Data_Structure/2017-08-02-data-structure-stack-use/">栈的应用——需要再次进行编辑</a>
+            
+        </h1>
+        <div class="content">
+            <p>modified: 2017-08-02<br>##　使用栈实现进制转换、括号匹配的检验、行编辑程序</p>
+<h3 id="使用栈实现进制的转换"><a href="#使用栈实现进制的转换" class="headerlink" title="使用栈实现进制的转换"></a>使用栈实现进制的转换</h3><ul>
+<li>将十进制转换为二进制</li>
+</ul>
+<p>C语言实现代码</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">conversion</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">	SqStack <span class="built_in">stack</span>;</span><br><span class="line">	initStack(&amp;<span class="built_in">stack</span>);</span><br><span class="line">	<span class="keyword">while</span> (num / <span class="number">2</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		push(&amp;<span class="built_in">stack</span>, num % <span class="number">2</span>);</span><br><span class="line">		num /= <span class="number">2</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	push(&amp;<span class="built_in">stack</span>, num);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> tmp = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (!isEmpty(&amp;<span class="built_in">stack</span>))</span><br><span class="line">	&#123;</span><br><span class="line">		pop(&amp;<span class="built_in">stack</span>, &amp;tmp);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d"</span>, tmp);</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用栈实现括号匹配的检验"><a href="#使用栈实现括号匹配的检验" class="headerlink" title="使用栈实现括号匹配的检验"></a>使用栈实现括号匹配的检验</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">check_symbol</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">char</span> s[<span class="number">50</span>] = &#123; <span class="number">0</span> &#125;;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"请输入一串括号"</span>);</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%s"</span>, s);</span><br><span class="line">	SqStack <span class="built_in">stack</span>;</span><br><span class="line">	initStack(&amp;<span class="built_in">stack</span>);</span><br><span class="line">	push(&amp;<span class="built_in">stack</span>, s[<span class="number">0</span>]);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; s[i] != <span class="number">0</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (!isEmpty(&amp;<span class="built_in">stack</span>))</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (getStackTop(<span class="built_in">stack</span>) == (<span class="keyword">int</span>) <span class="string">'&#123;'</span>&amp;&amp;s[i] == (<span class="keyword">int</span>)<span class="string">'&#125;'</span> || getStackTop(<span class="built_in">stack</span>) == (<span class="keyword">int</span>) <span class="string">'('</span>&amp;&amp;s[i] == (<span class="keyword">int</span>)<span class="string">')'</span>) &#123;</span><br><span class="line">				<span class="keyword">int</span> tmp;</span><br><span class="line">				pop(&amp;<span class="built_in">stack</span>, &amp;tmp);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">			&#123;</span><br><span class="line">				push(&amp;<span class="built_in">stack</span>, s[i]);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">int</span> tmp;</span><br><span class="line">			push(&amp;<span class="built_in">stack</span>, s[i]);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (isEmpty(&amp;<span class="built_in">stack</span>))</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"括号匹配"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"括号不匹配"</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用栈实现行编辑器"><a href="#使用栈实现行编辑器" class="headerlink" title="使用栈实现行编辑器"></a>使用栈实现行编辑器</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">lineEdit</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="comment">//首先初始化栈</span></span><br><span class="line">	SqStack <span class="built_in">stack</span>;</span><br><span class="line">	initStack(&amp;<span class="built_in">stack</span>);</span><br><span class="line">	<span class="keyword">char</span> ch = getchar();</span><br><span class="line">	<span class="keyword">while</span> (ch != EOF)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">while</span> (ch != EOF&amp;&amp;ch!=<span class="string">'\n'</span>) &#123;</span><br><span class="line">			<span class="keyword">switch</span> (ch)</span><br><span class="line">			&#123;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'@'</span>:clearStack(<span class="built_in">stack</span>);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'#'</span>:<span class="keyword">if</span> (isEmpty(&amp;<span class="built_in">stack</span>))</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">					 <span class="keyword">else</span></span><br><span class="line">					 &#123;</span><br><span class="line">						 <span class="keyword">int</span> tmp;</span><br><span class="line">						 pop(&amp;<span class="built_in">stack</span>, &amp;tmp);</span><br><span class="line">						 <span class="keyword">break</span>;</span><br><span class="line">					 &#125;</span><br><span class="line">			<span class="keyword">default</span>:</span><br><span class="line">				push(&amp;<span class="built_in">stack</span>, ch); <span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			ch = getchar();</span><br><span class="line">		&#125;</span><br><span class="line">		ch = getchar();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//用于将存储在栈中的内容输出</span></span><br><span class="line">	<span class="keyword">if</span> (ch == EOF) &#123;</span><br><span class="line">		<span class="keyword">while</span> (!isEmpty(&amp;<span class="built_in">stack</span>))</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">int</span> tmp;</span><br><span class="line">			pop(&amp;<span class="built_in">stack</span>, &amp;tmp);</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"%c"</span>, tmp);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-02-29T02:45:08.918Z">2020-02-29</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    a few seconds read (About 31 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2020/02/29/Data_Structure/2017-08-02-data-structure-sort-algorithm-summary/">排序算法总结</a>
+            
+        </h1>
+        <div class="content">
+            <p>modified: 2017-08-02</p>
+<p>各种排序算法的总结</p>
+<h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><h2 id="非比较型排序"><a href="#非比较型排序" class="headerlink" title="非比较型排序"></a>非比较型排序</h2><h3 id="桶排序"><a href="#桶排序" class="headerlink" title="桶排序"></a>桶排序</h3><h3 id="基数排序"><a href="#基数排序" class="headerlink" title="基数排序"></a>基数排序</h3><h3 id="计数排序"><a href="#计数排序" class="headerlink" title="计数排序"></a>计数排序</h3>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+    
+<div class="card card-transparent">
+    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+        <div class="pagination-previous is-invisible is-hidden-mobile">
+            <a class="is-flex-grow has-text-black-ter" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/page/0/">Previous</a>
+        </div>
+        <div class="pagination-next">
+            <a class="is-flex-grow has-text-black-ter" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/page/2/">Next</a>
+        </div>
+        <ul class="pagination-list is-hidden-mobile">
+            
+            <li><a class="pagination-link is-current" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">1</a></li>
+            
+            <li><a class="pagination-link has-text-black-ter" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/page/2/">2</a></li>
+            
+        </ul>
+    </nav>
+</div>
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left is-sticky">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                    <figure class="image is-128x128 has-mb-6">
+                        <img class="is-rounded" src="https://www.gravatar.com/avatar/5f88f4a896dde4ec7ad915a606b0faa9?s=128" alt="Lucius">
+                    </figure>
+                    
+                    <p class="is-size-4 is-block">
+                        Lucius
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        Android Developer
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Qingdao</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Posts
+                    </p>
+                    <a href="/archives">
+                        <p class="title has-text-weight-normal">
+                            100
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Category
+                    </p>
+                    <a href="/categories">
+                        <p class="title has-text-weight-normal">
+                            1
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Tags
+                    </p>
+                    <a href="/tags">
+                        <p class="title has-text-weight-normal">
+                            5
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/LuciusCS" target="_blank" rel="noopener">
+                Follow</a>
+        </div>
+        
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="Github" href="https://github.com/LuciusCS">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Links
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener">
+                    <span class="level-left">
+                        <span class="level-item">Hexo</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">hexo.io</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://github.com/ppoffice" target="_blank" rel="noopener">
+                    <span class="level-left">
+                        <span class="level-item">PPOffice</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">github.com</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Categories
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/categories/Android/">
+            <span class="level-start">
+                <span class="level-item">Android</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Tag Cloud
+        </h3>
+        <a href="/tags/Android/" style="font-size: 13.33px;">Android</a> <a href="/tags/error/" style="font-size: 10px;">error</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/pat/" style="font-size: 16.67px;">pat</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 20px;">数据结构</a>
+    </div>
+</div>
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen is-sticky">
+        
+            <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-09-android-ViewModel-introduction/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Android lifecycle-aware components">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:21.663Z">2020-02-29</time></div>
+                    <a href="/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-09-android-ViewModel-introduction/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android lifecycle-aware components</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-01-android-broadcast-introduction/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Android Broadcast介绍">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:21.654Z">2020-02-29</time></div>
+                    <a href="/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-01-android-broadcast-introduction/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android Broadcast介绍</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-07-31-android-service-introduction/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Android Service介绍">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:21.613Z">2020-02-29</time></div>
+                    <a href="/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-07-31-android-service-introduction/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android Service介绍</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/02/29/Data_Structure/2017-08-28-data-structure-huffman-tree/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Huffman树的算法实现">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:09.033Z">2020-02-29</time></div>
+                    <a href="/2020/02/29/Data_Structure/2017-08-28-data-structure-huffman-tree/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Huffman树的算法实现</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/02/29/Data_Structure/2017-08-27-data-structure-heap-sort/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="堆排序">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:09.000Z">2020-02-29</time></div>
+                    <a href="/2020/02/29/Data_Structure/2017-08-27-data-structure-heap-sort/" class="title has-link-black-ter is-size-6 has-text-weight-normal">堆排序</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Archives
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/02/">
+                <span class="level-start">
+                    <span class="level-item">February 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">29</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/11/">
+                <span class="level-start">
+                    <span class="level-item">November 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">12</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/09/">
+                <span class="level-start">
+                    <span class="level-item">September 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">59</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Android/">
+                        <span class="tag">Android</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/error/">
+                        <span class="tag">error</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/git/">
+                        <span class="tag">git</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/pat/">
+                        <span class="tag">pat</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                        <span class="tag">数据结构</span>
+                        <span class="tag is-grey">16</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right is-sticky">
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-09-android-ViewModel-introduction/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Android lifecycle-aware components">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:21.663Z">2020-02-29</time></div>
+                    <a href="/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-09-android-ViewModel-introduction/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android lifecycle-aware components</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-01-android-broadcast-introduction/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Android Broadcast介绍">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:21.654Z">2020-02-29</time></div>
+                    <a href="/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-01-android-broadcast-introduction/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android Broadcast介绍</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-07-31-android-service-introduction/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Android Service介绍">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:21.613Z">2020-02-29</time></div>
+                    <a href="/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-07-31-android-service-introduction/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android Service介绍</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/02/29/Data_Structure/2017-08-28-data-structure-huffman-tree/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Huffman树的算法实现">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:09.033Z">2020-02-29</time></div>
+                    <a href="/2020/02/29/Data_Structure/2017-08-28-data-structure-huffman-tree/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Huffman树的算法实现</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2020/02/29/Data_Structure/2017-08-27-data-structure-heap-sort/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="堆排序">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:09.000Z">2020-02-29</time></div>
+                    <a href="/2020/02/29/Data_Structure/2017-08-27-data-structure-heap-sort/" class="title has-link-black-ter is-size-6 has-text-weight-normal">堆排序</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Archives
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2020/02/">
+                <span class="level-start">
+                    <span class="level-item">February 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">29</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/11/">
+                <span class="level-start">
+                    <span class="level-item">November 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">12</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/09/">
+                <span class="level-start">
+                    <span class="level-item">September 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">59</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Android/">
+                        <span class="tag">Android</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/error/">
+                        <span class="tag">error</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/git/">
+                        <span class="tag">git</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/pat/">
+                        <span class="tag">pat</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                        <span class="tag">数据结构</span>
+                        <span class="tag is-grey">16</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.svg" alt="Android Development" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2020 Lucius Zhao&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a>
+                
+                <br>
+                <span id="busuanzi_container_site_uv">
+                Visited by <span id="busuanzi_value_site_uv">0</span> users
+                </span>
+                <span id="busuanzi_container_site_pv">
+                <span id="busuanzi_value_site_pv">0</span> visits
+                </span>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("en");</script>
+
+
+<script>
+var IcarusThemeSettings = {
+    site: {
+        url: 'http://yoursite.com',
+        external_link: {"enable":true,"exclude":[]}
+    },
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+
+
+<script src="/js/animation.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/js/gallery.js" defer></script>
+
+
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+
+<a id="back-to-top" title="Back to Top" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+</body>
+</html>
