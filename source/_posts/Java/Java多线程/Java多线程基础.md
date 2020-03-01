@@ -1,8 +1,8 @@
 ---
-title: Android 6.0及以上手机权限进行动态获取
-thumbnail: /assets/android_basis_permission.png
-toc: true
+title: Java多线程基础
 thumbnail: /thumbnail/img62.jpg
+toc: true
+description: Java多线程基础
 categories: Android
 tags: [Android]
 ---

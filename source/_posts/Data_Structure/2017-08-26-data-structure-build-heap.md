@@ -14,7 +14,7 @@ modified: 2017-08-26
 
 > n个元素序列{k0,k1,k2...ki...kn-1},当且仅当满足下列关系时称之为堆：
 (ki <= k2i+1,ki <= k2i+2)或者(ki >= k2i+1,ki >= k2i+2), (i = 0,1,2,3,4...(n-2)/2)
-
+<!--more-->
 注：i从0开始与从1开始，需要改变末尾元素的下标值
 
 #### 堆的性质
@@ -25,7 +25,7 @@ modified: 2017-08-26
 
 大根堆与小根堆
 
-![](public/img/DataStructure/DataStructure/heap.jpg)
+![](/public/img/DataStructure/DataStructure/heap.jpg)
 
 
 ### 小根堆的建立[源码](https://github.com/LuciusCS/DataStructure/blob/master/DataStructure/DataStructure/BuildMinHeap.cpp):
@@ -34,7 +34,7 @@ modified: 2017-08-26
 
 如果元素数组的初始排列是{53，17，78，09，45，65，87，23}，现在把它视为完全二叉树的顺序存储，从编号最大的分支结点i=」(n-2)/2 」=3开始，轮流以i=3,2,1,0为根，将它们控制的子树调整为小根堆，其过程如图所示：
 
-![](public/img/DataStructure/heap1.jpg)
+![](/public/img/DataStructure/heap1.jpg)
 
 
 
@@ -183,7 +183,7 @@ int main() {
 * 运行结果
 
 
-![](public/img/DataStructure/heap8.jpg)
+![](/public/img/DataStructure/heap8.jpg)
 
 
 
@@ -266,11 +266,11 @@ int main() {
 
 * 测试结果
 
-![](public/img/DataStructure/heap3.jpg)
+![](/public/img/DataStructure/heap3.jpg)
 
 
 * 结果以树的形式表示
-![](public/img/DataStructure/heap2.jpg)
+![](/public/img/DataStructure/heap2.jpg)
 
 
 

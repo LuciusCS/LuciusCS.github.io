@@ -1,9 +1,9 @@
 ---
-title: Android 6.0及以上手机权限进行动态获取
+title:  Permission to LuciusCS/test.git denied to Lrici.
 thumbnail: /thumbnail/img67.jpg
 toc: true
 tags: [Git]
-description: Kotlin Lambda表达式
+description: Permission to LuciusCS/test.git denied to Lrici.
 categories: Other
 ---
 
@@ -17,7 +17,7 @@ remote: Permission to LuciusCS/test.git denied to Lrici.
 fatal: unable to access 'https://github.com/LuciusCS/test.git/': The requested URL returned error: 403
 
 
-![](public/img/other/Image3.png)
+![](/public/img/other/Image3.png)
 
 
 没错，LuciusCS是我原来的账号的名字，Lrici是我现在的账号的名字；

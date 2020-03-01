@@ -24,10 +24,10 @@ NDK: NDK是Google开发的一套开发和编译工具集，可以生成动态链
 
 Android Studio Tools—>SDK manager—>SDK Tools 选择LLDB、CMake、NDK点击Apply进行下载
 
-![](public/img/Android/Android JNI.png)
+![](/public/img/Android/AndroidJNI.png)
 
 在cpp文件夹下新建CMakeLists.txt和native-lib.cpp文件，CMakeLists.txt可以建在工程的任意位置
-![](public/img/Android/Android JNI1.png)
+![](/public/img/Android/AndroidJNI1.png)
 
 
 
@@ -220,12 +220,12 @@ typedef jobject         jweak;
 #### Java基本数据类型与Native层中的数据对应关系
 这些基本数据类型可以在Native层直接使用。
 
-![](public/img/Android/Android JNI2.png)
+![](/public/img/Android/AndroidJNI2.png)
 
 #### Java引用数据类型与Native层中的数据对应关系
 Java引用数据类型不能直接在Native层使用，需要根据JNI函数进行类型的转换后，才能使用。多维数组（包括二维数组）都是引用类型，需要转化为`jobjectArray`类型进行使用。    
 
-![](public/img/Android/Android JNI3.png)
+![](/public/img/Android/AndroidJNI3.png)
 
 在JNI中二维数组的使用
 ```java

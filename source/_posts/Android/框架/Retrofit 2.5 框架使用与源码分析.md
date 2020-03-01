@@ -20,7 +20,7 @@ tags: [Android]
 返回值：
 
 Header:
-![](public/img/Android/Retrofit.png)
+![](/public/img/Android/Retrofit.png)
 
 
 Body:

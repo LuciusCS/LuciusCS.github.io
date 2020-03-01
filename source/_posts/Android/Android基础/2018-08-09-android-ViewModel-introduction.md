@@ -145,8 +145,8 @@ public class MainActivity extends AppCompatActivity {
 
 **运行结果：**
 
-![](public/img/Android/view_model1.png)
-![](public/img/Android/view_model2.png)
+![](/public/img/Android/view_model1.png)
+![](/public/img/Android/view_model2.png)
 
 
 在旋转屏幕后计时器继续未重置。

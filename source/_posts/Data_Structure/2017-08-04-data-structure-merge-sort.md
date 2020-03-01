@@ -11,7 +11,7 @@ categories: 数据结构
 modified: 2017-08-04
 
 归并排序（Merge Sort）是建立在归并操作上的一种有效的排序算法，效率为O（n log n）；该算法是采用分治法一种典型的应用，且各层分治递归可以同时进行。
-
+<!--more-->
 归并排序的基本思路是
 
 * 将序列每相邻两个数字进行归并操作，形成n/2个序列，排序后每个序列包含两个元素；
@@ -19,11 +19,11 @@ modified: 2017-08-04
 * 重复步骤2，直到所有元素排序完毕；
 
 
-![](public/img/DataStructure/Merge_sort.gif)
+![](/public/img/DataStructure/Merge_sort.gif)
 
 
 
-	![](public/img/DataStructure/Merge_sort_01.gif)
+![](/public/img/DataStructure/Merge_sort_01.gif)
 
 
 

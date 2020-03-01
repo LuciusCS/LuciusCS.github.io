@@ -12,7 +12,7 @@ categories: 数据结构
 ### 折半查找
 modified: 2017-07-31
 折半查找即二分查找的实现
-
+<!--more-->
 ```c
 int BinarySearch(int data[], int search,int length) {
 	int end = length-1 ;

@@ -1,8 +1,8 @@
 ---
 title: Java单例模式
-thumbnail: /assets/android_basis_permission.png
-toc: true
 thumbnail: /thumbnail/img60.jpg
+toc: true
+description: Java单例模式
 categories: Java
 tags: [Java]
 ---

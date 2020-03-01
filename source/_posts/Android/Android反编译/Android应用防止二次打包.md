@@ -43,7 +43,7 @@ Android防止二次打包主要通过对签名文件的验证来进行
 keytool -list -v -keystore path/android.jks -storepass password
 
 ```
-![](public/img/Android/Android safe.png)
+![](/public/img/Android/Android safe.png)
 
 
 * 只有.apk文件
@@ -52,7 +52,7 @@ keytool -list -v -keystore path/android.jks -storepass password
 ```xml
 keytool -printcert -file path/android.jks
 ```
-![](public/img/Android/Android safe1.png)
+![](/public/img/Android/Android safe1.png)
 
 **两种方式获取到的签名文件是一致的，使用.jks文件需要密码，而使用.apk文件无需密码**
 

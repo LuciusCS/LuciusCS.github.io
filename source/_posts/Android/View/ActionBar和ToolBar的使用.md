@@ -1,8 +1,8 @@
 ---
-title: Android 6.0及以上手机权限进行动态获取
-thumbnail: /assets/android_basis_permission.png
-toc: true
+title: ActionBar和ToolBar的使用
 thumbnail: /thumbnail/img19.jpg
+toc: true
+description: ActionBar和ToolBar的使用
 categories: Android
 tags: [Android]
 ---

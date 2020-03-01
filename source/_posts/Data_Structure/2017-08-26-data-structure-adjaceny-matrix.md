@@ -14,14 +14,14 @@ modified: 2017-08-04
 ### 邻接矩阵
 
 >邻接矩阵（adjacency materix）表示又称为数组表示，它使用了两个数组存储图，首先将所有顶点的组织信息组织成一个顶点表，然后利用一个称之为邻接矩阵的二维数组来表示各顶点间的邻接关系。
-
+<!--more-->
 有向图的邻接矩阵表示:
 
-![](public/img/DataStructure/adjacency_matrix.jpg)
+![](/public/img/DataStructure/adjacency_matrix.jpg)
 
 无向图的邻接矩阵的表示(图中边的权重为1)：
 
-![](public/img/DataStructure/adjacency_matrix1.png)
+![](/public/img/DataStructure/adjacency_matrix1.png)
 
 
 ### 带权无向图邻接矩阵的代码实现
@@ -106,7 +106,7 @@ void CreateGraph(MGraph &G, int numVertex, int numEdge) {
 
 * 以下图为例测试
 
-![](public/img/DataStructure/adjacency_matrix2.png)
+![](/public/img/DataStructure/adjacency_matrix2.png)
 
 
 
@@ -130,7 +130,7 @@ int main() {
 }
 ```
 * 测试结果
-![](public/img/DataStructure/adjacency_matrix3.png)
+![](/public/img/DataStructure/adjacency_matrix3.png)
 
 
 [源码下载](https://github.com/LuciusCS/DataStructure/blob/master/DataStructure/DataStructure/7.2AdjacencyMatrix.cpp)
