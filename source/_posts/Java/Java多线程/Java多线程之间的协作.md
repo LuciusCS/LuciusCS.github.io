@@ -1,10 +1,10 @@
 ---
-title: Android 6.0及以上手机权限进行动态获取
-thumbnail: /assets/android_basis_permission.png
-toc: true
+title: Java多线程之间的协作
 thumbnail: /thumbnail/img61.jpg
-categories: Android
-tags: [Android]
+toc: true
+description: Java多线程之间的协作
+categories: Java
+tags: [Java]
 ---
 
 ## Java多线程协作

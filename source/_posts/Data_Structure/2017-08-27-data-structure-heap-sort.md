@@ -13,7 +13,7 @@ categories: 数据结构
 modified: 2017-08-27
 
 ### 堆排序原理
-
+<!--more-->
 在[建堆](https://luciuscs.github.io/2017/08/26/data-structure-build-heap.html)完毕后,堆排序就是每次将堆顶元素与最后一个元素进行交换，再进行一次针对堆顶元素向下（0，n-2）调整的过程，直至堆中只有一个元素为止。
 
 #### 使用最大堆将元素按照从小到大的顺序进行排序（最小堆排序方式类似）
@@ -94,4 +94,4 @@ int main(){
 ```
 
 * 运行结果
-![](public/img/DataStructure/heap_sort.jpg)
+![](/public/img/DataStructure/heap_sort.jpg)

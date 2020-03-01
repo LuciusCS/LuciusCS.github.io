@@ -13,7 +13,7 @@ modified  2017-08-27
 ## Huffman树
 
 Huffman树，又称最优二叉树或哈夫曼树，是一类加权路径长度最短的二叉树；
-
+<!--more-->
 ### Huffman算法
 
 设给定的权重集合为{7，5，2，4，6}，构造Huffman树的过程如下图所示。首先构造每棵树只有一个结点的森林，然后每次选择两个根结点权重最小的二叉树，以它们为左、右子树构造新的二叉树，最后得到一棵二叉树
@@ -81,8 +81,8 @@ void createHuffmanTree(HuffmanTree &HT,int weight[],int n) {
 ##### 上图构建Huffman树之后的结果
 
 
-![](public/img/DataStructure/huffman_tree.png)
-![](public/img/DataStructure/huffman_tree1.png)
+![](/public/img/DataStructure/huffman_tree.png)
+![](/public/img/DataStructure/huffman_tree1.png)
 
 
 * 上述代码运行
@@ -102,7 +102,7 @@ int main() {
 }
 ```
 * 运行结果
-![](public/img/DataStructure/huffman_tree3.png)
+![](/public/img/DataStructure/huffman_tree3.png)
 
 
 

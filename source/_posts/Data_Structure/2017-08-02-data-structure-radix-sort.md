@@ -12,7 +12,7 @@ categories: 数据结构
 modified: 2017-08-03
 
 桶排序（Bucket Sort）工作原理是将数列分到有限的桶中，每个桶再分别进行排序；
-
+<!--more-->
 基数排序（Radix Sort）是一种非比较型整数排序算法，其原理是将整数按位数切割成不同的数字，然后按每个位数分别比较。由于整数也可以表达字符串（比如名字或日期）和特定格式的浮点数，所以基数排序也不是只能使用于整数。
 
 基数排序的方式可以采用LSD（Least significant digital）或MSD（Most significant digital），LSD的排序方式由键值的最右边开始，而MSD则相反，由键值的最左边开始。

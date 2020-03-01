@@ -12,9 +12,9 @@ categories: 数据结构
 modified: 2017-08-27
 ### 邻接表
 
->邻接表（Adjacency List）是图的一种链式存储结构，在邻接表中，对图的每一个顶点建立一个单链表;
-
-![](public/img/DataStructure/adjacency_list.jpg)
+邻接表（Adjacency List）是图的一种链式存储结构，在邻接表中，对图的每一个顶点建立一个单链表;
+<!--more-->
+![](/public/img/DataStructure/adjacency_list.jpg)
 
 
 * 使用邻接表表示图的数据结构
@@ -142,7 +142,7 @@ int main() {
 }
 ```
 * 运行结果
-![](public/img/DataStructure/adjacency_list1.png)
+![](/public/img/DataStructure/adjacency_list1.png)
 
 
 [源码下载](https://github.com/LuciusCS/DataStructure/blob/master/DataStructure/DataStructure/7.2AdjacencyList.cpp)

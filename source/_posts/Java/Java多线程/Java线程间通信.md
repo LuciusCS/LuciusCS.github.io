@@ -1,8 +1,8 @@
 ---
-title: Android 6.0及以上手机权限进行动态获取
-thumbnail: /assets/android_basis_permission.png
-toc: true
+title: Java线程间通信
 thumbnail: /thumbnail/img63.jpg
+toc: true
+description: Java线程间通信
 categories: Android
 tags: [Android]
 ---

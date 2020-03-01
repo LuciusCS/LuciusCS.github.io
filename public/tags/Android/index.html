@@ -133,89 +133,27 @@
     
 <div class="card">
     
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-02-29T02:45:21.663Z">2020-02-29</time>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    6 minutes read (About 874 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/public/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-09-android-ViewModel-introduction/">Android lifecycle-aware components</a>
-            
-        </h1>
-        <div class="content">
-            <p>modified: 2018-08-09</p>
-<h1 id="Android生命周期感知组件介绍-Android-lifecycle-aware-components"><a href="#Android生命周期感知组件介绍-Android-lifecycle-aware-components" class="headerlink" title="Android生命周期感知组件介绍(Android lifecycle-aware components)"></a>Android生命周期感知组件介绍(Android lifecycle-aware components)</h1><h2 id="lifecycle-aware组件介绍"><a href="#lifecycle-aware组件介绍" class="headerlink" title="lifecycle-aware组件介绍"></a>lifecycle-aware组件介绍</h2><ul>
-<li><strong>ViewModel：</strong>为绑定在特定生命周期的对象提供创建以及恢复的方法，<code>ViewModel</code>通常保存<code>View</code>的数据或者用于与其他组件进行通信，例如data repository</li>
-<li><strong>LifecycleOwner/LifecycleRegisterOwner：</strong><code>LifecycleOwner</code>以及<code>LifecycleRegisterOwner</code>都是需要在<code>AppCompatActivity</code>或者<code>Support Fragment</code>类中实现的接口。可以订阅实现这些接口的其他组件的对象，来观察这些对象的生命周期。</li>
-<li><strong>LiveData:</strong>通过<code>LiveData</code>可以通过多个组件来观察到数据的变化。<code>LiveData</code>不会影响应用中的组件如：Activity、Service、Fragment或者其他<code>LifecycleOwner</code>的生命周期。<code>LiveData</code>可以对观察者订阅的内容进行管理，主要的方式有：停止或者取消订阅。</li>
-</ul>
-<h2 id="布局文件中添加计时器"><a href="#布局文件中添加计时器" class="headerlink" title="布局文件中添加计时器"></a>布局文件中添加计时器</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Chronometer</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:id</span>=<span class="string">"@+id/chronometer"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:text</span>=<span class="string">"Hello World!"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">app:layout_constraintBottom_toBottomOf</span>=<span class="string">"parent"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">app:layout_constraintLeft_toLeftOf</span>=<span class="string">"parent"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">app:layout_constraintRight_toRightOf</span>=<span class="string">"parent"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">app:layout_constraintTop_toTopOf</span>=<span class="string">"parent"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line">        Chronometer chronometer=(Chronometer)findViewById(R.id.chronometer);</span><br><span class="line">        chronometer.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>当旋转屏幕时，由于Activity重建，使得计时器被重置</strong></p>
-<h2 id="添加ViewMedel"><a href="#添加ViewMedel" class="headerlink" title="添加ViewMedel"></a>添加ViewMedel</h2><p>添加<code>ViewModel</code>来保持Activity或者Fragment整个生命周期中的数据.Activity以及Fragment是short-lived类型的对象，它们在用户操作App的过程中会被频繁地创建以及销毁。使用<code>ViewModel</code>也可以很好地处理与网络请求相关的数据，以及数据的操作和持久化。</p>
-<h3 id="使用ViewModel来留存计时器（Chronometer）的状态"><a href="#使用ViewModel来留存计时器（Chronometer）的状态" class="headerlink" title="使用ViewModel来留存计时器（Chronometer）的状态"></a>使用ViewModel来留存计时器（<code>Chronometer</code>）的状态</h3><p>ChronometerViewModel中的代码</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ChronometerViewModel</span> <span class="keyword">extends</span> <span class="title">ViewModel</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> MutableLiveData&lt;Long&gt;mElapsedTime=<span class="keyword">new</span> MutableLiveData&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> mInitialTime;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ChronometerViewModel</span><span class="params">()</span></span>&#123;</span><br><span class="line">        mInitialTime= SystemClock.elapsedRealtime();</span><br><span class="line"></span><br><span class="line">        Timer timer=<span class="keyword">new</span> Timer();</span><br><span class="line"></span><br><span class="line">        timer.scheduleAtFixedRate(<span class="keyword">new</span> TimerTask() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                 <span class="keyword">final</span> <span class="keyword">long</span> newValue=(SystemClock.elapsedRealtime()-mInitialTime)/<span class="number">1000</span>;</span><br><span class="line">                 mElapsedTime.postValue(newValue);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,<span class="number">1000</span>,<span class="number">1000</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> LiveData&lt;Long&gt;getElapsedTime()&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> mElapsedTime;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在MainActivity中添加代码</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chronometerViewModel= ViewModelProviders.of(<span class="keyword">this</span>).get(ChronometerViewModel<span class="class">.<span class="keyword">class</span>)</span>;</span><br></pre></td></tr></table></figure>
-
-<p><code>this</code>指代的是<code>LifecycleOwner</code>的一个实例，<code>ViewModel</code>与<code>LifecycleOwner</code>保活时间一样长，当<code>ViewModel</code>的所有者的配置信息（如：屏幕旋转）发生变化时，<code>ViewModel</code>不会被销毁，当其所有者重新被实例化时，会与已经存在的<code>ViewModel</code>重新建立联系。其生命周期如图所示：</p>
-<p>/source/img/201807/view_model.png</p>
-<h2 id="将Activity中使用的数据使用LiveData进行封装"><a href="#将Activity中使用的数据使用LiveData进行封装" class="headerlink" title="将Activity中使用的数据使用LiveData进行封装"></a>将Activity中使用的数据使用LiveData进行封装</h2><p>将计时控件<code>chronometer</code>使用<code>Timer</code>来设置，每隔一秒钟更新一次UI，将相应的代码放在<code>ChronometerViewModel</code>中，而让Activity只保持用户与UI之间的交流操作。</p>
-<p>MainActivity中的完整代码</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> ChronometerViewModel chronometerViewModel;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line">         chronometerViewModel= ViewModelProviders.of(<span class="keyword">this</span>).get(ChronometerViewModel<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">         subscribe();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">subscribe</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">final</span> Observer&lt;Long&gt;elapseTimeObserver=<span class="keyword">new</span> Observer&lt;Long&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onChanged</span><span class="params">(@Nullable Long aLong)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">                ((TextView)findViewById(R.id.chronometer_text)).setText(aLong+<span class="string">"秒"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        chronometerViewModel.getElapsedTime().observe(<span class="keyword">this</span>,elapseTimeObserver);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>当<code>timer</code>每隔一秒<strong><em>通知</em></strong><code>MainActivity</code>时，<code>MainActivity</code>将会更新一下UI，为避免内存泄漏，<code>ViewModel</code>中没有指向Activity的引用。</p>
-<p><code>ViewModel</code>并不直接改变View，在使用<code>ViewModel</code>中需要配置Activity以及Fragment去观察数据源的变化，当观察到数据源发生变换时UI发生相应的改变，这被称为观察者模式。</p>
-<p><strong>注：为了将数据暴露给观察者，需要使用<code>LiveData</code>对数据进行封装</strong></p>
-<p><code>LiveData</code>是一个特殊的可观察类，是lifecycle-aware类型的，只会通知处于活跃状态的观察者。</p>
-<p><strong>运行结果：</strong></p>
-<p>/source/img/201807/view_model1.png<br>/source/img/201807/view_model2.png</p>
-<p>在旋转屏幕后计时器继续未重置。</p>
-
-        </div>
-        
-        
-        
+    <div class="card-image">
+        <a href="/public/2020/02/29/Java/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%9F%BA%E7%A1%80/" class="image is-7by1">
+            <img class="thumbnail" src="/public/thumbnail/img62.jpg" alt="Java多线程基础">
+        </a>
     </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-02-29T02:45:21.654Z">2020-02-29</time>
+                <time class="level-item has-text-grey" datetime="2020-02-29T12:00:33.100Z">2020-02-29</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/public/categories/Android/">Android</a>
+                </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    12 minutes read (About 1740 words)
+                    17 minutes read (About 2526 words)
                 </span>
                 
                 
@@ -224,156 +162,22 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/public/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-01-android-broadcast-introduction/">Android Broadcast介绍</a>
+                <a class="has-link-black-ter" href="/public/2020/02/29/Java/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%9F%BA%E7%A1%80/">Java多线程基础</a>
             
         </h1>
         <div class="content">
-            <h1 id="Android-Broadcast介绍"><a href="#Android-Broadcast介绍" class="headerlink" title="Android Broadcast介绍"></a>Android Broadcast介绍</h1><p>modified: 2018-08-01<br>Android应用可以向系统和其他应用发送或者接收广播信息，手机系统在启动或者电量低的时候会发送不同的广播，也允许手机应用发送广播，来通知用户某些事件。</p>
-<p>手机应用可以注册或者接受特定的广播，当一个广播被发出，系统会自动会自动将广播发送给注册并接收特定广播的手机应用。</p>
-<p>广播中的信息被包裹在Intent对象中，Intent中的action会判断出发生的是哪一个事件，如：android.intent.action.AIRPLANE_MODE。在Intent中同时可以携带其他的信息。</p>
-<h3 id="广播中的一些变化"><a href="#广播中的一些变化" class="headerlink" title="广播中的一些变化"></a>广播中的一些变化</h3><ul>
-<li>在Android 7.0(API 24)及以上的版本，将不再使用系统广播中的 ACTION_NEW_PICTURE和ACTION_NEW_VIDEO</li>
-<li>在Android 7.0(API 24)及以上的版本，监听CONNECTIVITY_ACTION广播时，需要使用registerReceiver(BroadcastReceiver, IntentFilter)方法，只在manifest文件中声明receiver将失效</li>
-<li>从Android 8.0(API 26)开始，对于大部分隐式广播（广播的对象不是针对你开发的APP），不能在menifest中声明receiver，如果需要使用隐式广播，需要使用context-registered reciever 的方法。</li>
-</ul>
-<h2 id="接收广播"><a href="#接收广播" class="headerlink" title="接收广播"></a>接收广播</h2><p>手机应用可以通过两种方式接收广播：通过在menifest文件中声明receiver；使用context-registered的方式。<strong>在Android 8.0(API 26)之后建议使用第二种方式</strong></p>
-<h3 id="在menifest文件中声明receiver"><a href="#在menifest文件中声明receiver" class="headerlink" title="在menifest文件中声明receiver"></a>在menifest文件中声明receiver</h3><p>通过在menifest文件中声明receiver的方式，但广播被发送的时候，系统会唤醒手机应用。</p>
-<h4 id="1、menifest文件配置"><a href="#1、menifest文件配置" class="headerlink" title="1、menifest文件配置"></a>1、menifest文件配置</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">receiver</span></span></span><br><span class="line"><span class="tag">       <span class="attr">android:name</span>=<span class="string">".receiver.BroadcastReceiverTest"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">android:exported</span>=<span class="string">"true"</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"android.intent.action.BOOT_COMPLETED"</span>/&gt;</span></span><br><span class="line">             <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"android.intent.action.ACTION_POWER_CONNECTED"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">receiver</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="2、继承BroadcastReceiver类"><a href="#2、继承BroadcastReceiver类" class="headerlink" title="2、继承BroadcastReceiver类"></a>2、继承BroadcastReceiver类</h3><p>当用户手机充电时，将会弹出充电的提示。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BroadcastReceiverTest</span> <span class="keyword">extends</span> <span class="title">BroadcastReceiver</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onReceive</span><span class="params">(Context context, Intent intent)</span> </span>&#123;</span><br><span class="line">        Toast.makeText(context,intent.getAction().toString(),Toast.LENGTH_LONG).show();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="通过Context-register的方式注册Receiver"><a href="#通过Context-register的方式注册Receiver" class="headerlink" title="通过Context-register的方式注册Receiver"></a>通过Context-register的方式注册Receiver</h2><p>###1、创建一个BroadcastReceiverTest实例</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BroadcastReceiverTest br&#x3D;new BroadcastReceiverTest()</span><br></pre></td></tr></table></figure>
-
-<p>###2、创建IntentFilter,通过调用registerReceiver(BroadcastReceiver, IntentFilter)方法注册广播</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//用于监控网络的状态变化</span></span><br><span class="line">IntentFilter intentFilter=<span class="keyword">new</span> IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);</span><br><span class="line">intentFilter.addAction(Intent.ACTION_AIRPLANE_MODE_CHANGED);</span><br><span class="line"><span class="keyword">this</span>.registerReceiver(br,intentFilter);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>注：通过Context-register的方式注册广播，只要注册位置的Context没有被注销，那么它就可以收到广播。如果在Application的位置注册广播，那么只要App在运行，就可以收到广播信息。</li>
-</ul>
-<p>###3、停止接收广播</p>
-<p>停止接收广播需要调用 unregisterReceiver(android.content.BroadcastReceiver)，在此之前需要保证此广播不再被使用。</p>
-<p><strong>一定要记得unregister receiver</strong>，防止造成内存泄漏，如果在onCreate(Bundle)中注册receiver则需要在onDestroy()中unregister；如果在onResume()进行注册，则需要在onPause()中unregister(<strong><em>防止广播被重复多次注册</em></strong>)。但不能在onSaveInstanceState(Bundle)中进行unregister，因为当用户回到历史栈中时，这一个方法将不会被调用。</p>
-<h2 id="Broadcast对进程的影响"><a href="#Broadcast对进程的影响" class="headerlink" title="Broadcast对进程的影响"></a>Broadcast对进程的影响</h2><p>BroadcastReceiver无论是否是运行状态，都会影响到它所在的进程的状态。例如，当一个进程在正在执行receiver(当前运行onReceive()方法中的代码)，会被认为是一个前台进程，只有当内存极其缺乏的时候，该进程才会去杀死。</p>
-<p>当执行代码一旦从onReceive()方法中返回后，BroadcastReceiver就不再处于活跃状态，它所在的进程与应用的其他组件有着相同的优先级。如果进程中只有一个在menifest中声明的receiver，执行完onReceiver()方法返回后，系统将会将将该进程设置为低优先级，有时会被杀死。</p>
-<p>因此在broadcast的receiver中不能启动长时间运行的后台进程，在执行完onReceiver()方法之后，系统在任何时间都可以杀死进程。为了避免进程被杀死，可以调用goAsync()方法(当需要在后台执行一些耗时操作)，或者使用JobService，通过receiver使用JobScheduler，这样系统就会知道进程正在执行任务。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BroadcastReceiverTest</span> <span class="keyword">extends</span> <span class="title">BroadcastReceiver</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onReceive</span><span class="params">(Context context, Intent intent)</span> </span>&#123;</span><br><span class="line">        Toast.makeText(context,intent.getAction().toString(),Toast.LENGTH_LONG).show();</span><br><span class="line">        <span class="keyword">final</span> PendingResult pendingResult=goAsync();</span><br><span class="line"></span><br><span class="line">        AsyncTask&lt;String,Integer,String&gt;asyncTask=<span class="keyword">new</span> AsyncTask&lt;String, Integer, String&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">protected</span> String <span class="title">doInBackground</span><span class="params">(String... strings)</span> </span>&#123;</span><br><span class="line">                Log.i(<span class="string">"+++++++++"</span>,<span class="string">"++++"</span>);</span><br><span class="line">                pendingResult.finish();</span><br><span class="line">                <span class="keyword">return</span> <span class="string">"测试"</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        asyncTask.execute();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="发送广播"><a href="#发送广播" class="headerlink" title="发送广播"></a>发送广播</h2><h3 id="Android提供三种方式发送广播"><a href="#Android提供三种方式发送广播" class="headerlink" title="Android提供三种方式发送广播"></a>Android提供三种方式发送广播</h3><ul>
-<li>通过 sendOrderedBroadcast(Intent, String) 的方式一次向一个receiver发送一个广播,接收到广播的receiver,可以将运行结果传递到下一个receiver或者直接将广播丢弃。</li>
-<li>通过 sendBroadcast(Intent) 的方式向所有的receiver发送广播，具有更高的效率，但是其他广播不能获取某些广播的执行的结果，也不能发散广播或者将广播取消。</li>
-<li>通过 LocalBroadcastManager.sendBroadcast 的方式发送广播，这种方式只能讲广播发送给本App，这种实现方式会更高效，而且不用担心其他App接收到广播引起的安全问题。</li>
-</ul>
-<p><strong>发送广播的例子</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Intent intent = <span class="keyword">new</span> Intent();</span><br><span class="line">intent.setAction(<span class="string">"com.example.broadcast.MY_NOTIFICATION"</span>);</span><br><span class="line">intent.putExtra(<span class="string">"data"</span>,<span class="string">"Notice me senpai!"</span>);</span><br><span class="line">sendBroadcast(intent);</span><br></pre></td></tr></table></figure>
-
-<p>广播发送的内容被包裹在Intent对象中，intent的action字符串需要唯一确定广播事件，可以在intent中通过putExtra(String, Bundle) 方法携带更多的信息。也可以限制广播发送到组织中的一系列应用，通过intent调用setPackage(String)方法。</p>
-<ul>
-<li>注：尽管intent被用作发送广播以及启动Activity，但这些活动都是不想关的。Broadcast不能看到或者捕获用于启动activity的intent。</li>
-</ul>
-<h2 id="通过permissions限制广播的发送"><a href="#通过permissions限制广播的发送" class="headerlink" title="通过permissions限制广播的发送"></a>通过permissions限制广播的发送</h2><p>广播可以发送到具有某一权限的一些列的应用中，不仅可以在sender中设置限制，也可以在receiver中进行权限设置。</p>
-<h3 id="带有权限的广播发送"><a href="#带有权限的广播发送" class="headerlink" title="带有权限的广播发送"></a>带有权限的广播发送</h3><p>当调用sendBroadcast(Intent, String) 或者 sendOrderedBroadcast(Intent, String, BroadcastReceiver, Handler, int, String, Bundle)方法时可以指定一个权限参数，只有已经在manifest文件中声明了权限的App才会接收到这一个广播。<br>例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sendBroadcast(new Intent(&quot;com.example.NOTIFY&quot;), Manifest.permission.SEND_SMS);</span><br></pre></td></tr></table></figure>
-
-<p>这一条广播的接收者，只能是已经在manifest文件中申请了权限的App</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;uses-permission android:name&#x3D;&quot;android.permission.SEND_SMS&quot;&#x2F;&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="带有权限的广播接收"><a href="#带有权限的广播接收" class="headerlink" title="带有权限的广播接收"></a>带有权限的广播接收</h3><p>无论是使用registerReceiver(BroadcastReceiver, IntentFilter, String, Handler) 还是在manifest中使用标签 <receiver>来注册广播，当对receiver进行权限限制时，只能接收到已经获取到已经取得权限的App的广播。<strong>发送广播的App一定要取得相应的权限</strong></p>
-<p>例如：在manifest文件中添加权限限制。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">receiver</span> <span class="attr">android:name</span>=<span class="string">".MyBroadcastReceiver"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">android:permission</span>=<span class="string">"android.permission.SEND_SMS"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"android.intent.action.AIRPLANE_MODE"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">receiver</span>&gt;</span></span><br><span class="line"></span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">使用context-register方式注册广播权限限制</span><br><span class="line"></span><br><span class="line">```java</span><br><span class="line">IntentFilter filter = new IntentFilter(Intent.ACTION_AIRPLANE_MODE_CHANGED);</span><br><span class="line">registerReceiver(receiver, filter, Manifest.permission.SEND_SMS, null );</span><br></pre></td></tr></table></figure>
-
-
-
-
+            <h3 id="Runnable接口"><a href="#Runnable接口" class="headerlink" title="Runnable接口"></a>Runnable接口</h3><p>仅调用Runnable的<code>run()</code>方法不能产生一个新的线程，新线程的执行必须通过<code>Thread.start()</code>方法来执行。</p>
+<p>通常将一个Runnable对象转换成一个任务，需要将其传递给一个Thread构造函数。</p>
         </div>
         
         
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-02-29T02:45:21.613Z">2020-02-29</time>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    14 minutes read (About 2150 words)
-                </span>
-                
-                
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/public/2020/02/29/Java/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%9F%BA%E7%A1%80/#more">Read More</a>
+                </div>
             </div>
         </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/public/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-07-31-android-service-introduction/">Android Service介绍</a>
-            
-        </h1>
-        <div class="content">
-            <h1 id="Android开发Service介绍"><a href="#Android开发Service介绍" class="headerlink" title="Android开发Service介绍"></a>Android开发Service介绍</h1><p>Service是应用的一个组件，可以在后台处理耗时操作，但没有用户界面，其他的组件可以启动Service,即使用户切换到其他的应用，Service依旧可以在后台运行。另外，一个组件可以绑定一个Service并与其进行通信（IPC机制）。例如：Service可以控制网络传输、播放音乐、对文件进行I/O操作，都可以在后台进行。</p>
-<h2 id="不同类型的Service介绍"><a href="#不同类型的Service介绍" class="headerlink" title="不同类型的Service介绍"></a>不同类型的Service介绍</h2><h3 id="Foreground-service"><a href="#Foreground-service" class="headerlink" title="Foreground service"></a>Foreground service</h3><p>Foreground service进行一些可以被用户看到的一些操作，例如：一个audio app会使用foreground service播放audio track,foreground service需要显示一个Notification,当用户切换到其他的应用时Foreground service依旧在后台运行。(音乐播放器类在后台播放，并在通知栏系显示的Service)</p>
-<h3 id="Background-service"><a href="#Background-service" class="headerlink" title="Background service"></a>Background service</h3><p>Background service进行的操作不会被用户感知，如：如果一个App使用Service对手机的存储空间进行进行压缩，会使用一个Background service。</p>
-<ul>
-<li>注：当App targets Api大于26时，如果App没有在前台运行，那么background service将会受到限制，应该使用schedule job进行替换。</li>
-</ul>
-<h3 id="Bound"><a href="#Bound" class="headerlink" title="Bound"></a>Bound</h3><p>当应用功能组件使用bindService时，这个Service就是Bound类型的。Bound service提供client-server接口使得组件和service可以进行通信，通过IPC机制发出请求，获取结果，Bound service存在运行的时间与绑定的它组件相同，多个组件可以绑定同一个service,当所有的组件解绑service时，service将被销毁。</p>
-<p>不管你的service是否启动、被绑定或者既启动也被绑定，所有的应用组件都可以使用Intent来启动，可以再manifest文件中将service设置为private,防止被其他的应用调用。</p>
-<h2 id="Service的使用"><a href="#Service的使用" class="headerlink" title="Service的使用"></a>Service的使用</h2><p>创建一个Service,需要创建Service的子类，并在其中重写回调函数。</p>
-<h3 id="函数的介绍"><a href="#函数的介绍" class="headerlink" title="函数的介绍"></a>函数的介绍</h3><h4 id="onStartCommend"><a href="#onStartCommend" class="headerlink" title="onStartCommend()"></a>onStartCommend()</h4><p>其他组件调用startService()方法启动Service时，会调用Service中onStartCommend()方法，当着一个方法执行时，service就启动了并在后台运行。如果自己实现了这一个方法，当任务结束时就需要自己调用stopSelf()或者stopService()方法，如果仅仅是要绑定服务，那么就不需要自己实现这一个方法。</p>
-<h4 id="onBind"><a href="#onBind" class="headerlink" title="onBind()"></a>onBind()</h4><p>其他组件调用bindService()来绑定服务时，会调用Service中的OnBind()方法。在实现这一个方法时，需要提供一个接口使得组件可以通过返回的IBinder与之进行通讯。<strong>在使用service时这一个方法都需要实现，如果service没有被绑定到其他组件上，返回值为null</strong></p>
-<h4 id="onCreate"><a href="#onCreate" class="headerlink" title="onCreate()"></a>onCreate()</h4><p>在service进行初始化的时候会调用这一个方法（在Service调用onStartCommand()或者onBinde()之前），如果service已经运行了，那么将不会调用这一个方法。</p>
-<h4 id="onDestory"><a href="#onDestory" class="headerlink" title="onDestory()"></a>onDestory()</h4><p>当服务不再使用或者将要销毁时，service需要实现这一个方法去清理资源，如：线程、注册的监听以及接收器等。</p>
-<h3 id="在menifest中声明一个service"><a href="#在menifest中声明一个service" class="headerlink" title="在menifest中声明一个service"></a>在menifest中声明一个service</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">manifest</span> <span class="attr">...</span> &gt;</span></span><br><span class="line">  ...</span><br><span class="line">  <span class="tag">&lt;<span class="name">application</span> <span class="attr">...</span> &gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">service</span> <span class="attr">android:name</span>=<span class="string">".ExampleService"</span> /&gt;</span></span><br><span class="line">      ...</span><br><span class="line">  <span class="tag">&lt;/<span class="name">application</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">manifest</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>注：为了保证App是安全的，需要使用显示调用的方法，启动一个service,而不是使用intent filter来启动。可以使用android:exported=false属性来防止外部应用启动此service</li>
-</ul>
-<h2 id="创建一个Started-service"><a href="#创建一个Started-service" class="headerlink" title="创建一个Started service"></a>创建一个Started service</h2><p>当一个服务被启动后，它与启动它的组件有着不同的生命周期，即使当启动service的组件被销毁了它依然可以在后台运行。因此，servive需要通过调用自身的stopSelf()来停止，或者通过其他组件调用stopService()。</p>
-<p>应用组件通过使用startService()启动service，通过Intent来启动特定的service并传递数据，servive可以在onStartCommand()方法中获取到intent中的数据。</p>
-<p>例如Actvivity需要将数据传递到线上数据库，这一个activity可以启动service组件，将数据通过Intent传递给startService (Intent service)，这一个service在onStartCommand()方法中获取到Intent中携带的数据，连接到网络并将数据传递到线上数据库，在数据传输完成后将会停止并销毁。</p>
-<ul>
-<li>注：service与应用运行在相同的进程中，当用户在与Activity进行交互的时候，service需要避免影响到Activity，需要在service中启动一个新的Thread。</li>
-</ul>
-<h3 id="两个可以继承启动的service类"><a href="#两个可以继承启动的service类" class="headerlink" title="两个可以继承启动的service类"></a>两个可以继承启动的service类</h3><h4 id="Service类"><a href="#Service类" class="headerlink" title="Service类"></a>Service类</h4><p>Service类是所有service的基类，当在继承这一个类的时候，<strong>需要创建一个新的线程，使得service可以再其中完成它的工作</strong> <strong><em>（很重要）</em></strong>，service会默认在应用的主线程中使用，这样会使得应用中的activity变得缓慢。</p>
-<h4 id="IntentService类"><a href="#IntentService类" class="headerlink" title="IntentService类"></a>IntentService类</h4><p>IntentService是Service的一个子类，其调用工作进程来处理在service启动时的请求操作，当不需要service同时处理多个请求时可以使用IntentService。实现onHandlerIntent()方法，接收到请求的intent，在后台完成任务。</p>
-<h3 id="继承IntentService类"><a href="#继承IntentService类" class="headerlink" title="继承IntentService类"></a>继承IntentService类</h3><p>在大多数情况下启动一个service不需要同时处理复杂的工作，所以推荐使用IntentService类</p>
-<p><strong>IntentService类所做的工作</strong></p>
-<ul>
-<li>创建一个默认的工作线程处理所有传递到onStartCommand()方法中的intent，从应用主线程中分离。</li>
-<li>创建一个工作队列，每一次传递一个intent到onHandleIntent方法中，所以无需担心多线程的问题。</li>
-<li>当所有的请求都被处理后，停止service，不需要调用stopSelf()方法来停止service。</li>
-<li>提供onBind()的默认实现方法，并返回null。</li>
-<li>提供onStartCommand()的默认实现方法，并将intent传递到工作队列，然后传递到onHandleIntent()的实现方法中。</li>
-</ul>
-<p>为了完成client传递的任务，需要实现onHandleIntent()方法，同时需要为定义的service添加一个构造方法。</p>
-<h2 id="创建一个Bound-Service"><a href="#创建一个Bound-Service" class="headerlink" title="创建一个Bound Service"></a>创建一个Bound Service</h2><p>Bound Service允许应用组件调用bindService()绑定到service上，它通常不允许使用startService()来创建Service。当需要service与其他应用组件进行信息交换或者将自己的应用的function，通过IPC暴露给其他应用调用时，使用Bound Service。</p>
-<h2 id="给用户发送notifications"><a href="#给用户发送notifications" class="headerlink" title="给用户发送notifications"></a>给用户发送notifications</h2><p>当一个服务在运行时，可以通过Toast Notifications或者Status Bar Notification向用户发通知。Toast Notification就是在Activity中使用的普通Toast,Status Bar可以有一个图标以及信息，用户可以点击启动相应的activity</p>
-<h2 id="运行foreground-service"><a href="#运行foreground-service" class="headerlink" title="运行foreground service"></a>运行foreground service</h2><p>foreground service可以被用户感知，即使在系统内存偏低的状态下也不会被杀死。foreground service需要在Status Bar中提供一个notification,除非这一个service被杀死，否则这个notification不会消失。</p>
-<p><strong>谨慎使用foreground service 当需要执行一项需要被用户感知的任务时，使用foreground service，它需要在Status Bar中显示一条notification，优先级设置为PRIORITY_LOW或者高一点的优先级。</strong></p>
-<p>让service运行在foreground，需要调用startForeground (int id, Notification notification)，第一个参数是Notification的唯一标识符ID。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#x2F;&#x2F;代码</span><br></pre></td></tr></table></figure>
-
-<h2 id="service的生命周期"><a href="#service的生命周期" class="headerlink" title="service的生命周期"></a>service的生命周期</h2><p>service的生命周期从创建至销毁有两种情况</p>
-<h3 id="通过调用startService-创建service"><a href="#通过调用startService-创建service" class="headerlink" title="通过调用startService()创建service"></a>通过调用startService()创建service</h3><p>其他组件调用startService()会创建一个service，以这种方式启动的service需要主动停止，否则将会一直存在，service自身可以调用stopSelf()，其他组件可以调用stopService()方式来实现，当service停止后，系统将会销毁这一个service</p>
-<h3 id="通过调用bindService-创建service"><a href="#通过调用bindService-创建service" class="headerlink" title="通过调用bindService()创建service"></a>通过调用bindService()创建service</h3><p>其他组件调用bindService()方法创建一个service,启动service的客户端（组件）通过IBinder接口与service进行信息的交互，客户端可以通过调用unbindService()方法来取消与service之间的联系。多个客户端通过调用bindService()绑定同一个service,只有所有的客户端调用unBindService()方法后，service才会被系统销毁，而不能通过调用stopSelf()或者stopService()方法。</p>
-<p>/source/img/201807/service_lifecycle.png</p>
-
-        </div>
-        
         
         
     </div>
@@ -390,8 +194,8 @@
 <div class="card">
     
     <div class="card-image">
-        <a href="/public/2019/11/30/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="image is-7by1">
-            <img class="thumbnail" src="/public/assets/Android%20JNI.png" alt="Android/框架/Retrofit 2.5 框架使用与源码分析">
+        <a href="/public/2020/02/29/Java/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/Java%E7%BA%BF%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1/" class="image is-7by1">
+            <img class="thumbnail" src="/public/thumbnail/img63.jpg" alt="Java线程间通信">
         </a>
     </div>
     
@@ -399,7 +203,7 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-11-30T11:13:20.728Z">2019-11-30</time>
+                <time class="level-item has-text-grey" datetime="2020-02-29T12:00:33.100Z">2020-02-29</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/public/categories/Android/">Android</a>
@@ -409,7 +213,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    14 minutes read (About 2117 words)
+                    15 minutes read (About 2300 words)
                 </span>
                 
                 
@@ -418,7 +222,191 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/public/2019/11/30/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">Android/框架/Retrofit 2.5 框架使用与源码分析</a>
+                <a class="has-link-black-ter" href="/public/2020/02/29/Java/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/Java%E7%BA%BF%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1/">Java线程间通信</a>
+            
+        </h1>
+        <div class="content">
+            <h1 id="线程间通信"><a href="#线程间通信" class="headerlink" title="线程间通信"></a>线程间通信</h1><ul>
+<li>使用单向管道（Pipe）传递数据</li>
+<li>共享内存（Shared Memory）通信</li>
+<li>使用阻塞队列（Blocking Queue）实现生产者-消费者模式</li>
+<li>处理消息队列（Message Queue）</li>
+</ul>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/public/2020/02/29/Java/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/Java%E7%BA%BF%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1/#more">Read More</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/public/2020/02/29/Android/%E6%A1%86%E6%9E%B6/fastjson%E7%9A%84%E4%BD%BF%E7%94%A8/" class="image is-7by1">
+            <img class="thumbnail" src="/public/thumbnail/img34.jpg" alt="Fasetjson 介绍与使用">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-02-29T12:00:33.022Z">2020-02-29</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/public/categories/Android/">Android</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    a minute read (About 141 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/public/2020/02/29/Android/%E6%A1%86%E6%9E%B6/fastjson%E7%9A%84%E4%BD%BF%E7%94%A8/">Fasetjson 介绍与使用</a>
+            
+        </h1>
+        <div class="content">
+            <h4 id="JSONString与HashMap之间的转换"><a href="#JSONString与HashMap之间的转换" class="headerlink" title="JSONString与HashMap之间的转换"></a>JSONString与HashMap之间的转换</h4><ul>
+<li>HashMap转换为JsonString
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/public/2020/02/29/Android/%E6%A1%86%E6%9E%B6/fastjson%E7%9A%84%E4%BD%BF%E7%94%A8/#more">Read More</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/public/2020/02/29/Android/%E6%A1%86%E6%9E%B6/Dagger2/" class="image is-7by1">
+            <img class="thumbnail" src="/public/thumbnail/img33.jpg" alt="Dagger2 介绍与使用">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-02-29T12:00:33.006Z">2020-02-29</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/public/categories/Android/">Android</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    2 minutes read (About 349 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/public/2020/02/29/Android/%E6%A1%86%E6%9E%B6/Dagger2/">Dagger2 介绍与使用</a>
+            
+        </h1>
+        <div class="content">
+            <h1 id="在Android中使用Dagger2"><a href="#在Android中使用Dagger2" class="headerlink" title="在Android中使用Dagger2"></a>在Android中使用Dagger2</h1><h2 id="Dagger2介绍"><a href="#Dagger2介绍" class="headerlink" title="Dagger2介绍"></a>Dagger2介绍</h2><h3 id="为什么我们需要注解依赖注入？"><a href="#为什么我们需要注解依赖注入？" class="headerlink" title="为什么我们需要注解依赖注入？"></a>为什么我们需要注解依赖注入？</h3><p>Dependency Injection(注解依赖)是在IOC(Inversion of cnontrol)的基础上实现的，为了将类的实例的实现与类进行分离。</p>
+<p>如果一个类使用<code>new</code>操作符来实例化另外一个类，那么这两个类直接就产生依赖关系，被称为Hard dependency。</p>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/public/2020/02/29/Android/%E6%A1%86%E6%9E%B6/Dagger2/#more">Read More</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/public/2020/02/29/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="image is-7by1">
+            <img class="thumbnail" src="/public/thumbnail/img35.jpg" alt="Retrofit 框架介绍与使用">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-02-29T12:00:33.006Z">2020-02-29</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/public/categories/Android/">Android</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    14 minutes read (About 2119 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/public/2020/02/29/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">Retrofit 框架介绍与使用</a>
             
         </h1>
         <div class="content">
@@ -429,7 +417,7 @@
         <div class="level is-mobile">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/public/2019/11/30/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/#more">Read More</a>
+                <a class="button is-size-7 is-light" href="/public/2020/02/29/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/#more">Read More</a>
                 </div>
             </div>
         </div>
@@ -449,8 +437,8 @@
 <div class="card">
     
     <div class="card-image">
-        <a href="/public/2019/09/19/Android/Android%E5%9F%BA%E7%A1%80/Android%206.0%E5%8A%A8%E6%80%81%E6%9D%83%E9%99%90%E8%8E%B7%E5%8F%96/" class="image is-7by1">
-            <img class="thumbnail" src="/public/assets/android_basis_permission.png" alt="Android 6.0及以上手机权限进行动态获取">
+        <a href="/public/2020/02/29/Android/%E6%A1%86%E6%9E%B6/AAC/DataBinding%E7%9A%84%E4%BD%BF%E7%94%A8/" class="image is-7by1">
+            <img class="thumbnail" src="/public/thumbnail/img27.jpg" alt="Databinding点击事件的实现">
         </a>
     </div>
     
@@ -458,7 +446,7 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-19T09:34:08.480Z">2019-09-19</time>
+                <time class="level-item has-text-grey" datetime="2020-02-29T12:00:33.006Z">2020-02-29</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/public/categories/Android/">Android</a>
@@ -468,7 +456,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    7 minutes read (About 1026 words)
+                    a minute read (About 183 words)
                 </span>
                 
                 
@@ -477,18 +465,18 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/public/2019/09/19/Android/Android%E5%9F%BA%E7%A1%80/Android%206.0%E5%8A%A8%E6%80%81%E6%9D%83%E9%99%90%E8%8E%B7%E5%8F%96/">Android 6.0及以上手机权限进行动态获取</a>
+                <a class="has-link-black-ter" href="/public/2020/02/29/Android/%E6%A1%86%E6%9E%B6/AAC/DataBinding%E7%9A%84%E4%BD%BF%E7%94%A8/">Databinding点击事件的实现</a>
             
         </h1>
         <div class="content">
-            <h2 id="在Android-6-0及以上需要对手机权限进行动态获取"><a href="#在Android-6-0及以上需要对手机权限进行动态获取" class="headerlink" title="在Android 6.0及以上需要对手机权限进行动态获取"></a>在Android 6.0及以上需要对手机权限进行动态获取</h2><p>如果手机版本为Android 6.0(API 23)或更高版本，以及app的<code>targetSdkVersion</code>为23或者更高，用户在安装的时候未被提示权限获取，则用户在使用应用的时候需要动态获取权限。如果在获取用户权限时，用户选择“不再提醒”，则app再次获取权限时，系统将不再对用户进行提示。</p>
+            <h2 id="Databinding点击事件的几种实现方式"><a href="#Databinding点击事件的几种实现方式" class="headerlink" title="Databinding点击事件的几种实现方式"></a>Databinding点击事件的几种实现方式</h2>
         </div>
         
         
         <div class="level is-mobile">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/public/2019/09/19/Android/Android%E5%9F%BA%E7%A1%80/Android%206.0%E5%8A%A8%E6%80%81%E6%9D%83%E9%99%90%E8%8E%B7%E5%8F%96/#more">Read More</a>
+                <a class="button is-size-7 is-light" href="/public/2020/02/29/Android/%E6%A1%86%E6%9E%B6/AAC/DataBinding%E7%9A%84%E4%BD%BF%E7%94%A8/#more">Read More</a>
                 </div>
             </div>
         </div>
@@ -504,6 +492,265 @@
 
 
 
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/public/2020/02/29/Android/%E6%A1%86%E6%9E%B6/AAC/Lifecycle%E5%92%8CRoom%E7%9A%84%E4%BD%BF%E7%94%A8/" class="image is-7by1">
+            <img class="thumbnail" src="/public/thumbnail/img28.jpg" alt="使用框架组件Room和Lifecycle来创建应用">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-02-29T12:00:33.006Z">2020-02-29</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/public/categories/Android/">Android</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    15 minutes read (About 2248 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/public/2020/02/29/Android/%E6%A1%86%E6%9E%B6/AAC/Lifecycle%E5%92%8CRoom%E7%9A%84%E4%BD%BF%E7%94%A8/">使用框架组件Room和Lifecycle来创建应用</a>
+            
+        </h1>
+        <div class="content">
+            <h1 id="使用框架组件Room和Lifecycle来创建应用"><a href="#使用框架组件Room和Lifecycle来创建应用" class="headerlink" title="使用框架组件Room和Lifecycle来创建应用"></a>使用框架组件Room和Lifecycle来创建应用</h1><h2 id="在build-gradle-Module-app-中添加依赖"><a href="#在build-gradle-Module-app-中添加依赖" class="headerlink" title="在build.gradle(Module:app)中添加依赖"></a>在build.gradle(Module:app)中添加依赖</h2>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/public/2020/02/29/Android/%E6%A1%86%E6%9E%B6/AAC/Lifecycle%E5%92%8CRoom%E7%9A%84%E4%BD%BF%E7%94%A8/#more">Read More</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/public/2020/02/29/Android/%E6%A1%86%E6%9E%B6/AAC/Paging%E5%92%8CRoom%E4%BD%BF%E7%94%A8/" class="image is-7by1">
+            <img class="thumbnail" src="/public/thumbnail/img29.jpg" alt="Android框架组件paging+room的使用">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-02-29T12:00:33.006Z">2020-02-29</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/public/categories/Android/">Android</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    5 minutes read (About 735 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/public/2020/02/29/Android/%E6%A1%86%E6%9E%B6/AAC/Paging%E5%92%8CRoom%E4%BD%BF%E7%94%A8/">Android框架组件paging+room的使用</a>
+            
+        </h1>
+        <div class="content">
+            <h1 id="Android框架组件paging-room的使用"><a href="#Android框架组件paging-room的使用" class="headerlink" title="Android框架组件paging+room的使用"></a>Android框架组件paging+room的使用</h1><h2 id="简介："><a href="#简介：" class="headerlink" title="简介："></a>简介：</h2><h3 id="DataSource"><a href="#DataSource" class="headerlink" title="DataSource"></a>DataSource</h3><p>DataSource持有数据库的数据或者来自于网络的数据提供给PagedLists使用，PagedListed由LivePagedListBuilder产生，具有多个可以进行选择的参数。PagedList会持有DataSource的一个副本，</p>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/public/2020/02/29/Android/%E6%A1%86%E6%9E%B6/AAC/Paging%E5%92%8CRoom%E4%BD%BF%E7%94%A8/#more">Read More</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/public/2020/02/29/Android/%E6%A1%86%E6%9E%B6/AAC/Room%E5%92%8CLifecycle%E6%9E%84%E5%BB%BA%E7%A8%8B%E5%BA%8F/" class="image is-7by1">
+            <img class="thumbnail" src="/public/thumbnail/img30.jpg" alt="使用框架组件Room和Lifecycle来创建应用">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-02-29T12:00:33.006Z">2020-02-29</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/public/categories/Android/">Android</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    15 minutes read (About 2248 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/public/2020/02/29/Android/%E6%A1%86%E6%9E%B6/AAC/Room%E5%92%8CLifecycle%E6%9E%84%E5%BB%BA%E7%A8%8B%E5%BA%8F/">使用框架组件Room和Lifecycle来创建应用</a>
+            
+        </h1>
+        <div class="content">
+            <h1 id="使用框架组件Room和Lifecycle来创建应用"><a href="#使用框架组件Room和Lifecycle来创建应用" class="headerlink" title="使用框架组件Room和Lifecycle来创建应用"></a>使用框架组件Room和Lifecycle来创建应用</h1><h2 id="在build-gradle-Module-app-中添加依赖"><a href="#在build-gradle-Module-app-中添加依赖" class="headerlink" title="在build.gradle(Module:app)中添加依赖"></a>在build.gradle(Module:app)中添加依赖</h2>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/public/2020/02/29/Android/%E6%A1%86%E6%9E%B6/AAC/Room%E5%92%8CLifecycle%E6%9E%84%E5%BB%BA%E7%A8%8B%E5%BA%8F/#more">Read More</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/public/2020/02/29/Android/%E6%A1%86%E6%9E%B6/AAC/Room%E6%95%B0%E6%8D%AE%E5%BA%93/" class="image is-7by1">
+            <img class="thumbnail" src="/public/thumbnail/img31.jpg" alt="Room数据库">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2020-02-29T12:00:33.006Z">2020-02-29</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/public/categories/Android/">Android</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    2 minutes read (About 244 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/public/2020/02/29/Android/%E6%A1%86%E6%9E%B6/AAC/Room%E6%95%B0%E6%8D%AE%E5%BA%93/">Room数据库</a>
+            
+        </h1>
+        <div class="content">
+            <h3 id="1、数据库在表中可以指定多个主键"><a href="#1、数据库在表中可以指定多个主键" class="headerlink" title="1、数据库在表中可以指定多个主键"></a>1、数据库在表中可以指定多个主键</h3>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/public/2020/02/29/Android/%E6%A1%86%E6%9E%B6/AAC/Room%E6%95%B0%E6%8D%AE%E5%BA%93/#more">Read More</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+    
+<div class="card card-transparent">
+    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+        <div class="pagination-previous is-invisible is-hidden-mobile">
+            <a class="is-flex-grow has-text-black-ter" href="/public/tags/Android/page/0/">Previous</a>
+        </div>
+        <div class="pagination-next">
+            <a class="is-flex-grow has-text-black-ter" href="/public/tags/Android/page/2/">Next</a>
+        </div>
+        <ul class="pagination-list is-hidden-mobile">
+            
+            <li><a class="pagination-link is-current" href="/public/tags/Android/">1</a></li>
+            
+            <li><a class="pagination-link has-text-black-ter" href="/public/tags/Android/page/2/">2</a></li>
+            
+            <li><a class="pagination-link has-text-black-ter" href="/public/tags/Android/page/3/">3</a></li>
+            
+            <li><a class="pagination-link has-text-black-ter" href="/public/tags/Android/page/4/">4</a></li>
+            
+        </ul>
+    </nav>
+</div>
 </div>
                 
 
@@ -549,7 +796,7 @@
                     </p>
                     <a href="/public/archives">
                         <p class="title has-text-weight-normal">
-                            100
+                            81
                         </p>
                     </a>
                 </div>
@@ -557,11 +804,11 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Category
+                        Categories
                     </p>
                     <a href="/public/categories">
                         <p class="title has-text-weight-normal">
-                            1
+                            6
                         </p>
                     </a>
                 </div>
@@ -573,7 +820,7 @@
                     </p>
                     <a href="/public/tags">
                         <p class="title has-text-weight-normal">
-                            5
+                            7
                         </p>
                     </a>
                 </div>
@@ -653,7 +900,47 @@
                 <span class="level-item">Android</span>
             </span>
             <span class="level-end">
+                <span class="level-item tag">36</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/public/categories/Java/">
+            <span class="level-start">
+                <span class="level-item">Java</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">12</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/public/categories/Kotlin/">
+            <span class="level-start">
+                <span class="level-item">Kotlin</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/public/categories/Other/">
+            <span class="level-start">
+                <span class="level-item">Other</span>
+            </span>
+            <span class="level-end">
                 <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/public/categories/PAT/">
+            <span class="level-start">
+                <span class="level-item">PAT</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">8</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/public/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+            <span class="level-start">
+                <span class="level-item">数据结构</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">16</span>
             </span>
         </a></li>
             </ul>
@@ -666,7 +953,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/public/tags/Android/" style="font-size: 13.33px;">Android</a> <a href="/public/tags/error/" style="font-size: 10px;">error</a> <a href="/public/tags/git/" style="font-size: 10px;">git</a> <a href="/public/tags/pat/" style="font-size: 16.67px;">pat</a> <a href="/public/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 20px;">数据结构</a>
+        <a href="/public/tags/Android/" style="font-size: 20px;">Android</a> <a href="/public/tags/Git/" style="font-size: 12px;">Git</a> <a href="/public/tags/JNI/" style="font-size: 12px;">JNI</a> <a href="/public/tags/Java/" style="font-size: 16px;">Java</a> <a href="/public/tags/Kotlin/" style="font-size: 10px;">Kotlin</a> <a href="/public/tags/pat/" style="font-size: 14px;">pat</a> <a href="/public/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 18px;">数据结构</a>
     </div>
 </div>
     
@@ -681,16 +968,16 @@
         
         <article class="media">
             
-            <a href="/public/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-09-android-ViewModel-introduction/" class="media-left">
+            <a href="/public/2020/02/29/Other/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Android lifecycle-aware components">
+                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Other/函数式编程">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:21.663Z">2020-02-29</time></div>
-                    <a href="/public/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-09-android-ViewModel-introduction/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android lifecycle-aware components</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T12:00:33.116Z">2020-02-29</time></div>
+                    <a href="/public/2020/02/29/Other/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Other/函数式编程</a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
@@ -700,16 +987,16 @@
         
         <article class="media">
             
-            <a href="/public/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-01-android-broadcast-introduction/" class="media-left">
+            <a href="/public/2020/02/29/Java/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/Java%E9%94%81%E6%9C%BA%E5%88%B6/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Android Broadcast介绍">
+                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Java/Java多线程/Java锁机制">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:21.654Z">2020-02-29</time></div>
-                    <a href="/public/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-01-android-broadcast-introduction/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android Broadcast介绍</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T12:00:33.100Z">2020-02-29</time></div>
+                    <a href="/public/2020/02/29/Java/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/Java%E9%94%81%E6%9C%BA%E5%88%B6/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java/Java多线程/Java锁机制</a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
@@ -719,18 +1006,18 @@
         
         <article class="media">
             
-            <a href="/public/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-07-31-android-service-introduction/" class="media-left">
+            <a href="/public/2020/02/29/Java/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Android Service介绍">
+                    <img class="thumbnail" src="/public/thumbnail/img60.jpg" alt="Java单例模式">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:21.613Z">2020-02-29</time></div>
-                    <a href="/public/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-07-31-android-service-introduction/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android Service介绍</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T12:00:33.100Z">2020-02-29</time></div>
+                    <a href="/public/2020/02/29/Java/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java单例模式</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/public/categories/Java/">Java</a>
                     </p>
                 </div>
             </div>
@@ -738,18 +1025,18 @@
         
         <article class="media">
             
-            <a href="/public/2020/02/29/Data_Structure/2017-08-28-data-structure-huffman-tree/" class="media-left">
+            <a href="/public/2020/02/29/Java/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8D%8F%E4%BD%9C/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Huffman树的算法实现">
+                    <img class="thumbnail" src="/public/thumbnail/img61.jpg" alt="Java多线程之间的协作">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:09.033Z">2020-02-29</time></div>
-                    <a href="/public/2020/02/29/Data_Structure/2017-08-28-data-structure-huffman-tree/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Huffman树的算法实现</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T12:00:33.100Z">2020-02-29</time></div>
+                    <a href="/public/2020/02/29/Java/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8D%8F%E4%BD%9C/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java多线程之间的协作</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/public/categories/Java/">Java</a>
                     </p>
                 </div>
             </div>
@@ -757,18 +1044,18 @@
         
         <article class="media">
             
-            <a href="/public/2020/02/29/Data_Structure/2017-08-27-data-structure-heap-sort/" class="media-left">
+            <a href="/public/2020/02/29/Java/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%9F%BA%E7%A1%80/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="堆排序">
+                    <img class="thumbnail" src="/public/thumbnail/img62.jpg" alt="Java多线程基础">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:09.000Z">2020-02-29</time></div>
-                    <a href="/public/2020/02/29/Data_Structure/2017-08-27-data-structure-heap-sort/" class="title has-link-black-ter is-size-6 has-text-weight-normal">堆排序</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T12:00:33.100Z">2020-02-29</time></div>
+                    <a href="/public/2020/02/29/Java/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%9F%BA%E7%A1%80/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java多线程基础</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/public/categories/Android/">Android</a>
                     </p>
                 </div>
             </div>
@@ -791,29 +1078,29 @@
                     <span class="level-item">February 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">29</span>
+                    <span class="level-item tag">53</span>
                 </span>
             </a>
         </li>
         
         <li>
-            <a class="level is-marginless" href="/public/archives/2019/11/">
+            <a class="level is-marginless" href="/public/archives/2017/08/">
                 <span class="level-start">
-                    <span class="level-item">November 2019</span>
+                    <span class="level-item">August 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">16</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2017/07/">
+                <span class="level-start">
+                    <span class="level-item">July 2017</span>
                 </span>
                 <span class="level-end">
                     <span class="level-item tag">12</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/public/archives/2019/09/">
-                <span class="level-start">
-                    <span class="level-item">September 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">59</span>
                 </span>
             </a>
         </li>
@@ -834,20 +1121,34 @@
                 <div class="control">
                     <a class="tags has-addons" href="/public/tags/Android/">
                         <span class="tag">Android</span>
-                        <span class="tag is-grey">5</span>
+                        <span class="tag is-grey">34</span>
                     </a>
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/public/tags/error/">
-                        <span class="tag">error</span>
-                        <span class="tag is-grey">1</span>
+                    <a class="tags has-addons" href="/public/tags/Git/">
+                        <span class="tag">Git</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/public/tags/git/">
-                        <span class="tag">git</span>
+                    <a class="tags has-addons" href="/public/tags/JNI/">
+                        <span class="tag">JNI</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/Java/">
+                        <span class="tag">Java</span>
+                        <span class="tag is-grey">12</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/Kotlin/">
+                        <span class="tag">Kotlin</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -890,16 +1191,16 @@
         
         <article class="media">
             
-            <a href="/public/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-09-android-ViewModel-introduction/" class="media-left">
+            <a href="/public/2020/02/29/Other/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Android lifecycle-aware components">
+                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Other/函数式编程">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:21.663Z">2020-02-29</time></div>
-                    <a href="/public/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-09-android-ViewModel-introduction/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android lifecycle-aware components</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T12:00:33.116Z">2020-02-29</time></div>
+                    <a href="/public/2020/02/29/Other/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Other/函数式编程</a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
@@ -909,16 +1210,16 @@
         
         <article class="media">
             
-            <a href="/public/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-01-android-broadcast-introduction/" class="media-left">
+            <a href="/public/2020/02/29/Java/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/Java%E9%94%81%E6%9C%BA%E5%88%B6/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Android Broadcast介绍">
+                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Java/Java多线程/Java锁机制">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:21.654Z">2020-02-29</time></div>
-                    <a href="/public/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-01-android-broadcast-introduction/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android Broadcast介绍</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T12:00:33.100Z">2020-02-29</time></div>
+                    <a href="/public/2020/02/29/Java/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/Java%E9%94%81%E6%9C%BA%E5%88%B6/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java/Java多线程/Java锁机制</a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
@@ -928,18 +1229,18 @@
         
         <article class="media">
             
-            <a href="/public/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-07-31-android-service-introduction/" class="media-left">
+            <a href="/public/2020/02/29/Java/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Android Service介绍">
+                    <img class="thumbnail" src="/public/thumbnail/img60.jpg" alt="Java单例模式">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:21.613Z">2020-02-29</time></div>
-                    <a href="/public/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-07-31-android-service-introduction/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android Service介绍</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T12:00:33.100Z">2020-02-29</time></div>
+                    <a href="/public/2020/02/29/Java/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java单例模式</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/public/categories/Java/">Java</a>
                     </p>
                 </div>
             </div>
@@ -947,18 +1248,18 @@
         
         <article class="media">
             
-            <a href="/public/2020/02/29/Data_Structure/2017-08-28-data-structure-huffman-tree/" class="media-left">
+            <a href="/public/2020/02/29/Java/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8D%8F%E4%BD%9C/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Huffman树的算法实现">
+                    <img class="thumbnail" src="/public/thumbnail/img61.jpg" alt="Java多线程之间的协作">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:09.033Z">2020-02-29</time></div>
-                    <a href="/public/2020/02/29/Data_Structure/2017-08-28-data-structure-huffman-tree/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Huffman树的算法实现</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T12:00:33.100Z">2020-02-29</time></div>
+                    <a href="/public/2020/02/29/Java/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8D%8F%E4%BD%9C/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java多线程之间的协作</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/public/categories/Java/">Java</a>
                     </p>
                 </div>
             </div>
@@ -966,18 +1267,18 @@
         
         <article class="media">
             
-            <a href="/public/2020/02/29/Data_Structure/2017-08-27-data-structure-heap-sort/" class="media-left">
+            <a href="/public/2020/02/29/Java/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%9F%BA%E7%A1%80/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="堆排序">
+                    <img class="thumbnail" src="/public/thumbnail/img62.jpg" alt="Java多线程基础">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:09.000Z">2020-02-29</time></div>
-                    <a href="/public/2020/02/29/Data_Structure/2017-08-27-data-structure-heap-sort/" class="title has-link-black-ter is-size-6 has-text-weight-normal">堆排序</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T12:00:33.100Z">2020-02-29</time></div>
+                    <a href="/public/2020/02/29/Java/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%9F%BA%E7%A1%80/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java多线程基础</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/public/categories/Android/">Android</a>
                     </p>
                 </div>
             </div>
@@ -1000,29 +1301,29 @@
                     <span class="level-item">February 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">29</span>
+                    <span class="level-item tag">53</span>
                 </span>
             </a>
         </li>
         
         <li>
-            <a class="level is-marginless" href="/public/archives/2019/11/">
+            <a class="level is-marginless" href="/public/archives/2017/08/">
                 <span class="level-start">
-                    <span class="level-item">November 2019</span>
+                    <span class="level-item">August 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">16</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2017/07/">
+                <span class="level-start">
+                    <span class="level-item">July 2017</span>
                 </span>
                 <span class="level-end">
                     <span class="level-item tag">12</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/public/archives/2019/09/">
-                <span class="level-start">
-                    <span class="level-item">September 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">59</span>
                 </span>
             </a>
         </li>
@@ -1043,20 +1344,34 @@
                 <div class="control">
                     <a class="tags has-addons" href="/public/tags/Android/">
                         <span class="tag">Android</span>
-                        <span class="tag is-grey">5</span>
+                        <span class="tag is-grey">34</span>
                     </a>
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/public/tags/error/">
-                        <span class="tag">error</span>
-                        <span class="tag is-grey">1</span>
+                    <a class="tags has-addons" href="/public/tags/Git/">
+                        <span class="tag">Git</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/public/tags/git/">
-                        <span class="tag">git</span>
+                    <a class="tags has-addons" href="/public/tags/JNI/">
+                        <span class="tag">JNI</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/Java/">
+                        <span class="tag">Java</span>
+                        <span class="tag is-grey">12</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/Kotlin/">
+                        <span class="tag">Kotlin</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>

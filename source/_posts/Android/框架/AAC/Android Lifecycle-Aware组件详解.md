@@ -14,7 +14,7 @@ tags: [Android]
 <!--more-->
 ### Lifecycle类
 
-![](public/img/Android/lifecycle.png)
+![](/public/img/Android/lifecycle.png)
 
 Lifecycle可以持有组件的生命周期的信息，其使用两个枚举类型来跟踪与之相关的组件的生命周期。
 
