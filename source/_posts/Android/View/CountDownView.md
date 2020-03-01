@@ -1,7 +1,17 @@
+---
+title: 自定义View实现倒计时功能
+thumbnail: /thumbnail/img20.jpg
+toc: true
+description: 自定义View实现倒计时功能
+categories: Android
+tags: [Android]
+---
+
+
 # 使用自定义View实现倒计时功能
 
 当手机应用在安装后进行资源加载初始化的时候，为提高用户的使用体验，通常会以倒计时的形式给予用户一一定的提示。
-
+<!--more-->
 ## 倒计时控件实现的功能
 
 * 显示时间进度

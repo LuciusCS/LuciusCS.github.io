@@ -1,3 +1,11 @@
+---
+title: Android 蓝牙4.0开发
+thumbnail: /thumbnail/img15.jpg
+toc: true
+description: Android 蓝牙4.0开发
+tags: [Android]
+categories: Android
+---
 # Android 蓝牙4.0开发
 
 这是一条优雅的分割线
@@ -5,7 +13,7 @@
 ### 写在前面：
 
 本篇教程使用的蓝牙版本为4.0，测试系统版本为Android 7.0
-
+<!--more-->
 尽管蓝牙已经推出5.0版本了，不过目前手机上大部分适配的还是4.0 4.2，但蓝牙的教程以及Demo还是较少，尤其是可以运行的Demo,现有的Demo中以及教程中没有注明可以使用的版本以及运行的环境。
 
 

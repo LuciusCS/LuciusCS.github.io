@@ -2,7 +2,9 @@
 title: "线索化二叉树"
 description: ""
 tags: [数据结构]
-
+thumbnail: /thumbnail/img46.jpg
+toc: true
+categories: 数据结构
 
 
 ---
@@ -186,7 +188,7 @@ void InThreading(pBinaryTree biTree) {
 
 ### 为已经线索化的二叉树添加头结点
 
-/source/img/DataStructure/thread_binary_tree.jpg
+![](public/img/DataStructure/thread_binary_tree.jpg)
 
 
 
@@ -222,7 +224,7 @@ void InOrderThreading(pBinaryTree &binarytree,pBinaryTree &head) {
 一个结点的右指针如果是线索，则右指针的下一个线索就是要遍历的结点，如果右指针不是线索，则它的中序后继是其右子树的“最左”结点。
 
 
-	/source/img/DataStructure/thread_binary_tree.jpg
+![](public/img/DataStructure/thread_binary_tree.jpg)
 
 
 ```c
@@ -282,7 +284,7 @@ int main() {
 测试结果：
 
 
-/source/img/DataStructure/binary_tree_result.png
+![](public/img/DataStructure/binary_tree_result.png)
 
 
 

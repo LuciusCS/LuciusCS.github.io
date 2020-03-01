@@ -1,9 +1,18 @@
+---
+title: Android文件操作
+thumbnail: /thumbnail/img11.jpg
+toc: true
+description: Android文件操作
+tags: [Android]
+categories: Android
+---
+
 ## Android文件的读和写
 
 1、apk资源文件在raw和assert文件夹下，只能进行读取不能进行写入，文件大小不能超过1M；
 2、SD卡中的文件；
 3、数据区(/data/data/..)的文件；
-
+<!--more-->
 ### 资源文件的读写
 
 raw使用InputStream in = getResources().openRawResource(R.raw.test);

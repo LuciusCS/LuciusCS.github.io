@@ -2,6 +2,9 @@
 title: "排序算法"
 description: "插入排序"
 tags: [数据结构]
+thumbnail: /thumbnail/img38.jpg
+toc: true
+categories: 数据结构
 ---
 
 # 排序算法
@@ -13,7 +16,7 @@ modified: 2017-08-02
 
 直接插入排序的核心是不断将后面的数字，不断插入前面已经排好序的数列中；在进行插入排序时需要不断将需要插入的元素与前面已经排好序的元素进行比较，并不断将已排好序的元素后移。
 
-	/images/20170731/insertsort.gif
+![](public/img/DataStructure/insertsort.gif)
 
 
 C语言代码实现
@@ -106,7 +109,7 @@ void BInsertSort(int array[], int length) {
 希尔排序（Shell's Sort）又称为“最小增量排序”（Diminishing Increment Sort），基本思想是：先将整个序列中的记录“基本有序”再对全体记录进行一次直接插入排序（当gap=0时）；
 
 
-	/images/20170731/001.png
+![](public/img/DataStructure/001.png)
 
 
 * 颜色相同的为一个分组

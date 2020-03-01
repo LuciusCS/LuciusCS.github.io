@@ -1,10 +1,17 @@
-
+---
+title: Android防止二次打包
+thumbnail: /thumbnail/img4.jpg
+toc: true
+description: Android防止二次打包
+tags: [Android]
+categories: Android
+---
 Android防止二次打包主要通过对签名文件的验证来进行
 
 ### 应用签名文件介绍
 
 在Android Studio2.2之后多了对签名版本的选择`V1(Jar Signature)`和`V2(Full APK Signature)`V1就是传统的签名方式，V2则是Android7.0之后引入的。其区别是，V1是通过ZIP条目进行验证，这样APK 签署后可进行许多修改；而V2验证压缩文件的所有字节，而不是单个 ZIP 条目，这样在签名后无法再更改。V2的好处很明显，更安全且验证更迅速。所以，推荐在生成apk时，签名方式选择V1+V2。当然，仅仅选择V1也是可以的。如果仅选择V2呢，这样生成的apk在Android7.0及之后的版本上没有问题，不过会导致7.0以下的版本无法安装，所以要避免这种方式。
-
+<!--more-->
 #### 签名文件在gradle中配置
 
     signingConfigs {      
@@ -36,7 +43,7 @@ Android防止二次打包主要通过对签名文件的验证来进行
 keytool -list -v -keystore path/android.jks -storepass password
 
 ```
-![](/assets/Android safe.png)
+![](public/img/Android/Android safe.png)
 
 
 * 只有.apk文件
@@ -45,7 +52,7 @@ keytool -list -v -keystore path/android.jks -storepass password
 ```xml
 keytool -printcert -file path/android.jks
 ```
-![](/assets/Android safe1.png)
+![](public/img/Android/Android safe1.png)
 
 **两种方式获取到的签名文件是一致的，使用.jks文件需要密码，而使用.apk文件无需密码**
 

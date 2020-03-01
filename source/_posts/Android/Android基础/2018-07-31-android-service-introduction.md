@@ -1,7 +1,10 @@
 ---
 title: "Android Service介绍"
+thumbnail: /thumbnail/img5.jpg
 description: "Android Service介绍"
+toc: true
 tags: [Android]
+categories: Android
 
 ---
 
@@ -9,7 +12,7 @@ tags: [Android]
 # Android开发Service介绍
 
 Service是应用的一个组件，可以在后台处理耗时操作，但没有用户界面，其他的组件可以启动Service,即使用户切换到其他的应用，Service依旧可以在后台运行。另外，一个组件可以绑定一个Service并与其进行通信（IPC机制）。例如：Service可以控制网络传输、播放音乐、对文件进行I/O操作，都可以在后台进行。
-
+<!--more-->
 ## 不同类型的Service介绍
 
 ### Foreground service
@@ -143,7 +146,7 @@ service的生命周期从创建至销毁有两种情况
 其他组件调用bindService()方法创建一个service,启动service的客户端（组件）通过IBinder接口与service进行信息的交互，客户端可以通过调用unbindService()方法来取消与service之间的联系。多个客户端通过调用bindService()绑定同一个service,只有所有的客户端调用unBindService()方法后，service才会被系统销毁，而不能通过调用stopSelf()或者stopService()方法。
 
 
-/source/img/201807/service_lifecycle.png
+![](/public/img/Android/service_lifecycle.png)
 
 
 

@@ -2,7 +2,9 @@
 title: 栈的应用——需要再次进行编辑
 description: 使用栈实现进制转换、括号匹配的检验、行编辑程序
 tags: [数据结构]
-
+thumbnail: /thumbnail/img43.jpg
+toc: true
+categories: 数据结构
 ---
 
 modified: 2017-08-02

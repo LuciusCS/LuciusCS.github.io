@@ -1,7 +1,16 @@
+---
+title: WorkManager介绍与使用
+thumbnail: /thumbnail/img32.jpg
+toc: true
+description: WorkManager介绍与使用
+categories: Android
+tags: [Android]
+---
+
 WorkManager是一个Job分发服务，用来管理任务,一旦任务进入管理队里，无论是退出当前应用或重启设备，WorkManager都会保证任务的进行。
 
 在默认请状态下WorkManager会立即运行任务，但可以指定在手机在某一特殊状态下运行，如：网络状态、电池状态、或者是内存状态。
-
+<!--more-->
 当程序运行时，运行WorkManager,WorkManager会在一个新的后台子线程中进行；如果程序没有运行，WorkManager将会根据设备的API以及是否可以使用Google服务来选择合适的方式运行。当API在23及以上，WorkManager会使用功JobScheduler来运行，在API14-22将会使用Firebase JobDispatcher，如果JobDispatcher不能使用则会调用一个自定义AlarmManager以及BroadcastReceiver来实现后台运行任务。
 
 WorkManager不是为了执行所有不在主线程中的任务，如果任务不需要保证执行，则应该使用intent service或者foreground service

@@ -1,7 +1,16 @@
+---
+title: 结构化组件介绍与使用
+thumbnail: /thumbnail/img24.jpg
+toc: true
+description: 结构化组件介绍与使用
+categories: Android
+tags: [Android]
+---
+
 # 结构化组件介绍
 
 结构化组件\(Android Architecture Components\)是Android Jetpack的一部分，这些集合库可以使得开发更容易测试与维护。
-
+<!--more-->
 * 使用life-aware components组件可以用于管理activity以及fragment的生命周期。用于配置信息的改变、避免内存泄漏以及更加方便在UI中加载数据。
 * 使用LiveData建立数据对象，当底层数据发生改变时通知View进行刷新。
 * ViewModel可以保存与UI相关的数据，保证用户在屏幕旋转时数据不会被销毁

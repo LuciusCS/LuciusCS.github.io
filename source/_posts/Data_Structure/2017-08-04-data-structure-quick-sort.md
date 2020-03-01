@@ -2,7 +2,9 @@
 title: "快速排序"
 description: "快速排序3"
 tags: [数据结构]
-
+thumbnail: /thumbnail/img45.jpg
+toc: true
+categories: 数据结构
 ---
 modified: 2017-08-02
 快速排序可以理解为：快速排序=挖坑填数+分治算法；
@@ -21,13 +23,13 @@ modified: 2017-08-02
 * 进行一次排序的过程(挖坑填数)
   
 
-	/images/DataStructure/quick_sort.jpg
+![](public/img/DataStructure/quick_sort.jpg)
 
 
 * 快速排序的全过程
 
 
-	/images/DataStructure/quick_sort_01.jpg
+![](public/img/DataStructure/quick_sort_01.jpg)
 
 
 使用C语言实现代码

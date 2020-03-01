@@ -1,7 +1,16 @@
+---
+title: 使用框架组件Room和Lifecycle来创建应用
+thumbnail: /thumbnail/img28.jpg
+toc: true
+description: 使用框架组件Room和Lifecycle来创建应用
+categories: Android
+tags: [Android]
+---
+
 # 使用框架组件Room和Lifecycle来创建应用
 
 ## 在build.gradle\(Module:app\)中添加依赖
-
+<!--more-->
 ```markup
 //Room组件
 implementation "android.arch.persistence.room:runtime:$rootProject.roomVersion"

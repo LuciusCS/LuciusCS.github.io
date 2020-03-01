@@ -2,9 +2,10 @@
 
 title: "堆排序"
 description: "堆排序"
-
 tags: [数据结构]
-
+thumbnail: /thumbnail/img50.jpg
+toc: true
+categories: 数据结构
 
 
 
@@ -93,4 +94,4 @@ int main(){
 ```
 
 * 运行结果
-/source/img/DataStructure/heap_sort.jpg
+![](public/img/DataStructure/heap_sort.jpg)

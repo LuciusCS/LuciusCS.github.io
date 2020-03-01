@@ -2,7 +2,9 @@
 title: "图的邻接矩阵表示"
 description: "图的邻接矩阵表示"
 tags: [数据结构]
-
+thumbnail: /thumbnail/img47.jpg
+toc: true
+categories: 数据结构
 
 
 
@@ -15,11 +17,11 @@ modified: 2017-08-04
 
 有向图的邻接矩阵表示:
 
-/source/img/DataStructure/adjacency_matrix.jpg
+![](public/img/DataStructure/adjacency_matrix.jpg)
 
 无向图的邻接矩阵的表示(图中边的权重为1)：
 
-/source/img/DataStructure/adjacency_matrix1.png
+![](public/img/DataStructure/adjacency_matrix1.png)
 
 
 ### 带权无向图邻接矩阵的代码实现
@@ -104,7 +106,7 @@ void CreateGraph(MGraph &G, int numVertex, int numEdge) {
 
 * 以下图为例测试
 
-/source/img/DataStructure/adjacency_matrix2.png
+![](public/img/DataStructure/adjacency_matrix2.png)
 
 
 
@@ -128,7 +130,7 @@ int main() {
 }
 ```
 * 测试结果
-/source/img/DataStructure/adjacency_matrix3.png
+![](public/img/DataStructure/adjacency_matrix3.png)
 
 
 [源码下载](https://github.com/LuciusCS/DataStructure/blob/master/DataStructure/DataStructure/7.2AdjacencyMatrix.cpp)
