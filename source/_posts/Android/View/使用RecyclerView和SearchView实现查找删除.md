@@ -1,9 +1,18 @@
+---
+title: 使用SearchView以及RecyclerView实现条目删选
+thumbnail: /thumbnail/img23.jpg
+toc: true
+description: 使用SearchView以及RecyclerView实现条目删选
+categories: Android
+tags: [Android]
+---
+
 # 使用SearchView以及RecyclerView实现条目删选
 
 \#\# 使用SearchView以及RecyclerView实现条目删选
 
 ## SearchView介绍
-
+<!--more-->
 SearchView继承图 ![SearchView&#x7EE7;&#x627F;&#x56FE;](https://img-blog.csdn.net/20180609094538321?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NDIyNzQz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70) SearchView为用户提供一个接口，用户在输入到搜索信息后，会从数据源对数据进行筛选，然后获取筛选列表
 
 ## RecyclerView介绍
@@ -241,5 +250,5 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
 !\[这里写图片描述\]\(https://img-blog.csdn.net/20180609101729113?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NDIyNzQz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70\)
 
-[源码地址](https://download.csdn.net/download/qq_36422743/10468538%20源码地址)
+![源码地址](https://download.csdn.net/download/qq_36422743/10468538%20源码地址)
 

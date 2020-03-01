@@ -1,8 +1,11 @@
 ---
 
-title: "Android lifecycle-aware components"
+title: "Android生命周期感知组件"
 description: "Android生命周期感知组件介绍"
 tags: [Android]
+thumbnail: /thumbnail/img7.jpg
+toc: true
+categories: Android
 
 ---
 
@@ -10,7 +13,7 @@ modified: 2018-08-09
 # Android生命周期感知组件介绍(Android lifecycle-aware components)
 
 ## lifecycle-aware组件介绍
-
+<!--more-->
 * **ViewModel：**为绑定在特定生命周期的对象提供创建以及恢复的方法，`ViewModel`通常保存`View`的数据或者用于与其他组件进行通信，例如data repository
 * **LifecycleOwner/LifecycleRegisterOwner：**`LifecycleOwner`以及`LifecycleRegisterOwner`都是需要在`AppCompatActivity`或者`Support Fragment`类中实现的接口。可以订阅实现这些接口的其他组件的对象，来观察这些对象的生命周期。
 * **LiveData:**通过`LiveData`可以通过多个组件来观察到数据的变化。`LiveData`不会影响应用中的组件如：Activity、Service、Fragment或者其他`LifecycleOwner`的生命周期。`LiveData`可以对观察者订阅的内容进行管理，主要的方式有：停止或者取消订阅。
@@ -93,7 +96,7 @@ public class ChronometerViewModel extends ViewModel {
 
 `this`指代的是`LifecycleOwner`的一个实例，`ViewModel`与`LifecycleOwner`保活时间一样长，当`ViewModel`的所有者的配置信息（如：屏幕旋转）发生变化时，`ViewModel`不会被销毁，当其所有者重新被实例化时，会与已经存在的`ViewModel`重新建立联系。其生命周期如图所示：
 
-/source/img/201807/view_model.png
+![](public/img/Android/view_model.png)
 
 
 ## 将Activity中使用的数据使用LiveData进行封装
@@ -142,8 +145,8 @@ public class MainActivity extends AppCompatActivity {
 
 **运行结果：**
 
-/source/img/201807/view_model1.png
-/source/img/201807/view_model2.png
+![](public/img/Android/view_model1.png)
+![](public/img/Android/view_model2.png)
 
 
 在旋转屏幕后计时器继续未重置。

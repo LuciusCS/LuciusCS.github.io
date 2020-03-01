@@ -1,7 +1,16 @@
+---
+title: java 内部类
+tags: [Java]
+description: java 内部类
+thumbnail: /thumbnail/img53.jpg
+toc: true
+categories: Java
+---
+
 ### java 内部类
 
 内部类依赖于外部类而存在，即内部类存在指向外部类的引用，可以访问外部类private类型的属性。
-
+<!--more-->
 
 ### 内部类的作用
 

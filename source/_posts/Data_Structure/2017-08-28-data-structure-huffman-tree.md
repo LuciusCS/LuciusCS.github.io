@@ -2,10 +2,10 @@
 
 title: "Huffman树的算法实现"
 description: "Huffman树的算法实现"
-
 tags: [数据结构]
-
-
+thumbnail: /thumbnail/img51.jpg
+toc: true
+categories: 数据结构
 
 ---
 
@@ -81,8 +81,8 @@ void createHuffmanTree(HuffmanTree &HT,int weight[],int n) {
 ##### 上图构建Huffman树之后的结果
 
 
-/source/img/DataStructure/huffman_tree.png
-/source/img/DataStructure/huffman_tree1.png
+![](public/img/DataStructure/huffman_tree.png)
+![](public/img/DataStructure/huffman_tree1.png)
 
 
 * 上述代码运行
@@ -102,7 +102,7 @@ int main() {
 }
 ```
 * 运行结果
-/source/img/DataStructure/huffman_tree3.png
+![](public/img/DataStructure/huffman_tree3.png)
 
 
 

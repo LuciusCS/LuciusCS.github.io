@@ -2,7 +2,9 @@
 title: "Android Broadcast介绍"
 description: "Android Broadcast介绍"
 tags: [Android]
-
+thumbnail: /thumbnail/img6.jpg
+toc: true
+categories: Android
 
 
 ---
@@ -11,7 +13,7 @@ tags: [Android]
 
 modified: 2018-08-01
 Android应用可以向系统和其他应用发送或者接收广播信息，手机系统在启动或者电量低的时候会发送不同的广播，也允许手机应用发送广播，来通知用户某些事件。
-
+<!--more-->
 手机应用可以注册或者接受特定的广播，当一个广播被发出，系统会自动会自动将广播发送给注册并接收特定广播的手机应用。
 
 广播中的信息被包裹在Intent对象中，Intent中的action会判断出发生的是哪一个事件，如：android.intent.action.AIRPLANE_MODE。在Intent中同时可以携带其他的信息。

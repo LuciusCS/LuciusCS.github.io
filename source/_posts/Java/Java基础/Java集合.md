@@ -1,3 +1,12 @@
+---
+title: Java集合
+tags: [Java]
+description: Java集合
+thumbnail: /thumbnail/img56.jpg
+toc: true
+categories: Java
+---
+
 ## Queue 接口
 
 # Collection的使用方法
@@ -5,7 +14,7 @@
 接口`Collection`继承自`Iterable`接口    
 
 用于表示一系列的独立元素，其中List按照元素插入的顺序存储，Set中不能含有相同的元素，Queue用于队列的表示，并按照插入的顺序进行存储。
-
+<!--more-->
 ### BlockingQueue接口
 实现类 
 * ArrayBlockingQueue 有界阻塞队列，内部使用数组实现，初始化大小后无法改变大小

@@ -1,6 +1,14 @@
+---
+title: Room数据库
+thumbnail: /thumbnail/img31.jpg
+toc: true
+description: Room数据库
+categories: Android
+tags: [Android]
+---
 
 ### 1、数据库在表中可以指定多个主键
-
+<!--more-->
 ```java
 
     @Entity(primaryKeys = {"firstName", "lastName"})

@@ -3,7 +3,9 @@ title: "归并排序"
 description: ""
 tags: [数据结构]
 
-
+thumbnail: /thumbnail/img44.jpg
+toc: true
+categories: 数据结构
 
 ---
 modified: 2017-08-04
@@ -17,11 +19,11 @@ modified: 2017-08-04
 * 重复步骤2，直到所有元素排序完毕；
 
 
-	/images/DataStructure/Merge_sort.gif
+![](public/img/DataStructure/Merge_sort.gif)
 
 
 
-	/images/DataStructure/Merge_sort_01.gif
+	![](public/img/DataStructure/Merge_sort_01.gif)
 
 
 

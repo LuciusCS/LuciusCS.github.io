@@ -1,3 +1,12 @@
+---
+title: Android框架组件paging+room的使用
+thumbnail: /thumbnail/img29.jpg
+toc: true
+description: Android框架组件paging+room的使用
+categories: Android
+tags: [Android]
+---
+
 # Android框架组件paging+room的使用
 
 ## 简介：
@@ -5,7 +14,7 @@
 ### DataSource
 
 DataSource持有数据库的数据或者来自于网络的数据提供给PagedLists使用，PagedListed由LivePagedListBuilder产生，具有多个可以进行选择的参数。PagedList会持有DataSource的一个副本，
-
+<!--more-->
 
 创建一个`PagedList`被观察者的对象，需要将一个`DataSource.Factory`的实例传递给`LivePagedListBuilder`对象。一个DataSource对象为单一的`PagedList`加载pages。当数据更新时，工厂类会创建一个`PagedSource`的实例，如：数据库的表更新或者网络数据更新。Room持久化数据层可以提供`DataSource.Factory`对象，或者可以自己创建`DataSource.Factory`
 

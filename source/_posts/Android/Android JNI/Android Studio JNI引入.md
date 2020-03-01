@@ -1,4 +1,11 @@
-
+---
+title: Android中使用JNI
+thumbnail: /thumbnail/img3.jpg
+toc: true
+description: Android中使用JNI
+tags: [JNI]
+categories: Android
+---
 
 ## Android 在已有的项目中引入JNI 最简方式
 
@@ -6,7 +13,7 @@
 
 JNI：JNI是一套编程接口，用来实现Java代码与本地的C/C++代码进行交互；
 NDK: NDK是Google开发的一套开发和编译工具集，可以生成动态链接库，主要用于Android的JNI开发；
-
+<!--more-->
             
 ### 下载NDK和编译工具
 * NDK:一个工具集，能够在 Android 应用中使用 C 和 C++ 代码；它提供各种平台库，可以管理原生 Activity 并访问实际设备组件，例如传感器和轻触输入。
@@ -17,10 +24,10 @@ NDK: NDK是Google开发的一套开发和编译工具集，可以生成动态链
 
 Android Studio Tools—>SDK manager—>SDK Tools 选择LLDB、CMake、NDK点击Apply进行下载
 
-![](/assets/Android JNI.png)
+![](public/img/Android/Android JNI.png)
 
 在cpp文件夹下新建CMakeLists.txt和native-lib.cpp文件，CMakeLists.txt可以建在工程的任意位置
-![](/assets/Android JNI1.png)
+![](public/img/Android/Android JNI1.png)
 
 
 
@@ -213,12 +220,12 @@ typedef jobject         jweak;
 #### Java基本数据类型与Native层中的数据对应关系
 这些基本数据类型可以在Native层直接使用。
 
-![](/assets/Android JNI2.png)
+![](public/img/Android/Android JNI2.png)
 
 #### Java引用数据类型与Native层中的数据对应关系
 Java引用数据类型不能直接在Native层使用，需要根据JNI函数进行类型的转换后，才能使用。多维数组（包括二维数组）都是引用类型，需要转化为`jobjectArray`类型进行使用。    
 
-![](/assets/Android JNI3.png)
+![](public/img/Android/Android JNI3.png)
 
 在JNI中二维数组的使用
 ```java

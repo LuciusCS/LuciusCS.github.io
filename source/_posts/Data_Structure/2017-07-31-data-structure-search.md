@@ -3,8 +3,9 @@
 title: "查找算法"
 description: "插入排序"
 tags: [数据结构]
-
-
+thumbnail: /thumbnail/img39.jpg
+toc: true
+categories: 数据结构
 
 ---
 
