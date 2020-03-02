@@ -142,9 +142,9 @@ public class MainActivity extends AppCompatActivity {
 
 **运行结果：**
 
-/source/img/201807/view_model1.png
-/source/img/201807/view_model2.png
-
+![](/public/img/201807/view_model1.png)
+![](/public/img/201807/view_model2.png)
+![](/public/img/201807/view_model2.png)
 
 在旋转屏幕后计时器继续未重置。
 
