@@ -1,6 +1,16 @@
+---
+title: Materials Design 介绍与使用
+thumbnail: /thumbnail/img22.jpg
+toc: true
+description: Materials Design 介绍与使用
+categories: Android
+tags: [Android]
+date: 2018/09/01
+---
+
  ## CoordinatorLayout
  CoordinatorLayout布局遵循Materials Design风格，可以实现各种控件之间的联动效果，在联动控件实现的过程中需要Behavior来协助。
- 
+ <!--more-->
  CoordinatorLayout是一个顶级父View，其子View包括FloatingActionButton、SnackBar
  
  **CoordinatorLayout+AppBarLayout+CollapsingToolbarLayout 需要结合起来使用**

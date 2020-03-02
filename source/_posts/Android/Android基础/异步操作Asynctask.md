@@ -1,9 +1,17 @@
-
+---
+title: AsyncTask异步操作
+thumbnail: /thumbnail/img14.jpg
+toc: true
+description: AsyncTask异步操作
+tags: [Android]
+categories: Android
+date: 2019/08/20
+---
 
 **知识点：AsyncTask适合短时间的异步操作，如果需要长时间操作，最好使用线程池Executor**
 
 一个AsyncTask对象被创建出来后,就只能执行一个异步任务。
-
+<!--more-->
 
 AsyncTask<Params,Progress,Result>是一个抽象类，继承AsyncTask需要指定三个泛型参数
 * Params：启动任务时输入的参数类型

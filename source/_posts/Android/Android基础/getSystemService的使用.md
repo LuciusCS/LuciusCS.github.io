@@ -1,5 +1,15 @@
-getSystemService是Activity的一个方法，根据传入的name得到对应的Object,然后转换成相应的服务对象；
+---
+title: getSystemService的使用
+thumbnail: /thumbnail/img12.jpg
+toc: true
+description: getSystemService的使用
+tags: [Android]
+categories: Android
+date: 2019/09/30
+---
 
+getSystemService是Activity的一个方法，根据传入的name得到对应的Object,然后转换成相应的服务对象；
+<!--more-->
 |传入的Name|返回的对象|说明|
 |------|------|------|
 |WINDOW_SERVICE|WindowManager|管理打开的窗口程序|

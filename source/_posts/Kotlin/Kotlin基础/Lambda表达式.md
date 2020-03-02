@@ -1,3 +1,12 @@
+---
+title: Kotlin Lambda表达式
+thumbnail: /thumbnail/img66.jpg
+toc: true
+description: Kotlin Lambda表达式
+categories: Kotlin
+tags: [Kotlin]
+---
+
 
 
 ### 使用Lambda表达式遍历数组
@@ -9,7 +18,7 @@
      })
 
 ```
-
+<!--more-->
 Kotlin中Array的`forEach()`函数源码如下，它是一个扩展方法，在for循环中调用我们传入的lambda表达式；`action: (T) -> Unit`中`(T) -> Unit`是lambda表达式的类型，即函数的类型，此函数参数类型为`T`返回值为`Unit`
 
 ```kotlin

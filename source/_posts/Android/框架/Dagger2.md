@@ -1,3 +1,13 @@
+---
+title: Dagger2 介绍与使用
+thumbnail: /thumbnail/img33.jpg
+toc: true
+description: Dagger2 介绍与使用
+categories: Android
+tags: [Android]
+date: 2019/10/10
+---
+
 # 在Android中使用Dagger2
 
 ## Dagger2介绍
@@ -7,7 +17,7 @@
 Dependency Injection\(注解依赖\)是在IOC\(Inversion of cnontrol\)的基础上实现的，为了将类的实例的实现与类进行分离。
 
 如果一个类使用`new`操作符来实例化另外一个类，那么这两个类直接就产生依赖关系，被称为Hard dependency。
-
+<!--more-->
 ### 注入模式
 
 * 构造函数注入：以传递参数的方式

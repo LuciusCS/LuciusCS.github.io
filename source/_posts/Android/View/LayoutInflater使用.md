@@ -1,6 +1,15 @@
+---
+title: LayoutInflater介绍与使用
+thumbnail: /thumbnail/img21.jpg
+toc: true
+description: LayoutInflater介绍与使用
+categories: Android
+tags: [Android]
+date: 2018/10/22
+---
 
 LayoutInflater用于给相应的View对象实例化一个layout(即：将一个xml文件转化为一个View对象),在开发过程中不会直接使用，而是通过Activity.getLayoutInflater()或者Context.getSystemService(Class)方法，获取一个标准的实例，该实例已经与当前Context相关联。
-
+<!--more-->
 * LayoutInflater通常用于动态载入的页面，使用LayoutInflater的inflate方法动态接入layout文件。
 
 * findViewById用于已载入的界面，使用findViewById来获取其中的界面元素

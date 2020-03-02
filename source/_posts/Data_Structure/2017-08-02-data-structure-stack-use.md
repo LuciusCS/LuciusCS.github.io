@@ -2,14 +2,17 @@
 title: 栈的应用——需要再次进行编辑
 description: 使用栈实现进制转换、括号匹配的检验、行编辑程序
 tags: [数据结构]
-
+thumbnail: /thumbnail/img43.jpg
+toc: true
+categories: 数据结构
+date: 2017/08/02
 ---
 
 modified: 2017-08-02
 ##　使用栈实现进制转换、括号匹配的检验、行编辑程序
 
 ### 使用栈实现进制的转换
-
+<!--more-->
 * 将十进制转换为二进制
 
 C语言实现代码

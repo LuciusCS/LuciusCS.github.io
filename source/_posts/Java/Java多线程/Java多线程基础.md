@@ -1,9 +1,18 @@
+---
+title: Java多线程基础
+thumbnail: /thumbnail/img62.jpg
+toc: true
+description: Java多线程基础
+categories: Android
+tags: [Android]
+---
+
 ### Runnable接口
 
 仅调用Runnable的`run()`方法不能产生一个新的线程，新线程的执行必须通过`Thread.start()`方法来执行。
 
 通常将一个Runnable对象转换成一个任务，需要将其传递给一个Thread构造函数。
-
+<!--more-->
 实现Runnable接口，并在一个独立的线程中运行Runnable.run()方法中的代码；一个或多个Runnable对象执行不同的操作，有时也被称为任务。
 
 Thread以及Runnable是基类，只有有限的功能，事实上他们也是HandlerThread,AsyTask以及IntentService的基类，也同时是ThreadPoolExcutor的基类。ThreadPoolExcutor可以自动管理线程以及任务队列，甚至可以同时运行多个线程。

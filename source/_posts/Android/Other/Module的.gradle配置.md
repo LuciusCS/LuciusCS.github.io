@@ -1,3 +1,12 @@
+---
+title: gradle介绍
+thumbnail: /thumbnail/img17.jpg
+toc: true
+description: gradle介绍
+tags: [Android]
+categories: Android
+date: 2019/08/10
+---
 
 ### gradle介绍
 
@@ -5,7 +14,7 @@ gradle和make以及ant不同，它基于Groovy语言，而非一种配置；
 
 Gradle是一个自动化构建的开源工具，使用基于Groovy的领域专用语言(domain specific language (DSL))，来替代使用xml文件对工程的配置。其支持增量编译，可以使用cache，
 
-
+<!--more-->
 
 #### 在Moudle的build.gradle中添加依赖包
 

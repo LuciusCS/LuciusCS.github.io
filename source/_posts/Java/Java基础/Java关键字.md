@@ -1,3 +1,12 @@
+---
+title: Java关键字介绍
+tags: [Java]
+description: Java关键字介绍
+thumbnail: /thumbnail/img52.jpg
+toc: true
+categories: Java
+---
+
 ## Java关键字介绍
 
 ### static
@@ -5,7 +14,7 @@
 ### volatile
 
 
-
+<!--more-->
 
 ### final
 final关键字在不同的上下文环境中可能有不同含义，主要含义是“不可改变的”；

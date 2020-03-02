@@ -1,3 +1,13 @@
+---
+title: 常用Git操作
+thumbnail: /thumbnail/img68.jpg
+toc: true
+tags: [Git]
+description: 常用Git操作
+categories: Other
+---
+
+
 ## 常用Git操作
 
 ### 一、将本地已有仓库推送到远程仓库
@@ -28,14 +38,14 @@ ssh-keygen -t rsa -C "your_email@example.com"
 ** -t 指定密钥类型，默认是 rsa ，可以省略。 **
 ** -C 设置注释文字，比如邮箱。 **
 ** -f 指定密钥文件存储文件名。 ** 
-![](/assets/GitImg1.png)
+![](/public/img/other/GitImg1.png)
    在GitHub中设置SSH，即将.ssh.id_rsa.pub中的内容添加到Key中
-  ![](/assets/GitImg2.png)
+![](/public/img/other/GitImg2.png)
 * 4、建立本地到上游（远端）仓的链接，建立链接后代码才能提交上去
 ```
 git branch --set-upstream-to=origin
 ```
-![](/assets/GitImg3.png)
+![](/public/img/other/GitImg3.png)
     当本地仓库与远程仓库没有相同的commit时，git不允许提交会出现`fatal: refusing to merge unrelated histories`错误，需要使用下面命令：
 ```
 git pull origin master --allow-unrelated-histories
@@ -45,9 +55,9 @@ git pull origin master --allow-unrelated-histories
   git push -u origin master 
 ```
 如果出现Permission denied(publickey)，则说明第3步中的公钥配置错误
-![](/assets/GitImg4.png)
+![](/public/img/other/GitImg4.png)
 推送正常
-![](/assets/GitImg5.png)
+![](/public/img/other/GitImg5.png)
 
 ### 二、将本地分支提交到远程
 
@@ -55,7 +65,7 @@ git pull origin master --allow-unrelated-histories
 ```
 git branch --set-upstream-to=origin
 ```
-![](/assets/GitImg6.png)
+![](/public/img/other/GitImg6.png)
 
 * 2、拉取远程分支内容
 ```
@@ -65,7 +75,7 @@ git pull --allow-unrelated-histories
 ```
 git push origin EditBranch
 ```
-![](/assets/GitImg7.png)
+![](/public/img/other/GitImg7.png)
 
 
 ### 三、合并多次提交

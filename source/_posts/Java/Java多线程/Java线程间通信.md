@@ -1,3 +1,12 @@
+---
+title: Java线程间通信
+thumbnail: /thumbnail/img63.jpg
+toc: true
+description: Java线程间通信
+categories: Android
+tags: [Android]
+---
+
 # 线程间通信
 
 * 使用单向管道（Pipe）传递数据
@@ -5,7 +14,7 @@
 * 使用阻塞队列（Blocking Queue）实现生产者-消费者模式
 * 处理消息队列（Message Queue）
 
-
+<!--more-->
 ## wait/notify机制
 
 等待/通知机制主要由Object类中的三个方法进行保证

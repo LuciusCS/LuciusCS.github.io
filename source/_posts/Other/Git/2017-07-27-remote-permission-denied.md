@@ -1,20 +1,24 @@
 ---
-title: "remote: Permission to LuciusCS/test.git denied to Lrici."
-description: "Examples and code for displaying images in posts."
-tags: [error, git]
-
+title:  Permission to LuciusCS/test.git denied to Lrici.
+thumbnail: /thumbnail/img67.jpg
+toc: true
+tags: [Git]
+description: Permission to LuciusCS/test.git denied to Lrici.
+categories: Other
+date: 2017/07/27
 ---
+
 
 
 
 modified: 2017-07-27
 作死小能手又一次把自己玩挂了，明明有一个Github的账号，又申请了一个账号，用于测试权限的控制；然后添加到Git中，结果在Push自己原来项目的时候总是报错；
-
+<!--more-->
 remote: Permission to LuciusCS/test.git denied to Lrici.
 fatal: unable to access 'https://github.com/LuciusCS/test.git/': The requested URL returned error: 403
 
 
-	/20170727/Image3.png
+![](/public/img/other/Image3.png)
 
 
 没错，LuciusCS是我原来的账号的名字，Lrici是我现在的账号的名字；
@@ -47,16 +51,16 @@ git config –global user.email “email”
   Control Panel(控制面板)——>User Account and family Safety(用户账号和家庭安全)——>Manage Windows Credential(凭证管理)——>将跟Git有关的账号删除
 
 
-	/20170727/Image1.png
-	/20170727/Image4.png
+![](public/img/other/Image1.png)
+![](public/img/other/Image4.png)
 
 
 
 再次提交的时候就会让你输入账号和密码，输入完成后就可以提交啦
 
 
-	/20170727/Image5.png
-	/20170727/Image6.png
+![](public/img/other/Image5.png)
+![](public/img/other/Image6.png)
 
 
 

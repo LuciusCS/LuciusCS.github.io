@@ -1,7 +1,16 @@
+---
+title: Java单例模式
+thumbnail: /thumbnail/img60.jpg
+toc: true
+description: Java单例模式
+categories: Java
+tags: [Java]
+---
+
 ### 不同单例模式在多线程下的特点
 
 * 懒汉式：该加载模式是非线程安全的，当有多个线程并行调用getInstance()时，会创建多个实例；
-
+<!--more-->
 ```java
 
 public class Singleton {

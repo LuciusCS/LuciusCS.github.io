@@ -2,13 +2,17 @@
 title: 顺序栈的表示与实现
 description:
 tags: [数据结构]
+thumbnail: /thumbnail/img37.jpg
+toc: true
+categories: 数据结构
+date: 2017/07/27
 ---
 
 modified: 2017-7-28
 本文采用C语言，利用结构体来实现顺序栈
 
 * 用于定义栈的大小，以及再栈满的时候，扩充栈
-
+<!--more-->
 ```c
 #define STACK_SIZE 50
 #define STACK_INCREMENT 10
