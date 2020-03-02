@@ -1,7 +1,16 @@
+---
+title: Android后台处理
+thumbnail: /thumbnail/img9.jpg
+toc: true
+description: Android后台处理介绍
+tags: [Android]
+categories: Android
+date: 2019/09/30
+---
 # Android后台处理介绍
 
 Android手机应用通过主线程来控制UI，包括计算以及View绘制；当有太多的工作在主线程中进行，会造成App假死或者运行缓慢，会给用户较差的体验。很多耗时操作包括编码与解码Bitmap、读取存储器内容或者网络处理工作可以在一个独立的后台进程中进行。
-
+<!--more-->
 ## 推荐在后台进行处理的三种情况
 
 ### App处理操作是否可以滞后进行，或者需要实时处理

@@ -1,9 +1,18 @@
+---
+title:  Handler介绍
+thumbnail: /thumbnail/img13.jpg
+toc: true
+description: Android Handler介绍与使用
+tags: [Android]
+categories: Android
+date: 2019/09/30
+---
 # Handler介绍
 
 Handler直接继承于Object类
 
 Handler与一个线程的`MessageQueue`进行绑定，可以用于`Message`的发送与处理以及`Runnable`对象的处理。Handler对象被创建时，就与创建自己的线程以及该线程的`Message Queue`相绑定，它可以将messages以及runnables对象传递到`Message Queue`，并对`Message Queue`中的messages以及runnables对象进行处理。
-
+<!--more-->
 Handler使用的两个主要方面：
 1、对messages以及runnables在将来某一个节点执行进行调度；
 2、在非当前线程执行其他操作

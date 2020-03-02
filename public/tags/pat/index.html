@@ -133,90 +133,27 @@
     
 <div class="card">
     
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-02-29T02:44:34.997Z">2020-02-29</time>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    7 minutes read (About 1017 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/public/2020/02/29/PAT/2017-08-01-pat-advanced-1060/">PAT甲级1060. Are They Equal</a>
-            
-        </h1>
-        <div class="content">
-            <p>modified: 2017-08-01<br>If a machine can save only 3 significant digits, the float numbers 12300 and 12358.9 are considered equal since they are both saved as 0.123*105 with simple chopping. Now given the number of significant digits on a machine and two float numbers, you are supposed to tell if they are treated equal in that machine.</p>
-<p>Input Specification:</p>
-<p>Each input file contains one test case which gives three numbers N, A and B, where N (&lt;100) is the number of significant digits, and A and B are the two float numbers to be compared. Each float number is non-negative, no greater than 10100, and that its total digit number is less than 100.</p>
-<p>Output Specification:</p>
-<p>For each test case, print in a line “YES” if the two numbers are treated equal, and then the number in the standard form “0.d1…dN*10^k” (d1&gt;0 unless the number is 0); or “NO” if they are not treated equal, and then the two numbers in their standard form. All the terms must be separated by a space, with no extra space at the end of a line.</p>
-<p>Note: Simple chopping is assumed without rounding.</p>
-<p>Sample Input 1:</p>
-<p>3 12300 12358.9</p>
-<p>Sample Output 1:</p>
-<p>YES 0.123*10^5</p>
-<p>Sample Input 2:</p>
-<p>3 120 128</p>
-<p>Sample Output 2:</p>
-<p>NO 0.120<em>10^3 0.128</em>10^3</p>
-<h3 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h3><p>将两个不超过10^100的浮点数按照输入输入的精确度表示，然后比较两个浮点数是否相同，如果相同则输出 YES，并将使用科学计数法表示的数字输出；如果不相同，则输出NO，并将两个数字以科学计数法输出；</p>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>题目要求不超过10^100，那么这个浮点数只能用数组来表示；数字大小的比较可以通过比较其所对应的的ASCII，即不用char来表示每一个数字，通过字符的比较即可得到数字是否相同;</p>
-<p>void getRidZero() 这一个函数用于将num[]数组清除前导零和小数点，然后将剩下的复制到数组pNum()中；同时将小数点的位置以及给予的浮点数第一个非零的数字记录在decimalPoint和index中；</p>
-<p>void formatPrint()这一个函数用于将浮点数格式化输出；其中decimalPoint-index表示的是科学计数法的指数；decimalPoint1-index&gt;=0说明原来的数大于0，如：123.2223；如果decimalPoint1-index&lt;=0则说明是纯小数，如：0.00123，它的index=4,decimalPoint=1,小数点占了一位，因此指数需要将decimalPoint-index的值+1；</p>
-<p>对于两个0比较，如：0000和000.000则先判断是否都为0，然后再输出；</p>
-<p>数组的大小开到10000，是开始时开到100，发现没有AC，是因为题目给出的是数字位数不超过100，但数字的前导零的个数是不确定的；</p>
-<p>需要注意的要点：结尾需要使用0进行补足</p>
-<h3 id="C语言代码"><a href="#C语言代码" class="headerlink" title="C语言代码"></a>C语言代码</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdbool.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//用于将数组的前导零和小数点去掉，并将num[]数组的其他字符保存在 pNUm[]中</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getRidZero</span><span class="params">(<span class="keyword">char</span>  num[<span class="number">10000</span>], <span class="keyword">int</span> *index, <span class="keyword">int</span> *decimalPoint, <span class="keyword">char</span>  pNum[<span class="number">10000</span>])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//做一个循环除去开头的零和小数点</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10000</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (num[i] != <span class="string">'0'</span>&amp;&amp;num[i] != <span class="string">'.'</span>&amp;&amp;num[i] != <span class="string">'\0'</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			*index = i;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="comment">//用于获取小数点的位置</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10000</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (num[i] == <span class="string">'\0'</span> || num[i] == <span class="string">'.'</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			*decimalPoint = i;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = *index; i &lt; <span class="number">10000</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (num[i] == <span class="string">'\0'</span> || num[i] &lt; <span class="number">0</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			pNum[j] = <span class="string">'0'</span>;</span><br><span class="line">			j++;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (num[i] == <span class="string">'.'</span>)</span><br><span class="line">		&#123;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">			pNum[j] = num[i];</span><br><span class="line">			j++;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//用于将pNum[]中保存的数按照科学计数法输出</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">formatPrint</span><span class="params">(<span class="keyword">int</span> accuracy, <span class="keyword">char</span>  pNum[<span class="number">10000</span>], <span class="keyword">int</span> decimalPoint, <span class="keyword">int</span> index)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"0."</span>);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; accuracy; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%C"</span>, pNum[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (decimalPoint - index &gt;= <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"*10^%d"</span>, decimalPoint - index);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"*10^%d"</span>, decimalPoint - index + <span class="number">1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span>  accuracy;</span><br><span class="line">	<span class="keyword">char</span> num1[<span class="number">10000</span>];</span><br><span class="line">	<span class="keyword">char</span> num2[<span class="number">10000</span>];</span><br><span class="line"></span><br><span class="line">	<span class="keyword">char</span> pNum1[<span class="number">10000</span>];</span><br><span class="line">	<span class="keyword">char</span> pNum2[<span class="number">10000</span>];</span><br><span class="line"></span><br><span class="line">	<span class="comment">//用于记录小数点的位置</span></span><br><span class="line">	<span class="keyword">int</span> decimalPoint1 = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> decimalPoint2 = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//用于记录数字开始的位置</span></span><br><span class="line">	<span class="keyword">int</span> index1 = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> index2 = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">bool</span> equal = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d %s %s"</span>, &amp;accuracy, num1, num2);</span><br><span class="line">	getRidZero(num1, &amp;index1, &amp;decimalPoint1, pNum1);</span><br><span class="line">	getRidZero(num2, &amp;index2, &amp;decimalPoint2, pNum2);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; accuracy; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (pNum1[i] != pNum2[i])</span><br><span class="line">		&#123;</span><br><span class="line">			equal = <span class="literal">false</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> ((index1 - decimalPoint1) != (index2 - decimalPoint2))</span><br><span class="line">	&#123;</span><br><span class="line">		equal = <span class="literal">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">bool</span> notZero = <span class="literal">false</span>;</span><br><span class="line">	<span class="comment">//判断00000000 和000000.000000000</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5000</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (pNum1[i] != <span class="string">'0'</span> || pNum2[i] != <span class="string">'0'</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="comment">//证明不是0</span></span><br><span class="line">			notZero = <span class="literal">true</span>;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (!notZero)  <span class="comment">//证明都是0   然后输出 0.0000*10^0 ，是第六个测试点</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"YES 0."</span>);</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; accuracy; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"%C"</span>, <span class="string">'0'</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"*10^%d"</span>, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (equal)    <span class="comment">//如果两个数相等</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"YES "</span>);</span><br><span class="line"></span><br><span class="line">		formatPrint(accuracy, pNum1, decimalPoint1, index1);</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span>          <span class="comment">//如果两个数不想等</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"NO "</span>);</span><br><span class="line">		formatPrint(accuracy, pNum1, decimalPoint1, index1);</span><br><span class="line"></span><br><span class="line">		<span class="comment">//输出第二个数</span></span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">" "</span>);</span><br><span class="line">		formatPrint(accuracy, pNum2, decimalPoint2, index2);</span><br><span class="line">	&#125;</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="测试用例"><a href="#测试用例" class="headerlink" title="测试用例"></a>测试用例</h3><ul>
-<li>5　0000.0000123　0.0000123</li>
-<li>4　000123　　　　　00123.005</li>
-<li>4　00000　　　　　000.000001</li>
-<li>4　00.000　　　　　00000</li>
-<li>4　0.01　　　　　　0.01000005</li>
-</ul>
-
-        </div>
-        
-        
-        
+    <div class="card-image">
+        <a href="/public/2017/08/01/PAT/2017-08-01-pat-advanced-1011/" class="image is-7by1">
+            <img class="thumbnail" src="/public/thumbnail/img75.jpg" alt="PAT甲级1011. World Cup Betting ">
+        </a>
     </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-02-29T02:44:34.950Z">2020-02-29</time>
+                <time class="level-item has-text-grey" datetime="2017-07-31T16:00:00.000Z">2017-08-01</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/public/categories/PAT/">PAT</a>
+                </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    3 minutes read (About 470 words)
+                    3 minutes read (About 471 words)
                 </span>
                 
                 
@@ -225,33 +162,21 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/public/2020/02/29/PAT/2017-08-01-pat-advanced-1011/">PAT甲级1011. World Cup Betting </a>
+                <a class="has-link-black-ter" href="/public/2017/08/01/PAT/2017-08-01-pat-advanced-1011/">PAT甲级1011. World Cup Betting </a>
             
         </h1>
         <div class="content">
             <p>modified: 2017-08-01<br>With the 2010 FIFA World Cup running, football fans the world over were becoming increasingly excited as the best players from the best teams doing battles for the World Cup trophy in South Africa. Similarly, football betting fans were putting their money where their mouths were, by laying all manner of World Cup bets.</p>
-<p>Chinese Football Lottery provided a “Triple Winning” game. The rule of winning was simple: first select any three of the games. Then for each selected game, bet on one of the three possible results – namely W for win, T for tie, and L for lose. There was an odd assigned to each result. The winner’s odd would be the product of the three odds times 65%.</p>
-<p>For example, 3 games’ odds are given as the following:</p>
-<p> W    T    L</p>
-<p>1.1  2.5  1.7</p>
-<p>1.2  3.0  1.6</p>
-<p>4.1  1.2  1.1</p>
-<p>To obtain the maximum profit, one must buy W for the 3rd game, T for the 2nd game, and T for the 1st game. If each bet takes 2 yuans, then the maximum profit would be (4.1<em>3.0</em>2.5<em>65%-1)</em>2 = 37.98 yuans (accurate up to 2 decimal places).</p>
-<p>Input</p>
-<p>Each input file contains one test case. Each case contains the betting information of 3 games. Each game occupies a line with three distinct odds corresponding to W, T and L.</p>
-<p>Output</p>
-<p>For each test case, print in one line the best bet of each game, and the maximum profit accurate up to 2 decimal places. The characters and the number must be separated by one space.</p>
-<p>Sample Input</p>
-<p>1.1 2.5 1.7</p>
-<p>1.2 3.0 1.6</p>
-<p>4.1 1.2 1.1</p>
-<p>Sample Output</p>
-<p>T T W 37.98</p>
-<h3 id="题目要求"><a href="#题目要求" class="headerlink" title="题目要求"></a>题目要求</h3><p>题目中给了一大堆规则，其实就是查找到每一行的最大值将它们相乘，计算结果=（相乘的结果*65%-1）X2，计算结果保留两位小数；输出最大值所对应的的列，以及将计算结果；</p>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>设置一个结果变量result，找出每一行中的最大的数与结果变量相乘result *= tmp，可以避免每次查找都需要对最大的数进行记录；然后记录位置，将最大的数对应的结果类型赋值给 outChar[3];</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdio.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdlib.h"</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> <span class="built_in">line</span>[<span class="number">3</span>] = &#123;<span class="string">'W'</span>,<span class="string">'T'</span>,<span class="string">'L'</span>&#125;;</span><br><span class="line">	<span class="keyword">char</span> outChar[<span class="number">3</span>];</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> index;</span><br><span class="line">	<span class="keyword">float</span> in,tmp;</span><br><span class="line">	<span class="keyword">float</span> result=<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span>  i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		index = <span class="number">0</span>;</span><br><span class="line">		tmp = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;<span class="number">3</span>; j++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">"%f"</span>,&amp;in);</span><br><span class="line">			<span class="keyword">if</span> (tmp&lt;in)</span><br><span class="line">			&#123;</span><br><span class="line">				tmp = in;</span><br><span class="line">				index = j;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line">		result *= tmp;</span><br><span class="line">		outChar[i]=<span class="built_in">line</span>[index];</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%c "</span>,outChar[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%.2f"</span>, (result*<span class="number">0.65</span> - <span class="number">1</span>) * <span class="number">2</span>);</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
         </div>
         
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/public/2017/08/01/PAT/2017-08-01-pat-advanced-1011/#more">Read More</a>
+                </div>
+            </div>
+        </div>
         
         
     </div>
@@ -267,17 +192,27 @@
     
 <div class="card">
     
+    <div class="card-image">
+        <a href="/public/2017/08/01/PAT/2017-08-01-pat-advanced-1060/" class="image is-7by1">
+            <img class="thumbnail" src="/public/thumbnail/img76.jpg" alt="PAT甲级1060. Are They Equal">
+        </a>
+    </div>
+    
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-02-29T02:44:34.944Z">2020-02-29</time>
+                <time class="level-item has-text-grey" datetime="2017-07-31T16:00:00.000Z">2017-08-01</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/public/categories/PAT/">PAT</a>
+                </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    4 minutes read (About 628 words)
+                    7 minutes read (About 1018 words)
                 </span>
                 
                 
@@ -286,35 +221,80 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/public/2020/02/29/PAT/2017-07-31-pat-advanced-1006/">PAT甲级1006. Sign In and Sign Out</a>
+                <a class="has-link-black-ter" href="/public/2017/08/01/PAT/2017-08-01-pat-advanced-1060/">PAT甲级1060. Are They Equal</a>
+            
+        </h1>
+        <div class="content">
+            <p>modified: 2017-08-01<br>If a machine can save only 3 significant digits, the float numbers 12300 and 12358.9 are considered equal since they are both saved as 0.123*105 with simple chopping. Now given the number of significant digits on a machine and two float numbers, you are supposed to tell if they are treated equal in that machine.</p>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/public/2017/08/01/PAT/2017-08-01-pat-advanced-1060/#more">Read More</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/public/2017/07/31/PAT/2017-07-31-pat-advanced-1006/" class="image is-7by1">
+            <img class="thumbnail" src="/public/thumbnail/img74.jpg" alt="PAT甲级1006. Sign In and Sign Out">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2017-07-30T16:00:00.000Z">2017-07-31</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/public/categories/PAT/">PAT</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    4 minutes read (About 629 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/public/2017/07/31/PAT/2017-07-31-pat-advanced-1006/">PAT甲级1006. Sign In and Sign Out</a>
             
         </h1>
         <div class="content">
             <p>modified: 2017-07-31<br>At the beginning of every day, the first person who signs in the computer room will unlock the door, and the last one who signs out will lock the door. Given the records of signing in’s and out’s, you are supposed to find the ones who have unlocked and locked the door on that day.</p>
-<p>Input Specification:</p>
-<p>Each input file contains one test case. Each case contains the records for one day. The case starts with a positive integer M, which is the total number of records, followed by M lines, each in the format:</p>
-<p>ID_number Sign_in_time Sign_out_time</p>
-<p>where times are given in the format HH:MM:SS, and ID number is a string with no more than 15 characters.</p>
-<p>Output Specification:</p>
-<p>For each test case, output in one line the ID numbers of the persons who have unlocked and locked the door on that day. The two ID numbers must be separated by one space.</p>
-<p>Note: It is guaranteed that the records are consistent. That is, the sign in time must be earlier than the sign out time for each person, and there are no two persons sign in or out at the same moment.</p>
-<p>Sample Input:</p>
-<p>3</p>
-<p>CS301111 15:30:28 17:00:10</p>
-<p>SC3021234 08:00:00 11:25:25</p>
-<p>CS301133 21:45:00 21:58:40</p>
-<p>Sample Output:</p>
-<p>SC3021234 CS301133</p>
-<h3 id="题目要求："><a href="#题目要求：" class="headerlink" title="题目要求："></a>题目要求：</h3><p>每天，第一个登录电脑的人开门，最后一个退出电脑的人关门；已知每个人登录和退出电脑的时间，需要找出开门的人和关门的人；</p>
-<p>输入包括记录的条数，以及每个人的ID、登录、退出时间；ID字符串不超过15个字符，时间输入格式为HH:MM:SS；</p>
-<p>输出要求：输出开门的人和关门的人ID，ID之间使用空格隔开；</p>
-<p>题目的输入保证每个人登录时间早于退出时间，并且没有任何两个人的登录退出时间是相同的；</p>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>方法一：直接使用int strcmp(const char *str1, const char *str2)比较输入的登录时间与输出时间的字符串的大小,因为数字对应的ASCII码是由小至大，所以可以用字符比较的方式，下面的代码即为方法一</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdio.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdlib.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"string.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdbool.h"</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">user</span> &#123;</span></span><br><span class="line">	<span class="keyword">char</span> name[<span class="number">20</span>];</span><br><span class="line">	<span class="keyword">char</span> inTime[<span class="number">20</span>];</span><br><span class="line">	<span class="keyword">char</span> outTime[<span class="number">20</span>];</span><br><span class="line">&#125;user;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	user user[<span class="number">100</span>];</span><br><span class="line">	<span class="keyword">int</span> num;</span><br><span class="line">	<span class="keyword">int</span> unLockedIndex;</span><br><span class="line">	<span class="keyword">int</span> lockedIndex;</span><br><span class="line">	<span class="keyword">char</span> inTimeTmp[<span class="number">20</span>];</span><br><span class="line">	<span class="built_in">strcpy</span>(inTimeTmp,<span class="string">"23:59:59"</span>);</span><br><span class="line">	<span class="keyword">char</span> outTimeTmp[<span class="number">20</span>];</span><br><span class="line">	<span class="built_in">strcpy</span>(outTimeTmp, <span class="string">"00:00:00"</span>);</span><br><span class="line">	unLockedIndex = <span class="number">0</span>;</span><br><span class="line">	lockedIndex = <span class="number">0</span>;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;num);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; num; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%s"</span>,&amp;user[i].name);</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%s"</span>, &amp;user[i].inTime);</span><br><span class="line">		<span class="comment">//大于零表示第二个字符串小于第一个</span></span><br><span class="line">		<span class="keyword">if</span> (<span class="built_in">strcmp</span>(inTimeTmp, user[i].inTime)&gt;<span class="number">0</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">strcpy</span>(inTimeTmp, user[i].inTime);</span><br><span class="line">			unLockedIndex = i;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%s"</span>, &amp;user[i].outTime);</span><br><span class="line">		<span class="comment">//表示第二个字符串大于第一个</span></span><br><span class="line">		<span class="keyword">if</span> (<span class="built_in">strcmp</span>(outTimeTmp, user[i].outTime)&lt;<span class="number">0</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="built_in">strcpy</span>(outTimeTmp, user[i].outTime);</span><br><span class="line">				lockedIndex = i;</span><br><span class="line">			&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%s %s"</span>,user[unLockedIndex].name,user[lockedIndex].name);</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="方法二：将输入的时间转换为秒，然后再比较大小"><a href="#方法二：将输入的时间转换为秒，然后再比较大小" class="headerlink" title="方法二：将输入的时间转换为秒，然后再比较大小"></a>方法二：将输入的时间转换为秒，然后再比较大小</h3>
         </div>
         
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/public/2017/07/31/PAT/2017-07-31-pat-advanced-1006/#more">Read More</a>
+                </div>
+            </div>
+        </div>
         
         
     </div>
@@ -330,70 +310,27 @@
     
 <div class="card">
     
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-02-29T02:44:34.934Z">2020-02-29</time>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    3 minutes read (About 513 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/public/2020/02/29/PAT/2017-07-27-pat-advanced-1008/">PAT甲级1008. Elevator</a>
-            
-        </h1>
-        <div class="content">
-            <p>modified: 2017-07-27<br>The highest building in our city has only one elevator. A request list is made up with N positive numbers. The numbers denote at which floors the elevator will stop, in specified order. It costs 6 seconds to move the elevator up one floor, and 4 seconds to move down one floor. The elevator will stay for 5 seconds at each stop.</p>
-<p>For a given request list, you are to compute the total time spent to fulfill the requests on the list. The elevator is on the 0th floor at the beginning and does not have to return to the ground floor when the requests are fulfilled.</p>
-<p>Input Specification:</p>
-<p>Each input file contains one test case. Each case contains a positive integer N, followed by N positive numbers. All the numbers in the input are less than 100.</p>
-<p>Output Specification:</p>
-<p>For each test case, print the total time on a single line.</p>
-<p>Sample Input:<br>3 2 3 1</p>
-<p>Sample Output:<br>41</p>
-<h3 id="题目要求："><a href="#题目要求：" class="headerlink" title="题目要求："></a>题目要求：</h3><p>一部电梯，给N个正整数，表示电梯将依次在哪一层楼停止，上升一层楼需要6S，下降一层楼需要4S，电梯在每一层楼停止5S；</p>
-<p>给予的每一列数需要计算电梯停过每一层楼索要要的总的时间，开始时电梯在0层，且结束后电梯不要要回到0层；</p>
-<p>每一个输入包括，一个正整数N，在这个正整数之后是N个正整数这个是重点！！！坑爹的题目给了输入的例子：3X6+4X1+6X1+4X2+5=41！！！2X6+1x6+2X4+3x5=41！！！）</font>本宝宝才不会告诉你：我的神奇脑回路；所有的输入数不超过100个；</p>
-<h3 id="解题思路："><a href="#解题思路：" class="headerlink" title="解题思路："></a>解题思路：</h3><p>首先将输入的数字存储在一个数组中（题目给出的输入不超过100，所以可以定义长度为100的数组），然后循环比较数组的每一个元素与前后元素的大小，确定是上升还是下降；并计算时间；</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdlib.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdio.h"</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">char</span> ch;</span><br><span class="line">	<span class="keyword">int</span> <span class="built_in">floor</span>[<span class="number">101</span>];</span><br><span class="line">	<span class="comment">//用于对输入的楼层数进行计数</span></span><br><span class="line">	<span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> time =<span class="number">0</span> ;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;<span class="built_in">floor</span>[count++]);</span><br><span class="line">	<span class="keyword">while</span> (ch=getchar()!=<span class="string">'\n'</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;<span class="built_in">floor</span>[count++]);</span><br><span class="line">	&#125;</span><br><span class="line">	time += <span class="number">6</span> * <span class="built_in">floor</span>[<span class="number">1</span>]+<span class="number">5</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt; count; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (<span class="built_in">floor</span>[i]&gt;<span class="built_in">floor</span>[i<span class="number">-1</span>])</span><br><span class="line">		&#123;</span><br><span class="line">			time += <span class="number">6</span> * (<span class="built_in">floor</span>[i] - <span class="built_in">floor</span>[i - <span class="number">1</span>])+<span class="number">5</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">			time += <span class="number">4</span> * (<span class="built_in">floor</span>[i<span class="number">-1</span>] - <span class="built_in">floor</span>[i])+<span class="number">5</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d"</span>,time);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-        </div>
-        
-        
-        
+    <div class="card-image">
+        <a href="/public/2017/07/28/PAT/2017-07-27-pat-advanced-1007/" class="image is-7by1">
+            <img class="thumbnail" src="/public/thumbnail/img72.jpg" alt="PAT甲级1007. Maximum Subsequence Sum">
+        </a>
     </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-02-29T02:44:34.914Z">2020-02-29</time>
+                <time class="level-item has-text-grey" datetime="2017-07-27T16:00:00.000Z">2017-07-28</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/public/categories/PAT/">PAT</a>
+                </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    5 minutes read (About 717 words)
+                    5 minutes read (About 718 words)
                 </span>
                 
                 
@@ -402,40 +339,21 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/public/2020/02/29/PAT/2017-07-27-pat-advanced-1007/">PAT甲级1007. Maximum Subsequence Sum</a>
+                <a class="has-link-black-ter" href="/public/2017/07/28/PAT/2017-07-27-pat-advanced-1007/">PAT甲级1007. Maximum Subsequence Sum</a>
             
         </h1>
         <div class="content">
             <p>modified: 2017-07-27<br>Given a sequence of K integers { N1, N2, …, NK }. A continuous subsequence is defined to be { Ni, Ni+1, …, Nj } where 1 &lt;= i &lt;= j &lt;= K. The Maximum Subsequence is the continuous subsequence which has the largest sum of its elements. For example, given sequence { -2, 11, -4, 13, -5, -2 }, its maximum subsequence is { 11, -4, 13 } with the largest sum being 20.</p>
-<p>Now you are supposed to find the largest sum, together with the first and the last numbers of the maximum subsequence.</p>
-<p>Input Specification:</p>
-<p>Each input file contains one test case. Each case occupies two lines. The first line contains a positive integer K (&lt;= 10000). The second line contains K numbers, separated by a space.</p>
-<p>Output Specification:</p>
-<p>For each test case, output in one line the largest sum, together with the first and the last numbers of the maximum subsequence. The numbers must be separated by one space, but there must be no extra space at the end of a line. In case that the maximum subsequence is not unique, output the one with the smallest indices i and j (as shown by the sample case). If all the K numbers are negative, then its maximum sum is defined to be 0, and you are supposed to output the first and the last numbers of the whole sequence.</p>
-<p>Sample Input:</p>
-<p>10</p>
-<p>-10 1 2 3 4 -5 -23 3 7 -21</p>
-<p>Sample Output:</p>
-<p>10 1 4</p>
-<h3 id="题目要求："><a href="#题目要求：" class="headerlink" title="题目要求："></a>题目要求：</h3><p>给定一列数，然后求出这一列数中和最大的子列；第一行为输入的数列的数字个数，第二行为给定的数列；要求输出最大和子列的和、最大和子列的首元素、最大和子列末尾元素；数与数之间使用空格隔开，最后一个数后面没有空格；若给定的子列有多个最大和子列，那么按照第一个和子列输出；若给定的数列全部是负数，那么最大子列的和为0，最大子列的首元素为给定数列的首元素，最大子列的末尾元素为给定子列的末尾元素；</p>
-<h3 id="解题思路："><a href="#解题思路：" class="headerlink" title="解题思路："></a>解题思路：</h3><p>sum，为最大子列的的和，sumTemp为最大子列的临时值，leftTmp为sumTemp的下标；依次输入数字，sumTmp+=input,如果sumTmp&lt;0,都应该将leftTmp右移，并令sumTmp=0,相当于将临时子数列舍弃，重新构建一个临时子数列;因为sumTmp&lt;0时无论后面输入的数如何，前面的临时子数列和都会让整体的临时子数列的和减小；</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdio.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdlib.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdbool.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> count, sum = <span class="number">-1</span>, sumTmp = <span class="number">0</span>, left = <span class="number">0</span>, leftTmp = <span class="number">0</span>, right = <span class="number">0</span>, input, first, last;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">int</span> num[<span class="number">10000</span>];</span><br><span class="line"></span><br><span class="line">	<span class="keyword">bool</span> positive = <span class="literal">false</span>, half_positive = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;count);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; count; i++)</span><br><span class="line">	&#123;</span><br><span class="line"></span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;input);</span><br><span class="line">		num[i] = input;</span><br><span class="line">		<span class="keyword">if</span> (input &gt;= <span class="number">0</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			positive = <span class="literal">true</span>;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		sumTmp = sumTmp + input;</span><br><span class="line">		<span class="keyword">if</span> (sum &lt; sumTmp)</span><br><span class="line">		&#123;</span><br><span class="line">			left = leftTmp;</span><br><span class="line">			right = i;</span><br><span class="line">			sum = sumTmp;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (sumTmp &lt; <span class="number">0</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			leftTmp=i+<span class="number">1</span>;</span><br><span class="line">			sumTmp = <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (positive)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d %d %d"</span>, sum, num[left], num[right]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d %d %d"</span>, <span class="number">0</span>, num[<span class="number">0</span>], num[count<span class="number">-1</span>]);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h3><p>又一次看错了题目，以为输出的是最大子数列的和、最大子数列的下标和上标！！！！即使输出的是上标和下标也会通过测试用例，并且通过平台的部分测试；</p>
-<p>本题中容易被忽略的数列类型有如下：</p>
-<ul>
-<li><p>连续0</p>
-<p>5</p>
-<p>0 0 -1 -1 0</p>
-</li>
-<li><p>前面都为负、最后一位为0</p>
-<p>5</p>
-<p>-1 -1 -1 -1 0</p>
-</li>
-</ul>
-
         </div>
         
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/public/2017/07/28/PAT/2017-07-27-pat-advanced-1007/#more">Read More</a>
+                </div>
+            </div>
+        </div>
         
         
     </div>
@@ -451,69 +369,27 @@
     
 <div class="card">
     
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-02-29T02:44:34.908Z">2020-02-29</time>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    3 minutes read (About 389 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/public/2020/02/29/PAT/2017-07-27-pat-advanced-1005/">PAT甲级1005. Spell It Right</a>
-            
-        </h1>
-        <div class="content">
-            <p>modified: 2017-07-27<br>Given a non-negative integer N, your task is to compute the sum of all the digits of N, and output every digit of the sum in English.</p>
-<p>Input Specification:</p>
-<p>Each input file contains one test case. Each case occupies one line which contains an N (&lt;= 10100).</p>
-<p>Output Specification:</p>
-<p>For each test case, output in one line the digits of the sum in English words. There must be one space between two consecutive words, but no extra space at the end of a line.</p>
-<p>Sample Input:<br>12345</p>
-<p>Sample Output:<br>one five</p>
-<h3 id="题目要求："><a href="#题目要求：" class="headerlink" title="题目要求："></a>题目要求：</h3><p>任给一个非负整数N，计算整数的每一位的和，并输出每一位的英文；</p>
-<p>输入：输入的N&lt;=10100</p>
-<p>输出：计算的每一位的和的每一位对应一个英文单词，而且英文单词之间需要有一个空格，最后一位之后没有空格</p>
-<h3 id="解题思路："><a href="#解题思路：" class="headerlink" title="解题思路："></a>解题思路：</h3><p>首先将整数的每一位进行分离，然后计算出和，计算出和后也需要将每一位分离；将整数的每一位分离的方法采用除10取余的方式；和的每一位分离时，是从整数的最小位开始，而整数输出需要从最高位开始，因此需要将分离的数位存储在一个数组中；</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdlib.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdio.h"</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">char</span> ch;</span><br><span class="line">	<span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> words[<span class="number">4</span>];</span><br><span class="line">	<span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">	ch = getchar();</span><br><span class="line">	<span class="keyword">while</span> (ch != <span class="string">'\n'</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		sum += ch - <span class="string">'0'</span>;</span><br><span class="line">		ch = getchar();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span> (sum / <span class="number">10</span> &gt; <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		words[count++] = sum % <span class="number">10</span>;</span><br><span class="line">		sum = sum / <span class="number">10</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	words[count++] = sum % <span class="number">10</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = count - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">switch</span> (words[i])</span><br><span class="line">		&#123;</span><br><span class="line">		<span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"zero"</span>);</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"one"</span>);</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"two"</span>);</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"three"</span>);</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> <span class="number">4</span>:</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"four"</span>);</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> <span class="number">5</span>:</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"five"</span>);</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> <span class="number">6</span>:</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"six"</span>);</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> <span class="number">7</span>:</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"seven"</span>);</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> <span class="number">8</span>:</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"eight"</span>);</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> <span class="number">9</span>:</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"nine"</span>);</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">default</span>:</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (i!=<span class="number">0</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">" "</span>);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-        </div>
-        
-        
-        
+    <div class="card-image">
+        <a href="/public/2017/07/27/PAT/2017-07-27-pat-advanced-1001/" class="image is-7by1">
+            <img class="thumbnail" src="/public/thumbnail/img69.jpg" alt="PAT甲级1001. A+B Format">
+        </a>
     </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-02-29T02:44:34.886Z">2020-02-29</time>
+                <time class="level-item has-text-grey" datetime="2017-07-26T16:00:00.000Z">2017-07-27</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/public/categories/PAT/">PAT</a>
+                </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    4 minutes read (About 633 words)
+                    2 minutes read (About 372 words)
                 </span>
                 
                 
@@ -522,67 +398,7 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/public/2020/02/29/PAT/2017-07-27-pat-advanced-1002/">PAT甲级1002. A+B for Polynomials</a>
-            
-        </h1>
-        <div class="content">
-            <p>modified: 2017-07-27</p>
-<p>This time, you are supposed to find A+B where A and B are two polynomials.</p>
-<p>Input</p>
-<p>Each input file contains one test case. Each case occupies 2 lines, and each line contains the information of a polynomial: K N1 aN1 N2 aN2 … NK aNK, where K is the number of nonzero terms in the polynomial, Ni and aNi (i=1, 2, …, K) are the exponents and coefficients, respectively. It is given that 1 &lt;= K &lt;= 10，0 &lt;= NK &lt; … &lt; N2 &lt; N1 &lt;=1000.</p>
-<p>Output</p>
-<p>For each test case you should output the sum of A and B in one line, with the same format as the input. Notice that there must be NO extra space at the end of each line. Please be accurate to 1 decimal place.</p>
-<p>Sample Input</p>
-<p>2 1 2.4 0 3.2</p>
-<p>2 2 1.5 1 0.5</p>
-<p>Sample Output</p>
-<p>3 2 1.5 1 2.9 0 3.2</p>
-<h3 id="题目要求："><a href="#题目要求：" class="headerlink" title="题目要求："></a>题目要求：</h3><p>两个多项式相加，多项式的输入为  K N1 aN1 N2 aN2 … 其中K代表项数，N1…代表指数，aN1代表系数，每个多项式的项数不超过10；要求将两个多项式相加后输出非零项，输出格式与输入格式相同，系数保留一位小数；相邻两个输出数字之间需要有空格，输出最后没有空格；</p>
-<h3 id="解题思路："><a href="#解题思路：" class="headerlink" title="解题思路："></a>解题思路：</h3><p>定义三个float类型的数组，两个用于保存输入的多项式，一个用于保存输出的多项式；输入的奇数项是指数，偶数项是系数，所以可以对指数进行比较，如果相同则将指数和相加后的系数保存在第三个数组中，不同则将指数较大的项的指数和系数保存在第三个数组中；</p>
-<ul>
-<li>本题目采用C语言进行编写</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> k1, k2, k3, count1 = <span class="number">0</span>, count2 = <span class="number">0</span>, count3 = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">float</span> NA1[<span class="number">20</span>] = &#123; <span class="number">0</span> &#125;;</span><br><span class="line">	<span class="keyword">float</span> NA2[<span class="number">20</span>] = &#123; <span class="number">0</span> &#125;;</span><br><span class="line">	<span class="keyword">float</span> NA3[<span class="number">40</span>] = &#123; <span class="number">0</span> &#125;;</span><br><span class="line">	<span class="keyword">char</span> ch;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;k1);</span><br><span class="line">	<span class="keyword">while</span> (ch = getchar() != <span class="string">'\n'</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%f"</span>, &amp;NA1[count1++]);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;k2);</span><br><span class="line">	<span class="keyword">while</span> (ch = getchar() != <span class="string">'\n'</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%f"</span>, &amp;NA2[count2++]);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	count1 = count2 = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span> (count1 &lt; <span class="number">2</span> * k1  &amp;&amp; count2 &lt; <span class="number">2</span> * k2)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (NA1[count1] == NA2[count2])</span><br><span class="line">		&#123;</span><br><span class="line">			NA3[count3++] = NA1[count1++];</span><br><span class="line">			count2 += <span class="number">1</span>;</span><br><span class="line">			NA3[count3++] = NA1[count1++] + NA2[count2++];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (NA1[count1] &gt; NA2[count2])</span><br><span class="line">		&#123;</span><br><span class="line">			NA3[count3++] = NA1[count1++];</span><br><span class="line">			NA3[count3++] = NA1[count1++];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">			NA3[count3++] = NA2[count2++];</span><br><span class="line">			NA3[count3++] = NA2[count2++];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span> (count1 &lt; <span class="number">2</span> * k1) &#123;</span><br><span class="line">		NA3[count3++] = NA1[count1++];</span><br><span class="line">		NA3[count3++] = NA1[count1++];</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span> (count2 &lt; <span class="number">2</span> * k2)</span><br><span class="line">	&#123;</span><br><span class="line">		NA3[count3++] = NA2[count2++];</span><br><span class="line">		NA3[count3++] = NA2[count2++];</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	k3 = (count3 + <span class="number">1</span>) / <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; count3; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (i % <span class="number">2</span> == <span class="number">0</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (NA3[i + <span class="number">1</span>] == <span class="number">0</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				i++;</span><br><span class="line">				k3--;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d"</span>, k3);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; count3; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (i % <span class="number">2</span> == <span class="number">0</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (NA3[i + <span class="number">1</span>] == <span class="number">0</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				i++;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">			&#123;</span><br><span class="line">				<span class="built_in">printf</span>(<span class="string">" "</span>);</span><br><span class="line">				<span class="built_in">printf</span>(<span class="string">"%d"</span>, (<span class="keyword">int</span>)NA3[i]);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">" "</span>);</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"%.1f"</span>, NA3[i]);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h3><p>在多项式相加中易被忽略的测试实例有：相加后的第一项为零，相加后最后一项为零，相加后整体为0；数据输出若系数为4，则应输出4.0才可通过测试；输出空格的技巧，除了项数不需要输出空格，其他空格都在数据输出之前；</p>
-
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-02-29T02:44:34.831Z">2020-02-29</time>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    2 minutes read (About 371 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/public/2020/02/29/PAT/2017-07-27-pat-advanced-1001/">PAT甲级1001. A+B Format</a>
+                <a class="has-link-black-ter" href="/public/2017/07/27/PAT/2017-07-27-pat-advanced-1001/">PAT甲级1001. A+B Format</a>
             
         </h1>
         <div class="content">
@@ -591,20 +407,194 @@
 <li>A+B Format (20)</li>
 </ul>
 <p>Calculate a + b and output the sum in standard format – that is, the digits must be separated into groups of three by commas (unless there are less than four digits).</p>
-<p>Input</p>
-<p>Each input file contains one test case. Each case contains a pair of integers a and b where -1000000 &lt;= a, b &lt;= 1000000. The numbers are separated by a space.</p>
-<p>Output</p>
-<p>For each test case, you should output the sum of a and b in one line. The sum must be written in the standard format.</p>
-<p>Sample Input<br>-1000000 9</p>
-<p>Sample Output<br>-999,991</p>
-<h3 id="题目要求："><a href="#题目要求：" class="headerlink" title="题目要求："></a>题目要求：</h3><p>计算a+b然后格式化输出结果，格式化输出要求：结果如果超过四位，就用小数点每三位隔开输出；</p>
-<p>输入：输入两个在[-1000000,1000000]的a,b两个数</p>
-<p>输出：应该在一行格式化输出</p>
-<h3 id="解题思路："><a href="#解题思路：" class="headerlink" title="解题思路："></a>解题思路：</h3><p>a,b的和的取值范围为[-1000000,1000000]没有超过C语言int类型数据的范围，所以不用担心溢出的问题，结果每三位需要输出一个逗号，将结果不断除1000取余，就会没一次得到少于三位的余数，需要对余数进行判断，不足三位的需要用0补足最高位，但最后一次取余不需要用零来补位。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdio.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdlib.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> a = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> b = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> c = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> num = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> tmp[<span class="number">3</span>];</span><br><span class="line"></span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;a, &amp;b);</span><br><span class="line">	c = a + b;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (c &lt; <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%c"</span>, <span class="string">'-'</span>);</span><br><span class="line">		c = -c;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span> (c/<span class="number">1000</span>&gt;=<span class="number">1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		tmp[num] = c % <span class="number">1000</span>;</span><br><span class="line">		num++;</span><br><span class="line">		c = c / <span class="number">1000</span>;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	tmp[num] = c;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span>  i = num; i &gt;=<span class="number">0</span>; i--)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (i==num)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"%d"</span>, tmp[i]);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (tmp[i]&lt;<span class="number">10</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="built_in">printf</span>(<span class="string">"%s%d"</span>, <span class="string">",00"</span>, tmp[i]);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span> (tmp[i]&lt;<span class="number">100</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="built_in">printf</span>(<span class="string">"%s%d"</span>, <span class="string">",0"</span>, tmp[i]);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">			&#123;</span><br><span class="line">				<span class="built_in">printf</span>(<span class="string">"%s%d"</span>, <span class="string">","</span>, tmp[i]);</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
         </div>
         
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/public/2017/07/27/PAT/2017-07-27-pat-advanced-1001/#more">Read More</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/public/2017/07/27/PAT/2017-07-27-pat-advanced-1002/" class="image is-7by1">
+            <img class="thumbnail" src="/public/thumbnail/img70.jpg" alt="PAT甲级1002. A+B for Polynomials">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2017-07-26T16:00:00.000Z">2017-07-27</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/public/categories/PAT/">PAT</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    4 minutes read (About 634 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/public/2017/07/27/PAT/2017-07-27-pat-advanced-1002/">PAT甲级1002. A+B for Polynomials</a>
+            
+        </h1>
+        <div class="content">
+            <p>modified: 2017-07-27</p>
+<p>This time, you are supposed to find A+B where A and B are two polynomials.</p>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/public/2017/07/27/PAT/2017-07-27-pat-advanced-1002/#more">Read More</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/public/2017/07/27/PAT/2017-07-27-pat-advanced-1005/" class="image is-7by1">
+            <img class="thumbnail" src="/public/thumbnail/img71.jpg" alt="PAT甲级1005. Spell It Right">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2017-07-26T16:00:00.000Z">2017-07-27</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/public/categories/PAT/">PAT</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3 minutes read (About 390 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/public/2017/07/27/PAT/2017-07-27-pat-advanced-1005/">PAT甲级1005. Spell It Right</a>
+            
+        </h1>
+        <div class="content">
+            <p>modified: 2017-07-27<br>Given a non-negative integer N, your task is to compute the sum of all the digits of N, and output every digit of the sum in English.</p>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/public/2017/07/27/PAT/2017-07-27-pat-advanced-1005/#more">Read More</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/public/2017/07/27/PAT/2017-07-27-pat-advanced-1008/" class="image is-7by1">
+            <img class="thumbnail" src="/public/thumbnail/img73.jpg" alt="PAT甲级1008. Elevator">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2017-07-26T16:00:00.000Z">2017-07-27</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/public/categories/PAT/">PAT</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3 minutes read (About 514 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/public/2017/07/27/PAT/2017-07-27-pat-advanced-1008/">PAT甲级1008. Elevator</a>
+            
+        </h1>
+        <div class="content">
+            <p>modified: 2017-07-27<br>The highest building in our city has only one elevator. A request list is made up with N positive numbers. The numbers denote at which floors the elevator will stop, in specified order. It costs 6 seconds to move the elevator up one floor, and 4 seconds to move down one floor. The elevator will stay for 5 seconds at each stop.</p>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/public/2017/07/27/PAT/2017-07-27-pat-advanced-1008/#more">Read More</a>
+                </div>
+            </div>
+        </div>
         
         
     </div>
@@ -662,7 +652,7 @@
                     </p>
                     <a href="/public/archives">
                         <p class="title has-text-weight-normal">
-                            100
+                            81
                         </p>
                     </a>
                 </div>
@@ -670,11 +660,11 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Category
+                        Categories
                     </p>
                     <a href="/public/categories">
                         <p class="title has-text-weight-normal">
-                            1
+                            6
                         </p>
                     </a>
                 </div>
@@ -686,7 +676,7 @@
                     </p>
                     <a href="/public/tags">
                         <p class="title has-text-weight-normal">
-                            5
+                            7
                         </p>
                     </a>
                 </div>
@@ -766,7 +756,47 @@
                 <span class="level-item">Android</span>
             </span>
             <span class="level-end">
+                <span class="level-item tag">36</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/public/categories/Java/">
+            <span class="level-start">
+                <span class="level-item">Java</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">12</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/public/categories/Kotlin/">
+            <span class="level-start">
+                <span class="level-item">Kotlin</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/public/categories/Other/">
+            <span class="level-start">
+                <span class="level-item">Other</span>
+            </span>
+            <span class="level-end">
                 <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/public/categories/PAT/">
+            <span class="level-start">
+                <span class="level-item">PAT</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">8</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/public/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+            <span class="level-start">
+                <span class="level-item">数据结构</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">16</span>
             </span>
         </a></li>
             </ul>
@@ -779,7 +809,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/public/tags/Android/" style="font-size: 13.33px;">Android</a> <a href="/public/tags/error/" style="font-size: 10px;">error</a> <a href="/public/tags/git/" style="font-size: 10px;">git</a> <a href="/public/tags/pat/" style="font-size: 16.67px;">pat</a> <a href="/public/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 20px;">数据结构</a>
+        <a href="/public/tags/Android/" style="font-size: 20px;">Android</a> <a href="/public/tags/Git/" style="font-size: 12px;">Git</a> <a href="/public/tags/JNI/" style="font-size: 12px;">JNI</a> <a href="/public/tags/Java/" style="font-size: 16px;">Java</a> <a href="/public/tags/Kotlin/" style="font-size: 10px;">Kotlin</a> <a href="/public/tags/pat/" style="font-size: 14px;">pat</a> <a href="/public/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 18px;">数据结构</a>
     </div>
 </div>
     
@@ -794,18 +824,18 @@
         
         <article class="media">
             
-            <a href="/public/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-09-android-ViewModel-introduction/" class="media-left">
+            <a href="/public/2019/12/20/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Android lifecycle-aware components">
+                    <img class="thumbnail" src="/public/thumbnail/img35.jpg" alt="Retrofit 框架介绍与使用">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:21.663Z">2020-02-29</time></div>
-                    <a href="/public/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-09-android-ViewModel-introduction/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android lifecycle-aware components</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-19T16:00:00.000Z">2019-12-20</time></div>
+                    <a href="/public/2019/12/20/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Retrofit 框架介绍与使用</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/public/categories/Android/">Android</a>
                     </p>
                 </div>
             </div>
@@ -813,18 +843,18 @@
         
         <article class="media">
             
-            <a href="/public/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-01-android-broadcast-introduction/" class="media-left">
+            <a href="/public/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Android Broadcast介绍">
+                    <img class="thumbnail" src="/public/thumbnail/img66.jpg" alt="Kotlin Lambda表达式">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:21.654Z">2020-02-29</time></div>
-                    <a href="/public/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-01-android-broadcast-introduction/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android Broadcast介绍</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:23.103Z">2019-11-28</time></div>
+                    <a href="/public/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Kotlin Lambda表达式</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/public/categories/Kotlin/">Kotlin</a>
                     </p>
                 </div>
             </div>
@@ -832,18 +862,18 @@
         
         <article class="media">
             
-            <a href="/public/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-07-31-android-service-introduction/" class="media-left">
+            <a href="/public/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Android Service介绍">
+                    <img class="thumbnail" src="/public/thumbnail/img59.jpg" alt="加密算法">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:21.613Z">2020-02-29</time></div>
-                    <a href="/public/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-07-31-android-service-introduction/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android Service介绍</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:15.919Z">2019-11-28</time></div>
+                    <a href="/public/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/" class="title has-link-black-ter is-size-6 has-text-weight-normal">加密算法</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/public/categories/Java/">Java</a>
                     </p>
                 </div>
             </div>
@@ -851,18 +881,18 @@
         
         <article class="media">
             
-            <a href="/public/2020/02/29/Data_Structure/2017-08-28-data-structure-huffman-tree/" class="media-left">
+            <a href="/public/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/Java%E5%BC%95%E7%94%A8/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Huffman树的算法实现">
+                    <img class="thumbnail" src="/public/thumbnail/img54.jpg" alt="Java引用">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:09.033Z">2020-02-29</time></div>
-                    <a href="/public/2020/02/29/Data_Structure/2017-08-28-data-structure-huffman-tree/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Huffman树的算法实现</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:15.918Z">2019-11-28</time></div>
+                    <a href="/public/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/Java%E5%BC%95%E7%94%A8/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java引用</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/public/categories/Java/">Java</a>
                     </p>
                 </div>
             </div>
@@ -870,18 +900,18 @@
         
         <article class="media">
             
-            <a href="/public/2020/02/29/Data_Structure/2017-08-27-data-structure-heap-sort/" class="media-left">
+            <a href="/public/2019/11/28/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="堆排序">
+                    <img class="thumbnail" src="/public/thumbnail/img64.jpg" alt="Java代理模式">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:09.000Z">2020-02-29</time></div>
-                    <a href="/public/2020/02/29/Data_Structure/2017-08-27-data-structure-heap-sort/" class="title has-link-black-ter is-size-6 has-text-weight-normal">堆排序</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:18:36.264Z">2019-11-28</time></div>
+                    <a href="/public/2019/11/28/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java代理模式</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/public/categories/Java/">Java</a>
                     </p>
                 </div>
             </div>
@@ -899,12 +929,12 @@
         <ul class="menu-list">
         
         <li>
-            <a class="level is-marginless" href="/public/archives/2020/02/">
+            <a class="level is-marginless" href="/public/archives/2019/12/">
                 <span class="level-start">
-                    <span class="level-item">February 2020</span>
+                    <span class="level-item">December 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">29</span>
+                    <span class="level-item tag">1</span>
                 </span>
             </a>
         </li>
@@ -915,7 +945,18 @@
                     <span class="level-item">November 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">12</span>
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
                 </span>
             </a>
         </li>
@@ -926,7 +967,139 @@
                     <span class="level-item">September 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">59</span>
+                    <span class="level-item tag">27</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/08/">
+                <span class="level-start">
+                    <span class="level-item">August 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">5</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/12/">
+                <span class="level-start">
+                    <span class="level-item">December 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/09/">
+                <span class="level-start">
+                    <span class="level-item">September 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/08/">
+                <span class="level-start">
+                    <span class="level-item">August 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/07/">
+                <span class="level-start">
+                    <span class="level-item">July 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/06/">
+                <span class="level-start">
+                    <span class="level-item">June 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2017/08/">
+                <span class="level-start">
+                    <span class="level-item">August 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">14</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2017/07/">
+                <span class="level-start">
+                    <span class="level-item">July 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">11</span>
                 </span>
             </a>
         </li>
@@ -947,20 +1120,34 @@
                 <div class="control">
                     <a class="tags has-addons" href="/public/tags/Android/">
                         <span class="tag">Android</span>
-                        <span class="tag is-grey">5</span>
+                        <span class="tag is-grey">35</span>
                     </a>
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/public/tags/error/">
-                        <span class="tag">error</span>
-                        <span class="tag is-grey">1</span>
+                    <a class="tags has-addons" href="/public/tags/Git/">
+                        <span class="tag">Git</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/public/tags/git/">
-                        <span class="tag">git</span>
+                    <a class="tags has-addons" href="/public/tags/JNI/">
+                        <span class="tag">JNI</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/Java/">
+                        <span class="tag">Java</span>
+                        <span class="tag is-grey">12</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/Kotlin/">
+                        <span class="tag">Kotlin</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -1003,18 +1190,18 @@
         
         <article class="media">
             
-            <a href="/public/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-09-android-ViewModel-introduction/" class="media-left">
+            <a href="/public/2019/12/20/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Android lifecycle-aware components">
+                    <img class="thumbnail" src="/public/thumbnail/img35.jpg" alt="Retrofit 框架介绍与使用">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:21.663Z">2020-02-29</time></div>
-                    <a href="/public/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-09-android-ViewModel-introduction/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android lifecycle-aware components</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-19T16:00:00.000Z">2019-12-20</time></div>
+                    <a href="/public/2019/12/20/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Retrofit 框架介绍与使用</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/public/categories/Android/">Android</a>
                     </p>
                 </div>
             </div>
@@ -1022,18 +1209,18 @@
         
         <article class="media">
             
-            <a href="/public/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-01-android-broadcast-introduction/" class="media-left">
+            <a href="/public/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Android Broadcast介绍">
+                    <img class="thumbnail" src="/public/thumbnail/img66.jpg" alt="Kotlin Lambda表达式">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:21.654Z">2020-02-29</time></div>
-                    <a href="/public/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-01-android-broadcast-introduction/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android Broadcast介绍</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:23.103Z">2019-11-28</time></div>
+                    <a href="/public/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Kotlin Lambda表达式</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/public/categories/Kotlin/">Kotlin</a>
                     </p>
                 </div>
             </div>
@@ -1041,18 +1228,18 @@
         
         <article class="media">
             
-            <a href="/public/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-07-31-android-service-introduction/" class="media-left">
+            <a href="/public/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Android Service介绍">
+                    <img class="thumbnail" src="/public/thumbnail/img59.jpg" alt="加密算法">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:21.613Z">2020-02-29</time></div>
-                    <a href="/public/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-07-31-android-service-introduction/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android Service介绍</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:15.919Z">2019-11-28</time></div>
+                    <a href="/public/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/" class="title has-link-black-ter is-size-6 has-text-weight-normal">加密算法</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/public/categories/Java/">Java</a>
                     </p>
                 </div>
             </div>
@@ -1060,18 +1247,18 @@
         
         <article class="media">
             
-            <a href="/public/2020/02/29/Data_Structure/2017-08-28-data-structure-huffman-tree/" class="media-left">
+            <a href="/public/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/Java%E5%BC%95%E7%94%A8/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Huffman树的算法实现">
+                    <img class="thumbnail" src="/public/thumbnail/img54.jpg" alt="Java引用">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:09.033Z">2020-02-29</time></div>
-                    <a href="/public/2020/02/29/Data_Structure/2017-08-28-data-structure-huffman-tree/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Huffman树的算法实现</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:15.918Z">2019-11-28</time></div>
+                    <a href="/public/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/Java%E5%BC%95%E7%94%A8/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java引用</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/public/categories/Java/">Java</a>
                     </p>
                 </div>
             </div>
@@ -1079,18 +1266,18 @@
         
         <article class="media">
             
-            <a href="/public/2020/02/29/Data_Structure/2017-08-27-data-structure-heap-sort/" class="media-left">
+            <a href="/public/2019/11/28/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="堆排序">
+                    <img class="thumbnail" src="/public/thumbnail/img64.jpg" alt="Java代理模式">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:09.000Z">2020-02-29</time></div>
-                    <a href="/public/2020/02/29/Data_Structure/2017-08-27-data-structure-heap-sort/" class="title has-link-black-ter is-size-6 has-text-weight-normal">堆排序</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:18:36.264Z">2019-11-28</time></div>
+                    <a href="/public/2019/11/28/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java代理模式</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/public/categories/Java/">Java</a>
                     </p>
                 </div>
             </div>
@@ -1108,12 +1295,12 @@
         <ul class="menu-list">
         
         <li>
-            <a class="level is-marginless" href="/public/archives/2020/02/">
+            <a class="level is-marginless" href="/public/archives/2019/12/">
                 <span class="level-start">
-                    <span class="level-item">February 2020</span>
+                    <span class="level-item">December 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">29</span>
+                    <span class="level-item tag">1</span>
                 </span>
             </a>
         </li>
@@ -1124,7 +1311,18 @@
                     <span class="level-item">November 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">12</span>
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
                 </span>
             </a>
         </li>
@@ -1135,7 +1333,139 @@
                     <span class="level-item">September 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">59</span>
+                    <span class="level-item tag">27</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/08/">
+                <span class="level-start">
+                    <span class="level-item">August 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">5</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/12/">
+                <span class="level-start">
+                    <span class="level-item">December 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/09/">
+                <span class="level-start">
+                    <span class="level-item">September 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/08/">
+                <span class="level-start">
+                    <span class="level-item">August 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/07/">
+                <span class="level-start">
+                    <span class="level-item">July 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/06/">
+                <span class="level-start">
+                    <span class="level-item">June 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2017/08/">
+                <span class="level-start">
+                    <span class="level-item">August 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">14</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2017/07/">
+                <span class="level-start">
+                    <span class="level-item">July 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">11</span>
                 </span>
             </a>
         </li>
@@ -1156,20 +1486,34 @@
                 <div class="control">
                     <a class="tags has-addons" href="/public/tags/Android/">
                         <span class="tag">Android</span>
-                        <span class="tag is-grey">5</span>
+                        <span class="tag is-grey">35</span>
                     </a>
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/public/tags/error/">
-                        <span class="tag">error</span>
-                        <span class="tag is-grey">1</span>
+                    <a class="tags has-addons" href="/public/tags/Git/">
+                        <span class="tag">Git</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/public/tags/git/">
-                        <span class="tag">git</span>
+                    <a class="tags has-addons" href="/public/tags/JNI/">
+                        <span class="tag">JNI</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/Java/">
+                        <span class="tag">Java</span>
+                        <span class="tag is-grey">12</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/Kotlin/">
+                        <span class="tag">Kotlin</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>

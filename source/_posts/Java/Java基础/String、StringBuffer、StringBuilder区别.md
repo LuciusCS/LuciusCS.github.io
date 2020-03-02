@@ -1,3 +1,12 @@
+---
+title: String、StringBuffer、StringBuilder
+tags: [Java]
+description: String、StringBuffer、StringBuilder
+thumbnail: /thumbnail/img58.jpg
+toc: true
+categories: Java
+---
+
 ### String、StringBuffer、StringBuilder
 
 `String`类对象是immutable,即不可改变的，在源码对String操作的方法中，返回的都是一个新的`String`对象；

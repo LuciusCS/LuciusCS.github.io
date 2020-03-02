@@ -2,11 +2,14 @@
 title: "快速排序"
 description: "快速排序3"
 tags: [数据结构]
-
+thumbnail: /thumbnail/img45.jpg
+toc: true
+categories: 数据结构
+date: 2017/08/04
 ---
 modified: 2017-08-02
 快速排序可以理解为：快速排序=挖坑填数+分治算法；
-
+<!--more-->
 快速排序(Quick Sort)使用分治法（Divide and conquer）策略来把一个序列分为两个子序列，左右两个序列分别大于基准数和小于基准数，递归结束后所有的数都将有序；
 
 步骤为：
@@ -21,13 +24,13 @@ modified: 2017-08-02
 * 进行一次排序的过程(挖坑填数)
   
 
-	/images/DataStructure/quick_sort.jpg
+![](/public/img/DataStructure/quick_sort.jpg)
 
 
 * 快速排序的全过程
 
 
-	/images/DataStructure/quick_sort_01.jpg
+![](/public/img/DataStructure/quick_sort_01.jpg)
 
 
 使用C语言实现代码

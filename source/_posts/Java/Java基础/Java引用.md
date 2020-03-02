@@ -1,3 +1,11 @@
+---
+title: Java引用
+tags: [Java]
+description: Java引用
+thumbnail: /thumbnail/img54.jpg
+toc: true
+categories: Java
+---
 
 
 

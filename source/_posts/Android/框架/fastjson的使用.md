@@ -1,9 +1,18 @@
+---
+title: Fasetjson 介绍与使用
+thumbnail: /thumbnail/img34.jpg
+toc: true
+description: Fasetjson 介绍与使用
+categories: Android
+tags: [Android]
+date: 2019/05/06
+---
 
 
 #### JSONString与HashMap之间的转换
 
 * HashMap转换为JsonString
-
+<!--more-->
 ```java
     Map<String, String> hashMap = new HashMap<>();
     String JSONString=JSON.toJSONString(hashMap);

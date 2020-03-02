@@ -133,17 +133,27 @@
     
 <div class="card">
     
+    <div class="card-image">
+        <a href="/public/2017/08/02/Data_Structure/2017-08-02-data-structure-radix-sort/" class="image is-7by1">
+            <img class="thumbnail" src="/public/thumbnail/img41.jpg" alt="基数排序（Radix Sort）">
+        </a>
+    </div>
+    
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-02-29T02:45:08.910Z">2020-02-29</time>
+                <time class="level-item has-text-grey" datetime="2017-08-01T16:00:00.000Z">2017-08-02</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/public/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+                </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    3 minutes read (About 476 words)
+                    3 minutes read (About 477 words)
                 </span>
                 
                 
@@ -152,19 +162,22 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/public/2020/02/29/Data_Structure/2017-08-02-data-structure-radix-sort/">基数排序（Radix Sort）</a>
+                <a class="has-link-black-ter" href="/public/2017/08/02/Data_Structure/2017-08-02-data-structure-radix-sort/">基数排序（Radix Sort）</a>
             
         </h1>
         <div class="content">
             <p>modified: 2017-08-03</p>
 <p>桶排序（Bucket Sort）工作原理是将数列分到有限的桶中，每个桶再分别进行排序；</p>
-<p>基数排序（Radix Sort）是一种非比较型整数排序算法，其原理是将整数按位数切割成不同的数字，然后按每个位数分别比较。由于整数也可以表达字符串（比如名字或日期）和特定格式的浮点数，所以基数排序也不是只能使用于整数。</p>
-<p>基数排序的方式可以采用LSD（Least significant digital）或MSD（Most significant digital），LSD的排序方式由键值的最右边开始，而MSD则相反，由键值的最左边开始。</p>
-<p>基数排序可以看做是多次桶排序</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdio.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdlib.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//从个位开始，最低位优先（Least Significant Digital first）</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">radixSort</span><span class="params">(<span class="keyword">int</span> num[], <span class="keyword">int</span> length)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> *radix[<span class="number">10</span>];</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		radix[i] = (<span class="keyword">int</span> *)<span class="built_in">malloc</span>(length * <span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br><span class="line">		radix[i][<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> index = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; <span class="number">5</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line"></span><br><span class="line">		<span class="comment">//将num数组中的数据放入数组radix中</span></span><br><span class="line">		<span class="comment">//第一次分配</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; length; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			radix[(num[i]/index)% <span class="number">10</span>][<span class="number">0</span>]++;</span><br><span class="line">			radix[(num[i]/index) % <span class="number">10</span>][radix[(num[i]/index )% <span class="number">10</span>][<span class="number">0</span>]] = num[i];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//第一次回收</span></span><br><span class="line">		<span class="keyword">int</span> length = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; radix[i][<span class="number">0</span>] + <span class="number">1</span>; j++)</span><br><span class="line">			&#123;</span><br><span class="line">				num[length++] = radix[i][j];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			radix[i][<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		index = index * <span class="number">10</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; length; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,num[i]);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//从最高位开始，最高位优先（Most Significant Digit first）</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">radixSortMSD</span><span class="params">(<span class="keyword">int</span> num[], <span class="keyword">int</span> length)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> *radix[<span class="number">10</span>];</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		radix[i] = (<span class="keyword">int</span> *)<span class="built_in">malloc</span>(length * <span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br><span class="line">		radix[i][<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> index = <span class="number">10000</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; <span class="number">5</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line"></span><br><span class="line">		<span class="comment">//将num数组中的数据放入数组radix中</span></span><br><span class="line">		<span class="comment">//分配</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; length; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			radix[(num[i] / index) % <span class="number">10</span>][<span class="number">0</span>]++;</span><br><span class="line">			radix[(num[i] / index) % <span class="number">10</span>][radix[(num[i] / index) % <span class="number">10</span>][<span class="number">0</span>]] = num[i];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//回收</span></span><br><span class="line">		<span class="keyword">int</span> length = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; radix[i][<span class="number">0</span>] + <span class="number">1</span>; j++)</span><br><span class="line">			&#123;</span><br><span class="line">				num[length++] = radix[i][j];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			radix[i][<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		index = index /<span class="number">10</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; length; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, num[i]);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> num[<span class="number">10</span>] = &#123;<span class="number">0</span>,<span class="number">10</span>,<span class="number">12</span>,<span class="number">5665</span>,<span class="number">285</span>,<span class="number">125</span>,<span class="number">554</span>,<span class="number">26</span>,<span class="number">7895</span>,<span class="number">12</span>&#125;;</span><br><span class="line">	radixSortMSD(num, <span class="number">10</span>);</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
         </div>
         
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/public/2017/08/02/Data_Structure/2017-08-02-data-structure-radix-sort/#more">Read More</a>
+                </div>
+            </div>
+        </div>
         
         
     </div>
@@ -180,17 +193,27 @@
     
 <div class="card">
     
+    <div class="card-image">
+        <a href="/public/2017/08/02/Data_Structure/2017-08-02-data-structure-queue/" class="image is-7by1">
+            <img class="thumbnail" src="/public/thumbnail/img40.jpg" alt="队列的表示与实现">
+        </a>
+    </div>
+    
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-02-29T02:45:08.900Z">2020-02-29</time>
+                <time class="level-item has-text-grey" datetime="2017-08-01T16:00:00.000Z">2017-08-02</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/public/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+                </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    6 minutes read (About 840 words)
+                    6 minutes read (About 844 words)
                 </span>
                 
                 
@@ -199,32 +222,21 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/public/2020/02/29/Data_Structure/2017-08-02-data-structure-queue/">队列的表示与实现</a>
+                <a class="has-link-black-ter" href="/public/2017/08/02/Data_Structure/2017-08-02-data-structure-queue/">队列的表示与实现</a>
             
         </h1>
         <div class="content">
             <p>modified: 2017-08-02<br>队列是先进先出的（FIFO）的线性表，在具体应用中通常使用链表或者数组实现；只允许在一端插入，在另一端删除；在队列中允许插入的一端叫队尾，允许删除的一端叫队头；</p>
-<h2 id="链队列——队列的链式表示和实现"><a href="#链队列——队列的链式表示和实现" class="headerlink" title="链队列——队列的链式表示和实现"></a>链队列——队列的链式表示和实现</h2><p>链队列的本质是一个单向链表，头结点front相当于head,再增加一个尾结点。</p>
-<pre><code>/source/img/20170802/002.gif</code></pre><ul>
-<li>注意头结点指向的节点为空，在删除队列头节点时应该删除的是该空节点的下一个节点</li>
-</ul>
-<p>C语言实现代码</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdlib.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdio.h"</span></span></span><br><span class="line"><span class="comment">//单链队列，队列的链式存储结构，队列是由队头指向队尾</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">QNode</span> &#123;</span></span><br><span class="line">	<span class="keyword">char</span> data;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">QNode</span> *<span class="title">next</span>;</span></span><br><span class="line">&#125;QNode,*QueuePtr;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">	QueuePtr  front;   <span class="comment">//队头指针</span></span><br><span class="line">	QueuePtr rare;     <span class="comment">//队尾指针</span></span><br><span class="line">&#125;LinkQueue;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//用于初始化队列</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">initQueue</span><span class="params">(LinkQueue &amp;lq)</span> </span>&#123;</span><br><span class="line">	lq.front = lq.rare = (QueuePtr)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(QNode));</span><br><span class="line">	lq.rare-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//用于插入队列</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">enQueue</span><span class="params">(LinkQueue &amp;lq,<span class="keyword">char</span> data)</span> </span>&#123;</span><br><span class="line">	<span class="comment">//插入元素为Q的新的队尾元素 data</span></span><br><span class="line">	QueuePtr p;</span><br><span class="line">	p = (QueuePtr)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(QNode));</span><br><span class="line">	p-&gt;data = data;</span><br><span class="line">	p-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">	lq.rare-&gt;next = p;</span><br><span class="line">	lq.rare = lq.rare-&gt;next;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//用于取出头元素，在操作之前首先需要判断是不是空队列</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">reQueue</span><span class="params">(LinkQueue &amp;lq)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (lq.front==lq.rare)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"队列为空"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		QueuePtr q;</span><br><span class="line">        <span class="comment">//因为lq.front为一个空节点，因为在初始化队列的时候没有给这一个节点赋值</span></span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%c"</span>,lq.front-&gt;next-&gt;data);  </span><br><span class="line">		q = lq.front;</span><br><span class="line">		lq.front = lq.front-&gt;next;</span><br><span class="line">		<span class="built_in">free</span>(q);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	LinkQueue lq;</span><br><span class="line">	initQueue(lq);</span><br><span class="line">	enQueue(lq,<span class="string">'a'</span>);</span><br><span class="line">	enQueue(lq,<span class="string">'b'</span>);</span><br><span class="line">	reQueue(lq);</span><br><span class="line">	reQueue(lq);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="循环队列——队列的顺序表示和实现"><a href="#循环队列——队列的顺序表示和实现" class="headerlink" title="循环队列——队列的顺序表示和实现"></a>循环队列——队列的顺序表示和实现</h2><p>队列的顺序表示和实现，可以参照栈的顺序表示和实现；在c语言中不能使用动态数组来分实现循环队列，如果要使用循环队列则必须设定一个最大的长度；</p>
-<p>/source/img/20170802/004.jpg</p>
-<ul>
-<li>初始化建空队列时，令front=rare=0,当插入新元素时rare+1;当删除头元素时front+1;在非空队列中头指针始终指向头元素，尾指针始终指向队尾元素的下一个元素；</li>
-</ul>
-<p>/source/img/20170802/003.jpg</p>
-<ul>
-<li>当Q.rare==Q.front队列有可能是满的，也有可能是空的；有两种处理办法：一是另设一个标志位以区别是空还是满；二是约定以“队列头指针在队尾指针的下一位时为满”。下面的代码采用的是第二种方法。</li>
-</ul>
-<p>C语言代码实现</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdio.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stdlib.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> maxsize 100</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">	<span class="keyword">int</span> *base;    <span class="comment">//用于为队列分配空间</span></span><br><span class="line">	<span class="keyword">int</span> front;</span><br><span class="line">	<span class="keyword">int</span> rear;</span><br><span class="line">&#125;sqqueue;</span><br><span class="line"></span><br><span class="line"><span class="comment">//初始化队列</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">initqueue</span><span class="params">(sqqueue &amp;sq)</span> </span>&#123;</span><br><span class="line">	<span class="comment">//构造一个空队列</span></span><br><span class="line">	sq.base = (<span class="keyword">int</span> *)<span class="built_in">malloc</span>(maxsize*<span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br><span class="line">	<span class="keyword">if</span> (!sq.base)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"构造队列失败"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	sq.front = sq.rear = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//入队</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">enqueue</span><span class="params">(sqqueue &amp;sq,<span class="keyword">int</span> e)</span> </span>&#123;</span><br><span class="line">	<span class="comment">//用于判断队列是否为满，通过查看队尾的下一个元素是不是队头</span></span><br><span class="line">	<span class="keyword">if</span> ((sq.rear+<span class="number">1</span>)%maxsize==sq.front)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"队列为满"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	sq.base[sq.rear] = e;</span><br><span class="line">	sq.rear = (sq.rear + <span class="number">1</span>) % maxsize;  <span class="comment">//转了一圈后sq.rare会超过maxsize</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//出队</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">requeue</span><span class="params">(sqqueue &amp;sq)</span> </span>&#123;</span><br><span class="line">	<span class="comment">//用于判断队是否为空</span></span><br><span class="line">	<span class="keyword">if</span> (sq.rear==sq.front)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"队列为空"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,sq.base[sq.front]);</span><br><span class="line">	sq.front = (sq.front + <span class="number">1</span>) % maxsize;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	sqqueue sq;</span><br><span class="line">	initqueue(sq);</span><br><span class="line">	enqueue(sq,<span class="number">10</span>);</span><br><span class="line">	enqueue(sq,<span class="number">15</span>);</span><br><span class="line">	requeue(sq);</span><br><span class="line">	requeue(sq);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
         </div>
         
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/public/2017/08/02/Data_Structure/2017-08-02-data-structure-queue/#more">Read More</a>
+                </div>
+            </div>
+        </div>
         
         
     </div>
@@ -240,59 +252,27 @@
     
 <div class="card">
     
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-02-29T02:45:08.893Z">2020-02-29</time>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    a few seconds read (About 61 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/public/2020/02/29/Data_Structure/2017-07-31-data-structure-search/">查找算法</a>
-            
-        </h1>
-        <div class="content">
-            <h3 id="折半查找"><a href="#折半查找" class="headerlink" title="折半查找"></a>折半查找</h3><p>modified: 2017-07-31<br>折半查找即二分查找的实现</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">BinarySearch</span><span class="params">(<span class="keyword">int</span> data[], <span class="keyword">int</span> search,<span class="keyword">int</span> length)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> <span class="built_in">end</span> = length<span class="number">-1</span> ;</span><br><span class="line">	<span class="keyword">int</span> start = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> mid = (start + <span class="built_in">end</span>) / <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span> (start&lt;=<span class="built_in">end</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (data[mid] == search)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">return</span> mid;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (data[mid] &gt; search)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">end</span> = mid<span class="number">-1</span>;</span><br><span class="line">			mid = (start + <span class="built_in">end</span>) / <span class="number">2</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">			start = mid+<span class="number">1</span>;</span><br><span class="line">			mid = (start + <span class="built_in">end</span>) / <span class="number">2</span>;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-        </div>
-        
-        
-        
+    <div class="card-image">
+        <a href="/public/2017/07/31/Data_Structure/2017-07-31-data-structure-insert-sort/" class="image is-7by1">
+            <img class="thumbnail" src="/public/thumbnail/img38.jpg" alt="排序算法">
+        </a>
     </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-02-29T02:45:08.886Z">2020-02-29</time>
+                <time class="level-item has-text-grey" datetime="2017-07-30T16:00:00.000Z">2017-07-31</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/public/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+                </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    4 minutes read (About 564 words)
+                    4 minutes read (About 569 words)
                 </span>
                 
                 
@@ -301,28 +281,22 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/public/2020/02/29/Data_Structure/2017-07-31-data-structure-insert-sort/">排序算法</a>
+                <a class="has-link-black-ter" href="/public/2017/07/31/Data_Structure/2017-07-31-data-structure-insert-sort/">排序算法</a>
             
         </h1>
         <div class="content">
             <h1 id="排序算法"><a href="#排序算法" class="headerlink" title="排序算法"></a>排序算法</h1><p>modified: 2017-08-02</p>
-<h2 id="插入排序有直接插入排序、折半插入排序、希尔排序等"><a href="#插入排序有直接插入排序、折半插入排序、希尔排序等" class="headerlink" title="插入排序有直接插入排序、折半插入排序、希尔排序等"></a>插入排序有直接插入排序、折半插入排序、希尔排序等</h2><h3 id="直接插入排序"><a href="#直接插入排序" class="headerlink" title="直接插入排序"></a>直接插入排序</h3><p>直接插入排序的核心是不断将后面的数字，不断插入前面已经排好序的数列中；在进行插入排序时需要不断将需要插入的元素与前面已经排好序的元素进行比较，并不断将已排好序的元素后移。</p>
-<pre><code>/images/20170731/insertsort.gif</code></pre><p>C语言代码实现</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">StrightInsertSort</span><span class="params">(<span class="keyword">int</span> <span class="built_in">array</span>[], <span class="keyword">int</span> length)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> tmp;     <span class="comment">//用于保存将要插入的array[i]</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; length; i++) &#123;</span><br><span class="line">		tmp = <span class="built_in">array</span>[i];</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &gt;= <span class="number">0</span>; j--)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (tmp &gt;= <span class="built_in">array</span>[j - <span class="number">1</span>] || j == <span class="number">0</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="built_in">array</span>[j] = tmp;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> &#123;</span><br><span class="line">				<span class="built_in">array</span>[j] = <span class="built_in">array</span>[j - <span class="number">1</span>];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="折半插入排序"><a href="#折半插入排序" class="headerlink" title="折半插入排序"></a>折半插入排序</h3><p>折半插入排序是直接插入排序的一种优化，直接插入排序需要不断移动元素的位置；而折半插入排序是通过折半查找的方式，直接定位到插入元素的位置，然后进行一次元素平移；</p>
-<p>C语言代码实现</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">BInsertSort</span><span class="params">(<span class="keyword">int</span> <span class="built_in">array</span>[], <span class="keyword">int</span> length)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> tmp;</span><br><span class="line">	<span class="keyword">int</span> start, <span class="built_in">end</span>, mid;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; length; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		tmp = <span class="built_in">array</span>[i];</span><br><span class="line">		start = <span class="number">0</span>; <span class="built_in">end</span> = i - <span class="number">1</span>; mid = (<span class="built_in">end</span> + start) / <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">		<span class="comment">//判断将要插入的元素是否大于已经排好序的元素的最大值，或者已经排好序的最小值</span></span><br><span class="line">		<span class="keyword">if</span> (tmp &gt;= <span class="built_in">array</span>[i - <span class="number">1</span>])</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">array</span>[i] = tmp;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (tmp &lt;= <span class="built_in">array</span>[<span class="number">0</span>]) &#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &gt; <span class="number">0</span>; j--)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="built_in">array</span>[j] = <span class="built_in">array</span>[j - <span class="number">1</span>];</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="built_in">array</span>[<span class="number">0</span>] = tmp;</span><br><span class="line">		&#125;</span><br><span class="line">        <span class="comment">//进行折半查找排序</span></span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">while</span> (start &lt; <span class="built_in">end</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">if</span> (tmp &gt; <span class="built_in">array</span>[mid])</span><br><span class="line">				&#123;</span><br><span class="line">					start = mid + <span class="number">1</span>;</span><br><span class="line">					mid = (start + <span class="built_in">end</span>) / <span class="number">2</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">else</span> <span class="keyword">if</span> (tmp &lt; <span class="built_in">array</span>[mid])</span><br><span class="line">				&#123;</span><br><span class="line">					<span class="built_in">end</span> = mid - <span class="number">1</span>;</span><br><span class="line">					mid = (start + <span class="built_in">end</span>) / <span class="number">2</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &gt; start; j--)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="built_in">array</span>[j] = <span class="built_in">array</span>[j - <span class="number">1</span>];</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="built_in">array</span>[start] = tmp;</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<h3 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h3><p>希尔排序（Shell’s Sort）又称为“最小增量排序”（Diminishing Increment Sort），基本思想是：先将整个序列中的记录“基本有序”再对全体记录进行一次直接插入排序（当gap=0时）；</p>
-<pre><code>/images/20170731/001.png</code></pre><ul>
-<li>颜色相同的为一个分组</li>
-</ul>
-<p>C语言代码实现</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">shell_sort</span><span class="params">(<span class="keyword">int</span> arr[], <span class="keyword">int</span> length)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> gap, i, j;</span><br><span class="line">	<span class="keyword">int</span> tmp;</span><br><span class="line">	<span class="keyword">for</span> (gap = length / <span class="number">2</span>; gap &gt; <span class="number">0</span>; gap /= <span class="number">2</span>)</span><br><span class="line">	&#123;</span><br><span class="line">        <span class="comment">//下面两个for循环是对每一个分组进行插入排序</span></span><br><span class="line">		<span class="keyword">for</span> (i = gap; i &lt; length; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			tmp = arr[i];</span><br><span class="line">			<span class="keyword">for</span> (j = i - gap; j &gt;= <span class="number">0</span> &amp;&amp; arr[j] &gt; tmp; j-=gap)</span><br><span class="line">			&#123;</span><br><span class="line">				arr[j + gap] = arr[j];</span><br><span class="line">			&#125;</span><br><span class="line">			arr[j + gap] = tmp;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="插入排序有直接插入排序、折半插入排序、希尔排序等"><a href="#插入排序有直接插入排序、折半插入排序、希尔排序等" class="headerlink" title="插入排序有直接插入排序、折半插入排序、希尔排序等"></a>插入排序有直接插入排序、折半插入排序、希尔排序等</h2>
         </div>
         
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/public/2017/07/31/Data_Structure/2017-07-31-data-structure-insert-sort/#more">Read More</a>
+                </div>
+            </div>
+        </div>
         
         
     </div>
@@ -338,17 +312,27 @@
     
 <div class="card">
     
+    <div class="card-image">
+        <a href="/public/2017/07/31/Data_Structure/2017-07-31-data-structure-search/" class="image is-7by1">
+            <img class="thumbnail" src="/public/thumbnail/img39.jpg" alt="查找算法">
+        </a>
+    </div>
+    
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-02-29T02:45:08.862Z">2020-02-29</time>
+                <time class="level-item has-text-grey" datetime="2017-07-30T16:00:00.000Z">2017-07-31</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/public/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+                </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    4 minutes read (About 525 words)
+                    a few seconds read (About 62 words)
                 </span>
                 
                 
@@ -357,64 +341,82 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/public/2020/02/29/Data_Structure/2017-07-27-data-structure-stack/">顺序栈的表示与实现</a>
+                <a class="has-link-black-ter" href="/public/2017/07/31/Data_Structure/2017-07-31-data-structure-search/">查找算法</a>
+            
+        </h1>
+        <div class="content">
+            <h3 id="折半查找"><a href="#折半查找" class="headerlink" title="折半查找"></a>折半查找</h3><p>modified: 2017-07-31<br>折半查找即二分查找的实现</p>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/public/2017/07/31/Data_Structure/2017-07-31-data-structure-search/#more">Read More</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/public/2017/07/27/Data_Structure/2017-07-27-data-structure-stack/" class="image is-7by1">
+            <img class="thumbnail" src="/public/thumbnail/img37.jpg" alt="顺序栈的表示与实现">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2017-07-26T16:00:00.000Z">2017-07-27</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/public/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    4 minutes read (About 526 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/public/2017/07/27/Data_Structure/2017-07-27-data-structure-stack/">顺序栈的表示与实现</a>
             
         </h1>
         <div class="content">
             <p>modified: 2017-7-28<br>本文采用C语言，利用结构体来实现顺序栈</p>
 <ul>
-<li>用于定义栈的大小，以及再栈满的时候，扩充栈</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> STACK_SIZE 50</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> STACK_INCREMENT 10</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>采用顺序结构来实现栈，使用的是结构体，以一个结构体来表示栈</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">	<span class="keyword">int</span> stackSize;  <span class="comment">//栈容量</span></span><br><span class="line">	<span class="keyword">int</span> *base;      <span class="comment">//栈底指针</span></span><br><span class="line">	<span class="keyword">int</span> *top;       <span class="comment">//栈顶指针</span></span><br><span class="line">&#125;SqStack, *pStack;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>初始化栈，base和top相当于栈中的索引,Top是栈顶，Base是栈底,传入的参数是结构体指针</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">initStack</span><span class="params">(pStack p)</span> </span>&#123;</span><br><span class="line">	p-&gt;base = (<span class="keyword">int</span> *)<span class="built_in">malloc</span>(STACK_SIZE * <span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br><span class="line">	<span class="keyword">if</span> (p-&gt;base != <span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		p-&gt;top = p-&gt;base;</span><br><span class="line">		p-&gt;stackSize = STACK_SIZE;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"分配内存失败"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>栈判空，通过判断栈顶Top指针和栈底Base指针指向的地址是否相等,栈空返回true，否则返回false</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isEmpty</span><span class="params">(pStack p)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> p-&gt;top == p-&gt;base ? <span class="literal">true</span> : <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>栈判满，通过栈顶指针的地址与栈底指针的差值与栈初始化的大小进行比较</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isFull</span><span class="params">(pStack p)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> (p-&gt;top - p-&gt;base) &gt;= STACK_SIZE ? <span class="literal">true</span> : <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>入栈，传入结构体指针和将要入栈的元素，先存储数据，然后再将栈顶指针地址加一（栈中数据存储的地址是由小至大）；</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">push</span><span class="params">(pStack p, <span class="keyword">int</span> topElement)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> *q = <span class="literal">NULL</span>;</span><br><span class="line">	<span class="keyword">if</span> (isFull(p))</span><br><span class="line">	&#123;</span><br><span class="line">		q = (<span class="keyword">int</span> *)<span class="built_in">realloc</span>(p-&gt;base, STACK_INCREMENT * <span class="keyword">sizeof</span>(<span class="keyword">int</span>));  <span class="comment">// 重新调整内存块的大小</span></span><br><span class="line"></span><br><span class="line">		p-&gt;base = q;</span><br><span class="line">		p-&gt;stackSize = p-&gt;stackSize + STACK_INCREMENT;</span><br><span class="line">	&#125;</span><br><span class="line">	*(p-&gt;top)++ = topElement;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>出栈，传入结构体指针和保存栈顶元素的指针，先将栈顶指针的地址减一，然后再取址；</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">pop</span><span class="params">(pStack p, <span class="keyword">int</span> *topElement)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (isEmpty(p))</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"空栈"</span>);</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	p-&gt;top--;</span><br><span class="line">	*topElement = *p-&gt;top;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>求栈顶元素，与栈顶元素出栈相同，只是不需要讲栈顶指针的地址减一</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getStackTop</span><span class="params">(SqStack s)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> topElement;</span><br><span class="line">	<span class="keyword">if</span> (isEmpty(&amp;s))</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	topElement = *(s.top - <span class="number">1</span>);</span><br><span class="line">	<span class="keyword">return</span> topElement;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>清空栈，不断将让栈中元素出栈，直至栈空</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">clearStack</span><span class="params">(SqStack s)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">while</span> (!isEmpty(&amp;s))</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> tmp;</span><br><span class="line">		pop(&amp;s, &amp;tmp);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>求栈当前大小</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getStackLength</span><span class="params">(SqStack s)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> *q = s.top;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span> (q != s.base)</span><br><span class="line">	&#123;</span><br><span class="line">		q--;</span><br><span class="line">		i++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> i;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
+<li><p>用于定义栈的大小，以及再栈满的时候，扩充栈</p>
         </div>
         
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/public/2017/07/27/Data_Structure/2017-07-27-data-structure-stack/#more">Read More</a>
+                </div>
+            </div>
+        </div>
         
         
     </div>
@@ -430,17 +432,27 @@
     
 <div class="card">
     
+    <div class="card-image">
+        <a href="/public/2017/07/27/Data_Structure/2017-07-27-data-structure-binary-tree-visit/" class="image is-7by1">
+            <img class="thumbnail" src="/public/thumbnail/img36.jpg" alt="二叉树的前序、中序、后序遍历">
+        </a>
+    </div>
+    
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-02-29T02:45:08.831Z">2020-02-29</time>
+                <time class="level-item has-text-grey" datetime="2017-07-26T16:00:00.000Z">2017-07-27</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/public/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+                </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    3 minutes read (About 379 words)
+                    3 minutes read (About 380 words)
                 </span>
                 
                 
@@ -449,39 +461,22 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/public/2020/02/29/Data_Structure/2017-07-27-data-structure-binary-tree-visit/">二叉树的前序、中序、后序遍历</a>
+                <a class="has-link-black-ter" href="/public/2017/07/27/Data_Structure/2017-07-27-data-structure-binary-tree-visit/">二叉树的前序、中序、后序遍历</a>
             
         </h1>
         <div class="content">
             <ul>
-<li>二叉树的结构体<br>modified: 2017-07-27</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">binaryTree</span> &#123;</span></span><br><span class="line">	<span class="keyword">char</span> item;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">binaryTree</span> *<span class="title">lChild</span>;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">binaryTree</span> *<span class="title">rChild</span>;</span></span><br><span class="line"></span><br><span class="line">&#125;binaryTree, *pBinaryTree;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>二叉树的初始化创建，二叉树创建的过程中按照先序遍历的方式输入一颗满二叉树，缺失的节点元素使用#补足；构建的过程中先递归创建左子树，然后递归创建右子数；’#’作为递归的结束；</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">pBinaryTree <span class="title">createBinaryTree</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">char</span> tmp = <span class="string">'0'</span>;</span><br><span class="line">	pBinaryTree treeNode = <span class="literal">NULL</span>;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%c"</span>, &amp;tmp);</span><br><span class="line">	<span class="keyword">if</span> (tmp == <span class="string">'#'</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		treeNode = <span class="literal">NULL</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">//为加入的节点分配新的内存空间</span></span><br><span class="line">		treeNode = (binaryTree*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(binaryTree));</span><br><span class="line">		treeNode-&gt;item = tmp;</span><br><span class="line"></span><br><span class="line">		<span class="comment">//递归调用产生二叉树</span></span><br><span class="line">		treeNode-&gt;lChild = createBinaryTree();</span><br><span class="line">		treeNode-&gt;rChild = createBinaryTree();</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> treeNode;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>先序遍历二叉树</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">preVisitBiTree</span><span class="params">(pBinaryTree root)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (root)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">//先遍历根节点</span></span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%c"</span>, root-&gt;item);</span><br><span class="line">		<span class="comment">//遍历左子树</span></span><br><span class="line">		preVisitBiTree(root-&gt;lChild);</span><br><span class="line">		<span class="comment">//遍历右子树</span></span><br><span class="line">		preVisitBiTree(root-&gt;rChild);</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>中序遍历二叉树</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">inVisitBiTree</span><span class="params">(pBinaryTree inRoot)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (inRoot)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">//先遍历左子树</span></span><br><span class="line">		inVisitBiTree(inRoot -&gt; lChild );</span><br><span class="line">		<span class="comment">//遍历根节点</span></span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%c"</span>, inRoot-&gt;item);</span><br><span class="line">		<span class="comment">//遍历右子树</span></span><br><span class="line">		inVisitBiTree(inRoot-&gt;rChild);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>后序遍历二叉树</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">lastVisitBiTree</span><span class="params">(pBinaryTree lastRoot)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (lastRoot)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">//遍历左子树</span></span><br><span class="line">		inVisitBiTree(lastRoot-&gt;lChild);</span><br><span class="line">		<span class="comment">//遍历右子树</span></span><br><span class="line">		inVisitBiTree(lastRoot-&gt;rChild);</span><br><span class="line">		<span class="comment">//遍历根节点</span></span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%c"</span>, lastRoot-&gt;item);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="三种遍历二叉树的递归结构是相似的，只是递归遍历的先后有区别"><a href="#三种遍历二叉树的递归结构是相似的，只是递归遍历的先后有区别" class="headerlink" title="三种遍历二叉树的递归结构是相似的，只是递归遍历的先后有区别"></a>三种遍历二叉树的递归结构是相似的，只是递归遍历的先后有区别</h3><h3 id="测试："><a href="#测试：" class="headerlink" title="测试："></a>测试：</h3><p>测试用例：ABC##D##E#F##</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//构建一颗二叉树</span></span><br><span class="line">	pBinaryTree binaryTree = createBinaryTree();</span><br><span class="line">	<span class="comment">//采用先序遍历的方式遍历输出二叉树</span></span><br><span class="line">	preVisitBiTree(binaryTree);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">	<span class="comment">//采用中序遍历的方式输出二叉树</span></span><br><span class="line">	inVisitBiTree(binaryTree);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">	lastVisitBiTree(binaryTree);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"测试二叉树"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li><p>二叉树的结构体<br>modified: 2017-07-27</p>
         </div>
         
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/public/2017/07/27/Data_Structure/2017-07-27-data-structure-binary-tree-visit/#more">Read More</a>
+                </div>
+            </div>
+        </div>
         
         
     </div>
@@ -558,7 +553,7 @@
                     </p>
                     <a href="/public/archives">
                         <p class="title has-text-weight-normal">
-                            100
+                            81
                         </p>
                     </a>
                 </div>
@@ -566,11 +561,11 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Category
+                        Categories
                     </p>
                     <a href="/public/categories">
                         <p class="title has-text-weight-normal">
-                            1
+                            6
                         </p>
                     </a>
                 </div>
@@ -582,7 +577,7 @@
                     </p>
                     <a href="/public/tags">
                         <p class="title has-text-weight-normal">
-                            5
+                            7
                         </p>
                     </a>
                 </div>
@@ -662,7 +657,47 @@
                 <span class="level-item">Android</span>
             </span>
             <span class="level-end">
+                <span class="level-item tag">36</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/public/categories/Java/">
+            <span class="level-start">
+                <span class="level-item">Java</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">12</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/public/categories/Kotlin/">
+            <span class="level-start">
+                <span class="level-item">Kotlin</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/public/categories/Other/">
+            <span class="level-start">
+                <span class="level-item">Other</span>
+            </span>
+            <span class="level-end">
                 <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/public/categories/PAT/">
+            <span class="level-start">
+                <span class="level-item">PAT</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">8</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/public/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+            <span class="level-start">
+                <span class="level-item">数据结构</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">16</span>
             </span>
         </a></li>
             </ul>
@@ -675,7 +710,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/public/tags/Android/" style="font-size: 13.33px;">Android</a> <a href="/public/tags/error/" style="font-size: 10px;">error</a> <a href="/public/tags/git/" style="font-size: 10px;">git</a> <a href="/public/tags/pat/" style="font-size: 16.67px;">pat</a> <a href="/public/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 20px;">数据结构</a>
+        <a href="/public/tags/Android/" style="font-size: 20px;">Android</a> <a href="/public/tags/Git/" style="font-size: 12px;">Git</a> <a href="/public/tags/JNI/" style="font-size: 12px;">JNI</a> <a href="/public/tags/Java/" style="font-size: 16px;">Java</a> <a href="/public/tags/Kotlin/" style="font-size: 10px;">Kotlin</a> <a href="/public/tags/pat/" style="font-size: 14px;">pat</a> <a href="/public/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 18px;">数据结构</a>
     </div>
 </div>
     
@@ -690,18 +725,18 @@
         
         <article class="media">
             
-            <a href="/public/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-09-android-ViewModel-introduction/" class="media-left">
+            <a href="/public/2019/12/20/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Android lifecycle-aware components">
+                    <img class="thumbnail" src="/public/thumbnail/img35.jpg" alt="Retrofit 框架介绍与使用">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:21.663Z">2020-02-29</time></div>
-                    <a href="/public/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-09-android-ViewModel-introduction/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android lifecycle-aware components</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-19T16:00:00.000Z">2019-12-20</time></div>
+                    <a href="/public/2019/12/20/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Retrofit 框架介绍与使用</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/public/categories/Android/">Android</a>
                     </p>
                 </div>
             </div>
@@ -709,18 +744,18 @@
         
         <article class="media">
             
-            <a href="/public/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-01-android-broadcast-introduction/" class="media-left">
+            <a href="/public/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Android Broadcast介绍">
+                    <img class="thumbnail" src="/public/thumbnail/img66.jpg" alt="Kotlin Lambda表达式">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:21.654Z">2020-02-29</time></div>
-                    <a href="/public/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-01-android-broadcast-introduction/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android Broadcast介绍</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:23.103Z">2019-11-28</time></div>
+                    <a href="/public/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Kotlin Lambda表达式</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/public/categories/Kotlin/">Kotlin</a>
                     </p>
                 </div>
             </div>
@@ -728,18 +763,18 @@
         
         <article class="media">
             
-            <a href="/public/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-07-31-android-service-introduction/" class="media-left">
+            <a href="/public/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Android Service介绍">
+                    <img class="thumbnail" src="/public/thumbnail/img59.jpg" alt="加密算法">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:21.613Z">2020-02-29</time></div>
-                    <a href="/public/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-07-31-android-service-introduction/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android Service介绍</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:15.919Z">2019-11-28</time></div>
+                    <a href="/public/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/" class="title has-link-black-ter is-size-6 has-text-weight-normal">加密算法</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/public/categories/Java/">Java</a>
                     </p>
                 </div>
             </div>
@@ -747,18 +782,18 @@
         
         <article class="media">
             
-            <a href="/public/2020/02/29/Data_Structure/2017-08-28-data-structure-huffman-tree/" class="media-left">
+            <a href="/public/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/Java%E5%BC%95%E7%94%A8/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Huffman树的算法实现">
+                    <img class="thumbnail" src="/public/thumbnail/img54.jpg" alt="Java引用">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:09.033Z">2020-02-29</time></div>
-                    <a href="/public/2020/02/29/Data_Structure/2017-08-28-data-structure-huffman-tree/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Huffman树的算法实现</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:15.918Z">2019-11-28</time></div>
+                    <a href="/public/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/Java%E5%BC%95%E7%94%A8/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java引用</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/public/categories/Java/">Java</a>
                     </p>
                 </div>
             </div>
@@ -766,18 +801,18 @@
         
         <article class="media">
             
-            <a href="/public/2020/02/29/Data_Structure/2017-08-27-data-structure-heap-sort/" class="media-left">
+            <a href="/public/2019/11/28/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="堆排序">
+                    <img class="thumbnail" src="/public/thumbnail/img64.jpg" alt="Java代理模式">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:09.000Z">2020-02-29</time></div>
-                    <a href="/public/2020/02/29/Data_Structure/2017-08-27-data-structure-heap-sort/" class="title has-link-black-ter is-size-6 has-text-weight-normal">堆排序</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:18:36.264Z">2019-11-28</time></div>
+                    <a href="/public/2019/11/28/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java代理模式</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/public/categories/Java/">Java</a>
                     </p>
                 </div>
             </div>
@@ -795,12 +830,12 @@
         <ul class="menu-list">
         
         <li>
-            <a class="level is-marginless" href="/public/archives/2020/02/">
+            <a class="level is-marginless" href="/public/archives/2019/12/">
                 <span class="level-start">
-                    <span class="level-item">February 2020</span>
+                    <span class="level-item">December 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">29</span>
+                    <span class="level-item tag">1</span>
                 </span>
             </a>
         </li>
@@ -811,7 +846,18 @@
                     <span class="level-item">November 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">12</span>
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
                 </span>
             </a>
         </li>
@@ -822,7 +868,139 @@
                     <span class="level-item">September 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">59</span>
+                    <span class="level-item tag">27</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/08/">
+                <span class="level-start">
+                    <span class="level-item">August 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">5</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/12/">
+                <span class="level-start">
+                    <span class="level-item">December 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/09/">
+                <span class="level-start">
+                    <span class="level-item">September 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/08/">
+                <span class="level-start">
+                    <span class="level-item">August 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/07/">
+                <span class="level-start">
+                    <span class="level-item">July 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/06/">
+                <span class="level-start">
+                    <span class="level-item">June 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2017/08/">
+                <span class="level-start">
+                    <span class="level-item">August 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">14</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2017/07/">
+                <span class="level-start">
+                    <span class="level-item">July 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">11</span>
                 </span>
             </a>
         </li>
@@ -843,20 +1021,34 @@
                 <div class="control">
                     <a class="tags has-addons" href="/public/tags/Android/">
                         <span class="tag">Android</span>
-                        <span class="tag is-grey">5</span>
+                        <span class="tag is-grey">35</span>
                     </a>
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/public/tags/error/">
-                        <span class="tag">error</span>
-                        <span class="tag is-grey">1</span>
+                    <a class="tags has-addons" href="/public/tags/Git/">
+                        <span class="tag">Git</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/public/tags/git/">
-                        <span class="tag">git</span>
+                    <a class="tags has-addons" href="/public/tags/JNI/">
+                        <span class="tag">JNI</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/Java/">
+                        <span class="tag">Java</span>
+                        <span class="tag is-grey">12</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/Kotlin/">
+                        <span class="tag">Kotlin</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -899,18 +1091,18 @@
         
         <article class="media">
             
-            <a href="/public/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-09-android-ViewModel-introduction/" class="media-left">
+            <a href="/public/2019/12/20/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Android lifecycle-aware components">
+                    <img class="thumbnail" src="/public/thumbnail/img35.jpg" alt="Retrofit 框架介绍与使用">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:21.663Z">2020-02-29</time></div>
-                    <a href="/public/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-09-android-ViewModel-introduction/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android lifecycle-aware components</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-19T16:00:00.000Z">2019-12-20</time></div>
+                    <a href="/public/2019/12/20/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Retrofit 框架介绍与使用</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/public/categories/Android/">Android</a>
                     </p>
                 </div>
             </div>
@@ -918,18 +1110,18 @@
         
         <article class="media">
             
-            <a href="/public/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-01-android-broadcast-introduction/" class="media-left">
+            <a href="/public/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Android Broadcast介绍">
+                    <img class="thumbnail" src="/public/thumbnail/img66.jpg" alt="Kotlin Lambda表达式">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:21.654Z">2020-02-29</time></div>
-                    <a href="/public/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-01-android-broadcast-introduction/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android Broadcast介绍</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:23.103Z">2019-11-28</time></div>
+                    <a href="/public/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Kotlin Lambda表达式</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/public/categories/Kotlin/">Kotlin</a>
                     </p>
                 </div>
             </div>
@@ -937,18 +1129,18 @@
         
         <article class="media">
             
-            <a href="/public/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-07-31-android-service-introduction/" class="media-left">
+            <a href="/public/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Android Service介绍">
+                    <img class="thumbnail" src="/public/thumbnail/img59.jpg" alt="加密算法">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:21.613Z">2020-02-29</time></div>
-                    <a href="/public/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-07-31-android-service-introduction/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android Service介绍</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:15.919Z">2019-11-28</time></div>
+                    <a href="/public/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/" class="title has-link-black-ter is-size-6 has-text-weight-normal">加密算法</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/public/categories/Java/">Java</a>
                     </p>
                 </div>
             </div>
@@ -956,18 +1148,18 @@
         
         <article class="media">
             
-            <a href="/public/2020/02/29/Data_Structure/2017-08-28-data-structure-huffman-tree/" class="media-left">
+            <a href="/public/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/Java%E5%BC%95%E7%94%A8/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Huffman树的算法实现">
+                    <img class="thumbnail" src="/public/thumbnail/img54.jpg" alt="Java引用">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:09.033Z">2020-02-29</time></div>
-                    <a href="/public/2020/02/29/Data_Structure/2017-08-28-data-structure-huffman-tree/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Huffman树的算法实现</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:15.918Z">2019-11-28</time></div>
+                    <a href="/public/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/Java%E5%BC%95%E7%94%A8/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java引用</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/public/categories/Java/">Java</a>
                     </p>
                 </div>
             </div>
@@ -975,18 +1167,18 @@
         
         <article class="media">
             
-            <a href="/public/2020/02/29/Data_Structure/2017-08-27-data-structure-heap-sort/" class="media-left">
+            <a href="/public/2019/11/28/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="堆排序">
+                    <img class="thumbnail" src="/public/thumbnail/img64.jpg" alt="Java代理模式">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:09.000Z">2020-02-29</time></div>
-                    <a href="/public/2020/02/29/Data_Structure/2017-08-27-data-structure-heap-sort/" class="title has-link-black-ter is-size-6 has-text-weight-normal">堆排序</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:18:36.264Z">2019-11-28</time></div>
+                    <a href="/public/2019/11/28/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java代理模式</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/public/categories/Java/">Java</a>
                     </p>
                 </div>
             </div>
@@ -1004,12 +1196,12 @@
         <ul class="menu-list">
         
         <li>
-            <a class="level is-marginless" href="/public/archives/2020/02/">
+            <a class="level is-marginless" href="/public/archives/2019/12/">
                 <span class="level-start">
-                    <span class="level-item">February 2020</span>
+                    <span class="level-item">December 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">29</span>
+                    <span class="level-item tag">1</span>
                 </span>
             </a>
         </li>
@@ -1020,7 +1212,18 @@
                     <span class="level-item">November 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">12</span>
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
                 </span>
             </a>
         </li>
@@ -1031,7 +1234,139 @@
                     <span class="level-item">September 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">59</span>
+                    <span class="level-item tag">27</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/08/">
+                <span class="level-start">
+                    <span class="level-item">August 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">5</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/12/">
+                <span class="level-start">
+                    <span class="level-item">December 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/09/">
+                <span class="level-start">
+                    <span class="level-item">September 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/08/">
+                <span class="level-start">
+                    <span class="level-item">August 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/07/">
+                <span class="level-start">
+                    <span class="level-item">July 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/06/">
+                <span class="level-start">
+                    <span class="level-item">June 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2017/08/">
+                <span class="level-start">
+                    <span class="level-item">August 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">14</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2017/07/">
+                <span class="level-start">
+                    <span class="level-item">July 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">11</span>
                 </span>
             </a>
         </li>
@@ -1052,20 +1387,34 @@
                 <div class="control">
                     <a class="tags has-addons" href="/public/tags/Android/">
                         <span class="tag">Android</span>
-                        <span class="tag is-grey">5</span>
+                        <span class="tag is-grey">35</span>
                     </a>
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/public/tags/error/">
-                        <span class="tag">error</span>
-                        <span class="tag is-grey">1</span>
+                    <a class="tags has-addons" href="/public/tags/Git/">
+                        <span class="tag">Git</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/public/tags/git/">
-                        <span class="tag">git</span>
+                    <a class="tags has-addons" href="/public/tags/JNI/">
+                        <span class="tag">JNI</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/Java/">
+                        <span class="tag">Java</span>
+                        <span class="tag is-grey">12</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/Kotlin/">
+                        <span class="tag">Kotlin</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>

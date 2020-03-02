@@ -123,71 +123,27 @@
     
 <div class="card">
     
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-11-28T12:18:36.245Z">2019-11-28</time>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    3 minutes read (About 413 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/public/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/Java%E5%86%85%E9%83%A8%E7%B1%BB/">Java/Java基础/Java内部类</a>
-            
-        </h1>
-        <div class="content">
-            <h3 id="java-内部类"><a href="#java-内部类" class="headerlink" title="java 内部类"></a>java 内部类</h3><p>内部类依赖于外部类而存在，即内部类存在指向外部类的引用，可以访问外部类private类型的属性。</p>
-<h3 id="内部类的作用"><a href="#内部类的作用" class="headerlink" title="内部类的作用"></a>内部类的作用</h3><p>实现多重继承，每个内部类都能独立继承一个类，在Java中没有多重继承，如果一个类需要同时继承两个类，则可以使用内部类。</p>
-<p>内部类可以同时用多个实例，每个实例都有自己的状态信息；</p>
-<p>内部类有更好的封装，除了其自身的外部类，其他类都不能访问内部类；</p>
-<h3 id="内部类分类"><a href="#内部类分类" class="headerlink" title="内部类分类"></a>内部类分类</h3><h4 id="局部内部类"><a href="#局部内部类" class="headerlink" title="局部内部类"></a>局部内部类</h4><p>嵌套在方法里或者某个作用域内，内部类非公共可用，在方法外或者作用域外不能进行使用。</p>
-<h4 id="静态内部类"><a href="#静态内部类" class="headerlink" title="静态内部类"></a>静态内部类</h4><p>静态内部类创建不依赖于外部类，没有指向外部类的引用，不能使用外部类任何非static的静态成员方法，可以用来创建线程安全的单例模式</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonHolder</span> </span>&#123;  </span><br><span class="line">            <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Singleton INSTANCE = <span class="keyword">new</span> Singleton();  </span><br><span class="line">        &#125;  </span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span> <span class="params">()</span></span>&#123;&#125;  </span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">            <span class="keyword">return</span> SingletonHolder.INSTANCE; </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">```   </span><br><span class="line"></span><br><span class="line">#### 匿名内部类</span><br><span class="line"></span><br><span class="line">匿名内部类依赖于接口实现，如果匿名内部类需要访问局部变量，则该局部变量需要表示为<span class="keyword">final</span>类型</span><br><span class="line"></span><br><span class="line">```java</span><br><span class="line"></span><br><span class="line">    <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                System.out.println(<span class="string">"hello"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;).start();</span><br></pre></td></tr></table></figure>
-
-
-<h4 id="内部类与闭包"><a href="#内部类与闭包" class="headerlink" title="内部类与闭包"></a>内部类与闭包</h4><p>内部类会包含对外部类的引用，形成闭包</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">    </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Outer</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> a=<span class="number">1</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Inner</span></span>&#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">int</span> b=<span class="number">2</span>;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">multi</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> a*b;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-        </div>
-        
-        
-        
+    <div class="card-image">
+        <a href="/public/2019/08/10/Android/Other/Module%E7%9A%84.gradle%E9%85%8D%E7%BD%AE/" class="image is-7by1">
+            <img class="thumbnail" src="/public/thumbnail/img17.jpg" alt="gradle介绍">
+        </a>
     </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-30T08:28:42.959Z">2019-09-30</time>
+                <time class="level-item has-text-grey" datetime="2019-08-09T16:00:00.000Z">2019-08-10</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/public/categories/Android/">Android</a>
+                </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    a few seconds read (About 20 words)
+                    10 minutes read (About 1511 words)
                 </span>
                 
                 
@@ -196,101 +152,22 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/public/2019/09/30/Android/Other/%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/">Android/Other/常用操作</a>
-            
-        </h1>
-        <div class="content">
-            <h3 id="查看签名文件信息"><a href="#查看签名文件信息" class="headerlink" title="查看签名文件信息"></a>查看签名文件信息</h3><p>密码是password</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -list -v -keystore application.jks -storepass password</span><br></pre></td></tr></table></figure>
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-30T08:28:42.959Z">2019-09-30</time>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    10 minutes read (About 1510 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/public/2019/09/30/Android/Other/Module%E7%9A%84.gradle%E9%85%8D%E7%BD%AE/">Android/Other/Module的.gradle配置</a>
+                <a class="has-link-black-ter" href="/public/2019/08/10/Android/Other/Module%E7%9A%84.gradle%E9%85%8D%E7%BD%AE/">gradle介绍</a>
             
         </h1>
         <div class="content">
             <h3 id="gradle介绍"><a href="#gradle介绍" class="headerlink" title="gradle介绍"></a>gradle介绍</h3><p>gradle和make以及ant不同，它基于Groovy语言，而非一种配置；</p>
 <p>Gradle是一个自动化构建的开源工具，使用基于Groovy的领域专用语言(domain specific language (DSL))，来替代使用xml文件对工程的配置。其支持增量编译，可以使用cache，</p>
-<h4 id="在Moudle的build-gradle中添加依赖包"><a href="#在Moudle的build-gradle中添加依赖包" class="headerlink" title="在Moudle的build.gradle中添加依赖包"></a>在Moudle的build.gradle中添加依赖包</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">android &#123; ... &#125;</span><br><span class="line"></span><br><span class="line">dependencies &#123;</span><br><span class="line">    <span class="comment">// 依赖于本地模块，在添加本地模块依赖时，需要在`settings.gradle`文件中添加`include:mylibrary`</span></span><br><span class="line">    <span class="function">implementation <span class="title">project</span><span class="params">(<span class="string">":mylibrary"</span>)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">    <span class="comment">// 依赖于本地库,需要将jar文件添加至 `module_name/libs/`文件夹中 </span></span></span><br><span class="line"><span class="function">    implementation <span class="title">fileTree</span><span class="params">(dir: <span class="string">'libs'</span>, include: [<span class="string">'*.jar'</span>])</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">    <span class="comment">// 依赖于远程库</span></span></span><br><span class="line"><span class="function">    implementation 'com.example.android:app-magic:12.3'</span></span><br><span class="line"><span class="function">&#125;</span></span><br></pre></td></tr></table></figure>
-
-<p>依赖包的配置有以下类型：<code>implementation</code>、<code>api</code>、<code>compileOnly</code>、<code>runtimeOnly</code>、<code>annotationProcessor</code>、<code>lintChecks</code>、<code>lintPublish</code><br>在上述配置中，会将所有的依赖在构建的时候进行打包；如果需要将特定的依赖打包到特定的版本中，需要在依赖配置前添加响应的前缀,下述依赖只会打包到falvor为free的生成包中。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">    freeImplementation <span class="string">'com.google.firebase:firebase-ads:9.8.0'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>如果需要将依赖作为变量，与flavor和build type进行结合，要在<code>configurations</code>代码块中进行初始化。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">configurations &#123;</span><br><span class="line">    <span class="comment">//初始化只与freeDebugRuntimeOnly相关的依赖</span></span><br><span class="line">    freeDebugRuntimeOnly &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">dependencies &#123;</span><br><span class="line">    <span class="function">freeDebugRuntimeOnly <span class="title">fileTree</span><span class="params">(dir: <span class="string">'libs'</span>, include: [<span class="string">'*.jar'</span>])</span></span></span><br><span class="line"><span class="function">&#125;</span></span><br></pre></td></tr></table></figure>
-
-
-<h3 id="在Debug模式下使用正式签名"><a href="#在Debug模式下使用正式签名" class="headerlink" title="在Debug模式下使用正式签名"></a>在Debug模式下使用正式签名</h3><p>在moudle.gradle进行配置,signingConfigs配置需要在buildTypes配置之后,否则会报错<code>ERROR: Could not get unknown property &#39;release&#39; for SigningConfig container of type org.gradle.api.internal.FactoryNamedDomainObjectContainer.</code></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">android&#123;</span><br><span class="line">       ...</span><br><span class="line">    signingConfigs &#123;</span><br><span class="line">        release &#123;</span><br><span class="line">            <span class="comment">//.jks文件放在项目目录（app目录）</span></span><br><span class="line">            <span class="function">storeFile <span class="title">file</span><span class="params">(<span class="string">"app.jks"</span>)</span><span class="comment">//签名文件名</span></span></span><br><span class="line"><span class="function">            storePassword "password"<span class="comment">//密码</span></span></span><br><span class="line"><span class="function">            keyAlias"key0"<span class="comment">//别名</span></span></span><br><span class="line"><span class="function">            keyPassword"password"<span class="comment">//密码</span></span></span><br><span class="line"><span class="function">            &#125;</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">        debug </span>&#123;</span><br><span class="line">            <span class="function">storeFile <span class="title">file</span><span class="params">(<span class="string">"app.jks"</span>)</span></span></span><br><span class="line"><span class="function">            storePassword"password"</span></span><br><span class="line"><span class="function">            keyAlias"key0"<span class="comment">//别名</span></span></span><br><span class="line"><span class="function">            keyPassword"password"</span></span><br><span class="line"><span class="function">        &#125;</span></span><br><span class="line"><span class="function">    &#125;   </span></span><br><span class="line"><span class="function">       </span></span><br><span class="line"><span class="function">    buildTypes </span>&#123;</span><br><span class="line">        release &#123;</span><br><span class="line">            minifyEnabled <span class="keyword">false</span></span><br><span class="line">            <span class="function">proguardFiles <span class="title">getDefaultProguardFile</span><span class="params">(<span class="string">'proguard-android.txt'</span>)</span>, 'proguard-rules.pro'</span></span><br><span class="line"><span class="function">            signingConfig signingConfigs.release</span></span><br><span class="line"><span class="function">        &#125;</span></span><br><span class="line"><span class="function">        debug </span>&#123;</span><br><span class="line">        signingConfig signingConfigs.release</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   ....</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="加速项目的构建速度"><a href="#加速项目的构建速度" class="headerlink" title="加速项目的构建速度"></a>加速项目的构建速度</h3><h4 id="优化项目配置"><a href="#优化项目配置" class="headerlink" title="优化项目配置"></a>优化项目配置</h4><p>有一些打包的配置，在进行开发的过程中不需要，这些不需要的配置会拖慢增量编译，以及clean up的速度；我们可以配置仅在打包的时候进行使用的编译变量，下述示例是创建一个<code>dev</code>flavor和<code>prod</code>flavor(发布版本)。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">android &#123;</span><br><span class="line">  ...</span><br><span class="line">  defaultConfig &#123;...&#125;</span><br><span class="line">  buildTypes &#123;...&#125;</span><br><span class="line">  productFlavors &#123;</span><br><span class="line">    <span class="comment">//当在构件时使用下述flavor，则会覆盖`defaultConfig`代码块；</span></span><br><span class="line">    dev &#123;</span><br><span class="line">      </span><br><span class="line">      minSdkVersion <span class="number">21</span></span><br><span class="line">      versionNameSuffix <span class="string">"-dev"</span></span><br><span class="line">      applicationIdSuffix <span class="string">'.dev'</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    prod &#123;</span><br><span class="line">      <span class="comment">// 如果使用默认配置发布版本，则这一代码块可以设置为空，但不能省略`prob`，否则所有的编译版本都会使用`dev`中的配置。</span></span><br><span class="line">      </span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>可以使用flavor维度设置，可以创建出组合的flavor；如下述示例中创建出<code>devDemo</code>和<code>prodFull</code></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">android &#123;</span><br><span class="line">  ...</span><br><span class="line">  defaultConfig &#123;...&#125;</span><br><span class="line">  buildTypes &#123;...&#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 定义需要使用的flavor dimensions，定义的顺序就是它们从高到底的优先级；使用flavor维度后，需要在每一项flavor配置中定义指定维度</span></span><br><span class="line">  flavorDimensions <span class="string">"stage"</span>, <span class="string">"mode"</span></span><br><span class="line"></span><br><span class="line">  productFlavors &#123;</span><br><span class="line">    dev &#123;</span><br><span class="line">      dimension <span class="string">"stage"</span></span><br><span class="line">      minSdkVersion <span class="number">21</span></span><br><span class="line">      versionNameSuffix <span class="string">"-dev"</span></span><br><span class="line">      applicationIdSuffix <span class="string">'.dev'</span></span><br><span class="line">      </span><br><span class="line">      <span class="comment">//可以通过配置`resConfigs`仅配置英文，以及`xxhdpi`尺寸的图片</span></span><br><span class="line">      resConfigs <span class="string">"en"</span>, <span class="string">"xxhdpi"</span></span><br><span class="line">      ...</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    prod &#123;</span><br><span class="line">      dimension <span class="string">"stage"</span></span><br><span class="line">      ...</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    demo &#123;</span><br><span class="line">      dimension <span class="string">"mode"</span></span><br><span class="line">      ...</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    full &#123;</span><br><span class="line">      dimension <span class="string">"mode"</span></span><br><span class="line">      ...</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="编译类型配置"><a href="#编译类型配置" class="headerlink" title="编译类型配置"></a>编译类型配置</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">    android &#123;</span><br><span class="line">      ...</span><br><span class="line">      buildTypes &#123;</span><br><span class="line">        debug &#123;</span><br><span class="line">          <span class="comment">//如果不需要Crashlytics 报告可以设置为`diable`加快编译速度`</span></span><br><span class="line">          ext.enableCrashlytics = <span class="keyword">false</span></span><br><span class="line">          <span class="comment">//防止Crashlytics 每次更新编译的id</span></span><br><span class="line">          ext.alwaysUpdateBuildId = <span class="keyword">false</span></span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="在Debug版本构建的过程中使用静态常量"><a href="#在Debug版本构建的过程中使用静态常量" class="headerlink" title="在Debug版本构建的过程中使用静态常量"></a>在Debug版本构建的过程中使用静态常量</h4><p>在Debug版本中总是使用静态常量，或者硬编码的方式进行编译。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">int</span> MILLIS_IN_MINUTE = <span class="number">1000</span> * <span class="number">60</span></span><br><span class="line"><span class="keyword">int</span> minutesSinceEpoch = System.currentTimeMillis() / MILLIS_IN_MINUTE</span><br><span class="line"></span><br><span class="line">android &#123;</span><br><span class="line">    ...</span><br><span class="line">    defaultConfig &#123;</span><br><span class="line">  </span><br><span class="line">        <span class="comment">//如果将下述两个值设置为动态的，会在`AndroidManifest.xml`的影响下进行更新，编译出完整版本apk</span></span><br><span class="line">        versionCode <span class="number">1</span></span><br><span class="line">        versionName <span class="string">"1.0"</span></span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//进行上述默认配置后，在进行增量变异的时候不需要重新构建`manifest`，重新构建会导致构建完整apk，拖慢构建速度。</span></span><br><span class="line">    <span class="comment">//下面的语句会在构建的时候遍历`buildType.name`并进行相应的处理</span></span><br><span class="line">    applicationVariants.all &#123; variant -&gt;</span><br><span class="line">        <span class="keyword">if</span> (variant.buildType.name == <span class="string">"release"</span>) &#123;</span><br><span class="line">            variant.mergedFlavor.versionCode = minutesSinceEpoch;</span><br><span class="line">            variant.mergedFlavor.versionName = minutesSinceEpoch + <span class="string">"-"</span> + variant.flavorName;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="使用增量注解处理（incremental-annotation-processors）"><a href="#使用增量注解处理（incremental-annotation-processors）" class="headerlink" title="使用增量注解处理（incremental annotation processors）"></a>使用增量注解处理（incremental annotation processors）</h4><p>Android Studio的Gradle插件版本高于3.3.0支持增量注解处理，如果您使用一个或多个不支持增量编译的注解处理器，则增量 Java 编译不会启用。如果需要使用不支持此优化的注解处理器，可以再 gradle.properties 文件中添加以下标记。添加后，Android Gradle 插件会在一个单独的任务中执行所有注解处理器，并允许 Java 编译任务以增量方式运行。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android.enableSeparateAnnotationProcessing = true</span><br></pre></td></tr></table></figure>
-
-
-<h4 id="其他方式"><a href="#其他方式" class="headerlink" title="其他方式"></a>其他方式</h4><ul>
-<li><p>使用确定的依赖，避免使用<code>+</code>，如：’com.android.tools.build:gradle:2.+’</p>
-</li>
-<li><p>使用离线模式进行编译</p>
-</li>
-<li><p>创建library modules，使用这种方式，该模块可以编译输出至缓存中，仅在模块编辑后才会重新编译。</p>
-</li>
-<li><p>创建自定义编译任务</p>
-</li>
-<li><p>将图片转换为WebP</p>
-<p> WebP可以像PNG一样透明，使用与JPEG一样是有损压缩，但比JPG和JPEG压缩更优秀。重新更改图片的尺寸，而非在编译时压缩可以加快编译速度。可以使用Android Studio进行图片的转换。</p>
-</li>
-<li><p>禁用PNG压缩</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">  </span><br><span class="line">  android &#123;</span><br><span class="line">    buildTypes &#123;</span><br><span class="line">        release &#123;</span><br><span class="line">            <span class="comment">//禁用PNG压缩</span></span><br><span class="line">            crunchPngs <span class="keyword">false</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 如果使用的gradle插件版本小于3.0.0，使用下述方式禁用PNG压缩</span></span><br><span class="line">    <span class="comment">//  aaptOptions &#123;</span></span><br><span class="line">    <span class="comment">//      cruncherEnabled false</span></span><br><span class="line">    <span class="comment">//  &#125;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>使用编译缓存<br>在编译缓存中会保存Gradle插件在编译过程中的输出（如：未打包的AAR文件，提前下载的远程库），当使用编译缓存，<code>clean build</code>会变得更快，因为其会调用缓存中的文件，而非重新生成。<br>在gradle.gradle.properties 中指定编译缓存的路径，默认路径为<code>&lt;user-home&gt;/.android/build-cache/</code></p>
-</li>
-</ul>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// 执行绝对路径或者相对路径</span><br><span class="line">android.buildCacheDir=<span class="tag">&lt;<span class="name">path-to-directory</span>&gt;</span></span><br><span class="line">android.enableBuildCache=true</span><br></pre></td></tr></table></figure>
-
-<h4 id="打包编译多个版本的apk，待续"><a href="#打包编译多个版本的apk，待续" class="headerlink" title="打包编译多个版本的apk，待续"></a>打包编译多个版本的apk，待续</h4>
         </div>
         
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/public/2019/08/10/Android/Other/Module%E7%9A%84.gradle%E9%85%8D%E7%BD%AE/#more">Read More</a>
+                </div>
+            </div>
+        </div>
         
         
     </div>
@@ -306,11 +183,17 @@
     
 <div class="card">
     
+    <div class="card-image">
+        <a href="/public/2019/08/05/Android/Other/Groovy%E4%BB%8B%E7%BB%8D/" class="image is-7by1">
+            <img class="thumbnail" src="/public/thumbnail/img16.jpg" alt="Hello World">
+        </a>
+    </div>
+    
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-30T08:28:42.958Z">2019-09-30</time>
+                <time class="level-item has-text-grey" datetime="2019-08-04T16:00:00.000Z">2019-08-05</time>
                 
                 
                 <span class="level-item has-text-grey">
@@ -325,7 +208,7 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/public/2019/09/30/Android/Other/Groovy%E4%BB%8B%E7%BB%8D/">Android/Other/Groovy介绍</a>
+                <a class="has-link-black-ter" href="/public/2019/08/05/Android/Other/Groovy%E4%BB%8B%E7%BB%8D/">Hello World</a>
             
         </h1>
         <div class="content">
@@ -347,17 +230,27 @@
     
 <div class="card">
     
+    <div class="card-image">
+        <a href="/public/2019/05/06/Android/%E6%A1%86%E6%9E%B6/fastjson%E7%9A%84%E4%BD%BF%E7%94%A8/" class="image is-7by1">
+            <img class="thumbnail" src="/public/thumbnail/img34.jpg" alt="Fasetjson 介绍与使用">
+        </a>
+    </div>
+    
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-30T08:28:42.950Z">2019-09-30</time>
+                <time class="level-item has-text-grey" datetime="2019-05-05T16:00:00.000Z">2019-05-06</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/public/categories/Android/">Android</a>
+                </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    4 minutes read (About 656 words)
+                    a minute read (About 141 words)
                 </span>
                 
                 
@@ -366,49 +259,22 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/public/2019/09/30/Android/Android%E5%8F%8D%E7%BC%96%E8%AF%91/Android%E5%BA%94%E7%94%A8%E9%98%B2%E6%AD%A2%E4%BA%8C%E6%AC%A1%E6%89%93%E5%8C%85/">Android/Android反编译/Android应用防止二次打包</a>
+                <a class="has-link-black-ter" href="/public/2019/05/06/Android/%E6%A1%86%E6%9E%B6/fastjson%E7%9A%84%E4%BD%BF%E7%94%A8/">Fasetjson 介绍与使用</a>
             
         </h1>
         <div class="content">
-            <p>Android防止二次打包主要通过对签名文件的验证来进行</p>
-<h3 id="应用签名文件介绍"><a href="#应用签名文件介绍" class="headerlink" title="应用签名文件介绍"></a>应用签名文件介绍</h3><p>在Android Studio2.2之后多了对签名版本的选择<code>V1(Jar Signature)</code>和<code>V2(Full APK Signature)</code>V1就是传统的签名方式，V2则是Android7.0之后引入的。其区别是，V1是通过ZIP条目进行验证，这样APK 签署后可进行许多修改；而V2验证压缩文件的所有字节，而不是单个 ZIP 条目，这样在签名后无法再更改。V2的好处很明显，更安全且验证更迅速。所以，推荐在生成apk时，签名方式选择V1+V2。当然，仅仅选择V1也是可以的。如果仅选择V2呢，这样生成的apk在Android7.0及之后的版本上没有问题，不过会导致7.0以下的版本无法安装，所以要避免这种方式。</p>
-<h4 id="签名文件在gradle中配置"><a href="#签名文件在gradle中配置" class="headerlink" title="签名文件在gradle中配置"></a>签名文件在gradle中配置</h4><pre><code>signingConfigs {      
-  debug {          
-    storeFile file(&quot;./hyydev.jks&quot;)          
-    storePassword &quot;******&quot;         
-    keyAlias &quot;**&quot;          
-    keyPassword &quot;******&quot;          
-    v1SigningEnabled true          
-    v2SigningEnabled true      
-  }      
-  release {          
-    storeFile file(&quot;./hyydev.jks&quot;)          
-    storePassword &quot;******&quot;          
-    keyAlias &quot;**&quot;          
-    keyPassword &quot;******&quot;         
-    v1SigningEnabled true          
-    v2SigningEnabled true      
-  }
-}</code></pre><h3 id="应用签名文件查看"><a href="#应用签名文件查看" class="headerlink" title="应用签名文件查看"></a>应用签名文件查看</h3><ul>
-<li>已有.jks文件</li>
-</ul>
-<p>在cmd中输入</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">keytool -list -v -keystore path/android.jks -storepass password</span><br></pre></td></tr></table></figure>
-<p>![](/assets/Android safe.png)</p>
-<ul>
-<li>只有.apk文件</li>
-</ul>
-<p>使用解压工具解压APK文件，在META-INF文件夹拿到CERT.RSA文件,在CMD中输入</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">keytool -printcert -file path/android.jks</span><br></pre></td></tr></table></figure>
-<p>![](/assets/Android safe1.png)</p>
-<p><strong>两种方式获取到的签名文件是一致的，使用.jks文件需要密码，而使用.apk文件无需密码</strong></p>
-<h3 id="在Java代码中进行验证，通过PackageManager获取签名信息。"><a href="#在Java代码中进行验证，通过PackageManager获取签名信息。" class="headerlink" title="在Java代码中进行验证，通过PackageManager获取签名信息。"></a>在Java代码中进行验证，通过PackageManager获取签名信息。</h3><p>使用Java代码进行签名信息验证，通过修改smali文件可以绕过，容易破解</p>
-<h3 id="在native层进行签名验证"><a href="#在native层进行签名验证" class="headerlink" title="在native层进行签名验证"></a>在native层进行签名验证</h3><p>使用NDK开发出来的原生C++代码编译后生成的so库是一个二进制文件，可以增加了破解的难度，但在实现中将用于对比的签名HASH串明文存放在代码中，可能会被取出。</p>
-<p>因此在编写时需要对签名内容进行加密，使用自定义加密算法，在使用时进行解密。</p>
-<h3 id="在服务端对签名文件进行验证"><a href="#在服务端对签名文件进行验证" class="headerlink" title="在服务端对签名文件进行验证"></a>在服务端对签名文件进行验证</h3><p>服务器校验即将本地的程序信息，传输到服务器进行校验，然后返回一段核心代码进行执行（非校验结果，防本地修改；同时也不建议服务器下发校验信息，本地校验，原理同）</p>
-
+            <h4 id="JSONString与HashMap之间的转换"><a href="#JSONString与HashMap之间的转换" class="headerlink" title="JSONString与HashMap之间的转换"></a>JSONString与HashMap之间的转换</h4><ul>
+<li>HashMap转换为JsonString
         </div>
         
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/public/2019/05/06/Android/%E6%A1%86%E6%9E%B6/fastjson%E7%9A%84%E4%BD%BF%E7%94%A8/#more">Read More</a>
+                </div>
+            </div>
+        </div>
         
         
     </div>
@@ -424,17 +290,27 @@
     
 <div class="card">
     
+    <div class="card-image">
+        <a href="/public/2019/04/23/Android/%E6%A1%86%E6%9E%B6/AAC/Android%20Livedata%E8%AF%A6%E8%A7%A3/" class="image is-7by1">
+            <img class="thumbnail" src="/public/thumbnail/img26.jpg" alt="LiveData介绍与使用">
+        </a>
+    </div>
+    
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-30T08:28:42.948Z">2019-09-30</time>
+                <time class="level-item has-text-grey" datetime="2019-04-22T16:00:00.000Z">2019-04-23</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/public/categories/Android/">Android</a>
+                </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    9 minutes read (About 1303 words)
+                    7 minutes read (About 1041 words)
                 </span>
                 
                 
@@ -443,40 +319,21 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/public/2019/09/30/Android/Advanced/%E5%BA%94%E7%94%A8%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B/">Android/Advanced/应用启动流程</a>
+                <a class="has-link-black-ter" href="/public/2019/04/23/Android/%E6%A1%86%E6%9E%B6/AAC/Android%20Livedata%E8%AF%A6%E8%A7%A3/">LiveData介绍与使用</a>
             
         </h1>
         <div class="content">
-            <p>1、Launcher通知AMS启动淘宝APP的MainActivity，也就是清单文件设置启动的Activity。<br>2、AMS记录要启动的Activity信息，并且通知Launcher进入pause状态。<br>3、Launcher进入pause状态后，通知AMS已经paused了，可以启动淘宝了。<br>4、淘宝app未开启过，所以AMS启动新的进程，并且在新进程中创建ActivityThread对象，执行其中的main函数方法。<br>5、淘宝app主线程启动完毕后通知AMS，并传入applicationThread以便通讯。<br>6、AMS通知淘宝绑定Application并启动MainActivity。<br>7、淘宝启动MainActivitiy，并且创建和关联Context,最后调用onCreate方法。</p>
-<h2 id="Android应用启动从Zygote到Activity-onCreate"><a href="#Android应用启动从Zygote到Activity-onCreate" class="headerlink" title="Android应用启动从Zygote到Activity.onCreate"></a>Android应用启动从Zygote到Activity.onCreate</h2><p>本文从点击Android应用图标开始介绍Android应用的启动过程</p>
-<h3 id="Android应用有两个方面的特点"><a href="#Android应用有两个方面的特点" class="headerlink" title="Android应用有两个方面的特点"></a>Android应用有两个方面的特点</h3><p><strong>特点一：</strong>具有多个入口，Android应用由多个组件组成，而且他们可以调用其他应用的组件。组件可以成为应用的多个入口，因此Android应用不像传统的应用只有类似于main()函数的启动入口。</p>
-<p><strong>特点二：</strong>自己的运行空间，每个Android应用都运行在独立的进程中，具有自己的Dalvik虚拟机实例，并且被指定了唯一的userId;</p>
-<p>任何用户或者其他的组件请求你的应用组件（service、activitry）执行，如果你的App没有在运行，操作系统会为App启动一个新的进程。</p>
-<p>在默认的情况下，每一个Android应用都运行在自己的进程中，即一个Linux进程，改Linux进程拥有一个可以启动的线程。 </p>
-<h3 id="Zygote：创建新的进程"><a href="#Zygote：创建新的进程" class="headerlink" title="Zygote：创建新的进程"></a>Zygote：创建新的进程</h3><p>Android操作系统在启动的过程：Boot加载系统内核，并启动init进程，init进程再创建Linux中低等级的守护进程（daemons）,例如：debug daemons、USB daemons，这些守护进程用于控制低级的硬件接口。</p>
-<p><strong>init进程会启动Zygote进程</strong></p>
-<p><strong>Zygote</strong>进程可以初始化第一个Dalvik虚拟机实例，同时也提前加载Android层通用的类和系统中不同的应用。会在套接字接口上监听创建新的虚拟机的请求，以及管理新的应用进程。一旦获取创建虚拟机的请求，Zygote会将自己fork创建一个新的进程，并提前初始化虚拟机的实例。</p>
-<p><strong>在Zygote之后，init启动运行时的进程？</strong></p>
-<p>紧接着Zygote fork并启动一个称为system server的进程，<strong>system server会启动所有的核心服务包括：activity manager service、hardware services在其自己的context中。</strong></p>
-<h3 id="用户点击图标通过Launcher启动应用的过程"><a href="#用户点击图标通过Launcher启动应用的过程" class="headerlink" title="用户点击图标通过Launcher启动应用的过程"></a>用户点击图标通过Launcher启动应用的过程</h3><p>点击事件会被转换为startActivity(intent)并通过Binder IPC将事件转换到ActivityManagerService，在ActivityManagerService中执行很多操作步骤。</p>
-<ul>
-<li>1、收集intent的目标的信息，通过调用<code>PackageManager</code>对象中的<code>resolveIntent()</code>方法，默认使用<code>PackageManager.MATCH_DEFAULT_ONLY</code> 和     <code>PackageManager.GET_SHARED_LIBRARY_FILES</code>标志。</li>
-<li>2、目标信心会被存储至intent对象中，避免重复第一步工作；</li>
-<li>3、判断用户是否有权限调用intent中的组件，通过<code>grantUriPermissionLocked()</code>方法执行；</li>
-<li>4、如果用户有足够的权限，ActivityManagerService会去检查目标activity是否需要在新的task中进行启动。task的创建依赖于intent的标志(flags)如：<code>FLAG_ACTIVITY_NEW_TASK</code> 或者其他flags<code>FLAG_ACTIVITY_CLEAR_TOP</code>；</li>
-<li>5、检查进程的<code>ProcessRecord</code>是否已经存在，如果<code>ProcessRecord</code>为空，ActivityManager需要创建一个新的进程来实例化目标组件。</li>
-</ul>
-<h3 id="在该应用启动流程中有三个不同的阶段"><a href="#在该应用启动流程中有三个不同的阶段" class="headerlink" title="在该应用启动流程中有三个不同的阶段"></a>在该应用启动流程中有三个不同的阶段</h3><ul>
-<li>1、进程创建</li>
-<li>2、绑定应用</li>
-<li>3、启动Activity/Service/调用intent receiver</li>
-</ul>
-<h4 id="进程创建"><a href="#进程创建" class="headerlink" title="进程创建"></a>进程创建</h4><p>ActivityManagerService通过调用<code>startProcessLocked()</code>方法来创建一个新的进程，<code>startProcessLocked</code>方法通过socket连接将参数传递给Zygote进程。Zygote将自己fork，然后调用<code>ZygoteInit.main()</code>方法，该方法会创建一个ActivityThread对象，并返回新建进程的id</p>
-<p>在默认情况先每一个进程都会获取一个线程，在主线程中有一个Looper实例通过调用<code>Looper.loop()</code>方法处理从message queue中的message，在Looper每一次运行run()方法时。Looper的作用是从message queue中取出相应message并调用相应的方法来处理它们。ActivityThread通过调用<code>Looper.prepareLoop()</code>再掉用<code>Looper.loop()</code>方法启动message loop。</p>
-<h4 id="应用绑定"><a href="#应用绑定" class="headerlink" title="应用绑定"></a>应用绑定</h4><p>下一步是将新创建的进程绑定至特定的应用上，通过调用线程中的<code>bindApplication()</code>方法来实现。该方法将<code>BIND_APPLICATION</code>信息发送至message queue，该Message通过Handler对象检索，然后调用handlerMessage()方法来触发该message具有的特殊方法——<code>handleBindApplication()</code>，该方法调用<code>makeApplication()</code>方法，<code>makeApplication()</code>方法将应用中特定的类加载到内存中执行。</p>
-<h4 id="启动Activity"><a href="#启动Activity" class="headerlink" title="启动Activity"></a>启动Activity</h4>
+            <h2 id="LiveData介绍"><a href="#LiveData介绍" class="headerlink" title="LiveData介绍"></a>LiveData介绍</h2><p><code>LiveData</code>是一个被观察的类，其具有生命周期感知，即只有Android组件，Activity、Fragment、Service处于活动状态时，它才会通知组件数据发生变化。<code>LiveData</code>是一个抽象类，其继承关系如下：</p>
         </div>
         
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/public/2019/04/23/Android/%E6%A1%86%E6%9E%B6/AAC/Android%20Livedata%E8%AF%A6%E8%A7%A3/#more">Read More</a>
+                </div>
+            </div>
+        </div>
         
         
     </div>
@@ -492,74 +349,27 @@
     
 <div class="card">
     
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-30T08:26:59.176Z">2019-09-30</time>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    6 minutes read (About 904 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/public/2019/09/30/Android/Android%E5%9F%BA%E7%A1%80/Android%E5%90%8E%E5%8F%B0%E4%BB%BB%E5%8A%A1/">Android/Android基础/Android后台任务</a>
-            
-        </h1>
-        <div class="content">
-            <h1 id="Android后台处理介绍"><a href="#Android后台处理介绍" class="headerlink" title="Android后台处理介绍"></a>Android后台处理介绍</h1><p>Android手机应用通过主线程来控制UI，包括计算以及View绘制；当有太多的工作在主线程中进行，会造成App假死或者运行缓慢，会给用户较差的体验。很多耗时操作包括编码与解码Bitmap、读取存储器内容或者网络处理工作可以在一个独立的后台进程中进行。</p>
-<h2 id="推荐在后台进行处理的三种情况"><a href="#推荐在后台进行处理的三种情况" class="headerlink" title="推荐在后台进行处理的三种情况"></a>推荐在后台进行处理的三种情况</h2><h3 id="App处理操作是否可以滞后进行，或者需要实时处理"><a href="#App处理操作是否可以滞后进行，或者需要实时处理" class="headerlink" title="App处理操作是否可以滞后进行，或者需要实时处理"></a>App处理操作是否可以滞后进行，或者需要实时处理</h3><p>例如：当用户需要获取数据并显示时，不能将此数据获取放在后台；如果需要将App输出的log日志传递到服务器中，则需要将传输工作放置在后台中进行</p>
-<h3 id="App的处理操作开始的时候，Android操作系统是否需要将App进行“保活”（Keep-Alive）处理"><a href="#App的处理操作开始的时候，Android操作系统是否需要将App进行“保活”（Keep-Alive）处理" class="headerlink" title="App的处理操作开始的时候，Android操作系统是否需要将App进行“保活”（Keep Alive）处理"></a>App的处理操作开始的时候，Android操作系统是否需要将App进行“保活”（Keep Alive）处理</h3><p>例如：当对Bitmap进行解码显示处理的时候，通常需要App保持运行；当使用手机播放器进行音乐播放的时候,手机播放器需要可以再后台运行。</p>
-<h3 id="App操作处理是否是由系统进行触发"><a href="#App操作处理是否是由系统进行触发" class="headerlink" title="App操作处理是否是由系统进行触发"></a>App操作处理是否是由系统进行触发</h3><p>系统触发的内容包括：手机网络状态、电量状态、存储器容量以及其他的触发。例如：当你需要在手机处于网络可应用的状态下与服务器进行通信，如果此时App进程已经死掉，你需要重新启动一个。</p>
-<h4 id="加一个选择策略图片"><a href="#加一个选择策略图片" class="headerlink" title="加一个选择策略图片"></a>加一个选择策略图片</h4><h2 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h2><p>对于处理工作只能在App前台工作的情况使用线程池，线程池提供了一组后台线程，接收任务提交队列。如果需要监控操作系统的触发机制，需要使用动态注册Broadcast receivers,去监控操作系统的状态以及触发任务。</p>
-<ul>
-<li>注：在需要线程池进行网络、存储器以及计算操作时，这些任务通常需要是独立的避免引发死锁</li>
-</ul>
-<h2 id="Foreground-Service操作"><a href="#Foreground-Service操作" class="headerlink" title="Foreground Service操作"></a>Foreground Service操作</h2><p>对于需要尽快完成的工作，使用Foreground Servie通知操作系统App正在进行一些重要的工作，不可以被杀死。Foreground Service对于用户是可见的，它显示在通知栏中。</p>
-<h2 id="Workmanager"><a href="#Workmanager" class="headerlink" title="Workmanager"></a>Workmanager</h2><p>对于那些可以进行演示进行但必须要完成的任务，可以使用WorkManager。WorkManager是Android的一个库，用以运行可以延时触发后台任务（如：网络状态触发，或者电池状态触发）。WorkManager使用的是framework层的JobScheduler,当设备的版本低于Android 6.0(API 23)，如果已经在App中添加依赖，WorkManager就会使用Workbase JobDispatcher,否则将会使用AlarmManager来对后台任务进行处理。</p>
-<h2 id="后台进程操作的限制"><a href="#后台进程操作的限制" class="headerlink" title="后台进程操作的限制"></a>后台进程操作的限制</h2><p>为了最大化利用电池以及更好的App使用体验，Android会限制App(或者一个forceground service notification)，当其对用户不可见时。</p>
-<ul>
-<li>Android 6.0(Api 23)使用休眠状态或者standby状态，当屏幕关闭或者未操作状态时，App处于standby状态时，是未使用的应用进入到网络、任务以及同步都被限制的状态。</li>
-<li>Android 7.0(Api 24)限制隐式广播。</li>
-<li>Android 8.0(Api 26)限制更多的后台操作，包括后台获取地址信息以及释放缓存。</li>
-</ul>
-
-        </div>
-        
-        
-        
+    <div class="card-image">
+        <a href="/public/2018/12/20/Android/%E6%A1%86%E6%9E%B6/AAC/WorkManager%E4%BB%8B%E7%BB%8D/" class="image is-7by1">
+            <img class="thumbnail" src="/public/thumbnail/img32.jpg" alt="WorkManager介绍与使用">
+        </a>
     </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-30T07:19:02.876Z">2019-09-30</time>
+                <time class="level-item has-text-grey" datetime="2018-12-19T16:00:00.000Z">2018-12-20</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/public/categories/Android/">Android</a>
+                </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    3 minutes read (About 440 words)
+                    3 minutes read (About 441 words)
                 </span>
                 
                 
@@ -568,42 +378,22 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/public/2019/09/30/Android/%E6%A1%86%E6%9E%B6/AAC/WorkManager%E4%BB%8B%E7%BB%8D/">Android/框架/AAC/WorkManager介绍</a>
+                <a class="has-link-black-ter" href="/public/2018/12/20/Android/%E6%A1%86%E6%9E%B6/AAC/WorkManager%E4%BB%8B%E7%BB%8D/">WorkManager介绍与使用</a>
             
         </h1>
         <div class="content">
             <p>WorkManager是一个Job分发服务，用来管理任务,一旦任务进入管理队里，无论是退出当前应用或重启设备，WorkManager都会保证任务的进行。</p>
 <p>在默认请状态下WorkManager会立即运行任务，但可以指定在手机在某一特殊状态下运行，如：网络状态、电池状态、或者是内存状态。</p>
-<p>当程序运行时，运行WorkManager,WorkManager会在一个新的后台子线程中进行；如果程序没有运行，WorkManager将会根据设备的API以及是否可以使用Google服务来选择合适的方式运行。当API在23及以上，WorkManager会使用功JobScheduler来运行，在API14-22将会使用Firebase JobDispatcher，如果JobDispatcher不能使用则会调用一个自定义AlarmManager以及BroadcastReceiver来实现后台运行任务。</p>
-<p>WorkManager不是为了执行所有不在主线程中的任务，如果任务不需要保证执行，则应该使用intent service或者foreground service</p>
-<p>WorkManager可以执行两种类型的任务</p>
-<ul>
-<li>只执行一次的任务，需要创建一个OneTimeWorkRequest对象，然后加入到任务队列中</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">WorkManager workManager=workManager.getInstance();</span><br><span class="line">workManager.enqueue(<span class="keyword">new</span> OneTimeWorkRequest.Builder(MyWork<span class="class">.<span class="keyword">class</span>).<span class="title">build</span>())</span>;</span><br></pre></td></tr></table></figure>
-
-<p>因为没有加其他的限制条件，所以上述任务只会执行一次；</p>
-<ul>
-<li>多次任务，如：每天将应用数据同步至服务器；</li>
-</ul>
-<p>创建多次任务时，需要使用PeriodicWorkRequest.Bulder创建一个PeriodicWorkRequest对象，指定两次任务之间的时间间隔，然后将PeriodWorkRequest加入到执行队列中</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">new PeriodicWorkRequest.Builder dataCheckBuilder&#x3D;new PeriodicWorkRequest.Builder(DataCheckWorker.class,12,TimeUnit.HOURS);</span><br><span class="line"></span><br><span class="line">PeriodicWorkRequest dataCheckWork&#x3D;dataCheckBuilder.build();</span><br><span class="line">WorkManager.getInstance().enqueue(dataCheckWork);</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         </div>
         
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/public/2018/12/20/Android/%E6%A1%86%E6%9E%B6/AAC/WorkManager%E4%BB%8B%E7%BB%8D/#more">Read More</a>
+                </div>
+            </div>
+        </div>
         
         
     </div>
@@ -619,17 +409,27 @@
     
 <div class="card">
     
+    <div class="card-image">
+        <a href="/public/2018/12/20/Android/%E6%A1%86%E6%9E%B6/AAC/Lifecycle%E5%92%8CRoom%E7%9A%84%E4%BD%BF%E7%94%A8/" class="image is-7by1">
+            <img class="thumbnail" src="/public/thumbnail/img28.jpg" alt="使用框架组件Room和Lifecycle来创建应用">
+        </a>
+    </div>
+    
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-30T07:19:02.871Z">2019-09-30</time>
+                <time class="level-item has-text-grey" datetime="2018-12-19T16:00:00.000Z">2018-12-20</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/public/categories/Android/">Android</a>
+                </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    2 minutes read (About 243 words)
+                    15 minutes read (About 2248 words)
                 </span>
                 
                 
@@ -638,30 +438,21 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/public/2019/09/30/Android/%E6%A1%86%E6%9E%B6/AAC/Room%E6%95%B0%E6%8D%AE%E5%BA%93/">Android/框架/AAC/Room数据库</a>
+                <a class="has-link-black-ter" href="/public/2018/12/20/Android/%E6%A1%86%E6%9E%B6/AAC/Lifecycle%E5%92%8CRoom%E7%9A%84%E4%BD%BF%E7%94%A8/">使用框架组件Room和Lifecycle来创建应用</a>
             
         </h1>
         <div class="content">
-            <h3 id="1、数据库在表中可以指定多个主键"><a href="#1、数据库在表中可以指定多个主键" class="headerlink" title="1、数据库在表中可以指定多个主键"></a>1、数据库在表中可以指定多个主键</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@Entity</span>(primaryKeys = &#123;<span class="string">"firstName"</span>, <span class="string">"lastName"</span>&#125;)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span></span>&#123;</span><br><span class="line">     </span><br><span class="line">     <span class="keyword">public</span> String firstName;</span><br><span class="line">     <span class="keyword">public</span> String lastName;</span><br><span class="line">     </span><br><span class="line">     </span><br><span class="line">     <span class="comment">//使用Ignore使得该变量不生成表段名</span></span><br><span class="line">     </span><br><span class="line">     <span class="meta">@Ignore</span></span><br><span class="line">     Bitmap bitmap;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>如果有类继承自上述Person类，但不想bitmap生成数据表中的列，可以使用ignoredColumns</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public class RemotePerson extends Person &#123;</span><br><span class="line">    @PrimaryKey</span><br><span class="line">    public int id;</span><br><span class="line"></span><br><span class="line">    public boolean hasVpn;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="2、Entity进行嵌套"><a href="#2、Entity进行嵌套" class="headerlink" title="2、Entity进行嵌套"></a>2、Entity进行嵌套</h3><p>如果定义的Entity类中有某一对象，并且在表列字段生成该对象的变量，使用@Embedded</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public class Address &#123;</span><br><span class="line">    public String street;</span><br><span class="line">    public String state;</span><br><span class="line">    public String city;</span><br><span class="line"></span><br><span class="line">    @ColumnInfo(name &#x3D; &quot;post_code&quot;)</span><br><span class="line">    public int postCode;</span><br><span class="line">&#125;    </span><br><span class="line"></span><br><span class="line">@Entity</span><br><span class="line">public class Person&#123;</span><br><span class="line">    @PrimaryKey</span><br><span class="line">    public int id;</span><br><span class="line"></span><br><span class="line">    public String firstName;</span><br><span class="line"></span><br><span class="line">    @Embedded</span><br><span class="line">    public Address address;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这样在Person表中有id,firstName,street,state,city,post_code等字段</p>
-<h3 id="3、插入数据产生冲突时操作"><a href="#3、插入数据产生冲突时操作" class="headerlink" title="3、插入数据产生冲突时操作"></a>3、插入数据产生冲突时操作</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Dao</span><br><span class="line">public interface UserDao&#123;</span><br><span class="line">    &#x2F;&#x2F;插入如果冲突则替换    </span><br><span class="line">    @Insert(onConflict &#x3D; OnConflictStrategy.REPLACE)</span><br><span class="line">    public void insertUser(User ... users);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="用于对数据表中某一列进行更新"><a href="#用于对数据表中某一列进行更新" class="headerlink" title="用于对数据表中某一列进行更新"></a>用于对数据表中某一列进行更新</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@Query(&quot;UPDATE item SET quantity &#x3D; quantity + 1 WHERE id &#x3D; :id&quot;)</span><br><span class="line">void updateQuantity(int id)</span><br><span class="line">&#x2F;&#x2F;item为表名</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
+            <h1 id="使用框架组件Room和Lifecycle来创建应用"><a href="#使用框架组件Room和Lifecycle来创建应用" class="headerlink" title="使用框架组件Room和Lifecycle来创建应用"></a>使用框架组件Room和Lifecycle来创建应用</h1><h2 id="在build-gradle-Module-app-中添加依赖"><a href="#在build-gradle-Module-app-中添加依赖" class="headerlink" title="在build.gradle(Module:app)中添加依赖"></a>在build.gradle(Module:app)中添加依赖</h2>
         </div>
         
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/public/2018/12/20/Android/%E6%A1%86%E6%9E%B6/AAC/Lifecycle%E5%92%8CRoom%E7%9A%84%E4%BD%BF%E7%94%A8/#more">Read More</a>
+                </div>
+            </div>
+        </div>
         
         
     </div>
@@ -677,17 +468,27 @@
     
 <div class="card">
     
+    <div class="card-image">
+        <a href="/public/2018/12/05/Android/%E6%A1%86%E6%9E%B6/AAC/Paging%E5%92%8CRoom%E4%BD%BF%E7%94%A8/" class="image is-7by1">
+            <img class="thumbnail" src="/public/thumbnail/img29.jpg" alt="Android框架组件paging+room的使用">
+        </a>
+    </div>
+    
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-30T07:19:02.865Z">2019-09-30</time>
+                <time class="level-item has-text-grey" datetime="2018-12-04T16:00:00.000Z">2018-12-05</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/public/categories/Android/">Android</a>
+                </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    5 minutes read (About 734 words)
+                    5 minutes read (About 735 words)
                 </span>
                 
                 
@@ -696,39 +497,199 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/public/2019/09/30/Android/%E6%A1%86%E6%9E%B6/AAC/Paging%E5%92%8CRoom%E4%BD%BF%E7%94%A8/">Android/框架/AAC/Paging和Room使用</a>
+                <a class="has-link-black-ter" href="/public/2018/12/05/Android/%E6%A1%86%E6%9E%B6/AAC/Paging%E5%92%8CRoom%E4%BD%BF%E7%94%A8/">Android框架组件paging+room的使用</a>
             
         </h1>
         <div class="content">
             <h1 id="Android框架组件paging-room的使用"><a href="#Android框架组件paging-room的使用" class="headerlink" title="Android框架组件paging+room的使用"></a>Android框架组件paging+room的使用</h1><h2 id="简介："><a href="#简介：" class="headerlink" title="简介："></a>简介：</h2><h3 id="DataSource"><a href="#DataSource" class="headerlink" title="DataSource"></a>DataSource</h3><p>DataSource持有数据库的数据或者来自于网络的数据提供给PagedLists使用，PagedListed由LivePagedListBuilder产生，具有多个可以进行选择的参数。PagedList会持有DataSource的一个副本，</p>
-<p>创建一个<code>PagedList</code>被观察者的对象，需要将一个<code>DataSource.Factory</code>的实例传递给<code>LivePagedListBuilder</code>对象。一个DataSource对象为单一的<code>PagedList</code>加载pages。当数据更新时，工厂类会创建一个<code>PagedSource</code>的实例，如：数据库的表更新或者网络数据更新。Room持久化数据层可以提供<code>DataSource.Factory</code>对象，或者可以自己创建<code>DataSource.Factory</code></p>
-<p>Room持久化数据层提供与Paging library相关的dataSource相关的原生支持。对于通过Room从数据库中查询的数据，Room从Dao中返回一个DataSource.Factory，并将DataSource的实现类返回给用户。相应代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Query</span>(<span class="string">"SELECT * FROM COUNTRIES"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> DataSource.<span class="function">Factory&lt;Integer,Country&gt; <span class="title">getCountries</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
-
-<h3 id="PagedList"><a href="#PagedList" class="headerlink" title="PagedList"></a>PagedList</h3><p>PagedList是paging库的一个重要组成类，可以使得RecyclerView从DataSource中加载大量的数据。PagedList采用异步的方式将数据加载在界面中。</p>
-<h3 id="PagedListAdapter"><a href="#PagedListAdapter" class="headerlink" title="PagedListAdapter"></a>PagedListAdapter</h3><p>PagedListAdapter是一个<code>RecyclerView.Adapter</code>用于表示来自PagedList的数据。PagedListAdapter listens to PagedList loading callbacks as pages are loaded, and uses DiffUtil to compute fine grained updates as new PagedLists are received and then display the list to user in your UI with a recyclerView. ？？？</p>
-<h2 id="将架构组件添加到项目中"><a href="#将架构组件添加到项目中" class="headerlink" title="将架构组件添加到项目中"></a>将架构组件添加到项目中</h2><p>在build.gradle中添加下面的依赖</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"> &#x2F;&#x2F;recyclerView</span><br><span class="line"> implementation &#39;com.android.support:recyclerview-v7:27.1.0&#39;</span><br><span class="line"></span><br><span class="line"> &#x2F;&#x2F; ViewModel and LiveData</span><br><span class="line"> implementation &quot;android.arch.lifecycle:extensions:1.1.1&quot;</span><br><span class="line"> annotationProcessor &quot;android.arch.lifecycle:compiler:1.1.1&quot;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; Room</span><br><span class="line"> implementation &quot;android.arch.persistence.room:runtime:1.1.1&quot;</span><br><span class="line"> annotationProcessor &quot;android.arch.persistence.room:compiler:1.1.1&quot;</span><br><span class="line"></span><br><span class="line"> &#x2F;&#x2F; Paging</span><br><span class="line"> implementation &quot;android.arch.paging:runtime:1.0.1&quot;</span><br></pre></td></tr></table></figure>
-
-<h2 id="创建DataSource"><a href="#创建DataSource" class="headerlink" title="创建DataSource"></a>创建DataSource</h2><h3 id="创建实体"><a href="#创建实体" class="headerlink" title="创建实体"></a>创建实体</h3><h3 id="创建Dao层"><a href="#创建Dao层" class="headerlink" title="创建Dao层"></a>创建Dao层</h3><p>DataSource.Factory(在Room中实现)创建</p>
-<h3 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h3><h3 id="创建ViewModel"><a href="#创建ViewModel" class="headerlink" title="创建ViewModel"></a>创建ViewModel</h3><p>LivePagedListBuilder会使用</p>
-<p>LivePagedListBuilder需要创建PageList对象，当一个新的PagedList被创建出，Livedata会将新的PagedList传递到ViewModel中，相应的数据也将传送给UI，当UI观察到PagedList发生变化，会使用它的PagedListAdapter更新RecyclerView的界面，显示出PagedList中的数据。</p>
-<p>创建和配置LiveData，需要使用LivePagedBuilder以及DataSource.Factory,并对PagedList的部分属性进行设置，主要包括以下几个方法：</p>
-<ul>
-<li>setPageSize(int)：</li>
-<li>setPrefetchDistance(int)：</li>
-<li>setInitialLoadSizeHint(int)：设置页面中第一次显示的数量</li>
-<li>setEnablePlaceholders(boolean) ：</li>
-</ul>
-<p>在<code>onCreate</code>方法中，需要对ViewModel进行实例化，在ViewModel中LiveData类发送新的PagedList到ViewModel, 再相应地传递到UI中，UI观察到PagedList发生改变，会调用PagedListAdapter更新显示在RecyclerView中的数据。</p>
-<h2 id="创建Adapter"><a href="#创建Adapter" class="headerlink" title="创建Adapter"></a>创建Adapter</h2><p>使用PagedAdapter将PagedList数据与RecyclerView进行绑定，使用<code>DiffCallback</code>来帮助PagedAdapter区分不同的适配元素，在实现DiffCallback类的时候需要重写两个方法：</p>
-<ul>
-<li>areItemsTheSame:判断是否指向了同一个数据元素。</li>
-<li>areContentsTheSame:判断</li>
-</ul>
-
         </div>
         
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/public/2018/12/05/Android/%E6%A1%86%E6%9E%B6/AAC/Paging%E5%92%8CRoom%E4%BD%BF%E7%94%A8/#more">Read More</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/public/2018/10/22/Android/View/LayoutInflater%E4%BD%BF%E7%94%A8/" class="image is-7by1">
+            <img class="thumbnail" src="/public/thumbnail/img21.jpg" alt="LayoutInflater介绍与使用">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2018-10-21T16:00:00.000Z">2018-10-22</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/public/categories/Android/">Android</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    4 minutes read (About 567 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/public/2018/10/22/Android/View/LayoutInflater%E4%BD%BF%E7%94%A8/">LayoutInflater介绍与使用</a>
+            
+        </h1>
+        <div class="content">
+            <p>LayoutInflater用于给相应的View对象实例化一个layout(即：将一个xml文件转化为一个View对象),在开发过程中不会直接使用，而是通过Activity.getLayoutInflater()或者Context.getSystemService(Class)方法，获取一个标准的实例，该实例已经与当前Context相关联。</p>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/public/2018/10/22/Android/View/LayoutInflater%E4%BD%BF%E7%94%A8/#more">Read More</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/public/2018/09/01/Android/View/Materials%20Design/" class="image is-7by1">
+            <img class="thumbnail" src="/public/thumbnail/img22.jpg" alt="Materials Design 介绍与使用">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2018-08-31T16:00:00.000Z">2018-09-01</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/public/categories/Android/">Android</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    4 minutes read (About 605 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/public/2018/09/01/Android/View/Materials%20Design/">Materials Design 介绍与使用</a>
+            
+        </h1>
+        <div class="content">
+            <h2 id="CoordinatorLayout"><a href="#CoordinatorLayout" class="headerlink" title="CoordinatorLayout"></a>CoordinatorLayout</h2><p> CoordinatorLayout布局遵循Materials Design风格，可以实现各种控件之间的联动效果，在联动控件实现的过程中需要Behavior来协助。<br>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/public/2018/09/01/Android/View/Materials%20Design/#more">Read More</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/public/2018/08/09/Android/Android%E5%9F%BA%E7%A1%80/Android-ViewModel%E4%BB%8B%E7%BB%8D/" class="image is-7by1">
+            <img class="thumbnail" src="/public/thumbnail/img7.jpg" alt="Android生命周期感知组件">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2018-08-08T16:00:00.000Z">2018-08-09</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/public/categories/Android/">Android</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    6 minutes read (About 878 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/public/2018/08/09/Android/Android%E5%9F%BA%E7%A1%80/Android-ViewModel%E4%BB%8B%E7%BB%8D/">Android生命周期感知组件</a>
+            
+        </h1>
+        <div class="content">
+            <p>modified: 2018-08-09</p>
+<h1 id="Android生命周期感知组件介绍-Android-lifecycle-aware-components"><a href="#Android生命周期感知组件介绍-Android-lifecycle-aware-components" class="headerlink" title="Android生命周期感知组件介绍(Android lifecycle-aware components)"></a>Android生命周期感知组件介绍(Android lifecycle-aware components)</h1><h2 id="lifecycle-aware组件介绍"><a href="#lifecycle-aware组件介绍" class="headerlink" title="lifecycle-aware组件介绍"></a>lifecycle-aware组件介绍</h2>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/public/2018/08/09/Android/Android%E5%9F%BA%E7%A1%80/Android-ViewModel%E4%BB%8B%E7%BB%8D/#more">Read More</a>
+                </div>
+            </div>
+        </div>
         
         
     </div>
@@ -765,7 +726,7 @@
             
             <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
             
-            <li><a class="pagination-link has-text-black-ter" href="/public/page/10/">10</a></li>
+            <li><a class="pagination-link has-text-black-ter" href="/public/page/9/">9</a></li>
             
         </ul>
     </nav>
@@ -815,7 +776,7 @@
                     </p>
                     <a href="/public/archives">
                         <p class="title has-text-weight-normal">
-                            100
+                            81
                         </p>
                     </a>
                 </div>
@@ -823,11 +784,11 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Category
+                        Categories
                     </p>
                     <a href="/public/categories">
                         <p class="title has-text-weight-normal">
-                            1
+                            6
                         </p>
                     </a>
                 </div>
@@ -839,7 +800,7 @@
                     </p>
                     <a href="/public/tags">
                         <p class="title has-text-weight-normal">
-                            5
+                            7
                         </p>
                     </a>
                 </div>
@@ -919,7 +880,47 @@
                 <span class="level-item">Android</span>
             </span>
             <span class="level-end">
+                <span class="level-item tag">36</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/public/categories/Java/">
+            <span class="level-start">
+                <span class="level-item">Java</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">12</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/public/categories/Kotlin/">
+            <span class="level-start">
+                <span class="level-item">Kotlin</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/public/categories/Other/">
+            <span class="level-start">
+                <span class="level-item">Other</span>
+            </span>
+            <span class="level-end">
                 <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/public/categories/PAT/">
+            <span class="level-start">
+                <span class="level-item">PAT</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">8</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/public/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+            <span class="level-start">
+                <span class="level-item">数据结构</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">16</span>
             </span>
         </a></li>
             </ul>
@@ -932,7 +933,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/public/tags/Android/" style="font-size: 13.33px;">Android</a> <a href="/public/tags/error/" style="font-size: 10px;">error</a> <a href="/public/tags/git/" style="font-size: 10px;">git</a> <a href="/public/tags/pat/" style="font-size: 16.67px;">pat</a> <a href="/public/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 20px;">数据结构</a>
+        <a href="/public/tags/Android/" style="font-size: 20px;">Android</a> <a href="/public/tags/Git/" style="font-size: 12px;">Git</a> <a href="/public/tags/JNI/" style="font-size: 12px;">JNI</a> <a href="/public/tags/Java/" style="font-size: 16px;">Java</a> <a href="/public/tags/Kotlin/" style="font-size: 10px;">Kotlin</a> <a href="/public/tags/pat/" style="font-size: 14px;">pat</a> <a href="/public/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 18px;">数据结构</a>
     </div>
 </div>
     
@@ -947,18 +948,18 @@
         
         <article class="media">
             
-            <a href="/public/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-09-android-ViewModel-introduction/" class="media-left">
+            <a href="/public/2019/12/20/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Android lifecycle-aware components">
+                    <img class="thumbnail" src="/public/thumbnail/img35.jpg" alt="Retrofit 框架介绍与使用">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:21.663Z">2020-02-29</time></div>
-                    <a href="/public/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-09-android-ViewModel-introduction/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android lifecycle-aware components</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-19T16:00:00.000Z">2019-12-20</time></div>
+                    <a href="/public/2019/12/20/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Retrofit 框架介绍与使用</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/public/categories/Android/">Android</a>
                     </p>
                 </div>
             </div>
@@ -966,18 +967,18 @@
         
         <article class="media">
             
-            <a href="/public/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-01-android-broadcast-introduction/" class="media-left">
+            <a href="/public/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Android Broadcast介绍">
+                    <img class="thumbnail" src="/public/thumbnail/img66.jpg" alt="Kotlin Lambda表达式">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:21.654Z">2020-02-29</time></div>
-                    <a href="/public/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-01-android-broadcast-introduction/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android Broadcast介绍</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:23.103Z">2019-11-28</time></div>
+                    <a href="/public/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Kotlin Lambda表达式</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/public/categories/Kotlin/">Kotlin</a>
                     </p>
                 </div>
             </div>
@@ -985,18 +986,18 @@
         
         <article class="media">
             
-            <a href="/public/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-07-31-android-service-introduction/" class="media-left">
+            <a href="/public/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Android Service介绍">
+                    <img class="thumbnail" src="/public/thumbnail/img59.jpg" alt="加密算法">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:21.613Z">2020-02-29</time></div>
-                    <a href="/public/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-07-31-android-service-introduction/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android Service介绍</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:15.919Z">2019-11-28</time></div>
+                    <a href="/public/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/" class="title has-link-black-ter is-size-6 has-text-weight-normal">加密算法</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/public/categories/Java/">Java</a>
                     </p>
                 </div>
             </div>
@@ -1004,18 +1005,18 @@
         
         <article class="media">
             
-            <a href="/public/2020/02/29/Data_Structure/2017-08-28-data-structure-huffman-tree/" class="media-left">
+            <a href="/public/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/Java%E5%BC%95%E7%94%A8/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Huffman树的算法实现">
+                    <img class="thumbnail" src="/public/thumbnail/img54.jpg" alt="Java引用">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:09.033Z">2020-02-29</time></div>
-                    <a href="/public/2020/02/29/Data_Structure/2017-08-28-data-structure-huffman-tree/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Huffman树的算法实现</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:15.918Z">2019-11-28</time></div>
+                    <a href="/public/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/Java%E5%BC%95%E7%94%A8/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java引用</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/public/categories/Java/">Java</a>
                     </p>
                 </div>
             </div>
@@ -1023,18 +1024,18 @@
         
         <article class="media">
             
-            <a href="/public/2020/02/29/Data_Structure/2017-08-27-data-structure-heap-sort/" class="media-left">
+            <a href="/public/2019/11/28/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="堆排序">
+                    <img class="thumbnail" src="/public/thumbnail/img64.jpg" alt="Java代理模式">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:09.000Z">2020-02-29</time></div>
-                    <a href="/public/2020/02/29/Data_Structure/2017-08-27-data-structure-heap-sort/" class="title has-link-black-ter is-size-6 has-text-weight-normal">堆排序</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:18:36.264Z">2019-11-28</time></div>
+                    <a href="/public/2019/11/28/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java代理模式</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/public/categories/Java/">Java</a>
                     </p>
                 </div>
             </div>
@@ -1052,12 +1053,12 @@
         <ul class="menu-list">
         
         <li>
-            <a class="level is-marginless" href="/public/archives/2020/02/">
+            <a class="level is-marginless" href="/public/archives/2019/12/">
                 <span class="level-start">
-                    <span class="level-item">February 2020</span>
+                    <span class="level-item">December 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">29</span>
+                    <span class="level-item tag">1</span>
                 </span>
             </a>
         </li>
@@ -1068,7 +1069,18 @@
                     <span class="level-item">November 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">12</span>
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
                 </span>
             </a>
         </li>
@@ -1079,7 +1091,139 @@
                     <span class="level-item">September 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">59</span>
+                    <span class="level-item tag">27</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/08/">
+                <span class="level-start">
+                    <span class="level-item">August 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">5</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/12/">
+                <span class="level-start">
+                    <span class="level-item">December 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/09/">
+                <span class="level-start">
+                    <span class="level-item">September 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/08/">
+                <span class="level-start">
+                    <span class="level-item">August 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/07/">
+                <span class="level-start">
+                    <span class="level-item">July 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/06/">
+                <span class="level-start">
+                    <span class="level-item">June 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2017/08/">
+                <span class="level-start">
+                    <span class="level-item">August 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">14</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2017/07/">
+                <span class="level-start">
+                    <span class="level-item">July 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">11</span>
                 </span>
             </a>
         </li>
@@ -1100,20 +1244,34 @@
                 <div class="control">
                     <a class="tags has-addons" href="/public/tags/Android/">
                         <span class="tag">Android</span>
-                        <span class="tag is-grey">5</span>
+                        <span class="tag is-grey">35</span>
                     </a>
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/public/tags/error/">
-                        <span class="tag">error</span>
-                        <span class="tag is-grey">1</span>
+                    <a class="tags has-addons" href="/public/tags/Git/">
+                        <span class="tag">Git</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/public/tags/git/">
-                        <span class="tag">git</span>
+                    <a class="tags has-addons" href="/public/tags/JNI/">
+                        <span class="tag">JNI</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/Java/">
+                        <span class="tag">Java</span>
+                        <span class="tag is-grey">12</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/Kotlin/">
+                        <span class="tag">Kotlin</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -1156,18 +1314,18 @@
         
         <article class="media">
             
-            <a href="/public/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-09-android-ViewModel-introduction/" class="media-left">
+            <a href="/public/2019/12/20/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Android lifecycle-aware components">
+                    <img class="thumbnail" src="/public/thumbnail/img35.jpg" alt="Retrofit 框架介绍与使用">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:21.663Z">2020-02-29</time></div>
-                    <a href="/public/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-09-android-ViewModel-introduction/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android lifecycle-aware components</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-19T16:00:00.000Z">2019-12-20</time></div>
+                    <a href="/public/2019/12/20/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Retrofit 框架介绍与使用</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/public/categories/Android/">Android</a>
                     </p>
                 </div>
             </div>
@@ -1175,18 +1333,18 @@
         
         <article class="media">
             
-            <a href="/public/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-01-android-broadcast-introduction/" class="media-left">
+            <a href="/public/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Android Broadcast介绍">
+                    <img class="thumbnail" src="/public/thumbnail/img66.jpg" alt="Kotlin Lambda表达式">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:21.654Z">2020-02-29</time></div>
-                    <a href="/public/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-01-android-broadcast-introduction/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android Broadcast介绍</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:23.103Z">2019-11-28</time></div>
+                    <a href="/public/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Kotlin Lambda表达式</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/public/categories/Kotlin/">Kotlin</a>
                     </p>
                 </div>
             </div>
@@ -1194,18 +1352,18 @@
         
         <article class="media">
             
-            <a href="/public/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-07-31-android-service-introduction/" class="media-left">
+            <a href="/public/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Android Service介绍">
+                    <img class="thumbnail" src="/public/thumbnail/img59.jpg" alt="加密算法">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:21.613Z">2020-02-29</time></div>
-                    <a href="/public/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-07-31-android-service-introduction/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android Service介绍</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:15.919Z">2019-11-28</time></div>
+                    <a href="/public/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/" class="title has-link-black-ter is-size-6 has-text-weight-normal">加密算法</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/public/categories/Java/">Java</a>
                     </p>
                 </div>
             </div>
@@ -1213,18 +1371,18 @@
         
         <article class="media">
             
-            <a href="/public/2020/02/29/Data_Structure/2017-08-28-data-structure-huffman-tree/" class="media-left">
+            <a href="/public/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/Java%E5%BC%95%E7%94%A8/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Huffman树的算法实现">
+                    <img class="thumbnail" src="/public/thumbnail/img54.jpg" alt="Java引用">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:09.033Z">2020-02-29</time></div>
-                    <a href="/public/2020/02/29/Data_Structure/2017-08-28-data-structure-huffman-tree/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Huffman树的算法实现</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:15.918Z">2019-11-28</time></div>
+                    <a href="/public/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/Java%E5%BC%95%E7%94%A8/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java引用</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/public/categories/Java/">Java</a>
                     </p>
                 </div>
             </div>
@@ -1232,18 +1390,18 @@
         
         <article class="media">
             
-            <a href="/public/2020/02/29/Data_Structure/2017-08-27-data-structure-heap-sort/" class="media-left">
+            <a href="/public/2019/11/28/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="堆排序">
+                    <img class="thumbnail" src="/public/thumbnail/img64.jpg" alt="Java代理模式">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:09.000Z">2020-02-29</time></div>
-                    <a href="/public/2020/02/29/Data_Structure/2017-08-27-data-structure-heap-sort/" class="title has-link-black-ter is-size-6 has-text-weight-normal">堆排序</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:18:36.264Z">2019-11-28</time></div>
+                    <a href="/public/2019/11/28/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java代理模式</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/public/categories/Java/">Java</a>
                     </p>
                 </div>
             </div>
@@ -1261,12 +1419,12 @@
         <ul class="menu-list">
         
         <li>
-            <a class="level is-marginless" href="/public/archives/2020/02/">
+            <a class="level is-marginless" href="/public/archives/2019/12/">
                 <span class="level-start">
-                    <span class="level-item">February 2020</span>
+                    <span class="level-item">December 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">29</span>
+                    <span class="level-item tag">1</span>
                 </span>
             </a>
         </li>
@@ -1277,7 +1435,18 @@
                     <span class="level-item">November 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">12</span>
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
                 </span>
             </a>
         </li>
@@ -1288,7 +1457,139 @@
                     <span class="level-item">September 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">59</span>
+                    <span class="level-item tag">27</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/08/">
+                <span class="level-start">
+                    <span class="level-item">August 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">5</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/12/">
+                <span class="level-start">
+                    <span class="level-item">December 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/09/">
+                <span class="level-start">
+                    <span class="level-item">September 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/08/">
+                <span class="level-start">
+                    <span class="level-item">August 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/07/">
+                <span class="level-start">
+                    <span class="level-item">July 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/06/">
+                <span class="level-start">
+                    <span class="level-item">June 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2017/08/">
+                <span class="level-start">
+                    <span class="level-item">August 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">14</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2017/07/">
+                <span class="level-start">
+                    <span class="level-item">July 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">11</span>
                 </span>
             </a>
         </li>
@@ -1309,20 +1610,34 @@
                 <div class="control">
                     <a class="tags has-addons" href="/public/tags/Android/">
                         <span class="tag">Android</span>
-                        <span class="tag is-grey">5</span>
+                        <span class="tag is-grey">35</span>
                     </a>
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/public/tags/error/">
-                        <span class="tag">error</span>
-                        <span class="tag is-grey">1</span>
+                    <a class="tags has-addons" href="/public/tags/Git/">
+                        <span class="tag">Git</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/public/tags/git/">
-                        <span class="tag">git</span>
+                    <a class="tags has-addons" href="/public/tags/JNI/">
+                        <span class="tag">JNI</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/Java/">
+                        <span class="tag">Java</span>
+                        <span class="tag is-grey">12</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/Kotlin/">
+                        <span class="tag">Kotlin</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>

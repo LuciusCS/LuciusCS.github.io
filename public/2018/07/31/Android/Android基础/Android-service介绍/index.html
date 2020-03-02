@@ -1,0 +1,1505 @@
+<!DOCTYPE html>
+<html  lang="en">
+<head>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 4.2.0" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>Android Service介绍 - Android Development</title>
+
+
+    <meta name="description" content="Android Service介绍">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android Service介绍">
+<meta property="og:url" content="https://luciuscs.github.io/public/2018/07/31/Android/Android%E5%9F%BA%E7%A1%80/Android-service%E4%BB%8B%E7%BB%8D/index.html">
+<meta property="og:site_name" content="Android Development">
+<meta property="og:description" content="Android Service介绍">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://luciuscs.github.io/public/public/thumbnail/img4.jpg">
+<meta property="article:published_time" content="2018-07-30T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-03-02T10:51:38.090Z">
+<meta property="article:author" content="Lucius Zhao">
+<meta property="article:tag" content="Android">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://luciuscs.github.io/public/public/thumbnail/img4.jpg">
+
+
+
+
+
+
+
+<link rel="icon" href="/public/images/favicon.svg">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="/public/css/back-to-top.css">
+
+    
+    
+    
+    
+    
+    
+    
+    <link rel="stylesheet" href="/public/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+    
+    <script async="" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+
+
+<link rel="stylesheet" href="/public/css/style.css">
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/public/">
+            
+                <img src="/public/images/logo.svg" alt="Android Service介绍" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/public/">Home</a>
+                
+                <a class="navbar-item"
+                href="/public/archives">Archives</a>
+                
+                <a class="navbar-item"
+                href="/public/categories">Categories</a>
+                
+                <a class="navbar-item"
+                href="/public/tags">Tags</a>
+                
+                <a class="navbar-item"
+                href="/public/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
+                
+                <a class="navbar-item search" title="Search" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
+<div class="card">
+    
+    <div class="card-image">
+        <span  class="image is-7by1">
+            <img class="thumbnail" src="/public/thumbnail/img4.jpg" alt="Android Service介绍">
+        </span>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2018-07-30T16:00:00.000Z">2018-07-31</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/public/categories/Android/">Android</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    14 minutes read (About 2150 words)
+                </span>
+                
+                
+                <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
+                    <i class="far fa-eye"></i>
+                    <span id="busuanzi_value_page_pv">0</span> visits
+                </span>
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                Android Service介绍
+            
+        </h1>
+        <div class="content">
+            <h1 id="Android开发Service介绍"><a href="#Android开发Service介绍" class="headerlink" title="Android开发Service介绍"></a>Android开发Service介绍</h1><p>Service是应用的一个组件，可以在后台处理耗时操作，但没有用户界面，其他的组件可以启动Service,即使用户切换到其他的应用，Service依旧可以在后台运行。另外，一个组件可以绑定一个Service并与其进行通信（IPC机制）。例如：Service可以控制网络传输、播放音乐、对文件进行I/O操作，都可以在后台进行。</p>
+<h2 id="不同类型的Service介绍"><a href="#不同类型的Service介绍" class="headerlink" title="不同类型的Service介绍"></a>不同类型的Service介绍</h2><h3 id="Foreground-service"><a href="#Foreground-service" class="headerlink" title="Foreground service"></a>Foreground service</h3><p>Foreground service进行一些可以被用户看到的一些操作，例如：一个audio app会使用foreground service播放audio track,foreground service需要显示一个Notification,当用户切换到其他的应用时Foreground service依旧在后台运行。(音乐播放器类在后台播放，并在通知栏系显示的Service)</p>
+<h3 id="Background-service"><a href="#Background-service" class="headerlink" title="Background service"></a>Background service</h3><p>Background service进行的操作不会被用户感知，如：如果一个App使用Service对手机的存储空间进行进行压缩，会使用一个Background service。</p>
+<ul>
+<li>注：当App targets Api大于26时，如果App没有在前台运行，那么background service将会受到限制，应该使用schedule job进行替换。</li>
+</ul>
+<h3 id="Bound"><a href="#Bound" class="headerlink" title="Bound"></a>Bound</h3><p>当应用功能组件使用bindService时，这个Service就是Bound类型的。Bound service提供client-server接口使得组件和service可以进行通信，通过IPC机制发出请求，获取结果，Bound service存在运行的时间与绑定的它组件相同，多个组件可以绑定同一个service,当所有的组件解绑service时，service将被销毁。</p>
+<p>不管你的service是否启动、被绑定或者既启动也被绑定，所有的应用组件都可以使用Intent来启动，可以再manifest文件中将service设置为private,防止被其他的应用调用。</p>
+<h2 id="Service的使用"><a href="#Service的使用" class="headerlink" title="Service的使用"></a>Service的使用</h2><p>创建一个Service,需要创建Service的子类，并在其中重写回调函数。</p>
+<h3 id="函数的介绍"><a href="#函数的介绍" class="headerlink" title="函数的介绍"></a>函数的介绍</h3><h4 id="onStartCommend"><a href="#onStartCommend" class="headerlink" title="onStartCommend()"></a>onStartCommend()</h4><p>其他组件调用startService()方法启动Service时，会调用Service中onStartCommend()方法，当着一个方法执行时，service就启动了并在后台运行。如果自己实现了这一个方法，当任务结束时就需要自己调用stopSelf()或者stopService()方法，如果仅仅是要绑定服务，那么就不需要自己实现这一个方法。</p>
+<h4 id="onBind"><a href="#onBind" class="headerlink" title="onBind()"></a>onBind()</h4><p>其他组件调用bindService()来绑定服务时，会调用Service中的OnBind()方法。在实现这一个方法时，需要提供一个接口使得组件可以通过返回的IBinder与之进行通讯。<strong>在使用service时这一个方法都需要实现，如果service没有被绑定到其他组件上，返回值为null</strong></p>
+<h4 id="onCreate"><a href="#onCreate" class="headerlink" title="onCreate()"></a>onCreate()</h4><p>在service进行初始化的时候会调用这一个方法（在Service调用onStartCommand()或者onBinde()之前），如果service已经运行了，那么将不会调用这一个方法。</p>
+<h4 id="onDestory"><a href="#onDestory" class="headerlink" title="onDestory()"></a>onDestory()</h4><p>当服务不再使用或者将要销毁时，service需要实现这一个方法去清理资源，如：线程、注册的监听以及接收器等。</p>
+<h3 id="在menifest中声明一个service"><a href="#在menifest中声明一个service" class="headerlink" title="在menifest中声明一个service"></a>在menifest中声明一个service</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">manifest</span> <span class="attr">...</span> &gt;</span></span><br><span class="line">  ...</span><br><span class="line">  <span class="tag">&lt;<span class="name">application</span> <span class="attr">...</span> &gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">service</span> <span class="attr">android:name</span>=<span class="string">".ExampleService"</span> /&gt;</span></span><br><span class="line">      ...</span><br><span class="line">  <span class="tag">&lt;/<span class="name">application</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">manifest</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>注：为了保证App是安全的，需要使用显示调用的方法，启动一个service,而不是使用intent filter来启动。可以使用android:exported=false属性来防止外部应用启动此service</li>
+</ul>
+<h2 id="创建一个Started-service"><a href="#创建一个Started-service" class="headerlink" title="创建一个Started service"></a>创建一个Started service</h2><p>当一个服务被启动后，它与启动它的组件有着不同的生命周期，即使当启动service的组件被销毁了它依然可以在后台运行。因此，servive需要通过调用自身的stopSelf()来停止，或者通过其他组件调用stopService()。</p>
+<p>应用组件通过使用startService()启动service，通过Intent来启动特定的service并传递数据，servive可以在onStartCommand()方法中获取到intent中的数据。</p>
+<p>例如Actvivity需要将数据传递到线上数据库，这一个activity可以启动service组件，将数据通过Intent传递给startService (Intent service)，这一个service在onStartCommand()方法中获取到Intent中携带的数据，连接到网络并将数据传递到线上数据库，在数据传输完成后将会停止并销毁。</p>
+<ul>
+<li>注：service与应用运行在相同的进程中，当用户在与Activity进行交互的时候，service需要避免影响到Activity，需要在service中启动一个新的Thread。</li>
+</ul>
+<h3 id="两个可以继承启动的service类"><a href="#两个可以继承启动的service类" class="headerlink" title="两个可以继承启动的service类"></a>两个可以继承启动的service类</h3><h4 id="Service类"><a href="#Service类" class="headerlink" title="Service类"></a>Service类</h4><p>Service类是所有service的基类，当在继承这一个类的时候，<strong>需要创建一个新的线程，使得service可以再其中完成它的工作</strong> <strong><em>（很重要）</em></strong>，service会默认在应用的主线程中使用，这样会使得应用中的activity变得缓慢。</p>
+<h4 id="IntentService类"><a href="#IntentService类" class="headerlink" title="IntentService类"></a>IntentService类</h4><p>IntentService是Service的一个子类，其调用工作进程来处理在service启动时的请求操作，当不需要service同时处理多个请求时可以使用IntentService。实现onHandlerIntent()方法，接收到请求的intent，在后台完成任务。</p>
+<h3 id="继承IntentService类"><a href="#继承IntentService类" class="headerlink" title="继承IntentService类"></a>继承IntentService类</h3><p>在大多数情况下启动一个service不需要同时处理复杂的工作，所以推荐使用IntentService类</p>
+<p><strong>IntentService类所做的工作</strong></p>
+<ul>
+<li>创建一个默认的工作线程处理所有传递到onStartCommand()方法中的intent，从应用主线程中分离。</li>
+<li>创建一个工作队列，每一次传递一个intent到onHandleIntent方法中，所以无需担心多线程的问题。</li>
+<li>当所有的请求都被处理后，停止service，不需要调用stopSelf()方法来停止service。</li>
+<li>提供onBind()的默认实现方法，并返回null。</li>
+<li>提供onStartCommand()的默认实现方法，并将intent传递到工作队列，然后传递到onHandleIntent()的实现方法中。</li>
+</ul>
+<p>为了完成client传递的任务，需要实现onHandleIntent()方法，同时需要为定义的service添加一个构造方法。</p>
+<h2 id="创建一个Bound-Service"><a href="#创建一个Bound-Service" class="headerlink" title="创建一个Bound Service"></a>创建一个Bound Service</h2><p>Bound Service允许应用组件调用bindService()绑定到service上，它通常不允许使用startService()来创建Service。当需要service与其他应用组件进行信息交换或者将自己的应用的function，通过IPC暴露给其他应用调用时，使用Bound Service。</p>
+<h2 id="给用户发送notifications"><a href="#给用户发送notifications" class="headerlink" title="给用户发送notifications"></a>给用户发送notifications</h2><p>当一个服务在运行时，可以通过Toast Notifications或者Status Bar Notification向用户发通知。Toast Notification就是在Activity中使用的普通Toast,Status Bar可以有一个图标以及信息，用户可以点击启动相应的activity</p>
+<h2 id="运行foreground-service"><a href="#运行foreground-service" class="headerlink" title="运行foreground service"></a>运行foreground service</h2><p>foreground service可以被用户感知，即使在系统内存偏低的状态下也不会被杀死。foreground service需要在Status Bar中提供一个notification,除非这一个service被杀死，否则这个notification不会消失。</p>
+<p><strong>谨慎使用foreground service 当需要执行一项需要被用户感知的任务时，使用foreground service，它需要在Status Bar中显示一条notification，优先级设置为PRIORITY_LOW或者高一点的优先级。</strong></p>
+<p>让service运行在foreground，需要调用startForeground (int id, Notification notification)，第一个参数是Notification的唯一标识符ID。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#x2F;&#x2F;代码</span><br></pre></td></tr></table></figure>
+
+<h2 id="service的生命周期"><a href="#service的生命周期" class="headerlink" title="service的生命周期"></a>service的生命周期</h2><p>service的生命周期从创建至销毁有两种情况</p>
+<h3 id="通过调用startService-创建service"><a href="#通过调用startService-创建service" class="headerlink" title="通过调用startService()创建service"></a>通过调用startService()创建service</h3><p>其他组件调用startService()会创建一个service，以这种方式启动的service需要主动停止，否则将会一直存在，service自身可以调用stopSelf()，其他组件可以调用stopService()方式来实现，当service停止后，系统将会销毁这一个service</p>
+<h3 id="通过调用bindService-创建service"><a href="#通过调用bindService-创建service" class="headerlink" title="通过调用bindService()创建service"></a>通过调用bindService()创建service</h3><p>其他组件调用bindService()方法创建一个service,启动service的客户端（组件）通过IBinder接口与service进行信息的交互，客户端可以通过调用unbindService()方法来取消与service之间的联系。多个客户端通过调用bindService()绑定同一个service,只有所有的客户端调用unBindService()方法后，service才会被系统销毁，而不能通过调用stopSelf()或者stopService()方法。</p>
+<p><img src="/source/img/201807/service_lifecycle.png" alt=""></p>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/public/tags/Android/" rel="tag">Android</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        <div class="social-share"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
+<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">Like this article? Support the author with</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>Alipay</span>
+    <div class="qrcode"><img src="/public/images/alipay_donate.png" alt="Alipay"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>Wechat</span>
+    <div class="qrcode"><img src="/public/images/wechat_donate.png" alt="Wechat"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/public/2018/08/01/Android/Android%E5%9F%BA%E7%A1%80/Android-broadcast%E4%BB%8B%E7%BB%8D/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">Android Broadcast介绍</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/public/2018/07/30/Android/View/%E4%BD%BF%E7%94%A8RecyclerView%E5%92%8CSearchView%E5%AE%9E%E7%8E%B0%E6%9F%A5%E6%89%BE%E5%88%A0%E9%99%A4/">
+                <span class="level-item">使用SearchView以及RecyclerView实现条目删选</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">Comments</h3>
+        
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+	var gitment = new Gitment({
+		id: '8fab339b4cb00c13fc3cc6ddc74a31cf',
+		owner: 'LuciusCS',
+		repo: 'https://github.com/LuciusCS/LuciusCS.github.io',
+		oauth: {
+			client_id: 'f405db0bc334c654cb02',
+			client_secret: 'f1658ea7679789bb0b8f4c38bd46264eade59a9b',
+		},
+	})
+	gitment.render('comment-container')
+</script>
+
+    </div>
+</div>
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left is-sticky">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                    <figure class="image is-128x128 has-mb-6">
+                        <img class="is-rounded" src="https://www.gravatar.com/avatar/5f88f4a896dde4ec7ad915a606b0faa9?s=128" alt="Lucius">
+                    </figure>
+                    
+                    <p class="is-size-4 is-block">
+                        Lucius
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        Android Developer
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Qingdao</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Posts
+                    </p>
+                    <a href="/public/archives">
+                        <p class="title has-text-weight-normal">
+                            81
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Categories
+                    </p>
+                    <a href="/public/categories">
+                        <p class="title has-text-weight-normal">
+                            6
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Tags
+                    </p>
+                    <a href="/public/tags">
+                        <p class="title has-text-weight-normal">
+                            7
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/LuciusCS" target="_blank" rel="noopener">
+                Follow</a>
+        </div>
+        
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="Github" href="https://github.com/LuciusCS">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+
+    <div class="card widget" id="toc">
+        <div class="card-content">
+            <div class="menu">
+                <h3 class="menu-label">
+                    Catalogue
+                </h3>
+                <ul class="menu-list"><li>
+        <a class="is-flex" href="#Android开发Service介绍">
+        <span class="has-mr-6">1</span>
+        <span>Android开发Service介绍</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#不同类型的Service介绍">
+        <span class="has-mr-6">1.1</span>
+        <span>不同类型的Service介绍</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#Foreground-service">
+        <span class="has-mr-6">1.1.1</span>
+        <span>Foreground service</span>
+        </a></li><li>
+        <a class="is-flex" href="#Background-service">
+        <span class="has-mr-6">1.1.2</span>
+        <span>Background service</span>
+        </a></li><li>
+        <a class="is-flex" href="#Bound">
+        <span class="has-mr-6">1.1.3</span>
+        <span>Bound</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#Service的使用">
+        <span class="has-mr-6">1.2</span>
+        <span>Service的使用</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#函数的介绍">
+        <span class="has-mr-6">1.2.1</span>
+        <span>函数的介绍</span>
+        </a></li><li>
+        <a class="is-flex" href="#在menifest中声明一个service">
+        <span class="has-mr-6">1.2.2</span>
+        <span>在menifest中声明一个service</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#创建一个Started-service">
+        <span class="has-mr-6">1.3</span>
+        <span>创建一个Started service</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#两个可以继承启动的service类">
+        <span class="has-mr-6">1.3.1</span>
+        <span>两个可以继承启动的service类</span>
+        </a></li><li>
+        <a class="is-flex" href="#继承IntentService类">
+        <span class="has-mr-6">1.3.2</span>
+        <span>继承IntentService类</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#创建一个Bound-Service">
+        <span class="has-mr-6">1.4</span>
+        <span>创建一个Bound Service</span>
+        </a></li><li>
+        <a class="is-flex" href="#给用户发送notifications">
+        <span class="has-mr-6">1.5</span>
+        <span>给用户发送notifications</span>
+        </a></li><li>
+        <a class="is-flex" href="#运行foreground-service">
+        <span class="has-mr-6">1.6</span>
+        <span>运行foreground service</span>
+        </a></li><li>
+        <a class="is-flex" href="#service的生命周期">
+        <span class="has-mr-6">1.7</span>
+        <span>service的生命周期</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#通过调用startService-创建service">
+        <span class="has-mr-6">1.7.1</span>
+        <span>通过调用startService()创建service</span>
+        </a></li><li>
+        <a class="is-flex" href="#通过调用bindService-创建service">
+        <span class="has-mr-6">1.7.2</span>
+        <span>通过调用bindService()创建service</span>
+        </a></li></ul></li></ul></li></ul>
+            </div>
+        </div>
+    </div>
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Links
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener">
+                    <span class="level-left">
+                        <span class="level-item">Hexo</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">hexo.io</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://github.com/ppoffice" target="_blank" rel="noopener">
+                    <span class="level-left">
+                        <span class="level-item">PPOffice</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">github.com</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Categories
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/public/categories/Android/">
+            <span class="level-start">
+                <span class="level-item">Android</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">36</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/public/categories/Java/">
+            <span class="level-start">
+                <span class="level-item">Java</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">12</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/public/categories/Kotlin/">
+            <span class="level-start">
+                <span class="level-item">Kotlin</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/public/categories/Other/">
+            <span class="level-start">
+                <span class="level-item">Other</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/public/categories/PAT/">
+            <span class="level-start">
+                <span class="level-item">PAT</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">8</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/public/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+            <span class="level-start">
+                <span class="level-item">数据结构</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">16</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Tag Cloud
+        </h3>
+        <a href="/public/tags/Android/" style="font-size: 20px;">Android</a> <a href="/public/tags/Git/" style="font-size: 12px;">Git</a> <a href="/public/tags/JNI/" style="font-size: 12px;">JNI</a> <a href="/public/tags/Java/" style="font-size: 16px;">Java</a> <a href="/public/tags/Kotlin/" style="font-size: 10px;">Kotlin</a> <a href="/public/tags/pat/" style="font-size: 14px;">pat</a> <a href="/public/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 18px;">数据结构</a>
+    </div>
+</div>
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen is-sticky">
+        
+            <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/public/2019/12/20/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/public/thumbnail/img35.jpg" alt="Retrofit 框架介绍与使用">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-19T16:00:00.000Z">2019-12-20</time></div>
+                    <a href="/public/2019/12/20/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Retrofit 框架介绍与使用</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/public/categories/Android/">Android</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/public/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/public/thumbnail/img66.jpg" alt="Kotlin Lambda表达式">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:23.103Z">2019-11-28</time></div>
+                    <a href="/public/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Kotlin Lambda表达式</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/public/categories/Kotlin/">Kotlin</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/public/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/public/thumbnail/img59.jpg" alt="加密算法">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:15.919Z">2019-11-28</time></div>
+                    <a href="/public/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/" class="title has-link-black-ter is-size-6 has-text-weight-normal">加密算法</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/public/categories/Java/">Java</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/public/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/Java%E5%BC%95%E7%94%A8/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/public/thumbnail/img54.jpg" alt="Java引用">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:15.918Z">2019-11-28</time></div>
+                    <a href="/public/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/Java%E5%BC%95%E7%94%A8/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java引用</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/public/categories/Java/">Java</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/public/2019/11/28/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/public/thumbnail/img64.jpg" alt="Java代理模式">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:18:36.264Z">2019-11-28</time></div>
+                    <a href="/public/2019/11/28/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java代理模式</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/public/categories/Java/">Java</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Archives
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/12/">
+                <span class="level-start">
+                    <span class="level-item">December 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/11/">
+                <span class="level-start">
+                    <span class="level-item">November 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/09/">
+                <span class="level-start">
+                    <span class="level-item">September 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">27</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/08/">
+                <span class="level-start">
+                    <span class="level-item">August 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">5</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/12/">
+                <span class="level-start">
+                    <span class="level-item">December 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/09/">
+                <span class="level-start">
+                    <span class="level-item">September 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/08/">
+                <span class="level-start">
+                    <span class="level-item">August 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/07/">
+                <span class="level-start">
+                    <span class="level-item">July 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/06/">
+                <span class="level-start">
+                    <span class="level-item">June 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2017/08/">
+                <span class="level-start">
+                    <span class="level-item">August 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">14</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2017/07/">
+                <span class="level-start">
+                    <span class="level-item">July 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">11</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/Android/">
+                        <span class="tag">Android</span>
+                        <span class="tag is-grey">35</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/Git/">
+                        <span class="tag">Git</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/JNI/">
+                        <span class="tag">JNI</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/Java/">
+                        <span class="tag">Java</span>
+                        <span class="tag is-grey">12</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/Kotlin/">
+                        <span class="tag">Kotlin</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/pat/">
+                        <span class="tag">pat</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                        <span class="tag">数据结构</span>
+                        <span class="tag is-grey">16</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right is-sticky">
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/public/2019/12/20/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/public/thumbnail/img35.jpg" alt="Retrofit 框架介绍与使用">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-19T16:00:00.000Z">2019-12-20</time></div>
+                    <a href="/public/2019/12/20/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Retrofit 框架介绍与使用</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/public/categories/Android/">Android</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/public/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/public/thumbnail/img66.jpg" alt="Kotlin Lambda表达式">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:23.103Z">2019-11-28</time></div>
+                    <a href="/public/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Kotlin Lambda表达式</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/public/categories/Kotlin/">Kotlin</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/public/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/public/thumbnail/img59.jpg" alt="加密算法">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:15.919Z">2019-11-28</time></div>
+                    <a href="/public/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/" class="title has-link-black-ter is-size-6 has-text-weight-normal">加密算法</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/public/categories/Java/">Java</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/public/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/Java%E5%BC%95%E7%94%A8/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/public/thumbnail/img54.jpg" alt="Java引用">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:15.918Z">2019-11-28</time></div>
+                    <a href="/public/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/Java%E5%BC%95%E7%94%A8/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java引用</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/public/categories/Java/">Java</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/public/2019/11/28/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/public/thumbnail/img64.jpg" alt="Java代理模式">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:18:36.264Z">2019-11-28</time></div>
+                    <a href="/public/2019/11/28/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java代理模式</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/public/categories/Java/">Java</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Archives
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/12/">
+                <span class="level-start">
+                    <span class="level-item">December 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/11/">
+                <span class="level-start">
+                    <span class="level-item">November 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/09/">
+                <span class="level-start">
+                    <span class="level-item">September 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">27</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/08/">
+                <span class="level-start">
+                    <span class="level-item">August 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">5</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/12/">
+                <span class="level-start">
+                    <span class="level-item">December 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/09/">
+                <span class="level-start">
+                    <span class="level-item">September 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/08/">
+                <span class="level-start">
+                    <span class="level-item">August 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/07/">
+                <span class="level-start">
+                    <span class="level-item">July 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/06/">
+                <span class="level-start">
+                    <span class="level-item">June 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2017/08/">
+                <span class="level-start">
+                    <span class="level-item">August 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">14</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2017/07/">
+                <span class="level-start">
+                    <span class="level-item">July 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">11</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/Android/">
+                        <span class="tag">Android</span>
+                        <span class="tag is-grey">35</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/Git/">
+                        <span class="tag">Git</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/JNI/">
+                        <span class="tag">JNI</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/Java/">
+                        <span class="tag">Java</span>
+                        <span class="tag is-grey">12</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/Kotlin/">
+                        <span class="tag">Kotlin</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/pat/">
+                        <span class="tag">pat</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                        <span class="tag">数据结构</span>
+                        <span class="tag is-grey">16</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/public/">
+                
+                    <img src="/public/images/logo.svg" alt="Android Service介绍" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2020 Lucius Zhao&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a>
+                
+                <br>
+                <span id="busuanzi_container_site_uv">
+                Visited by <span id="busuanzi_value_site_uv">0</span> users
+                </span>
+                <span id="busuanzi_container_site_pv">
+                <span id="busuanzi_value_site_pv">0</span> visits
+                </span>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("en");</script>
+
+
+<script>
+var IcarusThemeSettings = {
+    site: {
+        url: 'https://luciuscs.github.io/public',
+        external_link: {"enable":true,"exclude":[]}
+    },
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+
+
+<script src="/public/js/animation.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/public/js/gallery.js" defer></script>
+
+
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+
+<a id="back-to-top" title="Back to Top" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/public/js/back-to-top.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/public/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/public/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/public/js/insight.js" defer></script>
+<link rel="stylesheet" href="/public/css/search.css">
+<link rel="stylesheet" href="/public/css/insight.css">
+    
+</body>
+</html>

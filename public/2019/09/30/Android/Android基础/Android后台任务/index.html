@@ -7,22 +7,23 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>Android/Android基础/Android后台任务 - Android Development</title>
+<title>Android后台处理 - Android Development</title>
 
 
-    <meta name="description" content="Android后台处理介绍Android手机应用通过主线程来控制UI，包括计算以及View绘制；当有太多的工作在主线程中进行，会造成App假死或者运行缓慢，会给用户较差的体验。很多耗时操作包括编码与解码Bitmap、读取存储器内容或者网络处理工作可以在一个独立的后台进程中进行。 推荐在后台进行处理的三种情况App处理操作是否可以滞后进行，或者需要实时处理例如：当用户需要获取数据并显示时，不能将此数">
+    <meta name="description" content="Android后台处理介绍">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android&#x2F;Android基础&#x2F;Android后台任务">
+<meta property="og:title" content="Android后台处理">
 <meta property="og:url" content="https://luciuscs.github.io/public/2019/09/30/Android/Android%E5%9F%BA%E7%A1%80/Android%E5%90%8E%E5%8F%B0%E4%BB%BB%E5%8A%A1/index.html">
 <meta property="og:site_name" content="Android Development">
-<meta property="og:description" content="Android后台处理介绍Android手机应用通过主线程来控制UI，包括计算以及View绘制；当有太多的工作在主线程中进行，会造成App假死或者运行缓慢，会给用户较差的体验。很多耗时操作包括编码与解码Bitmap、读取存储器内容或者网络处理工作可以在一个独立的后台进程中进行。 推荐在后台进行处理的三种情况App处理操作是否可以滞后进行，或者需要实时处理例如：当用户需要获取数据并显示时，不能将此数">
+<meta property="og:description" content="Android后台处理介绍">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://luciuscs.github.io/public/images/og_image.png">
-<meta property="article:published_time" content="2019-09-30T08:26:59.176Z">
-<meta property="article:modified_time" content="2019-09-30T08:28:42.954Z">
+<meta property="og:image" content="https://luciuscs.github.io/public/public/thumbnail/img9.jpg">
+<meta property="article:published_time" content="2019-09-29T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-03-02T05:55:37.391Z">
 <meta property="article:author" content="Lucius Zhao">
+<meta property="article:tag" content="Android">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://luciuscs.github.io/public/images/og_image.png">
+<meta name="twitter:image" content="https://luciuscs.github.io/public/public/thumbnail/img9.jpg">
 
 
 
@@ -80,7 +81,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/public/">
             
-                <img src="/public/images/logo.svg" alt="Android/Android基础/Android后台任务" height="28">
+                <img src="/public/images/logo.svg" alt="Android后台处理" height="28">
             
             </a>
         </div>
@@ -108,6 +109,10 @@
             <div class="navbar-end">
                 
                 
+                <a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
                 
                 <a class="navbar-item search" title="Search" href="javascript:;">
                     <i class="fas fa-search"></i>
@@ -124,17 +129,27 @@
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
 <div class="card">
     
+    <div class="card-image">
+        <span  class="image is-7by1">
+            <img class="thumbnail" src="/public/thumbnail/img9.jpg" alt="Android后台处理">
+        </span>
+    </div>
+    
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-30T08:26:59.176Z">2019-09-30</time>
+                <time class="level-item has-text-grey" datetime="2019-09-29T16:00:00.000Z">2019-09-30</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/public/categories/Android/">Android</a>
+                </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    6 minutes read (About 904 words)
+                    6 minutes read (About 905 words)
                 </span>
                 
                 
@@ -148,11 +163,12 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                Android/Android基础/Android后台任务
+                Android后台处理
             
         </h1>
         <div class="content">
             <h1 id="Android后台处理介绍"><a href="#Android后台处理介绍" class="headerlink" title="Android后台处理介绍"></a>Android后台处理介绍</h1><p>Android手机应用通过主线程来控制UI，包括计算以及View绘制；当有太多的工作在主线程中进行，会造成App假死或者运行缓慢，会给用户较差的体验。很多耗时操作包括编码与解码Bitmap、读取存储器内容或者网络处理工作可以在一个独立的后台进程中进行。</p>
+<a id="more"></a>
 <h2 id="推荐在后台进行处理的三种情况"><a href="#推荐在后台进行处理的三种情况" class="headerlink" title="推荐在后台进行处理的三种情况"></a>推荐在后台进行处理的三种情况</h2><h3 id="App处理操作是否可以滞后进行，或者需要实时处理"><a href="#App处理操作是否可以滞后进行，或者需要实时处理" class="headerlink" title="App处理操作是否可以滞后进行，或者需要实时处理"></a>App处理操作是否可以滞后进行，或者需要实时处理</h3><p>例如：当用户需要获取数据并显示时，不能将此数据获取放在后台；如果需要将App输出的log日志传递到服务器中，则需要将传输工作放置在后台中进行</p>
 <h3 id="App的处理操作开始的时候，Android操作系统是否需要将App进行“保活”（Keep-Alive）处理"><a href="#App的处理操作开始的时候，Android操作系统是否需要将App进行“保活”（Keep-Alive）处理" class="headerlink" title="App的处理操作开始的时候，Android操作系统是否需要将App进行“保活”（Keep Alive）处理"></a>App的处理操作开始的时候，Android操作系统是否需要将App进行“保活”（Keep Alive）处理</h3><p>例如：当对Bitmap进行解码显示处理的时候，通常需要App保持运行；当使用手机播放器进行音乐播放的时候,手机播放器需要可以再后台运行。</p>
 <h3 id="App操作处理是否是由系统进行触发"><a href="#App操作处理是否是由系统进行触发" class="headerlink" title="App操作处理是否是由系统进行触发"></a>App操作处理是否是由系统进行触发</h3><p>系统触发的内容包括：手机网络状态、电量状态、存储器容量以及其他的触发。例如：当你需要在手机处于网络可应用的状态下与服务器进行通信，如果此时App进程已经死掉，你需要重新启动一个。</p>
@@ -169,6 +185,15 @@
 <li>Android 8.0(Api 26)限制更多的后台操作，包括后台获取地址信息以及释放缓存。</li>
 </ul>
 
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/public/tags/Android/" rel="tag">Android</a>
+                </div>
+            </div>
         </div>
         
         
@@ -219,14 +244,14 @@
         <div class="level-start">
             <a class="level level-item has-link-grey  article-nav-prev" href="/public/2019/09/30/Android/Advanced/%E5%BA%94%E7%94%A8%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B/">
                 <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">Android/Advanced/应用启动流程</span>
+                <span class="level-item">Android应用启动流程</span>
             </a>
         </div>
         
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/public/2019/09/30/Android/%E6%A1%86%E6%9E%B6/AAC/WorkManager%E4%BB%8B%E7%BB%8D/">
-                <span class="level-item">Android/框架/AAC/WorkManager介绍</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/public/2019/09/30/Android/View/ActionBar%E5%92%8CToolBar%E7%9A%84%E4%BD%BF%E7%94%A8/">
+                <span class="level-item">ActionBar和ToolBar的使用</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -303,7 +328,7 @@
                     </p>
                     <a href="/public/archives">
                         <p class="title has-text-weight-normal">
-                            100
+                            81
                         </p>
                     </a>
                 </div>
@@ -311,11 +336,11 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Category
+                        Categories
                     </p>
                     <a href="/public/categories">
                         <p class="title has-text-weight-normal">
-                            1
+                            6
                         </p>
                     </a>
                 </div>
@@ -327,7 +352,7 @@
                     </p>
                     <a href="/public/tags">
                         <p class="title has-text-weight-normal">
-                            5
+                            7
                         </p>
                     </a>
                 </div>
@@ -356,6 +381,54 @@
 </div>
     
         
+
+    <div class="card widget" id="toc">
+        <div class="card-content">
+            <div class="menu">
+                <h3 class="menu-label">
+                    Catalogue
+                </h3>
+                <ul class="menu-list"><li>
+        <a class="is-flex" href="#Android后台处理介绍">
+        <span class="has-mr-6">1</span>
+        <span>Android后台处理介绍</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#推荐在后台进行处理的三种情况">
+        <span class="has-mr-6">1.1</span>
+        <span>推荐在后台进行处理的三种情况</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#App处理操作是否可以滞后进行，或者需要实时处理">
+        <span class="has-mr-6">1.1.1</span>
+        <span>App处理操作是否可以滞后进行，或者需要实时处理</span>
+        </a></li><li>
+        <a class="is-flex" href="#App的处理操作开始的时候，Android操作系统是否需要将App进行“保活”（Keep-Alive）处理">
+        <span class="has-mr-6">1.1.2</span>
+        <span>App的处理操作开始的时候，Android操作系统是否需要将App进行“保活”（Keep Alive）处理</span>
+        </a></li><li>
+        <a class="is-flex" href="#App操作处理是否是由系统进行触发">
+        <span class="has-mr-6">1.1.3</span>
+        <span>App操作处理是否是由系统进行触发</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#线程池">
+        <span class="has-mr-6">1.2</span>
+        <span>线程池</span>
+        </a></li><li>
+        <a class="is-flex" href="#Foreground-Service操作">
+        <span class="has-mr-6">1.3</span>
+        <span>Foreground Service操作</span>
+        </a></li><li>
+        <a class="is-flex" href="#Workmanager">
+        <span class="has-mr-6">1.4</span>
+        <span>Workmanager</span>
+        </a></li><li>
+        <a class="is-flex" href="#后台进程操作的限制">
+        <span class="has-mr-6">1.5</span>
+        <span>后台进程操作的限制</span>
+        </a></li></ul></li></ul>
+            </div>
+        </div>
+    </div>
+
     
         <div class="card widget">
     <div class="card-content">
@@ -407,7 +480,47 @@
                 <span class="level-item">Android</span>
             </span>
             <span class="level-end">
+                <span class="level-item tag">36</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/public/categories/Java/">
+            <span class="level-start">
+                <span class="level-item">Java</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">12</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/public/categories/Kotlin/">
+            <span class="level-start">
+                <span class="level-item">Kotlin</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/public/categories/Other/">
+            <span class="level-start">
+                <span class="level-item">Other</span>
+            </span>
+            <span class="level-end">
                 <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/public/categories/PAT/">
+            <span class="level-start">
+                <span class="level-item">PAT</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">8</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/public/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+            <span class="level-start">
+                <span class="level-item">数据结构</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">16</span>
             </span>
         </a></li>
             </ul>
@@ -420,7 +533,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/public/tags/Android/" style="font-size: 13.33px;">Android</a> <a href="/public/tags/error/" style="font-size: 10px;">error</a> <a href="/public/tags/git/" style="font-size: 10px;">git</a> <a href="/public/tags/pat/" style="font-size: 16.67px;">pat</a> <a href="/public/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 20px;">数据结构</a>
+        <a href="/public/tags/Android/" style="font-size: 20px;">Android</a> <a href="/public/tags/Git/" style="font-size: 12px;">Git</a> <a href="/public/tags/JNI/" style="font-size: 12px;">JNI</a> <a href="/public/tags/Java/" style="font-size: 16px;">Java</a> <a href="/public/tags/Kotlin/" style="font-size: 10px;">Kotlin</a> <a href="/public/tags/pat/" style="font-size: 14px;">pat</a> <a href="/public/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 18px;">数据结构</a>
     </div>
 </div>
     
@@ -435,18 +548,18 @@
         
         <article class="media">
             
-            <a href="/public/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-09-android-ViewModel-introduction/" class="media-left">
+            <a href="/public/2019/12/20/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Android lifecycle-aware components">
+                    <img class="thumbnail" src="/public/thumbnail/img35.jpg" alt="Retrofit 框架介绍与使用">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:21.663Z">2020-02-29</time></div>
-                    <a href="/public/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-09-android-ViewModel-introduction/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android lifecycle-aware components</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-19T16:00:00.000Z">2019-12-20</time></div>
+                    <a href="/public/2019/12/20/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Retrofit 框架介绍与使用</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/public/categories/Android/">Android</a>
                     </p>
                 </div>
             </div>
@@ -454,18 +567,18 @@
         
         <article class="media">
             
-            <a href="/public/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-01-android-broadcast-introduction/" class="media-left">
+            <a href="/public/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Android Broadcast介绍">
+                    <img class="thumbnail" src="/public/thumbnail/img66.jpg" alt="Kotlin Lambda表达式">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:21.654Z">2020-02-29</time></div>
-                    <a href="/public/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-01-android-broadcast-introduction/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android Broadcast介绍</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:23.103Z">2019-11-28</time></div>
+                    <a href="/public/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Kotlin Lambda表达式</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/public/categories/Kotlin/">Kotlin</a>
                     </p>
                 </div>
             </div>
@@ -473,18 +586,18 @@
         
         <article class="media">
             
-            <a href="/public/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-07-31-android-service-introduction/" class="media-left">
+            <a href="/public/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Android Service介绍">
+                    <img class="thumbnail" src="/public/thumbnail/img59.jpg" alt="加密算法">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:21.613Z">2020-02-29</time></div>
-                    <a href="/public/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-07-31-android-service-introduction/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android Service介绍</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:15.919Z">2019-11-28</time></div>
+                    <a href="/public/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/" class="title has-link-black-ter is-size-6 has-text-weight-normal">加密算法</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/public/categories/Java/">Java</a>
                     </p>
                 </div>
             </div>
@@ -492,18 +605,18 @@
         
         <article class="media">
             
-            <a href="/public/2020/02/29/Data_Structure/2017-08-28-data-structure-huffman-tree/" class="media-left">
+            <a href="/public/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/Java%E5%BC%95%E7%94%A8/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Huffman树的算法实现">
+                    <img class="thumbnail" src="/public/thumbnail/img54.jpg" alt="Java引用">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:09.033Z">2020-02-29</time></div>
-                    <a href="/public/2020/02/29/Data_Structure/2017-08-28-data-structure-huffman-tree/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Huffman树的算法实现</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:15.918Z">2019-11-28</time></div>
+                    <a href="/public/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/Java%E5%BC%95%E7%94%A8/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java引用</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/public/categories/Java/">Java</a>
                     </p>
                 </div>
             </div>
@@ -511,18 +624,18 @@
         
         <article class="media">
             
-            <a href="/public/2020/02/29/Data_Structure/2017-08-27-data-structure-heap-sort/" class="media-left">
+            <a href="/public/2019/11/28/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="堆排序">
+                    <img class="thumbnail" src="/public/thumbnail/img64.jpg" alt="Java代理模式">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:09.000Z">2020-02-29</time></div>
-                    <a href="/public/2020/02/29/Data_Structure/2017-08-27-data-structure-heap-sort/" class="title has-link-black-ter is-size-6 has-text-weight-normal">堆排序</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:18:36.264Z">2019-11-28</time></div>
+                    <a href="/public/2019/11/28/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java代理模式</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/public/categories/Java/">Java</a>
                     </p>
                 </div>
             </div>
@@ -540,12 +653,12 @@
         <ul class="menu-list">
         
         <li>
-            <a class="level is-marginless" href="/public/archives/2020/02/">
+            <a class="level is-marginless" href="/public/archives/2019/12/">
                 <span class="level-start">
-                    <span class="level-item">February 2020</span>
+                    <span class="level-item">December 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">29</span>
+                    <span class="level-item tag">1</span>
                 </span>
             </a>
         </li>
@@ -556,7 +669,18 @@
                     <span class="level-item">November 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">12</span>
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
                 </span>
             </a>
         </li>
@@ -567,7 +691,139 @@
                     <span class="level-item">September 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">59</span>
+                    <span class="level-item tag">27</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/08/">
+                <span class="level-start">
+                    <span class="level-item">August 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">5</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/12/">
+                <span class="level-start">
+                    <span class="level-item">December 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/09/">
+                <span class="level-start">
+                    <span class="level-item">September 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/08/">
+                <span class="level-start">
+                    <span class="level-item">August 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/07/">
+                <span class="level-start">
+                    <span class="level-item">July 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/06/">
+                <span class="level-start">
+                    <span class="level-item">June 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2017/08/">
+                <span class="level-start">
+                    <span class="level-item">August 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">14</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2017/07/">
+                <span class="level-start">
+                    <span class="level-item">July 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">11</span>
                 </span>
             </a>
         </li>
@@ -588,20 +844,34 @@
                 <div class="control">
                     <a class="tags has-addons" href="/public/tags/Android/">
                         <span class="tag">Android</span>
-                        <span class="tag is-grey">5</span>
+                        <span class="tag is-grey">35</span>
                     </a>
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/public/tags/error/">
-                        <span class="tag">error</span>
-                        <span class="tag is-grey">1</span>
+                    <a class="tags has-addons" href="/public/tags/Git/">
+                        <span class="tag">Git</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/public/tags/git/">
-                        <span class="tag">git</span>
+                    <a class="tags has-addons" href="/public/tags/JNI/">
+                        <span class="tag">JNI</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/Java/">
+                        <span class="tag">Java</span>
+                        <span class="tag is-grey">12</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/Kotlin/">
+                        <span class="tag">Kotlin</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -644,18 +914,18 @@
         
         <article class="media">
             
-            <a href="/public/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-09-android-ViewModel-introduction/" class="media-left">
+            <a href="/public/2019/12/20/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Android lifecycle-aware components">
+                    <img class="thumbnail" src="/public/thumbnail/img35.jpg" alt="Retrofit 框架介绍与使用">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:21.663Z">2020-02-29</time></div>
-                    <a href="/public/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-09-android-ViewModel-introduction/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android lifecycle-aware components</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-19T16:00:00.000Z">2019-12-20</time></div>
+                    <a href="/public/2019/12/20/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Retrofit 框架介绍与使用</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/public/categories/Android/">Android</a>
                     </p>
                 </div>
             </div>
@@ -663,18 +933,18 @@
         
         <article class="media">
             
-            <a href="/public/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-01-android-broadcast-introduction/" class="media-left">
+            <a href="/public/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Android Broadcast介绍">
+                    <img class="thumbnail" src="/public/thumbnail/img66.jpg" alt="Kotlin Lambda表达式">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:21.654Z">2020-02-29</time></div>
-                    <a href="/public/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-08-01-android-broadcast-introduction/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android Broadcast介绍</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:23.103Z">2019-11-28</time></div>
+                    <a href="/public/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Kotlin Lambda表达式</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/public/categories/Kotlin/">Kotlin</a>
                     </p>
                 </div>
             </div>
@@ -682,18 +952,18 @@
         
         <article class="media">
             
-            <a href="/public/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-07-31-android-service-introduction/" class="media-left">
+            <a href="/public/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Android Service介绍">
+                    <img class="thumbnail" src="/public/thumbnail/img59.jpg" alt="加密算法">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:21.613Z">2020-02-29</time></div>
-                    <a href="/public/2020/02/29/Android/Android%E5%9F%BA%E7%A1%80/2018-07-31-android-service-introduction/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Android Service介绍</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:15.919Z">2019-11-28</time></div>
+                    <a href="/public/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/" class="title has-link-black-ter is-size-6 has-text-weight-normal">加密算法</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/public/categories/Java/">Java</a>
                     </p>
                 </div>
             </div>
@@ -701,18 +971,18 @@
         
         <article class="media">
             
-            <a href="/public/2020/02/29/Data_Structure/2017-08-28-data-structure-huffman-tree/" class="media-left">
+            <a href="/public/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/Java%E5%BC%95%E7%94%A8/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Huffman树的算法实现">
+                    <img class="thumbnail" src="/public/thumbnail/img54.jpg" alt="Java引用">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:09.033Z">2020-02-29</time></div>
-                    <a href="/public/2020/02/29/Data_Structure/2017-08-28-data-structure-huffman-tree/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Huffman树的算法实现</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:15.918Z">2019-11-28</time></div>
+                    <a href="/public/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/Java%E5%BC%95%E7%94%A8/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java引用</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/public/categories/Java/">Java</a>
                     </p>
                 </div>
             </div>
@@ -720,18 +990,18 @@
         
         <article class="media">
             
-            <a href="/public/2020/02/29/Data_Structure/2017-08-27-data-structure-heap-sort/" class="media-left">
+            <a href="/public/2019/11/28/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="堆排序">
+                    <img class="thumbnail" src="/public/thumbnail/img64.jpg" alt="Java代理模式">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-29T02:45:09.000Z">2020-02-29</time></div>
-                    <a href="/public/2020/02/29/Data_Structure/2017-08-27-data-structure-heap-sort/" class="title has-link-black-ter is-size-6 has-text-weight-normal">堆排序</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:18:36.264Z">2019-11-28</time></div>
+                    <a href="/public/2019/11/28/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java代理模式</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/public/categories/Java/">Java</a>
                     </p>
                 </div>
             </div>
@@ -749,12 +1019,12 @@
         <ul class="menu-list">
         
         <li>
-            <a class="level is-marginless" href="/public/archives/2020/02/">
+            <a class="level is-marginless" href="/public/archives/2019/12/">
                 <span class="level-start">
-                    <span class="level-item">February 2020</span>
+                    <span class="level-item">December 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">29</span>
+                    <span class="level-item tag">1</span>
                 </span>
             </a>
         </li>
@@ -765,7 +1035,18 @@
                     <span class="level-item">November 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">12</span>
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
                 </span>
             </a>
         </li>
@@ -776,7 +1057,139 @@
                     <span class="level-item">September 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">59</span>
+                    <span class="level-item tag">27</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/08/">
+                <span class="level-start">
+                    <span class="level-item">August 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">5</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/12/">
+                <span class="level-start">
+                    <span class="level-item">December 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/09/">
+                <span class="level-start">
+                    <span class="level-item">September 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/08/">
+                <span class="level-start">
+                    <span class="level-item">August 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/07/">
+                <span class="level-start">
+                    <span class="level-item">July 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/06/">
+                <span class="level-start">
+                    <span class="level-item">June 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2017/08/">
+                <span class="level-start">
+                    <span class="level-item">August 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">14</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2017/07/">
+                <span class="level-start">
+                    <span class="level-item">July 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">11</span>
                 </span>
             </a>
         </li>
@@ -797,20 +1210,34 @@
                 <div class="control">
                     <a class="tags has-addons" href="/public/tags/Android/">
                         <span class="tag">Android</span>
-                        <span class="tag is-grey">5</span>
+                        <span class="tag is-grey">35</span>
                     </a>
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/public/tags/error/">
-                        <span class="tag">error</span>
-                        <span class="tag is-grey">1</span>
+                    <a class="tags has-addons" href="/public/tags/Git/">
+                        <span class="tag">Git</span>
+                        <span class="tag is-grey">2</span>
                     </a>
                 </div>
                 
                 <div class="control">
-                    <a class="tags has-addons" href="/public/tags/git/">
-                        <span class="tag">git</span>
+                    <a class="tags has-addons" href="/public/tags/JNI/">
+                        <span class="tag">JNI</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/Java/">
+                        <span class="tag">Java</span>
+                        <span class="tag is-grey">12</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/Kotlin/">
+                        <span class="tag">Kotlin</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -846,7 +1273,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/public/">
                 
-                    <img src="/public/images/logo.svg" alt="Android/Android基础/Android后台任务" height="28">
+                    <img src="/public/images/logo.svg" alt="Android后台处理" height="28">
                 
                 </a>
                 <p class="is-size-7">

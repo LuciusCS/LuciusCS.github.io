@@ -2,14 +2,16 @@
 title: "线索化二叉树"
 description: ""
 tags: [数据结构]
-
-
+thumbnail: /thumbnail/img46.jpg
+toc: true
+categories: 数据结构
+date: 2017/08/08
 
 ---
 
 modified: 2017-08-04
 使用二叉树作为存储结构时，只能找到结点的左、右孩子的信息，而不能直接得到结点的前驱和后继的信息；
-
+<!--more-->
 在有n个结点的二叉树中有n+1个空指针，利用这n+1个空指保存前驱和后继的信息；若结点有左子树，则其lChild指向其左孩子，否则指向其前驱；若结点有右子树，则其rChild指向其右孩子，否则指向其后继；为避免结点指向前驱与后继发生混淆，则在结点上增加两个标志域。
 
 /source/img/DataStructure/threaded_binary_tree.jpg
@@ -186,7 +188,7 @@ void InThreading(pBinaryTree biTree) {
 
 ### 为已经线索化的二叉树添加头结点
 
-/source/img/DataStructure/thread_binary_tree.jpg
+![](/public/img/DataStructure/thread_binary_tree.jpg)
 
 
 
@@ -222,7 +224,7 @@ void InOrderThreading(pBinaryTree &binarytree,pBinaryTree &head) {
 一个结点的右指针如果是线索，则右指针的下一个线索就是要遍历的结点，如果右指针不是线索，则它的中序后继是其右子树的“最左”结点。
 
 
-	/source/img/DataStructure/thread_binary_tree.jpg
+![](/public/img/DataStructure/thread_binary_tree.jpg)
 
 
 ```c
@@ -282,7 +284,7 @@ int main() {
 测试结果：
 
 
-/source/img/DataStructure/binary_tree_result.png
+![](/public/img/DataStructure/binary_tree_result.png)
 
 
 

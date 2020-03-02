@@ -1,9 +1,11 @@
 ---
-thumbnail: /assets/Android JNI.png
+title: Retrofit 框架介绍与使用
+thumbnail: /thumbnail/img35.jpg
 toc: true
 categories: Android
+description: Retrofit 框架介绍与使用
 tags: [Android]
-description: 测试摘要
+date: 2019/12/20
 ---
 
 
@@ -19,7 +21,7 @@ description: 测试摘要
 返回值：
 
 Header:
-![](/assets/Retrofit.png)
+![](/public/img/Android/Retrofit.png)
 
 
 Body:

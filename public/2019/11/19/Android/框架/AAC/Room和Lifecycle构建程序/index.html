@@ -1,0 +1,1573 @@
+<!DOCTYPE html>
+<html  lang="en">
+<head>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 4.2.0" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>使用框架组件Room和Lifecycle来创建应用 - Android Development</title>
+
+
+    <meta name="description" content="使用框架组件Room和Lifecycle来创建应用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用框架组件Room和Lifecycle来创建应用">
+<meta property="og:url" content="https://luciuscs.github.io/public/2019/11/19/Android/%E6%A1%86%E6%9E%B6/AAC/Room%E5%92%8CLifecycle%E6%9E%84%E5%BB%BA%E7%A8%8B%E5%BA%8F/index.html">
+<meta property="og:site_name" content="Android Development">
+<meta property="og:description" content="使用框架组件Room和Lifecycle来创建应用">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://luciuscs.github.io/public/public/thumbnail/img30.jpg">
+<meta property="article:published_time" content="2019-11-18T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-03-02T07:16:05.796Z">
+<meta property="article:author" content="Lucius Zhao">
+<meta property="article:tag" content="Android">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://luciuscs.github.io/public/public/thumbnail/img30.jpg">
+
+
+
+
+
+
+
+<link rel="icon" href="/public/images/favicon.svg">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="/public/css/back-to-top.css">
+
+    
+    
+    
+    
+    
+    
+    
+    <link rel="stylesheet" href="/public/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+    
+    <script async="" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+
+
+<link rel="stylesheet" href="/public/css/style.css">
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/public/">
+            
+                <img src="/public/images/logo.svg" alt="使用框架组件Room和Lifecycle来创建应用" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/public/">Home</a>
+                
+                <a class="navbar-item"
+                href="/public/archives">Archives</a>
+                
+                <a class="navbar-item"
+                href="/public/categories">Categories</a>
+                
+                <a class="navbar-item"
+                href="/public/tags">Tags</a>
+                
+                <a class="navbar-item"
+                href="/public/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
+                
+                <a class="navbar-item search" title="Search" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
+<div class="card">
+    
+    <div class="card-image">
+        <span  class="image is-7by1">
+            <img class="thumbnail" src="/public/thumbnail/img30.jpg" alt="使用框架组件Room和Lifecycle来创建应用">
+        </span>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-11-18T16:00:00.000Z">2019-11-19</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/public/categories/Android/">Android</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    15 minutes read (About 2248 words)
+                </span>
+                
+                
+                <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
+                    <i class="far fa-eye"></i>
+                    <span id="busuanzi_value_page_pv">0</span> visits
+                </span>
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                使用框架组件Room和Lifecycle来创建应用
+            
+        </h1>
+        <div class="content">
+            <h1 id="使用框架组件Room和Lifecycle来创建应用"><a href="#使用框架组件Room和Lifecycle来创建应用" class="headerlink" title="使用框架组件Room和Lifecycle来创建应用"></a>使用框架组件Room和Lifecycle来创建应用</h1><h2 id="在build-gradle-Module-app-中添加依赖"><a href="#在build-gradle-Module-app-中添加依赖" class="headerlink" title="在build.gradle(Module:app)中添加依赖"></a>在build.gradle(Module:app)中添加依赖</h2><a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;Room组件</span><br><span class="line">implementation &quot;android.arch.persistence.room:runtime:$rootProject.roomVersion&quot;</span><br><span class="line">annotationProcessor &quot;android.arch.persistence.room:compiler:$rootProject.roomVersion&quot;</span><br><span class="line">androidTestImplementation &quot;android.arch.persistence.room:testing:$rootProject.roomVersion&quot;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;lifestyle组件</span><br><span class="line">implementation &quot;android.arch.lifecycle:extensions:$rootProject.archLifecycleVersion&quot;</span><br><span class="line">annotationProcessor &quot;android.arch.lifecycle:compiler:$rootProject.archLifecycleVersion&quot;</span><br></pre></td></tr></table></figure>
+
+<h2 id="创建一个Entity实体"><a href="#创建一个Entity实体" class="headerlink" title="创建一个Entity实体"></a>创建一个Entity实体</h2><p>在应用中数据是words，每一个word都是一个实体，创建一个<code>Word</code>类，同时需要创建构造函数以及<code>getter</code>方法，只要这样Room才会实例化<code>Object</code></p>
+<p>假装右图！！！！</p>
+<p>代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Word</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span> String mWord;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">Word</span><span class="params">(@NonNull String word)</span> </span>&#123;<span class="keyword">this</span>.mWord = word;&#125;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">getWord</span><span class="params">()</span></span>&#123;<span class="keyword">return</span> <span class="keyword">this</span>.mWord;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>要使得<code>Word</code>类对Room数据库有意义，需要为其添加注解。注解定义了该类的每一部分与数据库中的实体的关系，Room通过注解的信息生成相应代码。</p>
+<ul>
+<li><p><code>@Entity(tableName = &quot;word_table&quot;)</code></p>
+<p>每一个<code>@Entity</code>类代表数据表中的一个实体。</p>
+</li>
+<li><p><code>@PrimaryKey</code></p>
+<p>每一个实体都需要一个主键，为了表示方便，在这里将每一个<code>word</code>自身作为其主键。</p>
+</li>
+<li><p><code>@NonNull</code></p>
+<p>声明参数、域或者方法的返回值不为空。</p>
+</li>
+<li><p><code>@ColumnInfo(name = &quot;word&quot;)</code></p>
+<p>当需要指定与类中的成员变量不同的列名时使用。</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Entity</span>(tableName = <span class="string">"word_table"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Word</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">   <span class="meta">@PrimaryKey</span></span><br><span class="line">   <span class="meta">@NonNull</span></span><br><span class="line">   <span class="meta">@ColumnInfo</span>(name = <span class="string">"word"</span>)</span><br><span class="line">   <span class="keyword">private</span> String mWord;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">Word</span><span class="params">(String word)</span> </span>&#123;<span class="keyword">this</span>.mWord = word;&#125;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">getWord</span><span class="params">()</span></span>&#123;<span class="keyword">return</span> <span class="keyword">this</span>.mWord;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="创建Dao"><a href="#创建Dao" class="headerlink" title="创建Dao"></a>创建Dao</h2><p>在<code>Dao</code>(data access object)中，指定sql查询语句并将其与调用方法相联结。Dao需要为接口或者抽象类，<strong>在默认状态下，所有的查询语句都需要在单独的线程中运行</strong>。Room使用<code>Dao</code>可以使得代码更加简洁。</p>
+<ul>
+<li>创建一个新的接口声明为<code>WordDao</code></li>
+<li>使用功注解<code>@Dao</code>来定义该类为Room的一个Dao类</li>
+<li>声明插入一个word的方法<code>void insert(Word word)</code></li>
+<li>为该方法添加<code>@Insert</code>注解，<strong>在方法中不需要提供任何sql语句</strong>（还有<code>@Delete</code>以及<code>@Update</code>等注解）。</li>
+<li>声明一个删除所有words的方法<code>void deleteAll();</code></li>
+<li>使用<code>@Query</code>注解，用于查询以及其他操作，<code>@Query(&quot;DELETE FROM word_table&quot;)</code>。</li>
+<li>创建一个获取所有单词的方法，<code>getAllWords();</code>返回值为List,通过注解的方式为此方法添加SQL查询语句<code>@Query(&quot;SELECT * from word_table ORDER BY word ASC&quot;)</code></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@Dao</span><br><span class="line">public interface WordDao &#123;</span><br><span class="line"></span><br><span class="line">   @Insert</span><br><span class="line">   void insert(Word word);</span><br><span class="line"></span><br><span class="line">   @Query(&quot;DELETE FROM word_table&quot;)</span><br><span class="line">   void deleteAll();</span><br><span class="line"></span><br><span class="line">   @Query(&quot;SELECT * from word_table ORDER BY word ASC&quot;)</span><br><span class="line">   List&lt;Word&gt; getAllWords();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="LiveData类的使用"><a href="#LiveData类的使用" class="headerlink" title="LiveData类的使用"></a>LiveData类的使用</h2><p>当数据发生改变时，通常需要进行更新UI或者显示UI的操作，需要观察到数据的改变。通过复杂的组件观察到数据改变会很麻烦，在组件之间会有各种依赖关系的产生。</p>
+<p><code>LiveData</code>是一个数据生命周期观察库(lifecycle_library)，为了解决上面的问题，使用<code>LiveData</code>类型的数据返回值，当数据库更新时，Room会生成所有必要的代码来更新<code>LiveData</code></p>
+<blockquote>
+<p>当你需要离开Room独立使用<code>LiveData</code>时，你需要更新数据，因为<code>LiveData</code>方法没有公有的方法来更新已经存储的数据。</p>
+</blockquote>
+<p>在<code>WordDao</code>中，将<code>getAllWords</code>的返回值包裹在<code>LiveData</code>中</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Query</span>(<span class="string">"SELECT * from word_table ORDER BY word ASC"</span>)</span><br><span class="line">LiveData&lt;List&lt;Word&gt;&gt; getAllWords();</span><br></pre></td></tr></table></figure>
+
+<h2 id="添加Room数据库"><a href="#添加Room数据库" class="headerlink" title="添加Room数据库"></a>添加Room数据库</h2><h3 id="Room数据库层介绍"><a href="#Room数据库层介绍" class="headerlink" title="Room数据库层介绍"></a>Room数据库层介绍</h3><p>Room是在SQLite数据库上面的数据库层，Room可以处理之前需要在<code>SQLiteOpenHelper</code>中处理的单调的工作。</p>
+<ul>
+<li>Room使用Dao来查询数据库。</li>
+<li>在默认状态下，Room不可以在主线程中操作数据库，<code>LiveData</code>通过自动的方式在后台进程中实现异步查询。</li>
+<li>Room在编译的时候检查数据库的Sql语句</li>
+<li>Room类需要时抽象类并继承自RoomDatabase</li>
+<li>Room数据库在整个App中需要以单例模式初始化。</li>
+</ul>
+<h3 id="实现Room数据库"><a href="#实现Room数据库" class="headerlink" title="实现Room数据库"></a>实现Room数据库</h3><ol>
+<li>创建一个<code>public abstract</code>类继承自<code>RoomDatabase</code>，<code>public abstract class WordRoomDatabase extends RoomDatabase {}</code></li>
+<li>将类使用注解为Room数据库，声明属于数据库的实体类并设置版本号，列出的实体类将在数据库中创建出相应的数据表。<code>@Database(entities = {Word.class}, version = 1)</code></li>
+<li>定义与数据库操作相关的Dao，并使用抽象方法，代码如下：</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Database</span>(entities = &#123;Word<span class="class">.<span class="keyword">class</span>&#125;, <span class="title">version</span> </span>= <span class="number">1</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">WordRoomDatabase</span> <span class="keyword">extends</span> <span class="title">RoomDatabase</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> WordDao <span class="title">wordDao</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>4.将<code>WordRoomDatabase</code>设置为单例模式，防止多次实例化数据库同时出现同时打开的问题。</p>
+<p>代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> WordRoomDatabase INSTANCE;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> WordRoomDatabase <span class="title">getDatabase</span><span class="params">(<span class="keyword">final</span> Context context)</span> </span>&#123;</span><br><span class="line">   <span class="keyword">if</span> (INSTANCE == <span class="keyword">null</span>) &#123;</span><br><span class="line">       <span class="keyword">synchronized</span> (WordRoomDatabase<span class="class">.<span class="keyword">class</span>) </span>&#123;</span><br><span class="line">           <span class="keyword">if</span> (INSTANCE == <span class="keyword">null</span>) &#123;</span><br><span class="line">               <span class="comment">// Create database here</span></span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">return</span> INSTANCE;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>5.添加获取到数据库的代码</p>
+<p>代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">INSTANCE = Room.databaseBuilder(context.getApplicationContext(),</span><br><span class="line">       WordRoomDatabase.class, "word_database")</span><br><span class="line">       .build();</span><br></pre></td></tr></table></figure>
+
+<p>完整代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Database</span>(entities = &#123;Word<span class="class">.<span class="keyword">class</span>&#125;, <span class="title">version</span> </span>= <span class="number">1</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">WordRoomDatabase</span> <span class="keyword">extends</span> <span class="title">RoomDatabase</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> WordDao <span class="title">wordDao</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">static</span> WordRoomDatabase INSTANCE;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">static</span> WordRoomDatabase <span class="title">getDatabase</span><span class="params">(<span class="keyword">final</span> Context context)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">if</span> (INSTANCE == <span class="keyword">null</span>) &#123;</span><br><span class="line">           <span class="keyword">synchronized</span> (WordRoomDatabase<span class="class">.<span class="keyword">class</span>) </span>&#123;</span><br><span class="line">               <span class="keyword">if</span> (INSTANCE == <span class="keyword">null</span>) &#123;</span><br><span class="line">                   INSTANCE = Room.databaseBuilder(context.getApplicationContext(),</span><br><span class="line">                           WordRoomDatabase.class, "word_database")</span><br><span class="line">                           .build();                </span><br><span class="line"></span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> INSTANCE;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="创建一个Repository"><a href="#创建一个Repository" class="headerlink" title="创建一个Repository"></a>创建一个Repository</h2><h3 id="Repository介绍"><a href="#Repository介绍" class="headerlink" title="Repository介绍"></a>Repository介绍</h3><p>Repository是一个抽象类用于获取到多种数据源中的数据，Repository不属于结构化组件库，推荐使用它，用于将代码组件分离，<code>Repository</code>类用于操作数据。</p>
+<p>假装有图<del>~</del></p>
+<p>Repository用于管理查询(query)线程，可以使用多个后台线程。在大多数情况下，Repository实现的逻辑用于决定从网络中获取数据还是从本地缓存中获取。</p>
+<h3 id="实现Repository"><a href="#实现Repository" class="headerlink" title="实现Repository"></a>实现Repository</h3><p>1.创建一个名为<code>WordRepository</code>的公有类</p>
+<p>2.创建Dao类型的成员变量以及word列表</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> WordDao mWordDao;</span><br><span class="line"><span class="keyword">private</span> LiveData&lt;List&lt;Word&gt;&gt; mAllWords;</span><br></pre></td></tr></table></figure>
+
+<p>3.添加构造函数，获得数据库的控制并初始化成员变量</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">WordRepository(Application application) &#123;</span><br><span class="line">    WordRoomDatabase db = WordRoomDatabase.getDatabase(application);</span><br><span class="line">    mWordDao = db.wordDao();</span><br><span class="line">    mAllWords = mWordDao.getAllWords();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>4.添加<code>getAllWords()</code>方法，并使用进行封装，Room将所有的查询放置在独立的线程，当数据发生改变时，已经被订阅的<code>LiveData</code>将会通知订阅者。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">LiveData&lt;List&lt;Word&gt;&gt; getAllWords() &#123;</span><br><span class="line">   <span class="keyword">return</span> mAllWords;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>5.封装<code>insert()</code>方法，<code>insert()</code>方法的调用需要在独立的非UI线程中进行，Room可以保证不会在主线程中进行耗时操作。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insert</span> <span class="params">(Word word)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">new</span> insertAsyncTask(mWordDao).execute(word);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>6.<code>insertAsyncTask</code>方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">private static class insertAsyncTask extends AsyncTask&lt;Word, Void, Void&gt; &#123;</span><br><span class="line"></span><br><span class="line">    private WordDao mAsyncTaskDao;</span><br><span class="line"></span><br><span class="line">    insertAsyncTask(WordDao dao) &#123;</span><br><span class="line">        mAsyncTaskDao &#x3D; dao;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected Void doInBackground(final Word... params) &#123;</span><br><span class="line">        mAsyncTaskDao.insert(params[0]);</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>完整代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">public class WordRepository &#123;</span><br><span class="line"></span><br><span class="line">   private WordDao mWordDao;</span><br><span class="line">   private LiveData&lt;List&lt;Word&gt;&gt; mAllWords;</span><br><span class="line"></span><br><span class="line">   WordRepository(Application application) &#123;</span><br><span class="line">       WordRoomDatabase db &#x3D; WordRoomDatabase.getDatabase(application);</span><br><span class="line">       mWordDao &#x3D; db.wordDao();</span><br><span class="line">       mAllWords &#x3D; mWordDao.getAllWords();</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   LiveData&lt;List&lt;Word&gt;&gt; getAllWords() &#123;</span><br><span class="line">       return mAllWords;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   public void insert (Word word) &#123;</span><br><span class="line">       new insertAsyncTask(mWordDao).execute(word);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   private static class insertAsyncTask extends AsyncTask&lt;Word, Void, Void&gt; &#123;</span><br><span class="line"></span><br><span class="line">       private WordDao mAsyncTaskDao;</span><br><span class="line"></span><br><span class="line">       insertAsyncTask(WordDao dao) &#123;</span><br><span class="line">           mAsyncTaskDao &#x3D; dao;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       @Override</span><br><span class="line">       protected Void doInBackground(final Word... params) &#123;</span><br><span class="line">           mAsyncTaskDao.insert(params[0]);</span><br><span class="line">           return null;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="创建一个ViewModel"><a href="#创建一个ViewModel" class="headerlink" title="创建一个ViewModel"></a>创建一个ViewModel</h2><p><code>ViewModel</code>是用于向UI提供数据以及服务信息配置改变，<code>ViewModel</code>起着Repository与UI之间的交流中心的作用。可以使用<code>ViewModel</code>在fragment之间共享数据。<code>ViewModel</code>也是lifecycle library的一部分。</p>
+<p><code>ViewModel</code>使用的是life-conscious的方式操作APP的UI数据，将UI从Activity以及Fragment类中分离出来，使得编码的过程更加符合以下原则：<code>Activity</code>以及<code>Fragment</code>的主要作用是在屏幕中绘制UI，而<code>ViewModel</code>的作用是控制操作UI需要的所有的数据。</p>
+<p>在<code>ViewModel</code>中使用<code>LiveData</code>来表示那些UI显示过程中会发生改变的数据，使用<code>LiveData</code>主要有以下的优点：</p>
+<ul>
+<li>可以使用为数据添加一个观察者（而不是轮询的方式），只有当数据确实发生改变的时候才更新UI。</li>
+<li>Repository以及UI通过<code>ViewModel</code>彻底分离开来，在<code>ViewModel</code>中不会调用数据库中的内容。</li>
+</ul>
+<h3 id="实现ViewModel"><a href="#实现ViewModel" class="headerlink" title="实现ViewModel"></a>实现ViewModel</h3><ul>
+<li>创建<code>WordViewModel</code>类，继承自<code>AndroidViewModel</code></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WordViewModel</span> <span class="keyword">extends</span> <span class="title">AndroidViewModel</span> </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>创建Repository的成员变量</p>
+<p>```java</p>
+<p>private WordRepository mRepository;</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">* 创建LiveData成员变量用于缓存word列表</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;java</span><br><span class="line"></span><br><span class="line">  private LiveData&lt;List&lt;Word&gt;&gt; mAllWords;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>创建构造函数</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">WordViewModel</span> <span class="params">(Application application)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>(application);</span><br><span class="line">    mRepository = <span class="keyword">new</span> WordRepository(application);</span><br><span class="line">    mAllWords = mRepository.getAllWords();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>创建<code>getter</code>方法获取所有的word，对于UI来说数据的获取已经被完全隐藏。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LiveData&lt;List&lt;Word&gt;&gt; getAllWords() &#123; return mAllWords; &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>创建<code>insert()</code>方法，用于调用Repostory中的<code>insert()</code>方法，这样随UI可以完全隐藏<code>insert()</code>方法的实现。</li>
+</ul>
+<p><code>WordViewModel</code>类的完整实现方法如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WordViewModel</span> <span class="keyword">extends</span> <span class="title">AndroidViewModel</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span> WordRepository mRepository;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span> LiveData&lt;List&lt;Word&gt;&gt; mAllWords;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">WordViewModel</span> <span class="params">(Application application)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">super</span>(application);</span><br><span class="line">       mRepository = <span class="keyword">new</span> WordRepository(application);</span><br><span class="line">       mAllWords = mRepository.getAllWords();</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   LiveData&lt;List&lt;Word&gt;&gt; getAllWords() &#123; <span class="keyword">return</span> mAllWords; &#125;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insert</span><span class="params">(Word word)</span> </span>&#123; mRepository.insert(word); &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>注：不可以向</strong><code>ViewModel</code><strong>实例中传递</strong><code>Context</code><strong>参数，也不可以在其实实例化Activity、Fragment或者View以及他们的context。</strong></p>
+<p><strong>Activity在设备进行旋转的时候，在ViewModel的生命周期中，它有可能会被创建或者被销毁多次。如果你在</strong><code>ViewModel</code><strong>中引用了Activity，当Activity被销毁的时候，你将会指向一个空的引用，会造成内存泄漏。</strong></p>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/public/tags/Android/" rel="tag">Android</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        <div class="social-share"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
+<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">Like this article? Support the author with</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>Alipay</span>
+    <div class="qrcode"><img src="/public/images/alipay_donate.png" alt="Alipay"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>Wechat</span>
+    <div class="qrcode"><img src="/public/images/wechat_donate.png" alt="Wechat"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/public/2019/11/28/Android/Android%E5%9F%BA%E7%A1%80/Android%E5%BA%8F%E5%88%97%E5%8C%96/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">Android序列化</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/public/2019/11/05/Android/%E6%A1%86%E6%9E%B6/AAC/Room%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                <span class="level-item">Room数据库</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">Comments</h3>
+        
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+	var gitment = new Gitment({
+		id: '4fa3d28e1e49a85d36417754b08f6c8e',
+		owner: 'LuciusCS',
+		repo: 'https://github.com/LuciusCS/LuciusCS.github.io',
+		oauth: {
+			client_id: 'f405db0bc334c654cb02',
+			client_secret: 'f1658ea7679789bb0b8f4c38bd46264eade59a9b',
+		},
+	})
+	gitment.render('comment-container')
+</script>
+
+    </div>
+</div>
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left is-sticky">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                    <figure class="image is-128x128 has-mb-6">
+                        <img class="is-rounded" src="https://www.gravatar.com/avatar/5f88f4a896dde4ec7ad915a606b0faa9?s=128" alt="Lucius">
+                    </figure>
+                    
+                    <p class="is-size-4 is-block">
+                        Lucius
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        Android Developer
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Qingdao</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Posts
+                    </p>
+                    <a href="/public/archives">
+                        <p class="title has-text-weight-normal">
+                            81
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Categories
+                    </p>
+                    <a href="/public/categories">
+                        <p class="title has-text-weight-normal">
+                            6
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Tags
+                    </p>
+                    <a href="/public/tags">
+                        <p class="title has-text-weight-normal">
+                            7
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/LuciusCS" target="_blank" rel="noopener">
+                Follow</a>
+        </div>
+        
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="Github" href="https://github.com/LuciusCS">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+
+    <div class="card widget" id="toc">
+        <div class="card-content">
+            <div class="menu">
+                <h3 class="menu-label">
+                    Catalogue
+                </h3>
+                <ul class="menu-list"><li>
+        <a class="is-flex" href="#使用框架组件Room和Lifecycle来创建应用">
+        <span class="has-mr-6">1</span>
+        <span>使用框架组件Room和Lifecycle来创建应用</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#在build-gradle-Module-app-中添加依赖">
+        <span class="has-mr-6">1.1</span>
+        <span>在build.gradle(Module:app)中添加依赖</span>
+        </a></li><li>
+        <a class="is-flex" href="#创建一个Entity实体">
+        <span class="has-mr-6">1.2</span>
+        <span>创建一个Entity实体</span>
+        </a></li><li>
+        <a class="is-flex" href="#创建Dao">
+        <span class="has-mr-6">1.3</span>
+        <span>创建Dao</span>
+        </a></li><li>
+        <a class="is-flex" href="#LiveData类的使用">
+        <span class="has-mr-6">1.4</span>
+        <span>LiveData类的使用</span>
+        </a></li><li>
+        <a class="is-flex" href="#添加Room数据库">
+        <span class="has-mr-6">1.5</span>
+        <span>添加Room数据库</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#Room数据库层介绍">
+        <span class="has-mr-6">1.5.1</span>
+        <span>Room数据库层介绍</span>
+        </a></li><li>
+        <a class="is-flex" href="#实现Room数据库">
+        <span class="has-mr-6">1.5.2</span>
+        <span>实现Room数据库</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#创建一个Repository">
+        <span class="has-mr-6">1.6</span>
+        <span>创建一个Repository</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#Repository介绍">
+        <span class="has-mr-6">1.6.1</span>
+        <span>Repository介绍</span>
+        </a></li><li>
+        <a class="is-flex" href="#实现Repository">
+        <span class="has-mr-6">1.6.2</span>
+        <span>实现Repository</span>
+        </a></li></ul></li><li>
+        <a class="is-flex" href="#创建一个ViewModel">
+        <span class="has-mr-6">1.7</span>
+        <span>创建一个ViewModel</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#实现ViewModel">
+        <span class="has-mr-6">1.7.1</span>
+        <span>实现ViewModel</span>
+        </a></li></ul></li></ul></li></ul>
+            </div>
+        </div>
+    </div>
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Links
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener">
+                    <span class="level-left">
+                        <span class="level-item">Hexo</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">hexo.io</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://github.com/ppoffice" target="_blank" rel="noopener">
+                    <span class="level-left">
+                        <span class="level-item">PPOffice</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">github.com</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Categories
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/public/categories/Android/">
+            <span class="level-start">
+                <span class="level-item">Android</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">36</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/public/categories/Java/">
+            <span class="level-start">
+                <span class="level-item">Java</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">12</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/public/categories/Kotlin/">
+            <span class="level-start">
+                <span class="level-item">Kotlin</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/public/categories/Other/">
+            <span class="level-start">
+                <span class="level-item">Other</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">2</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/public/categories/PAT/">
+            <span class="level-start">
+                <span class="level-item">PAT</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">8</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/public/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+            <span class="level-start">
+                <span class="level-item">数据结构</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">16</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Tag Cloud
+        </h3>
+        <a href="/public/tags/Android/" style="font-size: 20px;">Android</a> <a href="/public/tags/Git/" style="font-size: 12px;">Git</a> <a href="/public/tags/JNI/" style="font-size: 12px;">JNI</a> <a href="/public/tags/Java/" style="font-size: 16px;">Java</a> <a href="/public/tags/Kotlin/" style="font-size: 10px;">Kotlin</a> <a href="/public/tags/pat/" style="font-size: 14px;">pat</a> <a href="/public/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 18px;">数据结构</a>
+    </div>
+</div>
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen is-sticky">
+        
+            <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/public/2019/12/20/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/public/thumbnail/img35.jpg" alt="Retrofit 框架介绍与使用">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-19T16:00:00.000Z">2019-12-20</time></div>
+                    <a href="/public/2019/12/20/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Retrofit 框架介绍与使用</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/public/categories/Android/">Android</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/public/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/public/thumbnail/img66.jpg" alt="Kotlin Lambda表达式">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:23.103Z">2019-11-28</time></div>
+                    <a href="/public/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Kotlin Lambda表达式</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/public/categories/Kotlin/">Kotlin</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/public/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/public/thumbnail/img59.jpg" alt="加密算法">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:15.919Z">2019-11-28</time></div>
+                    <a href="/public/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/" class="title has-link-black-ter is-size-6 has-text-weight-normal">加密算法</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/public/categories/Java/">Java</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/public/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/Java%E5%BC%95%E7%94%A8/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/public/thumbnail/img54.jpg" alt="Java引用">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:15.918Z">2019-11-28</time></div>
+                    <a href="/public/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/Java%E5%BC%95%E7%94%A8/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java引用</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/public/categories/Java/">Java</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/public/2019/11/28/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/public/thumbnail/img64.jpg" alt="Java代理模式">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:18:36.264Z">2019-11-28</time></div>
+                    <a href="/public/2019/11/28/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java代理模式</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/public/categories/Java/">Java</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Archives
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/12/">
+                <span class="level-start">
+                    <span class="level-item">December 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/11/">
+                <span class="level-start">
+                    <span class="level-item">November 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/09/">
+                <span class="level-start">
+                    <span class="level-item">September 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">27</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/08/">
+                <span class="level-start">
+                    <span class="level-item">August 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">5</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/12/">
+                <span class="level-start">
+                    <span class="level-item">December 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/09/">
+                <span class="level-start">
+                    <span class="level-item">September 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/08/">
+                <span class="level-start">
+                    <span class="level-item">August 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/07/">
+                <span class="level-start">
+                    <span class="level-item">July 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/06/">
+                <span class="level-start">
+                    <span class="level-item">June 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2017/08/">
+                <span class="level-start">
+                    <span class="level-item">August 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">14</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2017/07/">
+                <span class="level-start">
+                    <span class="level-item">July 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">11</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/Android/">
+                        <span class="tag">Android</span>
+                        <span class="tag is-grey">35</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/Git/">
+                        <span class="tag">Git</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/JNI/">
+                        <span class="tag">JNI</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/Java/">
+                        <span class="tag">Java</span>
+                        <span class="tag is-grey">12</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/Kotlin/">
+                        <span class="tag">Kotlin</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/pat/">
+                        <span class="tag">pat</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                        <span class="tag">数据结构</span>
+                        <span class="tag is-grey">16</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right is-sticky">
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/public/2019/12/20/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/public/thumbnail/img35.jpg" alt="Retrofit 框架介绍与使用">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-19T16:00:00.000Z">2019-12-20</time></div>
+                    <a href="/public/2019/12/20/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Retrofit 框架介绍与使用</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/public/categories/Android/">Android</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/public/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/public/thumbnail/img66.jpg" alt="Kotlin Lambda表达式">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:23.103Z">2019-11-28</time></div>
+                    <a href="/public/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Kotlin Lambda表达式</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/public/categories/Kotlin/">Kotlin</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/public/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/public/thumbnail/img59.jpg" alt="加密算法">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:15.919Z">2019-11-28</time></div>
+                    <a href="/public/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/" class="title has-link-black-ter is-size-6 has-text-weight-normal">加密算法</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/public/categories/Java/">Java</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/public/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/Java%E5%BC%95%E7%94%A8/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/public/thumbnail/img54.jpg" alt="Java引用">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:15.918Z">2019-11-28</time></div>
+                    <a href="/public/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/Java%E5%BC%95%E7%94%A8/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java引用</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/public/categories/Java/">Java</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/public/2019/11/28/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/public/thumbnail/img64.jpg" alt="Java代理模式">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:18:36.264Z">2019-11-28</time></div>
+                    <a href="/public/2019/11/28/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java代理模式</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/public/categories/Java/">Java</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Archives
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/12/">
+                <span class="level-start">
+                    <span class="level-item">December 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/11/">
+                <span class="level-start">
+                    <span class="level-item">November 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">8</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/09/">
+                <span class="level-start">
+                    <span class="level-item">September 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">27</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/08/">
+                <span class="level-start">
+                    <span class="level-item">August 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">5</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/12/">
+                <span class="level-start">
+                    <span class="level-item">December 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/09/">
+                <span class="level-start">
+                    <span class="level-item">September 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/08/">
+                <span class="level-start">
+                    <span class="level-item">August 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/07/">
+                <span class="level-start">
+                    <span class="level-item">July 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/06/">
+                <span class="level-start">
+                    <span class="level-item">June 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2017/08/">
+                <span class="level-start">
+                    <span class="level-item">August 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">14</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2017/07/">
+                <span class="level-start">
+                    <span class="level-item">July 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">11</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/Android/">
+                        <span class="tag">Android</span>
+                        <span class="tag is-grey">35</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/Git/">
+                        <span class="tag">Git</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/JNI/">
+                        <span class="tag">JNI</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/Java/">
+                        <span class="tag">Java</span>
+                        <span class="tag is-grey">12</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/Kotlin/">
+                        <span class="tag">Kotlin</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/pat/">
+                        <span class="tag">pat</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                        <span class="tag">数据结构</span>
+                        <span class="tag is-grey">16</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/public/">
+                
+                    <img src="/public/images/logo.svg" alt="使用框架组件Room和Lifecycle来创建应用" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2020 Lucius Zhao&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a>
+                
+                <br>
+                <span id="busuanzi_container_site_uv">
+                Visited by <span id="busuanzi_value_site_uv">0</span> users
+                </span>
+                <span id="busuanzi_container_site_pv">
+                <span id="busuanzi_value_site_pv">0</span> visits
+                </span>
+                
+                </p>
+            </div>
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("en");</script>
+
+
+<script>
+var IcarusThemeSettings = {
+    site: {
+        url: 'https://luciuscs.github.io/public',
+        external_link: {"enable":true,"exclude":[]}
+    },
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+
+
+<script src="/public/js/animation.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/public/js/gallery.js" defer></script>
+
+
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+
+<a id="back-to-top" title="Back to Top" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/public/js/back-to-top.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/public/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/public/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/public/js/insight.js" defer></script>
+<link rel="stylesheet" href="/public/css/search.css">
+<link rel="stylesheet" href="/public/css/insight.css">
+    
+</body>
+</html>

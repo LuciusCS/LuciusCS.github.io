@@ -1,9 +1,18 @@
+---
+title: LiveData介绍与使用
+thumbnail: /thumbnail/img26.jpg
+toc: true
+description: LiveData介绍与使用
+categories: Android
+tags: [Android]
+date: 2019/04/23
 
+---
 
 ## LiveData介绍
 `LiveData`是一个被观察的类，其具有生命周期感知，即只有Android组件，Activity、Fragment、Service处于活动状态时，它才会通知组件数据发生变化。`LiveData`是一个抽象类，其继承关系如下：
-
-![](/assets/livedata.png)
+<!--more-->
+![](/public/img/Android/livedata.png)
 
 #### LiveData的优势
 * 保证UI界面与数据相匹配

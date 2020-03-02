@@ -3,8 +3,10 @@
 title: "排序算法总结"
 description: ""
 tags: [数据结构]
-
-
+thumbnail: /thumbnail/img42.jpg
+toc: true
+categories: 数据结构
+date: 2017/08/02
 
 ---
 
@@ -12,7 +14,7 @@ tags: [数据结构]
 modified: 2017-08-02
 
 各种排序算法的总结
-
+<!--more-->
 ## 插入排序
 
 ## 非比较型排序

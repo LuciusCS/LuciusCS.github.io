@@ -1,7 +1,16 @@
+---
+title: Java泛型
+tags: [Java]
+description: Java泛型
+thumbnail: /thumbnail/img55.jpg
+toc: true
+categories: Java
+---
+
 # Generics(泛型)
 
 一个接口或类可能被声明为一个或者多个类型的参数，该类或接口写在尖括号中，提供的实体类需要属于该接口或类。
-
+<!--more-->
 Generic Programming\(泛型编程\)，泛型类可以是编码更安全以及方便阅读，尤其是在集合类中；Java中的泛型与C++中的模板类有着相似之处。Generic Programming\(泛型编程\)可以使得对象\(object\)在多种场合下被重复使用。例如：ArrayList类可以表示各种不同类的集合。
 
 如果没有泛型，参数的类型会被忽略，
