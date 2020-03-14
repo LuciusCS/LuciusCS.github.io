@@ -57,3 +57,47 @@ Toast是在SnackBar之前就存在的操作提示，可以显示在APP的任意�
 |2|不需要Activity，可以显示在Android Home或者其他应用才|只能显示在某一个Activity中|
 |3|不能根据用户的操作执行Action|可以根据用户的操作执行Action|
 |4|在用户滑动时不能消失|在用户滑动时可以消失| 
+
+
+### Material Design主题
+Material Design主题有三个，API必须在21以上
+* android:style/Theme.Material
+* android:style/Theme.Material.Light
+* android:style/Theme.Material.Light.DarkActionBar
+
+Material Design适配API 21以下，要使用兼容包
+兼容包的主题：
+ *   Theme.AppCompat.Light
+ *   Theme.AppCompat.Light.DarkActionBar
+
+
+ #### 主题常用属性
+  已经截图
+ * colorPrimary  标题栏   
+ * colorPrimaryDark 状态栏
+ * colorAccent 强调色
+ * textColorPrimary 标题栏上字体和图标的颜色
+ * windowBackground 窗口的背景色
+ * navigationBarColor 虚拟导航栏
+
+ #### 常用控件
+
+ * Toolbar 用来替代ActionBar，更灵活
+ * DrawerLayout 实现左拉和右拉，类似于抽屉功能
+ * NavigationView 与DrawerLayout同时使用
+ * BottomNavigationView  实现底部导航
+ * FloationgActionButton 用于浮动
+ * Snackbar 用于提示功能
+ * CardView 圆角和阴影,
+ * CoordinatorLayout 继承自 ViewGroup
+ * AppBarLayout 垂直线性布局
+ * CollapsingToolbarLayout 继承自FragmeLayout
+ * NestedScrollView 支持嵌套滑动的ScrollView
+
+
+ #### 常用动画
+
+ * Fade 淡入
+ * Slide 滑动
+ * Explode 分解
+ * 共享元素
