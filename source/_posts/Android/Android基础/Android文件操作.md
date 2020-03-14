@@ -35,9 +35,47 @@ asset使用InputStream in = getResources().getAssets().open(fileName);
 `context.getCacheDir()`用于获取缓存目录，当Android内存不足时，可以删除该目录进行空间
 
 
-#### 文件读操作
+### 从assets目录下读取文件
 
-#### 文件写操作
+```java
+    StringBuilder stringBuilder=new StringBuilder();
+
+    try{
+        //获取assets资源管理器
+        AssetManager assetManager=this.getAssets();
+        //通过资源管理器打开文件并进行读取
+        BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(
+            assetManager.open("test.txt")
+        ));
+
+        String line;
+        while(((line =bufferedReader.readLine())!=null)){
+            stringBuilder.append(line);
+        }
+    }catch(Exception e){
+        e.printStackTrace();
+    }
+
+
+```
+
+
+### 文件写操作
+
+//将数据保存至文件
+
+```java
+     String info="example";
+     try{
+         FileWriter fileWriter =new FileWriter("/data/data/com.example"+".txt",false);
+         fileWriter.write(info);
+         fileWriter.close();
+     }catch(Exception e){
+        e.printStackTrace();
+     }
+
+
+```
 
 
 ### Android应用数据外部存储（保存至SD卡，也可以认为非应用安装目录）
