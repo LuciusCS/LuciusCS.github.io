@@ -1,12 +1,20 @@
 
-
+---
+title: "Android LoadApk插件化实现"
+description: "Android LoadApk插件化实现"
+tags: [Android]
+toc: true
+thumbnail: /thumbnail/img81.jpg
+categories: Android
+date: 2020/2/28
+---
 ## Android采用LoadAPK式的框架
 
 
 ### Android 7.0 启动流程
 
 startActivity ———》 Activity ———》 mInstrumentation.execStartActivity() ————》 ActivityManagerNative.getDefault().startActivity() ——》 AMS.startActivity(检测，当前要启动的Activity是都注册) —— 》 ActivityThread(即将加载启动Activity) —— 》 将ProxyActivity换回 TestActivity
-
+<!--more-->
 如果开发插件化，需要在AMS.startActivity() 之前添加Hook，换成ProxyAcivity(已经在Manifest中进行注册)
 
 ActivityManagerNative.getDefault() 方法源码

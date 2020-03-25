@@ -1,10 +1,18 @@
-
+---
+title: "Andoid组件化注意问题"
+description: "Andoid组件化注意问题"
+tags: [Android]
+toc: true
+thumbnail: /thumbnail/img83.jpg
+categories: Android
+date: 2020/01/08
+---
 
 ## 注意问题：
 1、使用组件化化开发时需要避免循环依赖
 
 2、子模块之间的Activity调用，通过类加载的方式或通过在Common模块中设置全局Map的形式，才可以调用
-
+<!--more-->
 
 ## 阿里云router架构源码查看缺点
 
