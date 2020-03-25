@@ -1,8 +1,17 @@
+---
+title: "ActivityThread源码分析"
+description: "ActivityThread源码分析"
+tags: [Android]
+toc: true
+thumbnail: /thumbnail/img80.jpg
+categories: Android
+date: 2019/08/10
+---
 
 # ActivityThread源码分析
 
 startActivity ———》 Activity ———》 mInstrumentation.execStartActivity() ————》 ActivityManagerNative.getDefault().startActivity() ——》 AMS.startActivity(检测，当前要启动的Activity是都注册) ———》 ActivityThread(即将加载) ————》 mH LAUNCH_ACTIVITY（自己处理LoadApk中的classLoader） ————》（handleLaunchActivity 类加载 Activity performLaunchActivity）
-
+<!--more-->
 ```java
        case LAUNCH_ACTIVITY: {
                 Trace.traceBegin(Trace.TRACE_TAG_ACTIVITY_MANAGER, "activityStart");

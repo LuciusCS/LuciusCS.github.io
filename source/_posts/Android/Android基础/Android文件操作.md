@@ -77,6 +77,23 @@ asset使用InputStream in = getResources().getAssets().open(fileName);
 
 ```
 
+#### 文件保存完成后，直接对文件进行读取会抛出异常
+
+解决该异常需要提醒媒体库刷新文件
+
+```java
+
+    Uri localUri=Uri.fromFile(new File(filepath));
+    
+    Intent localIntent=new Intent(  Intent.ACTION_MEDIA_SCANNER_SCAN_FILE,localUri);
+
+    context.sendBroadcast(localIntent);
+
+
+```
+
+
+
 
 ### Android应用数据外部存储（保存至SD卡，也可以认为非应用安装目录）
 

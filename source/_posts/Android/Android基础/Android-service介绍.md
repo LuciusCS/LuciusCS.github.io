@@ -12,7 +12,7 @@ date: 2018/07/31
 # Android开发Service介绍
 
 Service是应用的一个组件，可以在后台处理耗时操作，但没有用户界面，其他的组件可以启动Service,即使用户切换到其他的应用，Service依旧可以在后台运行。另外，一个组件可以绑定一个Service并与其进行通信（IPC机制）。例如：Service可以控制网络传输、播放音乐、对文件进行I/O操作，都可以在后台进行。
-
+<!--more-->
 ## 不同类型的Service介绍
 
 ### Foreground service
@@ -133,9 +133,16 @@ foreground service可以被用户感知，即使在系统内存偏低的状态�
 
 ```
 
+注意：
+1、在启动Service时，需要使用显示Intent，且不能为Service声明Intent过滤器，在API21开始，如果使用隐式Intent调用bindService(), 系统会抛出异常。
+2、不应在Activity的onCreate()和onDestory()方法中，绑定启动service,在Activity生命周期改变时，这两个方法会发生回调。
+
 ## service的生命周期
 
-service的生命周期从创建至销毁有两种情况
+通过startService() 启动服务，会调用Service的 `onStartService`方法，
+
+service的生命周期从创建至销毁有两种情况；
+
 
 ### 通过调用startService()创建service
 
@@ -145,8 +152,17 @@ service的生命周期从创建至销毁有两种情况
 
 其他组件调用bindService()方法创建一个service,启动service的客户端（组件）通过IBinder接口与service进行信息的交互，客户端可以通过调用unbindService()方法来取消与service之间的联系。多个客户端通过调用bindService()绑定同一个service,只有所有的客户端调用unBindService()方法后，service才会被系统销毁，而不能通过调用stopSelf()或者stopService()方法。
 
+如果组件通过调用bindServer来创建服务，且未调用onStartCommand，则服务只会在该组件与其绑定时运行，当该服务与其所有组件取消绑定后，系统会将其销毁。
+
+
 
 ![](/source/img/201807/service_lifecycle.png)
+
+
+
+## 绑定服务
+
+在对服务进行绑定时，需要实现`onBind()`方法，该方法返回 `IBinder`对象。
 
 
 

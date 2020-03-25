@@ -1,7 +1,17 @@
+---
+title: "Android 插件化介绍"
+description: "Android 插件化介绍"
+tags: [Android]
+toc: true
+thumbnail: /thumbnail/img86.jpg
+categories: Android
+date: 2020/03/05
+---
+
 ## 占位式插件
 插件开发，必须使用宿主中的环境
 
-
+<!--more-->
 ## Hook式插件
 
 宿主和插件的element进行融合，插件可以使用宿主的环境

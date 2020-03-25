@@ -14,7 +14,7 @@ date: 2020/03/02
     1、Hook绕过AMS检查，采用代理的方式
     2、Hook还原目标Activity
     3、Hook方式融合宿主和插件DexElement
-
+<!--more-->
 ### 第二步 还原ProxyActivity
 
 要在ActivityThread的  class H extends Handler {}类中的的 handleMessage(Message msg)执行之前，将ProxyActivity换成需要进行启动的Activity， 而handleMessage(Message msg)会在Handler dispatchMessage()中进行调用

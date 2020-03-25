@@ -1,4 +1,12 @@
-
+---
+title: "Android视图优化"
+description: "Android视图优化"
+tags: [Android,优化]
+toc: true
+thumbnail: /thumbnail/img78.jpg
+categories: Android
+date: 2019/08/16
+---
 
 ### 视图优化
 
@@ -10,7 +18,7 @@ VSYNC(刷新率)：硬件刷新频率 60Hz
 刷新率 > 帧率 ： 屏幕在连续两次刷新的时候，会出现图像暂停或者卡顿现象。
 
 帧率 > 刷新率 ：图像会差生割裂的现象。
-
+<!--more-->
 施工双缓冲机制
 
 BackBuffer：GPU渲染的数据会写入BackBuffer；

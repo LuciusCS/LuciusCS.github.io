@@ -1,10 +1,18 @@
-
+---
+title: "Android 内存性能优化"
+description: "Android开发过程中的性能优化"
+tags: [Android,性能优化]
+toc: true
+thumbnail: /thumbnail/img77.jpg
+categories: Android
+date: 2019/09/01
+---
 
 
 ### 垃圾回收
 垃圾回收器负责回收程序中已经不适用，但仍然被各种对象占用的内存，Android具有垃圾回收机制，自动追踪所有的对象。
 
-
+<!--more-->
 ### Android中的垃圾回收机制
 
 ![](public/img/Android/Android_performance.png)
@@ -43,7 +51,7 @@
 
 1、单例造成的泄露
 
-在单例中使用Context对象，应该使用Application的Context，使用其他的容易造成内存泄露。
+在单例中使用Context对象，应该使用Application的Context，使用其他的容易造成内存泄露；但在某些情况下需要使用Activity的Context,如：涉及View的生命周期的Context
 
 注：静态对象在程序运行期间是不会被垃圾回收，在下方代码中会一直持有一个context引用，造成内存泄露。
 
