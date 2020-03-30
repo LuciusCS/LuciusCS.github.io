@@ -259,7 +259,14 @@ Android Studio的Gradle插件版本高于3.3.0支持增量注解处理，如果�
     android.enableBuildCache=true
 ```
 
-#### 打包编译多个版本的apk，待续
+#### 打包编译多个版本的apk
+
+1、packageName和applicationId
+
+* build.gradle可以通过applicationId修改应用的包名，但是BuildConfig的类名不会发生变化；
+* build.gradle可以通过buildConfigField给BuildConfig添加属性，用于用于代码配置，每个module的BuildConfig只能获取自己的module的配置
+* buildConfig的包名由manifest.xml中的包名决定，而非applicationId决定
+* manifest.xml中的package名称和applicationId不一致出现问题：某些框架在初始化通过反射获取BuildConfig配置信息，如果没有传入包名，其会根据context.getPackageName()拼接BuildConfig字段反射获取，这个时候获取到的packageName是applicationId的值，会抛出异常。
 
 
 

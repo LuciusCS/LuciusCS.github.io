@@ -39,7 +39,7 @@ date: 2019/09/01
 3、UI渲染过程发生GC，导致某一帧绘制时间超过16ms。
 
 
-### 内存泄露
+## 内存泄露
 
 1、应用程序分配了大量不能被回收的对象
 2、系统可分配的内存越来越少
@@ -150,3 +150,28 @@ public class MainActivity extends Activity{
 * StringBuilder代替Stirng,主要是String的拼接
 * App多次申请内存会造成内存抖动，内存碎片的问题
 * 使用复用池避免内存抖动和内存碎片
+
+
+
+## 内存抖动
+当内存频繁分配回收，导致内存不稳定，内存波动图形呈锯齿状
+
+在Dalvik虚拟机上比ART虚拟机上更为明显。
+
+出现的情况：
+
+1、字符串使用加号拼接
+* 使用StringBuilder替代
+* 初始化时设置容量，减少StringBuilder扩容
+
+2、资源复用
+* 使用全局对象池，重用频繁申请和释放的对象
+* 使用结束后，手动释放对象池中的对象
+
+3、使用SparseArray类族、ArrayMap代替HashMap
+
+## 内存溢出
+
+单个应用可用的最大值对应于 /system/build.prop 文件中的 dalvik.vm.heapgrowthlimit
+
+一次性创建大的数组或载入大的图片会导致OOM
