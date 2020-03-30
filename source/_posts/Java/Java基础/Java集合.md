@@ -7,7 +7,7 @@ toc: true
 categories: Java
 ---
 
-## Queue 接口
+
 
 # Collection的使用方法
 
@@ -15,6 +15,9 @@ categories: Java
 
 用于表示一系列的独立元素，其中List按照元素插入的顺序存储，Set中不能含有相同的元素，Queue用于队列的表示，并按照插入的顺序进行存储。
 <!--more-->
+## Queue 接口
+
+只能在队尾入队，队首出队
 ### BlockingQueue接口
 实现类 
 * ArrayBlockingQueue 有界阻塞队列，内部使用数组实现，初始化大小后无法改变大小
@@ -32,6 +35,11 @@ categories: Java
 * peek  返回队列头部的元素，如果队列为空，则返回null
 * put  添加一个元素，如果队列满，则阻塞
 * take 移除并返回队列头部的元素，如果队列为空，则阻塞
+
+## Deque接口
+
+队首、队尾都可以进行入队和出队操作
+
 
  
 
@@ -56,14 +64,58 @@ Vector使用数组实现，线程安全，ArrrayList线程不安全；Java不建
 **Java Doc里建议用Deque替代Stack接口完成栈的功能**
 
 
-## Set接口：实现类 Hashset、TreeSet
+## Set接口：实现类 Hashset、TreeSet、LinkedHashSet
 
-*  Hashset：按照哈希算法存取集合中的对象，存取速度快
-*  TreeSet：实现Sorted接口，能够对集合中的对象进行排序
+*  Hashset：按照哈希算法存取集合中的对象，不保证有序，存取速度快；允许null数据；
+*  TreeSet：实现Sorted接口，能够对集合中的对象进行排序，插入速度最慢；
+* LinkedHashSet：主要用于保证FIFO，集合有序；允许null数据；
+
+共同点：非线程安全，如果需要线程安全需要使用 `collection.synchronized()`
+
+### TreeSet的排序方式
+
+1、实现Comparable接口
+
+```java
+
+public class TestBean implements Comparable<TestBean> {
+    @Override
+    public int compareTo(TestBean testBean) {
+        return 0;
+    }
+}
+
+```
+
+
+2、实现Comparator接口
+
+```java
+public class TestBean implements Comparator<TestBean> {
+
+    @Override
+    public int compare(TestBean testBean, TestBean t1) {
+        return 0;
+    }
+}
+
+```
+
+
 
 ## Map接口
 
+### HashMap和HashTable
+1、HashMap是非线程安全的，HashTable是线程安全的；
+2、HashMap的键值都为null,HashTable不可；
+3、HashMap的效率高于HashTable;
 
+
+### LinkedHashMap
+
+LinkedHashMap<K,V>可以进行访问排序
+
+LruCache可以使用LinkedHashMap进行实现
 
 ### HashMap遍历
 
