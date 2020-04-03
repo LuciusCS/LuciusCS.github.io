@@ -5,6 +5,7 @@ toc: true
 description: Java单例模式
 categories: Java
 tags: [Java]
+date: 2019/03/25
 ---
 
 ### 不同单例模式在多线程下的特点

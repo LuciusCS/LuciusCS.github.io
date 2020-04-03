@@ -1,5 +1,12 @@
-
-
+---
+title: Android多语言设置
+tags: [Android]
+description:  Android多语言设置
+thumbnail: /thumbnail/img88.jpg
+toc: true
+categories: Android
+date: 2020/01/06
+---
 
 ## Android多语言适配
 

@@ -92,9 +92,6 @@ asset使用InputStream in = getResources().getAssets().open(fileName);
 
 ```
 
-
-
-
 ### Android应用数据外部存储（保存至SD卡，也可以认为非应用安装目录）
 
 该目录使用需要获取用户权限，能被其他应用访问，当应用被卸载时，该目录不会被删除。
@@ -132,3 +129,26 @@ Andorid开发公有目录与Context无关，使用Environment进行获取
 
 
 ### Android本地文件选择
+
+### Android配置文件的读写
+
+```java
+    try{
+        Properties props=new Properties();
+
+        //如果配置文件位于 app/src/main/assets 文件夹下
+        InputStream inputStream=context.getAssets().open("config.properties");
+        //如果配置文件位于 app/src/main/res/raw 文件夹下
+        InputStream inputStream=context.getResources().openRawResources("config.properties");
+        //Java的写法
+        InputStream inputStream=PropertiesFactory.class.getResourceAsStream("assets/config.properties");
+
+        props.load(inputStream);
+        props.getProperty("key");
+
+    }catch(Exception e){
+
+    }
+
+
+```

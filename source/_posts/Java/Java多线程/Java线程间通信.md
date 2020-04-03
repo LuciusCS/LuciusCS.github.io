@@ -3,8 +3,9 @@ title: Java线程间通信
 thumbnail: /thumbnail/img63.jpg
 toc: true
 description: Java线程间通信
-categories: Android
-tags: [Android]
+categories: Java
+tags: [Java]
+date: 2018/10/05
 ---
 
 # 线程间通信

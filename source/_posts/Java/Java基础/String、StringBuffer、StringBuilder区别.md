@@ -19,6 +19,7 @@ StringBuffer是线程安全的，有加锁开销，效率低；StringBuilder非�
 
 ### '+' VS. StringBuilder
 
+如果有多个字符串需要使用StringBuilder，因为`+`每一次都会创建并返回新的对象；
 
 
 ### byte[]和String类型相互转化

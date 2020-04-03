@@ -1,4 +1,12 @@
-
+---
+title: MarkDown的使用
+tags: [Other]
+description:  MarkDown的使用
+thumbnail: /thumbnail/img95.jpg
+toc: true
+categories: Other
+date: 2018/06/30
+---
 
 ### Markdown绘制流程图并居中
 

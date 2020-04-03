@@ -12,12 +12,12 @@ date: 2017/07/27
 
 
 modified: 2017-07-27
-作死小能手又一次把自己玩挂了，明明有一个Github的账号，又申请了一个账号，用于测试权限的控制；然后添加到Git中，结果在Push自己原来项目的时候总是报错；
-<!--more-->
-remote: Permission to LuciusCS/test.git denied to Lrici.
+
+
+###　问题一：remote: Permission to LuciusCS/test.git denied to Lrici.
 fatal: unable to access 'https://github.com/LuciusCS/test.git/': The requested URL returned error: 403
 
-
+<!--more-->
 ![](/public/img/other/Image3.png)
 
 
@@ -65,5 +65,23 @@ git config –global user.email “email”
 
 
 
+### 问题二：推送错误
 
+```xml
+sign_and_send_pubkey: signing failed: agent refused operation
+Permission denied (publickey).
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+
+```
+
+解决方式：
+
+```
+eval "$(ssh-agent -s)"
+ssh-add
+
+```
 

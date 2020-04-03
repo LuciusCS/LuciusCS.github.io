@@ -117,6 +117,11 @@ LinkedHashMap<K,V>可以进行访问排序
 
 LruCache可以使用LinkedHashMap进行实现
 
+### WeakHashMap
+
+WeakHashMap继承AbstractMap，实现Map接口，是一个散列表；将一组 key-value 插入WeakHashMap中不能阻止改key被GC回收，除非在WeakHashMap外对该Key有强引用；因此其可用来做缓存。
+
+
 ### HashMap遍历
 
 
@@ -125,6 +130,7 @@ LruCache可以使用LinkedHashMap进行实现
 
 
 
+## TreeMap和TreeSet
 
 
 
