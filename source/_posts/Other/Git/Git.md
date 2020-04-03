@@ -5,6 +5,7 @@ toc: true
 tags: [Git]
 description: 常用Git操作
 categories: Other
+date: 2018/06/27
 ---
 
 
@@ -153,6 +154,29 @@ git cherry-pick <start-commit-id>..<end-commit-id>：(左开右闭，不包含st
 
 ### 九、更新fork的代码
 在被下载到本地仓库中，添加源分支地址到项目远程分支列表中，
+
+### 十、将git推送到多个远程仓库
+
+通过 `git remote -v` 查看现有的远程分支
+
+![](/public/img/other/GitImg8.png)
+
+通过`git remote add blog git@ip:/hom/o.git`添加远程分支,并使用　`git remote -v` 查看结果
+
+![](/public/img/other/GitImg9.png)
+
+通过指定名称推送至指定的远程仓库　`git push -u blog`
+
+### 十一、Git Hooks
+
+Git Hooks提供多种Hook，
+
+pre-commit，该Hook将会拦截git commit操作，执行pre-commit，当且仅当脚本返回值为0时，执行真正的commit
+post-receive，当服务端的bare repository接收到push 信息并完成push操作后进行执行；
+
+### Git删除分支
+
+
 
 
 

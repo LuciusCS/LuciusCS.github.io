@@ -37,3 +37,31 @@ categories: Java
 
 引用队列，在检测到适当的可达性更改后，垃圾回收器将已注册的引用对象添加到该队列中。
 
+
+#### WeakReferenceQueue
+
+源码如下
+
+构造函数`WeakReference(T referent)` 中的 `referent`是被弱引用对象，弱引用对象没有被添加到任何对象中；
+
+构造函数`public WeakReference(T referent, ReferenceQueue<? super T> q)` ，会将弱引用的对象添加到队列中
+
+```
+
+public class WeakReference<T> extends Reference<T> {
+
+
+    public WeakReference(T referent) {
+        super(referent);
+    }
+
+   
+    public WeakReference(T referent, ReferenceQueue<? super T> q) {
+        super(referent, q);
+    }
+
+}
+
+
+
+```

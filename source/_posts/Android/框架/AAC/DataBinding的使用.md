@@ -5,7 +5,7 @@ toc: true
 description: Databinding点击事件的几种实现方式
 categories: Android
 tags: [Android]
-date: 2018/4/06
+date: 2018/04/06
 
 ---
 

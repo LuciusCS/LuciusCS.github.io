@@ -1,4 +1,12 @@
-
+---
+title: Java Queue
+thumbnail: /thumbnail/img98.jpg
+toc: true
+description: Java Queue
+tags: [Java]
+categories:  Java 
+date: 2019/04/03
+---
 
 ## 队列（Queue）
 

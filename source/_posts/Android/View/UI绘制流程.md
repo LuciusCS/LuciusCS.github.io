@@ -1,4 +1,12 @@
-
+---
+title: Android UI 绘制流程
+tags: [Android]
+description:  Android UI 绘制流程
+thumbnail: /thumbnail/img90.jpg
+toc: true
+categories: Android
+date: 2018/06/15
+---
 
 
 

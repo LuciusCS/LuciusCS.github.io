@@ -1,3 +1,12 @@
+---
+title: Java文件操作
+tags: [Java]
+description:  Java文件操作
+thumbnail: /thumbnail/img99.jpg
+toc: true
+categories: Java
+date: 2018/12/10
+---
 
 # Java文件读取
 

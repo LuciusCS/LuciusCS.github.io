@@ -2,10 +2,10 @@
 title: Android序列化
 thumbnail: /thumbnail/img10.jpg
 toc: true
-description: 测试摘要
+description: Android序列化
 tags: [Android]
 categories: Android
-date: 2019/11/28
+date: 2018/09/10
 ---
 ## Android序列化
 
