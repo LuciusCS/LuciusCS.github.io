@@ -124,8 +124,8 @@
 <div class="card">
     
     <div class="card-image">
-        <a href="/public/2017/07/31/Data_Structure/2017-07-31-data-structure-search/" class="image is-7by1">
-            <img class="thumbnail" src="/public/thumbnail/img39.jpg" alt="查找算法">
+        <a href="/public/2018/08/25/Android/Structure/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/" class="image is-7by1">
+            <img class="thumbnail" src="/public/thumbnail/img87.jpg" alt="Android架构设计">
         </a>
     </div>
     
@@ -133,17 +133,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2017-07-30T16:00:00.000Z">2017-07-31</time>
+                <time class="level-item has-text-grey" datetime="2018-08-24T16:00:00.000Z">2018-08-25</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/public/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+                <a class="has-link-grey -link" href="/public/categories/Android/">Android</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    a few seconds read (About 62 words)
+                    2 minutes read (About 370 words)
                 </span>
                 
                 
@@ -152,21 +152,30 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/public/2017/07/31/Data_Structure/2017-07-31-data-structure-search/">查找算法</a>
+                <a class="has-link-black-ter" href="/public/2018/08/25/Android/Structure/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/">Android架构设计</a>
             
         </h1>
         <div class="content">
-            <h3 id="折半查找"><a href="#折半查找" class="headerlink" title="折半查找"></a>折半查找</h3><p>modified: 2017-07-31<br>折半查找即二分查找的实现</p>
+            <h3 id="MVC模式"><a href="#MVC模式" class="headerlink" title="MVC模式"></a>MVC模式</h3><p>用户操作交给Controler（Activity） —— 》 </p>
+<p>View : 视图层，面向用户渲染画面UI —— 》 Layout自定义View<br>Model: 模型层，面向需求模型，数据模型 —— 》Beans实体类SqliteDatabase<br>Controller: 控制层，面向业务逻辑具体操作  —— 》Activity Network网络具体业务逻辑 </p>
+<p>1、View接收到用户的操作<br>2、View将用户的操作，交给Controller 即Activity<br>        Model和View之间的联系紧密，耦合性太强，Activity负责的内容太多<br>3、Controller完成具体业务逻辑<br>4、得到封装Model,再进行View更新 </p>
+<p>MVC模式容易发生内存泄露：<br>    在Control层使员工耗时操作，Activity退出后，线程依然存在</p>
+<h3 id="MVP模式"><a href="#MVP模式" class="headerlink" title="MVP模式"></a>MVP模式</h3><p>View —— 》 Acivity</p>
+<p>1、View收到用户操作<br>2、View把用户的操作交给Presenter<br>3、Presenter控制Model进行业务逻辑处理<br>4、Presenter处理完毕后，数据封装到Model<br>5、Presenter收到通知后，再更新View</p>
+<p>方式：双向通信的方式</p>
+<p>优点：</p>
+<ul>
+<li>View与Model层完全分离</li>
+<li>所有的逻辑交互都在Presenter</li>
+<li>MVP分层严谨</li>
+<li>View层只需面向Presenter层，不需要知道Model层</li>
+<li>Model层只需面向Presenter层，不需要知道View层</li>
+<li>View层和Model层逻辑交互都在Presenter</li>
+</ul>
+<p>MVP发生内存泄露：<br>    在P层使用线程耗时操作，使用弱引用可以避免</p>
+
         </div>
         
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/public/2017/07/31/Data_Structure/2017-07-31-data-structure-search/#more">Read More</a>
-                </div>
-            </div>
-        </div>
         
         
     </div>
@@ -183,8 +192,8 @@
 <div class="card">
     
     <div class="card-image">
-        <a href="/public/2017/07/31/PAT/2017-07-31-pat-advanced-1006/" class="image is-7by1">
-            <img class="thumbnail" src="/public/thumbnail/img74.jpg" alt="PAT甲级1006. Sign In and Sign Out">
+        <a href="/public/2018/08/15/Other/Tools/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7%E8%BD%AF%E4%BB%B6/" class="image is-7by1">
+            <img class="thumbnail" src="/public/thumbnail/img94.jpg" alt="常用工具软件">
         </a>
     </div>
     
@@ -192,244 +201,7 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2017-07-30T16:00:00.000Z">2017-07-31</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/public/categories/PAT/">PAT</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    4 minutes read (About 629 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/public/2017/07/31/PAT/2017-07-31-pat-advanced-1006/">PAT甲级1006. Sign In and Sign Out</a>
-            
-        </h1>
-        <div class="content">
-            <p>modified: 2017-07-31<br>At the beginning of every day, the first person who signs in the computer room will unlock the door, and the last one who signs out will lock the door. Given the records of signing in’s and out’s, you are supposed to find the ones who have unlocked and locked the door on that day.</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/public/2017/07/31/PAT/2017-07-31-pat-advanced-1006/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/public/2017/07/31/Data_Structure/2017-07-31-data-structure-insert-sort/" class="image is-7by1">
-            <img class="thumbnail" src="/public/thumbnail/img38.jpg" alt="排序算法">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2017-07-30T16:00:00.000Z">2017-07-31</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/public/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    4 minutes read (About 569 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/public/2017/07/31/Data_Structure/2017-07-31-data-structure-insert-sort/">排序算法</a>
-            
-        </h1>
-        <div class="content">
-            <h1 id="排序算法"><a href="#排序算法" class="headerlink" title="排序算法"></a>排序算法</h1><p>modified: 2017-08-02</p>
-<h2 id="插入排序有直接插入排序、折半插入排序、希尔排序等"><a href="#插入排序有直接插入排序、折半插入排序、希尔排序等" class="headerlink" title="插入排序有直接插入排序、折半插入排序、希尔排序等"></a>插入排序有直接插入排序、折半插入排序、希尔排序等</h2>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/public/2017/07/31/Data_Structure/2017-07-31-data-structure-insert-sort/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/public/2017/07/28/PAT/2017-07-27-pat-advanced-1007/" class="image is-7by1">
-            <img class="thumbnail" src="/public/thumbnail/img72.jpg" alt="PAT甲级1007. Maximum Subsequence Sum">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2017-07-27T16:00:00.000Z">2017-07-28</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/public/categories/PAT/">PAT</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    5 minutes read (About 718 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/public/2017/07/28/PAT/2017-07-27-pat-advanced-1007/">PAT甲级1007. Maximum Subsequence Sum</a>
-            
-        </h1>
-        <div class="content">
-            <p>modified: 2017-07-27<br>Given a sequence of K integers { N1, N2, …, NK }. A continuous subsequence is defined to be { Ni, Ni+1, …, Nj } where 1 &lt;= i &lt;= j &lt;= K. The Maximum Subsequence is the continuous subsequence which has the largest sum of its elements. For example, given sequence { -2, 11, -4, 13, -5, -2 }, its maximum subsequence is { 11, -4, 13 } with the largest sum being 20.</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/public/2017/07/28/PAT/2017-07-27-pat-advanced-1007/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/public/2017/07/27/PAT/2017-07-27-pat-advanced-1008/" class="image is-7by1">
-            <img class="thumbnail" src="/public/thumbnail/img73.jpg" alt="PAT甲级1008. Elevator">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2017-07-26T16:00:00.000Z">2017-07-27</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/public/categories/PAT/">PAT</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    3 minutes read (About 514 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/public/2017/07/27/PAT/2017-07-27-pat-advanced-1008/">PAT甲级1008. Elevator</a>
-            
-        </h1>
-        <div class="content">
-            <p>modified: 2017-07-27<br>The highest building in our city has only one elevator. A request list is made up with N positive numbers. The numbers denote at which floors the elevator will stop, in specified order. It costs 6 seconds to move the elevator up one floor, and 4 seconds to move down one floor. The elevator will stay for 5 seconds at each stop.</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/public/2017/07/27/PAT/2017-07-27-pat-advanced-1008/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/public/2017/07/27/Other/Git/2017-07-27-remote-permission-denied/" class="image is-7by1">
-            <img class="thumbnail" src="/public/thumbnail/img67.jpg" alt="Permission to LuciusCS/test.git denied to Lrici.">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2017-07-26T16:00:00.000Z">2017-07-27</time>
+                <time class="level-item has-text-grey" datetime="2018-08-14T16:00:00.000Z">2018-08-15</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/public/categories/Other/">Other</a>
@@ -439,7 +211,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    3 minutes read (About 455 words)
+                    3 minutes read (About 391 words)
                 </span>
                 
                 
@@ -448,18 +220,76 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/public/2017/07/27/Other/Git/2017-07-27-remote-permission-denied/">Permission to LuciusCS/test.git denied to Lrici.</a>
+                <a class="has-link-black-ter" href="/public/2018/08/15/Other/Tools/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7%E8%BD%AF%E4%BB%B6/">常用工具软件</a>
             
         </h1>
         <div class="content">
-            <p>modified: 2017-07-27<br>作死小能手又一次把自己玩挂了，明明有一个Github的账号，又申请了一个账号，用于测试权限的控制；然后添加到Git中，结果在Push自己原来项目的时候总是报错；</p>
+            <p>Windows软件</p>
+<p>1、Shadowsocks梯子<br>2、Goflyway 梯子，仅限于浏览器，需要插件<br>3、v2rayN 梯子<br>4、Visual Studio Code 代码编辑，博客编辑，轻量<br>5、Notepad++ 代码查看编辑，轻量<br>6、Postman 网络接口请求模拟<br>7、cpu-z 查看处理器、缓存、内存、主板、显卡、通道数等基本信息，可替代鲁大师<br>8、DB Browser数据库文件查看软件<br>9、BitTorrent 种子下载<br>10、UltralISO制作系统启动盘<br>11、Binary Viewer 用于二进制文件查看,bin文件<br>12、PotPlayer 视频软件，支持倍速<br>13、Beyond Compare 文件、文件夹比较<br>14、Wireshark 支持网络、串口抓包<br>15、Capture 图片编辑软件、可替代PhotoShop<br>16、refus 制作系统启动盘，安装Ubuntu<br>17、Orcle VM VirtualBox 虚拟机软件，速度比VMware<br>18、文件创建事件修改软件<br>19、百度网盘加速下载软件<br>20、键盘鼠标共享，可以在Ubuntu和Window系统下<br>21、MultiPortDialog 串口、UDP、TCP发送接受软件<br>22、Picpick 截图软件</p>
+<p>Ubuntu软件<br>1、Shadowsocks梯子<br>2、Goflyway 梯子，仅限于浏览器，需要插件<br>3、v2rayN 梯子<br>4、Visual Studio Code 代码编辑，博客编辑，轻量<br>5、Shutter 截图软件,可以对文件进行编辑<br>6、BCompare 文件、文件夹比较</p>
+<p>Android软件<br>1、XRecoder: 录屏软件<br>2、UDP Sender/Receiver</p>
+<p>网站：</p>
+<p>1、免费的图片下载网站:<br>2、文档格式转换软件:<br>3、Android官方Demo:<br>4、CodeLa:<br>5、Google搜索:<br>6、</p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/public/2018/08/09/Android/Android%E5%9F%BA%E7%A1%80/Android-ViewModel%E4%BB%8B%E7%BB%8D/" class="image is-7by1">
+            <img class="thumbnail" src="/public/thumbnail/img7.jpg" alt="Android生命周期感知组件">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2018-08-08T16:00:00.000Z">2018-08-09</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/public/categories/Android/">Android</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    6 minutes read (About 878 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/public/2018/08/09/Android/Android%E5%9F%BA%E7%A1%80/Android-ViewModel%E4%BB%8B%E7%BB%8D/">Android生命周期感知组件</a>
+            
+        </h1>
+        <div class="content">
+            <p>modified: 2018-08-09</p>
+<h1 id="Android生命周期感知组件介绍-Android-lifecycle-aware-components"><a href="#Android生命周期感知组件介绍-Android-lifecycle-aware-components" class="headerlink" title="Android生命周期感知组件介绍(Android lifecycle-aware components)"></a>Android生命周期感知组件介绍(Android lifecycle-aware components)</h1><h2 id="lifecycle-aware组件介绍"><a href="#lifecycle-aware组件介绍" class="headerlink" title="lifecycle-aware组件介绍"></a>lifecycle-aware组件介绍</h2>
         </div>
         
         
         <div class="level is-mobile">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/public/2017/07/27/Other/Git/2017-07-27-remote-permission-denied/#more">Read More</a>
+                <a class="button is-size-7 is-light" href="/public/2018/08/09/Android/Android%E5%9F%BA%E7%A1%80/Android-ViewModel%E4%BB%8B%E7%BB%8D/#more">Read More</a>
                 </div>
             </div>
         </div>
@@ -479,8 +309,8 @@
 <div class="card">
     
     <div class="card-image">
-        <a href="/public/2017/07/27/PAT/2017-07-27-pat-advanced-1005/" class="image is-7by1">
-            <img class="thumbnail" src="/public/thumbnail/img71.jpg" alt="PAT甲级1005. Spell It Right">
+        <a href="/public/2018/08/09/Other/Computer/%E6%93%8D%E4%BD%9C%E7%AC%A6/" class="image is-7by1">
+            <img class="thumbnail" src="/public/thumbnail/img4.jpg" alt="常用操作符">
         </a>
     </div>
     
@@ -488,17 +318,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2017-07-26T16:00:00.000Z">2017-07-27</time>
+                <time class="level-item has-text-grey" datetime="2018-08-08T16:00:00.000Z">2018-08-09</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/public/categories/PAT/">PAT</a>
+                <a class="has-link-grey -link" href="/public/categories/Other/">Other</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    3 minutes read (About 390 words)
+                    a few seconds read (About 81 words)
                 </span>
                 
                 
@@ -507,141 +337,81 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/public/2017/07/27/PAT/2017-07-27-pat-advanced-1005/">PAT甲级1005. Spell It Right</a>
+                <a class="has-link-black-ter" href="/public/2018/08/09/Other/Computer/%E6%93%8D%E4%BD%9C%E7%AC%A6/">常用操作符</a>
             
         </h1>
         <div class="content">
-            <p>modified: 2017-07-27<br>Given a non-negative integer N, your task is to compute the sum of all the digits of N, and output every digit of the sum in English.</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/public/2017/07/27/PAT/2017-07-27-pat-advanced-1005/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/public/2017/07/27/PAT/2017-07-27-pat-advanced-1002/" class="image is-7by1">
-            <img class="thumbnail" src="/public/thumbnail/img70.jpg" alt="PAT甲级1002. A+B for Polynomials">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2017-07-26T16:00:00.000Z">2017-07-27</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/public/categories/PAT/">PAT</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    4 minutes read (About 634 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/public/2017/07/27/PAT/2017-07-27-pat-advanced-1002/">PAT甲级1002. A+B for Polynomials</a>
-            
-        </h1>
-        <div class="content">
-            <p>modified: 2017-07-27</p>
-<p>This time, you are supposed to find A+B where A and B are two polynomials.</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/public/2017/07/27/PAT/2017-07-27-pat-advanced-1002/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/public/2017/07/27/PAT/2017-07-27-pat-advanced-1001/" class="image is-7by1">
-            <img class="thumbnail" src="/public/thumbnail/img69.jpg" alt="PAT甲级1001. A+B Format">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2017-07-26T16:00:00.000Z">2017-07-27</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/public/categories/PAT/">PAT</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    2 minutes read (About 372 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/public/2017/07/27/PAT/2017-07-27-pat-advanced-1001/">PAT甲级1001. A+B Format</a>
-            
-        </h1>
-        <div class="content">
-            <p>modified: 2017-07-27</p>
-<ul>
-<li>A+B Format (20)</li>
+            <h2 id="常用操作符介绍"><a href="#常用操作符介绍" class="headerlink" title="常用操作符介绍"></a>常用操作符介绍</h2><h3 id="位操作符-amp"><a href="#位操作符-amp" class="headerlink" title="位操作符 &amp; | ^"></a>位操作符 &amp; | ^</h3><ul>
+<li><p>&amp; 按位与<br>  相同为1，相异为0</p>
+</li>
+<li><p>| 按位或<br>  一真则为真</p>
+</li>
+<li><p>^ 按位异或<br>  相同为0，相异为1</p>
+<h3 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h3></li>
+<li><p>&amp;&amp; 逻辑与<br>  两个操作数同时为真才为真</p>
+</li>
+<li><p>|| 逻辑或<br>  一真则为真，两个操作数同时为假才为假</p>
+</li>
 </ul>
-<p>Calculate a + b and output the sum in standard format – that is, the digits must be separated into groups of three by commas (unless there are less than four digits).</p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/public/2018/08/01/Android/Android%E5%9F%BA%E7%A1%80/Android-broadcast%E4%BB%8B%E7%BB%8D/" class="image is-7by1">
+            <img class="thumbnail" src="/public/thumbnail/img6.jpg" alt="Android Broadcast介绍">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2018-07-31T16:00:00.000Z">2018-08-01</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/public/categories/Android/">Android</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    12 minutes read (About 1741 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/public/2018/08/01/Android/Android%E5%9F%BA%E7%A1%80/Android-broadcast%E4%BB%8B%E7%BB%8D/">Android Broadcast介绍</a>
+            
+        </h1>
+        <div class="content">
+            <h1 id="Android-Broadcast介绍"><a href="#Android-Broadcast介绍" class="headerlink" title="Android Broadcast介绍"></a>Android Broadcast介绍</h1><p>modified: 2018-08-01<br>Android应用可以向系统和其他应用发送或者接收广播信息，手机系统在启动或者电量低的时候会发送不同的广播，也允许手机应用发送广播，来通知用户某些事件。</p>
         </div>
         
         
         <div class="level is-mobile">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/public/2017/07/27/PAT/2017-07-27-pat-advanced-1001/#more">Read More</a>
+                <a class="button is-size-7 is-light" href="/public/2018/08/01/Android/Android%E5%9F%BA%E7%A1%80/Android-broadcast%E4%BB%8B%E7%BB%8D/#more">Read More</a>
                 </div>
             </div>
         </div>
@@ -661,8 +431,8 @@
 <div class="card">
     
     <div class="card-image">
-        <a href="/public/2017/07/27/Data_Structure/2017-07-27-data-structure-stack/" class="image is-7by1">
-            <img class="thumbnail" src="/public/thumbnail/img37.jpg" alt="顺序栈的表示与实现">
+        <a href="/public/2018/07/31/Android/Android%E5%9F%BA%E7%A1%80/Android-service%E4%BB%8B%E7%BB%8D/" class="image is-7by1">
+            <img class="thumbnail" src="/public/thumbnail/img4.jpg" alt="Android Service介绍">
         </a>
     </div>
     
@@ -670,17 +440,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2017-07-26T16:00:00.000Z">2017-07-27</time>
+                <time class="level-item has-text-grey" datetime="2018-07-30T16:00:00.000Z">2018-07-31</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/public/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+                <a class="has-link-grey -link" href="/public/categories/Android/">Android</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    4 minutes read (About 526 words)
+                    16 minutes read (About 2354 words)
                 </span>
                 
                 
@@ -689,23 +459,334 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/public/2017/07/27/Data_Structure/2017-07-27-data-structure-stack/">顺序栈的表示与实现</a>
+                <a class="has-link-black-ter" href="/public/2018/07/31/Android/Android%E5%9F%BA%E7%A1%80/Android-service%E4%BB%8B%E7%BB%8D/">Android Service介绍</a>
             
         </h1>
         <div class="content">
-            <p>modified: 2017-7-28<br>本文采用C语言，利用结构体来实现顺序栈</p>
-<ul>
-<li><p>用于定义栈的大小，以及再栈满的时候，扩充栈</p>
+            <h1 id="Android开发Service介绍"><a href="#Android开发Service介绍" class="headerlink" title="Android开发Service介绍"></a>Android开发Service介绍</h1><p>Service是应用的一个组件，可以在后台处理耗时操作，但没有用户界面，其他的组件可以启动Service,即使用户切换到其他的应用，Service依旧可以在后台运行。另外，一个组件可以绑定一个Service并与其进行通信（IPC机制）。例如：Service可以控制网络传输、播放音乐、对文件进行I/O操作，都可以在后台进行。</p>
         </div>
         
         
         <div class="level is-mobile">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/public/2017/07/27/Data_Structure/2017-07-27-data-structure-stack/#more">Read More</a>
+                <a class="button is-size-7 is-light" href="/public/2018/07/31/Android/Android%E5%9F%BA%E7%A1%80/Android-service%E4%BB%8B%E7%BB%8D/#more">Read More</a>
                 </div>
             </div>
         </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/public/2018/07/30/Android/View/%E4%BD%BF%E7%94%A8RecyclerView%E5%92%8CSearchView%E5%AE%9E%E7%8E%B0%E6%9F%A5%E6%89%BE%E5%88%A0%E9%99%A4/" class="image is-7by1">
+            <img class="thumbnail" src="/public/thumbnail/img23.jpg" alt="使用SearchView以及RecyclerView实现条目删选">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2018-07-29T16:00:00.000Z">2018-07-30</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/public/categories/Android/">Android</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    6 minutes read (About 871 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/public/2018/07/30/Android/View/%E4%BD%BF%E7%94%A8RecyclerView%E5%92%8CSearchView%E5%AE%9E%E7%8E%B0%E6%9F%A5%E6%89%BE%E5%88%A0%E9%99%A4/">使用SearchView以及RecyclerView实现条目删选</a>
+            
+        </h1>
+        <div class="content">
+            <h1 id="使用SearchView以及RecyclerView实现条目删选"><a href="#使用SearchView以及RecyclerView实现条目删选" class="headerlink" title="使用SearchView以及RecyclerView实现条目删选"></a>使用SearchView以及RecyclerView实现条目删选</h1><p>## 使用SearchView以及RecyclerView实现条目删选</p>
+<h2 id="SearchView介绍"><a href="#SearchView介绍" class="headerlink" title="SearchView介绍"></a>SearchView介绍</h2>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/public/2018/07/30/Android/View/%E4%BD%BF%E7%94%A8RecyclerView%E5%92%8CSearchView%E5%AE%9E%E7%8E%B0%E6%9F%A5%E6%89%BE%E5%88%A0%E9%99%A4/#more">Read More</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/public/2018/07/20/Android/View/%E4%BA%8B%E4%BB%B6%E5%88%86%E5%8F%91%E6%9C%BA%E5%88%B6/" class="image is-7by1">
+            <img class="thumbnail" src="/public/thumbnail/img91.jpg" alt="Android 事件分发机制">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2018-07-19T16:00:00.000Z">2018-07-20</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/public/categories/Android/">Android</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    12 minutes read (About 1831 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/public/2018/07/20/Android/View/%E4%BA%8B%E4%BB%B6%E5%88%86%E5%8F%91%E6%9C%BA%E5%88%B6/">Android 事件分发机制</a>
+            
+        </h1>
+        <div class="content">
+            <h2 id="事件分发机制"><a href="#事件分发机制" class="headerlink" title="事件分发机制"></a>事件分发机制</h2><p>事件定义：当用户触摸屏幕时，讲产生的触摸行为(Touch事件)</p>
+<p>事件类型:</p>
+<ul>
+<li>MotionEvent.ACTION_DOWN 手指刚接触屏幕</li>
+<li>MotionEvent.ACTION_UP 手指从屏幕上松开</li>
+<li>MotionEvent.ACTION_MOVE 手指在屏幕上滑动</li>
+<li>MotionEvent.ACTION_CANCEL非人为因素取消</li>
+</ul>
+<p>事件序列</p>
+<p>正常情况下，一次手指触摸屏幕的行为会出发一系列点击事件</p>
+<p>1、点击屏幕后立即松开，事件序列为DOWN-&gt;UP；</p>
+<p>2、点击屏幕滑动一会再松开，事件序列为DOWN-&gt;MOVE-&gt;….-&gt;MOVE-&gt;UP；</p>
+<p>3、正常情况下，一个事件序列只能被一个View进行拦截并消耗；</p>
+<p>4、某个View一旦决定拦截，那么这个事件序列都将由它的 onTouchEvent 处理，并且它的 onInterceptTouchEvent 不会再调用；<br>5、某个View一旦开始处理事件，如果它不消耗ACTION_DOWN事件(onTouchEvent返回false)，那么同一事件序列中其他事件都不会再交给它处理。并且重新交由它的父元素处理(父元素onTouchEvent被调用)；</p>
+<p>6、事件的传递过程是由外向内的，即事件总是先传递给父元素，然后再由父元素分发给子View，通过requestDisallowIntercept方法可以在子VIew中干预父元素的事件分发过程，但ACTION_DOWN除外；</p>
+<p>7、ViewGroup默认不拦截任何事件，即onInterceptTouchEvent默认返回false。View没有onInterceptTouchEvent方法，一旦有点击事件传递给它，那么它的onTouchEvent方法就会被调用；</p>
+<p>8、View的onTouchEvent默认会消耗事件（返回true），除非它是不可点击的(clickable和longCLickable同时为false)。View的longClickable默认都是false，clickable分情况，Button的clickable默认为true，TextView的clickable默认为false。</p>
+<p>9、View的enable属性不影响onTouchEvent的默认返回值。即使View是disable状态的，只要它的clickable和longClickable有一个为true,那么其onToucheEvent就返回true</p>
+<p>10、onClick会相应的前提是当前View是可以点击的，并且收到了ACTION_DOWN和ACTION_UP的事件，并且受长按事件的影响，当长按事件返回true时，onClick不会响应</p>
+<p>11、onLongClick在ACTION_DOWN里判断是否进行相应，要想执行长按事件，该View必须是longClickable的并且设置了OnClickListener</p>
+<p>事件分发的对象</p>
+<ul>
+<li>Activity：控制生命周期&amp; 处理事件</li>
+<li>ViewGroup： 一组View的集合（含有多个子View）</li>
+<li>View：所有UI组件的基类</li>
+</ul>
+<p>事件分发主要方法</p>
+<ul>
+<li>dispatchTouchEvent(MotionEvent ev)：用来进行事件分发</li>
+<li>onInterceptTouchEvent(MotionEvent ev)：判断是否拦截事件（只存在于ViewGroup中）</li>
+<li>onTouchEvent（MotionEvent ev）：处理点击事件，消费事件</li>
+</ul>
+<p>Android事件分发是先传到ViewGroup,再传到View中，ViewGroup中可以通过 <code>onInterceptTouchEvent(MotionEvent ev)</code>方法对事件进行拦截，返回true表示允许继续向子View进行传递，返回false表示不对事件进行拦截，默认false；当ViewGroup对事件进行拦截后，<code>onInterceptTouchEvent(MotionEvent ev)</code>方法不会被调用。</p>
+<p>ViewGroup中<code>dispatchTouchEvent()</code> 真正对事件进行分发，而View中<code>dispatchTouchEvent()</code>方法，不对事件进行分发，或者起分发对象为自己本身。</p>
+<p>在 <code>dispatchTouchEvent()</code> 方法中做的永远是事件分发工作，而在<code>onTouchEvent()</code>方法中真正处理事件；在ViewGroup中没有<code>onTouchEvent()</code>方法，而直接调用View中的<code>onTouchEvent()</code>方法。</p>
+<p>当ViewGroup所有的子View返回false，其<code>onTouchEvent()</code>事件才会被触发。</p>
+<p>源码分析：</p>
+<p>在Activity中 <code>dispatchTouchEvent()</code> 方法的返回值代表事件是否被消费。<br><code>onUserInteraction()</code>是一个空方法，可以由子类实现。如果<code>getWindow().superDispatchTouchEvent(ev)</code>方法返回<code>true</code>代表事件结束（实际是由ViewGroup 的<code>dispatchTouchEvent(MotionEvent ev)</code>方法返回的<code>true</code>，见下文），如果返回<code>false</code>则执行onTouchEvent(ev);</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">dispatchTouchEvent</span><span class="params">(MotionEvent ev)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">if</span> (ev.getAction() == MotionEvent.ACTION_DOWN) &#123;</span><br><span class="line">           </span><br><span class="line">           onUserInteraction();</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">if</span> (getWindow().superDispatchTouchEvent(ev)) &#123;</span><br><span class="line">           <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> onTouchEvent(ev);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p><code>onTouchEvent(ev)</code>在Activty中的源码，首先判断是否超出边界，如果超出边界直接finish()掉，如果没有超出边界，表示该事件也结束。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onTouchEvent</span><span class="params">(MotionEvent event)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">if</span> (mWindow.shouldCloseOnTouch(<span class="keyword">this</span>, event)) &#123;</span><br><span class="line">           finish();</span><br><span class="line">           <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+
+<p><code>getWindow().superDispatchTouchEvent(ev)</code> 调用的是<code>PhoneWindow</code>类中的方法，其中<code>mDecror</code>（DecorView类型）是window的一个顶层view,包含window的<code>decor</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">superDispatchTouchEvent</span><span class="params">(MotionEvent event)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> mDecor.superDispatchTouchEvent(event);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>DecorView是FrameLayout的子类，<code>superDispatchTouchEvent(event)</code>源码，其实际上调用的是<code>VieGroup</code>中的<code>dispatchTouchEvent(MotionEvent ev)</code>方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">superDispatchTouchEvent</span><span class="params">(MotionEvent event)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.dispatchTouchEvent(event);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">```    </span><br><span class="line">`VieGroup`中的`dispatchTouchEvent(MotionEvent ev) `方法伪代码</span><br><span class="line"></span><br><span class="line">```java</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">dispatchTouchEvent</span><span class="params">(MotionEvent ev)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//伪代码</span></span><br><span class="line">        boolon consume=<span class="keyword">false</span>;</span><br><span class="line">        <span class="comment">//调用onInterceptTouchEvent判断是否拦截</span></span><br><span class="line">        <span class="keyword">if</span>(onInterceptTouchEvent(ev))&#123;</span><br><span class="line">            <span class="comment">//拦截则调用自身的onTouchEvent</span></span><br><span class="line">            consume=onTouchEvent(ev);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="comment">//不拦截，将事件分发给子View</span></span><br><span class="line">            consume=child.dispatchTouchEvent(ev);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> consume;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p><code>cancelAndClearTouchTargets(ev);</code>源码，该方法将<code>mFirstTouchTarget</code>进行置空操作</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * Cancels and clears all touch targets.</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">cancelAndClearTouchTargets</span><span class="params">(MotionEvent event)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">if</span> (mFirstTouchTarget != <span class="keyword">null</span>) &#123;</span><br><span class="line">           <span class="keyword">boolean</span> syntheticEvent = <span class="keyword">false</span>;</span><br><span class="line">           <span class="keyword">if</span> (event == <span class="keyword">null</span>) &#123;</span><br><span class="line">               <span class="keyword">final</span> <span class="keyword">long</span> now = SystemClock.uptimeMillis();</span><br><span class="line">               event = MotionEvent.obtain(now, now,</span><br><span class="line">                       MotionEvent.ACTION_CANCEL, <span class="number">0.0f</span>, <span class="number">0.0f</span>, <span class="number">0</span>);</span><br><span class="line">               event.setSource(InputDevice.SOURCE_TOUCHSCREEN);</span><br><span class="line">               syntheticEvent = <span class="keyword">true</span>;</span><br><span class="line">           &#125;</span><br><span class="line"></span><br><span class="line">           <span class="keyword">for</span> (TouchTarget target = mFirstTouchTarget; target != <span class="keyword">null</span>; target = target.next) &#123;</span><br><span class="line">               resetCancelNextUpFlag(target.child);</span><br><span class="line">               dispatchTransformedTouchEvent(event, <span class="keyword">true</span>, target.child, target.pointerIdBits);</span><br><span class="line">           &#125;</span><br><span class="line">           clearTouchTargets();</span><br><span class="line"></span><br><span class="line">           <span class="keyword">if</span> (syntheticEvent) &#123;</span><br><span class="line">               event.recycle();</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>在<code>ViewGroup</code>中<code>resetTouchState()</code>源码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">resetTouchState</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    clearTouchTargets();</span><br><span class="line">    resetCancelNextUpFlag(<span class="keyword">this</span>);</span><br><span class="line">    mGroupFlags &amp;= ~FLAG_DISALLOW_INTERCEPT;</span><br><span class="line">    mNestedScrollAxes = SCROLL_AXIS_NONE;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在<code>ViewGroup</code>中<code>requestDisallowInterceptTouchEvent(boolean disallowIntercept)</code>源码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">requestDisallowInterceptTouchEvent</span><span class="params">(<span class="keyword">boolean</span> disallowIntercept)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (disallowIntercept == ((mGroupFlags &amp; FLAG_DISALLOW_INTERCEPT) != <span class="number">0</span>)) &#123;</span><br><span class="line">        <span class="comment">// We're already in this state, assume our ancestors are too</span></span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (disallowIntercept) &#123;</span><br><span class="line">        mGroupFlags |= FLAG_DISALLOW_INTERCEPT;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        mGroupFlags &amp;= ~FLAG_DISALLOW_INTERCEPT;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Pass it up to our parent</span></span><br><span class="line">    <span class="keyword">if</span> (mParent != <span class="keyword">null</span>) &#123;</span><br><span class="line">        mParent.requestDisallowInterceptTouchEvent(disallowIntercept);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>ViewGroup中的 onInterceptTouchEvent方法源码，默认为false即不发生拦截</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onInterceptTouchEvent</span><span class="params">(MotionEvent ev)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (ev.isFromSource(InputDevice.SOURCE_MOUSE)</span><br><span class="line">            &amp;&amp; ev.getAction() == MotionEvent.ACTION_DOWN</span><br><span class="line">            &amp;&amp; ev.isButtonPressed(MotionEvent.BUTTON_PRIMARY)</span><br><span class="line">            &amp;&amp; isOnScrollbarThumb(ev.getX(), ev.getY())) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>ViewGroup的事件分发，dispatchransformedTouchEvent()</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">dispatchransformedTouchEvent</span><span class="params">(MotionEvent event,<span class="keyword">boolean</span> cancel,View child,<span class="keyword">int</span> disiredPointerBits)</span></span>&#123;</span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">boolean</span> handled;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    <span class="keyword">if</span>(child==<span class="keyword">null</span>)&#123;</span><br><span class="line">        handled=<span class="keyword">super</span>.dispatchTouchEvent(event);  <span class="comment">//调用到View的dispatchTouchEvent(event)</span></span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        handled=child.dispatchTouchEvent(event);  <span class="comment">//调用到child的dispatchTouchEvent(event)</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    event.setAction(oldAction);</span><br><span class="line">    <span class="keyword">return</span> handled;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>View的事件分发</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">diapatchTouchEvent</span><span class="params">(MotionEvent ev)</span></span>&#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    <span class="keyword">boolean</span> result =<span class="keyword">false</span>;</span><br><span class="line">    <span class="comment">//当前View是否可见（未被其他窗口遮盖且未隐藏）</span></span><br><span class="line">    <span class="keyword">if</span>(onFilterTouchEventForSecurity(event))&#123;</span><br><span class="line">        ListenerInfo li=mListenerInfo;</span><br><span class="line">        <span class="comment">//如果设置TouchListener，先响应TouchListener.onTouch</span></span><br><span class="line">        <span class="keyword">if</span>(li!=<span class="keyword">null</span>&amp;&amp;li.mOnTouchListener!=<span class="keyword">null</span>&amp;&amp;(mViewFlags&amp;ENABLE_MASK)==ENABLE&amp;&amp;li.mOnTouchListener.onTouch(<span class="keyword">this</span>,event))&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(!result&amp;&amp;onTouchEvent(event))&#123;</span><br><span class="line">            <span class="comment">//如果TouchListener.onTouch返回false才执行onTouchEvent</span></span><br><span class="line">            result=<span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>View的事件消费</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onTouchEvent</span><span class="params">(MotionEvent event)</span></span>&#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    <span class="comment">//如果当前的View是DISABLE状态，是可点击的/可长按，则会消费掉事件，不让它继续</span></span><br><span class="line">    <span class="keyword">if</span>((viewFlags&amp;ENABLED_MASK)==DISABLED)&#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">        <span class="keyword">return</span>((viewFlags&amp;CLICKABLE)==CLICKABLE</span><br><span class="line">        ||(viewFlags&amp;LONG_CLICKABLE)==LONG_CLICKABLE</span><br><span class="line">        ||(viewFlags&amp;CONTEXT_CLICKABLE)==CONTEXT_CLICKABLE);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//如果设置了mTouchDelegate，则会将事件交给代理者处理，直接return true</span></span><br><span class="line">    <span class="keyword">if</span>(mTouchDelegate!=<span class="keyword">null</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(mTouchDelegate.onTouchEvent(event))&#123;</span><br><span class="line">            <span class="comment">//如果有TouchDelegate的话，优先交给它处理</span></span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>; <span class="comment">//处理成功返回true，否则接着往下走</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//如果View可点击/长按，则最终一定会return true</span></span><br><span class="line">    <span class="keyword">if</span>(((viewFlags&amp;CLICKABLE)==CLICKABLE</span><br><span class="line">        ||(viewFlags&amp;LONG_CLICKABLE)==LONG_CLICKABLE)</span><br><span class="line">        ||(viewFlags&amp;CONTEXT_CLICKABLE)==CONTEXT_CLICKABLE))&#123;</span><br><span class="line">            <span class="keyword">switch</span>(action)&#123;</span><br><span class="line">                <span class="keyword">case</span> MotionEvent.ACTION_UP: <span class="comment">//抬起，判断是否处理点击事件</span></span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> MotionEvent.ACTION_DOWN: <span class="comment">//按下，处理长事件</span></span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> MotionEvent.ACTION_MOVE: <span class="comment">//移动，检测触摸是否划出了控件，移除响应事件</span></span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="Android事件流程图"><a href="#Android事件流程图" class="headerlink" title="Android事件流程图"></a>Android事件流程图</h3>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/public/2018/07/08/Android/%E6%A1%86%E6%9E%B6/AAC/Android%20Lifecycle-Aware%E7%BB%84%E4%BB%B6%E8%AF%A6%E8%A7%A3/" class="image is-7by1">
+            <img class="thumbnail" src="/public/thumbnail/img25.jpg" alt="Android生命周期感知组件详解">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2018-07-07T16:00:00.000Z">2018-07-08</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/public/categories/Android/">Android</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    2 minutes read (About 357 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/public/2018/07/08/Android/%E6%A1%86%E6%9E%B6/AAC/Android%20Lifecycle-Aware%E7%BB%84%E4%BB%B6%E8%AF%A6%E8%A7%A3/">Android生命周期感知组件详解</a>
+            
+        </h1>
+        <div class="content">
+            <h2 id="Android生命周期感知组件详解"><a href="#Android生命周期感知组件详解" class="headerlink" title="Android生命周期感知组件详解"></a>Android生命周期感知组件详解</h2><p>使用Lifecycle-aware components（生命周期感知组件），可以将与Activity、Fragemnt、Service生命周期相关方法如 <code>onStart()</code> <code>onStop()</code>中的调用，放入单独的模块中,lifecycle-aware components可以自动根据生命周期进行不同的处理。</p>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/public/2018/07/08/Android/%E6%A1%86%E6%9E%B6/AAC/Android%20Lifecycle-Aware%E7%BB%84%E4%BB%B6%E8%AF%A6%E8%A7%A3/#more">Read More</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/public/2018/07/08/Other/Ubuntu%20%E4%BD%BF%E7%94%A8/Ubuntu%20%E4%BD%BF%E7%94%A8/" class="image is-7by1">
+            <img class="thumbnail" src="/public/thumbnail/img93.jpg" alt="Ubuntu使用">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2018-07-07T16:00:00.000Z">2018-07-08</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/public/categories/Android/">Android</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    2 minutes read (About 288 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/public/2018/07/08/Other/Ubuntu%20%E4%BD%BF%E7%94%A8/Ubuntu%20%E4%BD%BF%E7%94%A8/">Ubuntu使用</a>
+            
+        </h1>
+        <div class="content">
+            <h2 id="Ubuntu-使用apt-get-update-或者-apt-get-install失败"><a href="#Ubuntu-使用apt-get-update-或者-apt-get-install失败" class="headerlink" title="Ubuntu 使用apt-get update 或者 apt-get install失败"></a>Ubuntu 使用<code>apt-get update</code> 或者 <code>apt-get install</code>失败</h2><p>出现错误：</p>
+<p>使用的镜像被墙</p>
+<p>修改 /etc/apt/sources.list中的</p>
+<p>cn.archive.ubuntu.com换成mirrors.aliyun.com</p>
+<p>更换为</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">deb http:<span class="comment">//mirrors.aliyun.com/ubuntu/ xenial main</span></span><br><span class="line">deb-src http:<span class="comment">//mirrors.aliyun.com/ubuntu/ xenial main</span></span><br><span class="line"></span><br><span class="line">deb http:<span class="comment">//mirrors.aliyun.com/ubuntu/ xenial-updates main</span></span><br><span class="line">deb-src http:<span class="comment">//mirrors.aliyun.com/ubuntu/ xenial-updates main</span></span><br><span class="line"></span><br><span class="line">deb http:<span class="comment">//mirrors.aliyun.com/ubuntu/ xenial universe</span></span><br><span class="line">deb-src http:<span class="comment">//mirrors.aliyun.com/ubuntu/ xenial universe</span></span><br><span class="line">deb http:<span class="comment">//mirrors.aliyun.com/ubuntu/ xenial-updates universe</span></span><br><span class="line">deb-src http:<span class="comment">//mirrors.aliyun.com/ubuntu/ xenial-updates universe</span></span><br><span class="line"></span><br><span class="line">deb http:<span class="comment">//mirrors.aliyun.com/ubuntu/ xenial-security main</span></span><br><span class="line">deb-src http:<span class="comment">//mirrors.aliyun.com/ubuntu/ xenial-security main</span></span><br><span class="line">deb http:<span class="comment">//mirrors.aliyun.com/ubuntu/ xenial-security universe</span></span><br><span class="line">deb-src http:<span class="comment">//mirrors.aliyun.com/ubuntu/ xenial-security universe</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="给文件添加权限"><a href="#给文件添加权限" class="headerlink" title="给文件添加权限"></a>给文件添加权限</h2><h3 id="给post-receive脚本添加可执行权限"><a href="#给post-receive脚本添加可执行权限" class="headerlink" title="给post-receive脚本添加可执行权限"></a>给post-receive脚本添加可执行权限</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x post-receive</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="网路相关"><a href="#网路相关" class="headerlink" title="网路相关"></a>网路相关</h2><p>1、查看端口占用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -ntlp</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Ubuntu-使用win10共享文件夹"><a href="#Ubuntu-使用win10共享文件夹" class="headerlink" title="Ubuntu 使用win10共享文件夹"></a>Ubuntu 使用win10共享文件夹</h2><p>1、在Windows创建共享文件夹</p>
+<p>2、在Ubuntu下安装samba-client</p>
+<p><img src="public/img/other/ubuntu_file_share1.png" alt=""></p>
+<p>3、在Ubuntu下安装cifs-utils</p>
+<p><img src="public/img/other/ubuntu_file_share2.png" alt=""></p>
+<p>4、在Ubuntu下新建挂载目录</p>
+<p><img src="public/img/other/ubuntu_file_share3.png" alt=""></p>
+<p>5、挂载共享文件</p>
+<p><img src="public/img/other/ubuntu_file_share4.png" alt=""></p>
+<p>操作完成后就可以在mnt/Shared共享文件了</p>
+
+        </div>
+        
         
         
     </div>
@@ -739,6 +820,10 @@
             <li><a class="pagination-link is-current" href="/public/page/8/">8</a></li>
             
             <li><a class="pagination-link has-text-black-ter" href="/public/page/9/">9</a></li>
+            
+            <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
+            
+            <li><a class="pagination-link has-text-black-ter" href="/public/page/12/">12</a></li>
             
         </ul>
     </nav>
@@ -788,7 +873,7 @@
                     </p>
                     <a href="/public/archives">
                         <p class="title has-text-weight-normal">
-                            81
+                            112
                         </p>
                     </a>
                 </div>
@@ -812,7 +897,7 @@
                     </p>
                     <a href="/public/tags">
                         <p class="title has-text-weight-normal">
-                            7
+                            11
                         </p>
                     </a>
                 </div>
@@ -892,7 +977,7 @@
                 <span class="level-item">Android</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">36</span>
+                <span class="level-item tag">55</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/public/categories/Java/">
@@ -900,7 +985,7 @@
                 <span class="level-item">Java</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">12</span>
+                <span class="level-item tag">15</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/public/categories/Kotlin/">
@@ -916,7 +1001,7 @@
                 <span class="level-item">Other</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">2</span>
+                <span class="level-item tag">6</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/public/categories/PAT/">
@@ -945,7 +1030,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/public/tags/Android/" style="font-size: 20px;">Android</a> <a href="/public/tags/Git/" style="font-size: 12px;">Git</a> <a href="/public/tags/JNI/" style="font-size: 12px;">JNI</a> <a href="/public/tags/Java/" style="font-size: 16px;">Java</a> <a href="/public/tags/Kotlin/" style="font-size: 10px;">Kotlin</a> <a href="/public/tags/pat/" style="font-size: 14px;">pat</a> <a href="/public/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 18px;">数据结构</a>
+        <a href="/public/tags/Android/" style="font-size: 20px;">Android</a> <a href="/public/tags/Git/" style="font-size: 11.67px;">Git</a> <a href="/public/tags/JNI/" style="font-size: 11.67px;">JNI</a> <a href="/public/tags/Java/" style="font-size: 16.67px;">Java</a> <a href="/public/tags/Kotlin/" style="font-size: 10px;">Kotlin</a> <a href="/public/tags/Other/" style="font-size: 13.33px;">Other</a> <a href="/public/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/public/tags/pat/" style="font-size: 15px;">pat</a> <a href="/public/tags/%E4%BC%98%E5%8C%96/" style="font-size: 10px;">优化</a> <a href="/public/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" style="font-size: 10px;">性能优化</a> <a href="/public/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 18.33px;">数据结构</a>
     </div>
 </div>
     
@@ -960,54 +1045,16 @@
         
         <article class="media">
             
-            <a href="/public/2019/12/20/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="media-left">
+            <a href="/public/2020/04/22/Java/Java%E5%9F%BA%E7%A1%80/Java%E9%9B%86%E5%90%88/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/thumbnail/img35.jpg" alt="Retrofit 框架介绍与使用">
+                    <img class="thumbnail" src="/public/thumbnail/img56.jpg" alt="Java集合">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-19T16:00:00.000Z">2019-12-20</time></div>
-                    <a href="/public/2019/12/20/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Retrofit 框架介绍与使用</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/public/categories/Android/">Android</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/public/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/thumbnail/img66.jpg" alt="Kotlin Lambda表达式">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:23.103Z">2019-11-28</time></div>
-                    <a href="/public/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Kotlin Lambda表达式</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/public/categories/Kotlin/">Kotlin</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/public/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/thumbnail/img59.jpg" alt="加密算法">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:15.919Z">2019-11-28</time></div>
-                    <a href="/public/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/" class="title has-link-black-ter is-size-6 has-text-weight-normal">加密算法</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-22T13:57:48.332Z">2020-04-22</time></div>
+                    <a href="/public/2020/04/22/Java/Java%E5%9F%BA%E7%A1%80/Java%E9%9B%86%E5%90%88/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java集合</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/public/categories/Java/">Java</a>
                     </p>
@@ -1017,16 +1064,16 @@
         
         <article class="media">
             
-            <a href="/public/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/Java%E5%BC%95%E7%94%A8/" class="media-left">
+            <a href="/public/2020/04/22/Java/Java%E5%9F%BA%E7%A1%80/String%E3%80%81StringBuffer%E3%80%81StringBuilder%E5%8C%BA%E5%88%AB/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/thumbnail/img54.jpg" alt="Java引用">
+                    <img class="thumbnail" src="/public/thumbnail/img58.jpg" alt="String、StringBuffer、StringBuilder">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:15.918Z">2019-11-28</time></div>
-                    <a href="/public/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/Java%E5%BC%95%E7%94%A8/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java引用</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-22T13:57:48.332Z">2020-04-22</time></div>
+                    <a href="/public/2020/04/22/Java/Java%E5%9F%BA%E7%A1%80/String%E3%80%81StringBuffer%E3%80%81StringBuilder%E5%8C%BA%E5%88%AB/" class="title has-link-black-ter is-size-6 has-text-weight-normal">String、StringBuffer、StringBuilder</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/public/categories/Java/">Java</a>
                     </p>
@@ -1036,18 +1083,56 @@
         
         <article class="media">
             
-            <a href="/public/2019/11/28/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/" class="media-left">
+            <a href="/public/2020/04/22/Other/Git/Git%E4%BB%93%E5%BA%93%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/thumbnail/img64.jpg" alt="Java代理模式">
+                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Other/Git/Git仓库服务器配置">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:18:36.264Z">2019-11-28</time></div>
-                    <a href="/public/2019/11/28/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java代理模式</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-22T13:57:48.332Z">2020-04-22</time></div>
+                    <a href="/public/2020/04/22/Other/Git/Git%E4%BB%93%E5%BA%93%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Other/Git/Git仓库服务器配置</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/public/categories/Java/">Java</a>
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/public/2020/04/22/Other/Project/Project/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Other/Project/Project">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-22T13:57:48.332Z">2020-04-22</time></div>
+                    <a href="/public/2020/04/22/Other/Project/Project/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Other/Project/Project</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/public/2020/04/22/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Java/设计模式/工厂模式">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-22T13:57:48.332Z">2020-04-22</time></div>
+                    <a href="/public/2020/04/22/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java/设计模式/工厂模式</a>
+                    <p class="is-size-7 is-uppercase">
+                        
                     </p>
                 </div>
             </div>
@@ -1063,6 +1148,50 @@
             Archives
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2020/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">10</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2020/03/">
+                <span class="level-start">
+                    <span class="level-item">March 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2020/02/">
+                <span class="level-start">
+                    <span class="level-item">February 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2020/01/">
+                <span class="level-start">
+                    <span class="level-item">January 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/public/archives/2019/12/">
@@ -1081,7 +1210,7 @@
                     <span class="level-item">November 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">8</span>
+                    <span class="level-item tag">3</span>
                 </span>
             </a>
         </li>
@@ -1092,7 +1221,7 @@
                     <span class="level-item">October 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
@@ -1103,7 +1232,7 @@
                     <span class="level-item">September 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">27</span>
+                    <span class="level-item tag">18</span>
                 </span>
             </a>
         </li>
@@ -1114,7 +1243,29 @@
                     <span class="level-item">August 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">5</span>
+                    <span class="level-item tag">9</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/07/">
+                <span class="level-start">
+                    <span class="level-item">July 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/06/">
+                <span class="level-start">
+                    <span class="level-item">June 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
                 </span>
             </a>
         </li>
@@ -1136,6 +1287,28 @@
                     <span class="level-item">April 2019</span>
                 </span>
                 <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/03/">
+                <span class="level-start">
+                    <span class="level-item">March 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/02/">
+                <span class="level-start">
+                    <span class="level-item">February 2019</span>
+                </span>
+                <span class="level-end">
                     <span class="level-item tag">1</span>
                 </span>
             </a>
@@ -1145,6 +1318,17 @@
             <a class="level is-marginless" href="/public/archives/2018/12/">
                 <span class="level-start">
                     <span class="level-item">December 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/11/">
+                <span class="level-start">
+                    <span class="level-item">November 2018</span>
                 </span>
                 <span class="level-end">
                     <span class="level-item tag">3</span>
@@ -1158,7 +1342,7 @@
                     <span class="level-item">October 2018</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
@@ -1169,7 +1353,7 @@
                     <span class="level-item">September 2018</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
@@ -1180,7 +1364,7 @@
                     <span class="level-item">August 2018</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">2</span>
+                    <span class="level-item tag">5</span>
                 </span>
             </a>
         </li>
@@ -1191,7 +1375,7 @@
                     <span class="level-item">July 2018</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">3</span>
+                    <span class="level-item tag">5</span>
                 </span>
             </a>
         </li>
@@ -1200,6 +1384,17 @@
             <a class="level is-marginless" href="/public/archives/2018/06/">
                 <span class="level-start">
                     <span class="level-item">June 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2018</span>
                 </span>
                 <span class="level-end">
                     <span class="level-item tag">1</span>
@@ -1224,7 +1419,7 @@
                     <span class="level-item">August 2017</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">14</span>
+                    <span class="level-item tag">15</span>
                 </span>
             </a>
         </li>
@@ -1256,7 +1451,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/public/tags/Android/">
                         <span class="tag">Android</span>
-                        <span class="tag is-grey">35</span>
+                        <span class="tag is-grey">53</span>
                     </a>
                 </div>
                 
@@ -1277,7 +1472,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/public/tags/Java/">
                         <span class="tag">Java</span>
-                        <span class="tag is-grey">12</span>
+                        <span class="tag is-grey">15</span>
                     </a>
                 </div>
                 
@@ -1289,9 +1484,37 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/public/tags/Other/">
+                        <span class="tag">Other</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/Ubuntu/">
+                        <span class="tag">Ubuntu</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/public/tags/pat/">
                         <span class="tag">pat</span>
                         <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/%E4%BC%98%E5%8C%96/">
+                        <span class="tag">优化</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">
+                        <span class="tag">性能优化</span>
+                        <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
@@ -1326,54 +1549,16 @@
         
         <article class="media">
             
-            <a href="/public/2019/12/20/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="media-left">
+            <a href="/public/2020/04/22/Java/Java%E5%9F%BA%E7%A1%80/Java%E9%9B%86%E5%90%88/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/thumbnail/img35.jpg" alt="Retrofit 框架介绍与使用">
+                    <img class="thumbnail" src="/public/thumbnail/img56.jpg" alt="Java集合">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-19T16:00:00.000Z">2019-12-20</time></div>
-                    <a href="/public/2019/12/20/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Retrofit 框架介绍与使用</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/public/categories/Android/">Android</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/public/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/thumbnail/img66.jpg" alt="Kotlin Lambda表达式">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:23.103Z">2019-11-28</time></div>
-                    <a href="/public/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Kotlin Lambda表达式</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/public/categories/Kotlin/">Kotlin</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/public/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/thumbnail/img59.jpg" alt="加密算法">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:15.919Z">2019-11-28</time></div>
-                    <a href="/public/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/" class="title has-link-black-ter is-size-6 has-text-weight-normal">加密算法</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-22T13:57:48.332Z">2020-04-22</time></div>
+                    <a href="/public/2020/04/22/Java/Java%E5%9F%BA%E7%A1%80/Java%E9%9B%86%E5%90%88/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java集合</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/public/categories/Java/">Java</a>
                     </p>
@@ -1383,16 +1568,16 @@
         
         <article class="media">
             
-            <a href="/public/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/Java%E5%BC%95%E7%94%A8/" class="media-left">
+            <a href="/public/2020/04/22/Java/Java%E5%9F%BA%E7%A1%80/String%E3%80%81StringBuffer%E3%80%81StringBuilder%E5%8C%BA%E5%88%AB/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/thumbnail/img54.jpg" alt="Java引用">
+                    <img class="thumbnail" src="/public/thumbnail/img58.jpg" alt="String、StringBuffer、StringBuilder">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:15.918Z">2019-11-28</time></div>
-                    <a href="/public/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/Java%E5%BC%95%E7%94%A8/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java引用</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-22T13:57:48.332Z">2020-04-22</time></div>
+                    <a href="/public/2020/04/22/Java/Java%E5%9F%BA%E7%A1%80/String%E3%80%81StringBuffer%E3%80%81StringBuilder%E5%8C%BA%E5%88%AB/" class="title has-link-black-ter is-size-6 has-text-weight-normal">String、StringBuffer、StringBuilder</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/public/categories/Java/">Java</a>
                     </p>
@@ -1402,18 +1587,56 @@
         
         <article class="media">
             
-            <a href="/public/2019/11/28/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/" class="media-left">
+            <a href="/public/2020/04/22/Other/Git/Git%E4%BB%93%E5%BA%93%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/thumbnail/img64.jpg" alt="Java代理模式">
+                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Other/Git/Git仓库服务器配置">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:18:36.264Z">2019-11-28</time></div>
-                    <a href="/public/2019/11/28/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java代理模式</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-22T13:57:48.332Z">2020-04-22</time></div>
+                    <a href="/public/2020/04/22/Other/Git/Git%E4%BB%93%E5%BA%93%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Other/Git/Git仓库服务器配置</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/public/categories/Java/">Java</a>
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/public/2020/04/22/Other/Project/Project/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Other/Project/Project">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-22T13:57:48.332Z">2020-04-22</time></div>
+                    <a href="/public/2020/04/22/Other/Project/Project/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Other/Project/Project</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/public/2020/04/22/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Java/设计模式/工厂模式">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-22T13:57:48.332Z">2020-04-22</time></div>
+                    <a href="/public/2020/04/22/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java/设计模式/工厂模式</a>
+                    <p class="is-size-7 is-uppercase">
+                        
                     </p>
                 </div>
             </div>
@@ -1429,6 +1652,50 @@
             Archives
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2020/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">10</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2020/03/">
+                <span class="level-start">
+                    <span class="level-item">March 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2020/02/">
+                <span class="level-start">
+                    <span class="level-item">February 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2020/01/">
+                <span class="level-start">
+                    <span class="level-item">January 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/public/archives/2019/12/">
@@ -1447,7 +1714,7 @@
                     <span class="level-item">November 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">8</span>
+                    <span class="level-item tag">3</span>
                 </span>
             </a>
         </li>
@@ -1458,7 +1725,7 @@
                     <span class="level-item">October 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
@@ -1469,7 +1736,7 @@
                     <span class="level-item">September 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">27</span>
+                    <span class="level-item tag">18</span>
                 </span>
             </a>
         </li>
@@ -1480,7 +1747,29 @@
                     <span class="level-item">August 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">5</span>
+                    <span class="level-item tag">9</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/07/">
+                <span class="level-start">
+                    <span class="level-item">July 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/06/">
+                <span class="level-start">
+                    <span class="level-item">June 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
                 </span>
             </a>
         </li>
@@ -1502,6 +1791,28 @@
                     <span class="level-item">April 2019</span>
                 </span>
                 <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/03/">
+                <span class="level-start">
+                    <span class="level-item">March 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/02/">
+                <span class="level-start">
+                    <span class="level-item">February 2019</span>
+                </span>
+                <span class="level-end">
                     <span class="level-item tag">1</span>
                 </span>
             </a>
@@ -1511,6 +1822,17 @@
             <a class="level is-marginless" href="/public/archives/2018/12/">
                 <span class="level-start">
                     <span class="level-item">December 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/11/">
+                <span class="level-start">
+                    <span class="level-item">November 2018</span>
                 </span>
                 <span class="level-end">
                     <span class="level-item tag">3</span>
@@ -1524,7 +1846,7 @@
                     <span class="level-item">October 2018</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
@@ -1535,7 +1857,7 @@
                     <span class="level-item">September 2018</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
@@ -1546,7 +1868,7 @@
                     <span class="level-item">August 2018</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">2</span>
+                    <span class="level-item tag">5</span>
                 </span>
             </a>
         </li>
@@ -1557,7 +1879,7 @@
                     <span class="level-item">July 2018</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">3</span>
+                    <span class="level-item tag">5</span>
                 </span>
             </a>
         </li>
@@ -1566,6 +1888,17 @@
             <a class="level is-marginless" href="/public/archives/2018/06/">
                 <span class="level-start">
                     <span class="level-item">June 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2018</span>
                 </span>
                 <span class="level-end">
                     <span class="level-item tag">1</span>
@@ -1590,7 +1923,7 @@
                     <span class="level-item">August 2017</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">14</span>
+                    <span class="level-item tag">15</span>
                 </span>
             </a>
         </li>
@@ -1622,7 +1955,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/public/tags/Android/">
                         <span class="tag">Android</span>
-                        <span class="tag is-grey">35</span>
+                        <span class="tag is-grey">53</span>
                     </a>
                 </div>
                 
@@ -1643,7 +1976,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/public/tags/Java/">
                         <span class="tag">Java</span>
-                        <span class="tag is-grey">12</span>
+                        <span class="tag is-grey">15</span>
                     </a>
                 </div>
                 
@@ -1655,9 +1988,37 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/public/tags/Other/">
+                        <span class="tag">Other</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/Ubuntu/">
+                        <span class="tag">Ubuntu</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/public/tags/pat/">
                         <span class="tag">pat</span>
                         <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/%E4%BC%98%E5%8C%96/">
+                        <span class="tag">优化</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">
+                        <span class="tag">性能优化</span>
+                        <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
@@ -1692,6 +2053,7 @@
                 &copy; 2020 Lucius Zhao&nbsp;
                 Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> & <a
                         href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a>
+				
                 
                 <br>
                 <span id="busuanzi_container_site_uv">
@@ -1701,9 +2063,11 @@
                 <span id="busuanzi_value_site_pv">0</span> visits
                 </span>
                 
+			
                 </p>
             </div>
             <div class="level-end">
+			
             
                 <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
                 
@@ -1717,6 +2081,9 @@
                 
                 </div>
             
+			<span>
+				<a href="http://www.beian.miit.gov.cn">鲁ICP备20014405号</a>
+				</span>
             </div>
         </div>
     </div>

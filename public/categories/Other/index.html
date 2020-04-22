@@ -135,8 +135,8 @@
 <div class="card">
     
     <div class="card-image">
-        <a href="/public/2019/09/19/Other/Git/Git/" class="image is-7by1">
-            <img class="thumbnail" src="/public/thumbnail/img68.jpg" alt="常用Git操作">
+        <a href="/public/2020/03/25/Other/Blog/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BAHexo/" class="image is-7by1">
+            <img class="thumbnail" src="/public/thumbnail/img96.jpg" alt="将Hexo博客部署到云服务器上">
         </a>
     </div>
     
@@ -144,7 +144,7 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-09-19T09:41:14.780Z">2019-09-19</time>
+                <time class="level-item has-text-grey" datetime="2020-03-24T16:00:00.000Z">2020-03-25</time>
                 
                 <div class="level-item">
                 <a class="has-link-grey -link" href="/public/categories/Other/">Other</a>
@@ -154,7 +154,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    7 minutes read (About 1042 words)
+                    4 minutes read (About 669 words)
                 </span>
                 
                 
@@ -163,7 +163,284 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/public/2019/09/19/Other/Git/Git/">常用Git操作</a>
+                <a class="has-link-black-ter" href="/public/2020/03/25/Other/Blog/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BAHexo/">将Hexo博客部署到云服务器上</a>
+            
+        </h1>
+        <div class="content">
+            <h2 id="将Hexo博客部署到云服务器上"><a href="#将Hexo博客部署到云服务器上" class="headerlink" title="将Hexo博客部署到云服务器上"></a>将Hexo博客部署到云服务器上</h2><p>在云服务器上部署Hexo博客主要包含两个步骤，配置 nginx 和搭建git仓库，配置自动化部署；<br>在本文中使用华为云的Ubuntu服务器</p>
+<h3 id="安装并配置-nginx"><a href="#安装并配置-nginx" class="headerlink" title="安装并配置 nginx"></a>安装并配置 nginx</h3><p>nginx是一个高性能的HTTP和反向代理服务器，同时也是一个IMAP/POP3/SMTP 代理服务器。</p>
+<p>1、安装 ngixn</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install nginx</span><br></pre></td></tr></table></figure>
+
+
+<p>2、配置 ngixn<br>ngixn 安装完完成后的默认配置路径是 /etc/nginx/</p>
+<p>在 /etc/nginx/ 文件夹下创建新的文件夹vhost，并创建 blog.conf 文件<br>即 /etc/nginx/vhost/blog.conf</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir vhost</span><br><span class="line">vim blog.conf</span><br></pre></td></tr></table></figure>
+
+<p>在blog.conf 文件中写入配置信息</p>
+<p>listen表示监听的端口；root 表示博客存放的路径；server_name 表示域名或公网ip</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">server&#123;</span><br><span class="line">    listen  80;  </span><br><span class="line">    root &#x2F;home&#x2F;www&#x2F;blog;</span><br><span class="line">    server_name  www.zhaohanchao.com;</span><br><span class="line">    location &#x2F;&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>配置 /etc/nginx/nginx.conf 信息</p>
+<p>在其中写入 <code>include /etc/nginx/vhost/blog.conf</code>，刚刚创建的配置信息</p>
+<p><img src="/public/img/other/blog1.png" alt=""></p>
+<p>创建 /home/www/blog目录，用于保存博客的源码</p>
+<p>3、启动 ngixn</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl start nginx</span><br><span class="line">systemctl enable nginx</span><br></pre></td></tr></table></figure>
+
+<h3 id="配置git仓库，并设置自动部署"><a href="#配置git仓库，并设置自动部署" class="headerlink" title="配置git仓库，并设置自动部署"></a>配置git仓库，并设置自动部署</h3><p>1、安装git</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install git</span><br></pre></td></tr></table></figure>
+
+<p>2、创建gitserver用户，并切换至改用户</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">adduser gitserver</span><br><span class="line">su git server</span><br></pre></td></tr></table></figure>
+<p>3、创建 .ssh 目录获取权限，并生成 公钥秘钥文件</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir .ssh &amp;&amp; chmod 700 .ssh</span><br><span class="line">cd .ssh</span><br><span class="line">ssh-keygen</span><br></pre></td></tr></table></figure>
+<p><img src="/public/img/other/blog2.png" alt=""><br><img src="/public/img/other/blog3.png" alt=""></p>
+<p>4、创建空仓库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init --bare hexo.git</span><br></pre></td></tr></table></figure>
+<p>空仓库创建完成后可以在本地进行下载，查看是否配置成功，路径为<code>git clone gitserver@ip:/home/gitserver/hexo.git</code></p>
+<p>5、配置hook进行自动化部署</p>
+<p>进入 hexo.git目录，创建post-receive文件,并进行编辑</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd hexo.git</span><br><span class="line">vim post-receive</span><br></pre></td></tr></table></figure>
+
+<p>post-receive文件中的内容如下，其中 <code>work-tree</code>表示最终发布的博客的目录，<code>git-dir</code>表示git仓库的目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#!&#x2F;bin&#x2F;sh</span><br><span class="line">git --work-tree&#x3D;&#x2F;home&#x2F;www&#x2F;blog --git-dir&#x3D;&#x2F;home&#x2F;gitserver&#x2F;hexo.git checkout -f</span><br></pre></td></tr></table></figure>
+<p>给post-receive赋予可执行权限</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x post-receive</span><br></pre></td></tr></table></figure>
+
+<p>6、将本地hexo文件生成目录的git仓库添加远程仓库地址<code>gitserver@ip:/home/gitserver/hexo.git</code>进行post博客就会自动发布</p>
+<p>博客访问地址为服务器ip</p>
+<h3 id="在搭建过程中遇到的问题"><a href="#在搭建过程中遇到的问题" class="headerlink" title="在搭建过程中遇到的问题"></a>在搭建过程中遇到的问题</h3><p>1、云服务器ping不通，但能连接</p>
+<p>在安全组设置中添加 ICMP 入方向的规则</p>
+<p>2、访问网站显示403错误</p>
+<p>在安全组中天添加 TCP 80端口的入方向规则</p>
+<p>3、博客 post 之后，在<code>/home/www/blog</code>没有任何文件</p>
+<p>可能是git配置的hook的路径错误或者没有权限</p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/public/2018/08/15/Other/Tools/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7%E8%BD%AF%E4%BB%B6/" class="image is-7by1">
+            <img class="thumbnail" src="/public/thumbnail/img94.jpg" alt="常用工具软件">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2018-08-14T16:00:00.000Z">2018-08-15</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/public/categories/Other/">Other</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    3 minutes read (About 391 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/public/2018/08/15/Other/Tools/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7%E8%BD%AF%E4%BB%B6/">常用工具软件</a>
+            
+        </h1>
+        <div class="content">
+            <p>Windows软件</p>
+<p>1、Shadowsocks梯子<br>2、Goflyway 梯子，仅限于浏览器，需要插件<br>3、v2rayN 梯子<br>4、Visual Studio Code 代码编辑，博客编辑，轻量<br>5、Notepad++ 代码查看编辑，轻量<br>6、Postman 网络接口请求模拟<br>7、cpu-z 查看处理器、缓存、内存、主板、显卡、通道数等基本信息，可替代鲁大师<br>8、DB Browser数据库文件查看软件<br>9、BitTorrent 种子下载<br>10、UltralISO制作系统启动盘<br>11、Binary Viewer 用于二进制文件查看,bin文件<br>12、PotPlayer 视频软件，支持倍速<br>13、Beyond Compare 文件、文件夹比较<br>14、Wireshark 支持网络、串口抓包<br>15、Capture 图片编辑软件、可替代PhotoShop<br>16、refus 制作系统启动盘，安装Ubuntu<br>17、Orcle VM VirtualBox 虚拟机软件，速度比VMware<br>18、文件创建事件修改软件<br>19、百度网盘加速下载软件<br>20、键盘鼠标共享，可以在Ubuntu和Window系统下<br>21、MultiPortDialog 串口、UDP、TCP发送接受软件<br>22、Picpick 截图软件</p>
+<p>Ubuntu软件<br>1、Shadowsocks梯子<br>2、Goflyway 梯子，仅限于浏览器，需要插件<br>3、v2rayN 梯子<br>4、Visual Studio Code 代码编辑，博客编辑，轻量<br>5、Shutter 截图软件,可以对文件进行编辑<br>6、BCompare 文件、文件夹比较</p>
+<p>Android软件<br>1、XRecoder: 录屏软件<br>2、UDP Sender/Receiver</p>
+<p>网站：</p>
+<p>1、免费的图片下载网站:<br>2、文档格式转换软件:<br>3、Android官方Demo:<br>4、CodeLa:<br>5、Google搜索:<br>6、</p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/public/2018/08/09/Other/Computer/%E6%93%8D%E4%BD%9C%E7%AC%A6/" class="image is-7by1">
+            <img class="thumbnail" src="/public/thumbnail/img4.jpg" alt="常用操作符">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2018-08-08T16:00:00.000Z">2018-08-09</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/public/categories/Other/">Other</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    a few seconds read (About 81 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/public/2018/08/09/Other/Computer/%E6%93%8D%E4%BD%9C%E7%AC%A6/">常用操作符</a>
+            
+        </h1>
+        <div class="content">
+            <h2 id="常用操作符介绍"><a href="#常用操作符介绍" class="headerlink" title="常用操作符介绍"></a>常用操作符介绍</h2><h3 id="位操作符-amp"><a href="#位操作符-amp" class="headerlink" title="位操作符 &amp; | ^"></a>位操作符 &amp; | ^</h3><ul>
+<li><p>&amp; 按位与<br>  相同为1，相异为0</p>
+</li>
+<li><p>| 按位或<br>  一真则为真</p>
+</li>
+<li><p>^ 按位异或<br>  相同为0，相异为1</p>
+<h3 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h3></li>
+<li><p>&amp;&amp; 逻辑与<br>  两个操作数同时为真才为真</p>
+</li>
+<li><p>|| 逻辑或<br>  一真则为真，两个操作数同时为假才为假</p>
+</li>
+</ul>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/public/2018/06/30/Other/Tools/MarkDown%E4%BD%BF%E7%94%A8/" class="image is-7by1">
+            <img class="thumbnail" src="/public/thumbnail/img95.jpg" alt="MarkDown的使用">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2018-06-29T16:00:00.000Z">2018-06-30</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/public/categories/Other/">Other</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    a few seconds read (About 92 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/public/2018/06/30/Other/Tools/MarkDown%E4%BD%BF%E7%94%A8/">MarkDown的使用</a>
+            
+        </h1>
+        <div class="content">
+            <h3 id="Markdown绘制流程图并居中"><a href="#Markdown绘制流程图并居中" class="headerlink" title="Markdown绘制流程图并居中"></a>Markdown绘制流程图并居中</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">center</span>/&gt;</span></span><br><span class="line"> ```flow</span><br><span class="line"> st=&gt;start: Start</span><br><span class="line"> op=&gt;operation: Your</span><br><span class="line"> cond=&gt;condition: Yes or No?</span><br><span class="line"> e=&gt;end: End</span><br><span class="line"> st-&gt;op-&gt;cond</span><br><span class="line"> cond(yes)-&gt;e</span><br><span class="line"> cond(no)-&gt;op</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;/center&gt;</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">实现效果</span><br><span class="line"></span><br><span class="line">   &lt;center&#x2F;&gt;</span><br><span class="line">&#96;&#96;&#96;flow</span><br><span class="line">    st&#x3D;&gt;start: Start</span><br><span class="line">    op&#x3D;&gt;operation: Your</span><br><span class="line">    cond&#x3D;&gt;condition: Yes or No?</span><br><span class="line">    e&#x3D;&gt;end: End</span><br><span class="line">    st-&gt;op-&gt;cond</span><br><span class="line">    cond(yes)-&gt;e</span><br><span class="line">    cond(no)-&gt;op</span><br><span class="line">&#96;&#96;&#96; </span><br><span class="line">&lt;&#x2F;center&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### MarkDown使内容居中方式</span><br><span class="line"></span><br><span class="line">* 方法一：</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;xml</span><br><span class="line">    &lt;center&gt;内容居中&lt;&#x2F;center&gt;</span><br><span class="line">    &lt;center&gt;图片居中&lt;&#x2F;center&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>方法二：<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">align</span>=<span class="string">center</span>&gt;</span>内容居中<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-image">
+        <a href="/public/2018/06/27/Other/Git/Git/" class="image is-7by1">
+            <img class="thumbnail" src="/public/thumbnail/img68.jpg" alt="常用Git操作">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2018-06-26T16:00:00.000Z">2018-06-27</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/public/categories/Other/">Other</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    8 minutes read (About 1211 words)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/public/2018/06/27/Other/Git/Git/">常用Git操作</a>
             
         </h1>
         <div class="content">
@@ -243,7 +520,14 @@
 
 
 <h3 id="七、修改git-urls的路径方式"><a href="#七、修改git-urls的路径方式" class="headerlink" title="七、修改git urls的路径方式"></a>七、修改git urls的路径方式</h3><h4 id="将urls由SSH模式修改为Https模式"><a href="#将urls由SSH模式修改为Https模式" class="headerlink" title="将urls由SSH模式修改为Https模式"></a>将urls由SSH模式修改为Https模式</h4><h4 id="将usrls由Https模式修改为SSH模式"><a href="#将usrls由Https模式修改为SSH模式" class="headerlink" title="将usrls由Https模式修改为SSH模式"></a>将usrls由Https模式修改为SSH模式</h4><h3 id="八、建立本地分支，并推送至远程"><a href="#八、建立本地分支，并推送至远程" class="headerlink" title="八、建立本地分支，并推送至远程"></a>八、建立本地分支，并推送至远程</h3><h3 id="九、更新fork的代码"><a href="#九、更新fork的代码" class="headerlink" title="九、更新fork的代码"></a>九、更新fork的代码</h3><p>在被下载到本地仓库中，添加源分支地址到项目远程分支列表中，</p>
-
+<h3 id="十、将git推送到多个远程仓库"><a href="#十、将git推送到多个远程仓库" class="headerlink" title="十、将git推送到多个远程仓库"></a>十、将git推送到多个远程仓库</h3><p>通过 <code>git remote -v</code> 查看现有的远程分支</p>
+<p><img src="/public/img/other/GitImg8.png" alt=""></p>
+<p>通过<code>git remote add blog git@ip:/hom/o.git</code>添加远程分支,并使用　<code>git remote -v</code> 查看结果</p>
+<p><img src="/public/img/other/GitImg9.png" alt=""></p>
+<p>通过指定名称推送至指定的远程仓库　<code>git push -u blog</code></p>
+<h3 id="十一、Git-Hooks"><a href="#十一、Git-Hooks" class="headerlink" title="十一、Git Hooks"></a>十一、Git Hooks</h3><p>Git Hooks提供多种Hook，</p>
+<p>pre-commit，该Hook将会拦截git commit操作，执行pre-commit，当且仅当脚本返回值为0时，执行真正的commit<br>post-receive，当服务端的bare repository接收到push 信息并完成push操作后进行执行；</p>
+<h3 id="Git删除分支"><a href="#Git删除分支" class="headerlink" title="Git删除分支"></a>Git删除分支</h3>
         </div>
         
         
@@ -262,7 +546,7 @@
 <div class="card">
     
     <div class="card-image">
-        <a href="/public/2017/07/27/Other/Git/2017-07-27-remote-permission-denied/" class="image is-7by1">
+        <a href="/public/2017/07/27/Other/Git/Git%E5%87%BA%E7%8E%B0%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/" class="image is-7by1">
             <img class="thumbnail" src="/public/thumbnail/img67.jpg" alt="Permission to LuciusCS/test.git denied to Lrici.">
         </a>
     </div>
@@ -281,7 +565,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    3 minutes read (About 455 words)
+                    3 minutes read (About 442 words)
                 </span>
                 
                 
@@ -290,18 +574,19 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/public/2017/07/27/Other/Git/2017-07-27-remote-permission-denied/">Permission to LuciusCS/test.git denied to Lrici.</a>
+                <a class="has-link-black-ter" href="/public/2017/07/27/Other/Git/Git%E5%87%BA%E7%8E%B0%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/">Permission to LuciusCS/test.git denied to Lrici.</a>
             
         </h1>
         <div class="content">
-            <p>modified: 2017-07-27<br>作死小能手又一次把自己玩挂了，明明有一个Github的账号，又申请了一个账号，用于测试权限的控制；然后添加到Git中，结果在Push自己原来项目的时候总是报错；</p>
+            <p>modified: 2017-07-27</p>
+<p>###　问题一：remote: Permission to LuciusCS/test.git denied to Lrici.<br>fatal: unable to access ‘<a href="https://github.com/LuciusCS/test.git/&#39;">https://github.com/LuciusCS/test.git/&#39;</a>: The requested URL returned error: 403</p>
         </div>
         
         
         <div class="level is-mobile">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/public/2017/07/27/Other/Git/2017-07-27-remote-permission-denied/#more">Read More</a>
+                <a class="button is-size-7 is-light" href="/public/2017/07/27/Other/Git/Git%E5%87%BA%E7%8E%B0%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/#more">Read More</a>
                 </div>
             </div>
         </div>
@@ -362,7 +647,7 @@
                     </p>
                     <a href="/public/archives">
                         <p class="title has-text-weight-normal">
-                            81
+                            112
                         </p>
                     </a>
                 </div>
@@ -386,7 +671,7 @@
                     </p>
                     <a href="/public/tags">
                         <p class="title has-text-weight-normal">
-                            7
+                            11
                         </p>
                     </a>
                 </div>
@@ -466,7 +751,7 @@
                 <span class="level-item">Android</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">36</span>
+                <span class="level-item tag">55</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/public/categories/Java/">
@@ -474,7 +759,7 @@
                 <span class="level-item">Java</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">12</span>
+                <span class="level-item tag">15</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/public/categories/Kotlin/">
@@ -490,7 +775,7 @@
                 <span class="level-item">Other</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">2</span>
+                <span class="level-item tag">6</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/public/categories/PAT/">
@@ -519,7 +804,7 @@
         <h3 class="menu-label">
             Tag Cloud
         </h3>
-        <a href="/public/tags/Android/" style="font-size: 20px;">Android</a> <a href="/public/tags/Git/" style="font-size: 12px;">Git</a> <a href="/public/tags/JNI/" style="font-size: 12px;">JNI</a> <a href="/public/tags/Java/" style="font-size: 16px;">Java</a> <a href="/public/tags/Kotlin/" style="font-size: 10px;">Kotlin</a> <a href="/public/tags/pat/" style="font-size: 14px;">pat</a> <a href="/public/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 18px;">数据结构</a>
+        <a href="/public/tags/Android/" style="font-size: 20px;">Android</a> <a href="/public/tags/Git/" style="font-size: 11.67px;">Git</a> <a href="/public/tags/JNI/" style="font-size: 11.67px;">JNI</a> <a href="/public/tags/Java/" style="font-size: 16.67px;">Java</a> <a href="/public/tags/Kotlin/" style="font-size: 10px;">Kotlin</a> <a href="/public/tags/Other/" style="font-size: 13.33px;">Other</a> <a href="/public/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/public/tags/pat/" style="font-size: 15px;">pat</a> <a href="/public/tags/%E4%BC%98%E5%8C%96/" style="font-size: 10px;">优化</a> <a href="/public/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" style="font-size: 10px;">性能优化</a> <a href="/public/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 18.33px;">数据结构</a>
     </div>
 </div>
     
@@ -534,54 +819,16 @@
         
         <article class="media">
             
-            <a href="/public/2019/12/20/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="media-left">
+            <a href="/public/2020/04/22/Java/Java%E5%9F%BA%E7%A1%80/Java%E9%9B%86%E5%90%88/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/thumbnail/img35.jpg" alt="Retrofit 框架介绍与使用">
+                    <img class="thumbnail" src="/public/thumbnail/img56.jpg" alt="Java集合">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-19T16:00:00.000Z">2019-12-20</time></div>
-                    <a href="/public/2019/12/20/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Retrofit 框架介绍与使用</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/public/categories/Android/">Android</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/public/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/thumbnail/img66.jpg" alt="Kotlin Lambda表达式">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:23.103Z">2019-11-28</time></div>
-                    <a href="/public/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Kotlin Lambda表达式</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/public/categories/Kotlin/">Kotlin</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/public/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/thumbnail/img59.jpg" alt="加密算法">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:15.919Z">2019-11-28</time></div>
-                    <a href="/public/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/" class="title has-link-black-ter is-size-6 has-text-weight-normal">加密算法</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-22T13:57:48.332Z">2020-04-22</time></div>
+                    <a href="/public/2020/04/22/Java/Java%E5%9F%BA%E7%A1%80/Java%E9%9B%86%E5%90%88/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java集合</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/public/categories/Java/">Java</a>
                     </p>
@@ -591,16 +838,16 @@
         
         <article class="media">
             
-            <a href="/public/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/Java%E5%BC%95%E7%94%A8/" class="media-left">
+            <a href="/public/2020/04/22/Java/Java%E5%9F%BA%E7%A1%80/String%E3%80%81StringBuffer%E3%80%81StringBuilder%E5%8C%BA%E5%88%AB/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/thumbnail/img54.jpg" alt="Java引用">
+                    <img class="thumbnail" src="/public/thumbnail/img58.jpg" alt="String、StringBuffer、StringBuilder">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:15.918Z">2019-11-28</time></div>
-                    <a href="/public/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/Java%E5%BC%95%E7%94%A8/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java引用</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-22T13:57:48.332Z">2020-04-22</time></div>
+                    <a href="/public/2020/04/22/Java/Java%E5%9F%BA%E7%A1%80/String%E3%80%81StringBuffer%E3%80%81StringBuilder%E5%8C%BA%E5%88%AB/" class="title has-link-black-ter is-size-6 has-text-weight-normal">String、StringBuffer、StringBuilder</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/public/categories/Java/">Java</a>
                     </p>
@@ -610,18 +857,56 @@
         
         <article class="media">
             
-            <a href="/public/2019/11/28/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/" class="media-left">
+            <a href="/public/2020/04/22/Other/Git/Git%E4%BB%93%E5%BA%93%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/thumbnail/img64.jpg" alt="Java代理模式">
+                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Other/Git/Git仓库服务器配置">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:18:36.264Z">2019-11-28</time></div>
-                    <a href="/public/2019/11/28/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java代理模式</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-22T13:57:48.332Z">2020-04-22</time></div>
+                    <a href="/public/2020/04/22/Other/Git/Git%E4%BB%93%E5%BA%93%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Other/Git/Git仓库服务器配置</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/public/categories/Java/">Java</a>
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/public/2020/04/22/Other/Project/Project/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Other/Project/Project">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-22T13:57:48.332Z">2020-04-22</time></div>
+                    <a href="/public/2020/04/22/Other/Project/Project/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Other/Project/Project</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/public/2020/04/22/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Java/设计模式/工厂模式">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-22T13:57:48.332Z">2020-04-22</time></div>
+                    <a href="/public/2020/04/22/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java/设计模式/工厂模式</a>
+                    <p class="is-size-7 is-uppercase">
+                        
                     </p>
                 </div>
             </div>
@@ -637,6 +922,50 @@
             Archives
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2020/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">10</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2020/03/">
+                <span class="level-start">
+                    <span class="level-item">March 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2020/02/">
+                <span class="level-start">
+                    <span class="level-item">February 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2020/01/">
+                <span class="level-start">
+                    <span class="level-item">January 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/public/archives/2019/12/">
@@ -655,7 +984,7 @@
                     <span class="level-item">November 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">8</span>
+                    <span class="level-item tag">3</span>
                 </span>
             </a>
         </li>
@@ -666,7 +995,7 @@
                     <span class="level-item">October 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
@@ -677,7 +1006,7 @@
                     <span class="level-item">September 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">27</span>
+                    <span class="level-item tag">18</span>
                 </span>
             </a>
         </li>
@@ -688,7 +1017,29 @@
                     <span class="level-item">August 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">5</span>
+                    <span class="level-item tag">9</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/07/">
+                <span class="level-start">
+                    <span class="level-item">July 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/06/">
+                <span class="level-start">
+                    <span class="level-item">June 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
                 </span>
             </a>
         </li>
@@ -710,6 +1061,28 @@
                     <span class="level-item">April 2019</span>
                 </span>
                 <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/03/">
+                <span class="level-start">
+                    <span class="level-item">March 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/02/">
+                <span class="level-start">
+                    <span class="level-item">February 2019</span>
+                </span>
+                <span class="level-end">
                     <span class="level-item tag">1</span>
                 </span>
             </a>
@@ -719,6 +1092,17 @@
             <a class="level is-marginless" href="/public/archives/2018/12/">
                 <span class="level-start">
                     <span class="level-item">December 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/11/">
+                <span class="level-start">
+                    <span class="level-item">November 2018</span>
                 </span>
                 <span class="level-end">
                     <span class="level-item tag">3</span>
@@ -732,7 +1116,7 @@
                     <span class="level-item">October 2018</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
@@ -743,7 +1127,7 @@
                     <span class="level-item">September 2018</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
@@ -754,7 +1138,7 @@
                     <span class="level-item">August 2018</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">2</span>
+                    <span class="level-item tag">5</span>
                 </span>
             </a>
         </li>
@@ -765,7 +1149,7 @@
                     <span class="level-item">July 2018</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">3</span>
+                    <span class="level-item tag">5</span>
                 </span>
             </a>
         </li>
@@ -774,6 +1158,17 @@
             <a class="level is-marginless" href="/public/archives/2018/06/">
                 <span class="level-start">
                     <span class="level-item">June 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2018</span>
                 </span>
                 <span class="level-end">
                     <span class="level-item tag">1</span>
@@ -798,7 +1193,7 @@
                     <span class="level-item">August 2017</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">14</span>
+                    <span class="level-item tag">15</span>
                 </span>
             </a>
         </li>
@@ -830,7 +1225,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/public/tags/Android/">
                         <span class="tag">Android</span>
-                        <span class="tag is-grey">35</span>
+                        <span class="tag is-grey">53</span>
                     </a>
                 </div>
                 
@@ -851,7 +1246,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/public/tags/Java/">
                         <span class="tag">Java</span>
-                        <span class="tag is-grey">12</span>
+                        <span class="tag is-grey">15</span>
                     </a>
                 </div>
                 
@@ -863,9 +1258,37 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/public/tags/Other/">
+                        <span class="tag">Other</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/Ubuntu/">
+                        <span class="tag">Ubuntu</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/public/tags/pat/">
                         <span class="tag">pat</span>
                         <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/%E4%BC%98%E5%8C%96/">
+                        <span class="tag">优化</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">
+                        <span class="tag">性能优化</span>
+                        <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
@@ -900,54 +1323,16 @@
         
         <article class="media">
             
-            <a href="/public/2019/12/20/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="media-left">
+            <a href="/public/2020/04/22/Java/Java%E5%9F%BA%E7%A1%80/Java%E9%9B%86%E5%90%88/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/thumbnail/img35.jpg" alt="Retrofit 框架介绍与使用">
+                    <img class="thumbnail" src="/public/thumbnail/img56.jpg" alt="Java集合">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-19T16:00:00.000Z">2019-12-20</time></div>
-                    <a href="/public/2019/12/20/Android/%E6%A1%86%E6%9E%B6/Retrofit%202.5%20%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Retrofit 框架介绍与使用</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/public/categories/Android/">Android</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/public/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/thumbnail/img66.jpg" alt="Kotlin Lambda表达式">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:23.103Z">2019-11-28</time></div>
-                    <a href="/public/2019/11/28/Kotlin/Kotlin%E5%9F%BA%E7%A1%80/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Kotlin Lambda表达式</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/public/categories/Kotlin/">Kotlin</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/public/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/thumbnail/img59.jpg" alt="加密算法">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:15.919Z">2019-11-28</time></div>
-                    <a href="/public/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/" class="title has-link-black-ter is-size-6 has-text-weight-normal">加密算法</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-22T13:57:48.332Z">2020-04-22</time></div>
+                    <a href="/public/2020/04/22/Java/Java%E5%9F%BA%E7%A1%80/Java%E9%9B%86%E5%90%88/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java集合</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/public/categories/Java/">Java</a>
                     </p>
@@ -957,16 +1342,16 @@
         
         <article class="media">
             
-            <a href="/public/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/Java%E5%BC%95%E7%94%A8/" class="media-left">
+            <a href="/public/2020/04/22/Java/Java%E5%9F%BA%E7%A1%80/String%E3%80%81StringBuffer%E3%80%81StringBuilder%E5%8C%BA%E5%88%AB/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/thumbnail/img54.jpg" alt="Java引用">
+                    <img class="thumbnail" src="/public/thumbnail/img58.jpg" alt="String、StringBuffer、StringBuilder">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:20:15.918Z">2019-11-28</time></div>
-                    <a href="/public/2019/11/28/Java/Java%E5%9F%BA%E7%A1%80/Java%E5%BC%95%E7%94%A8/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java引用</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-22T13:57:48.332Z">2020-04-22</time></div>
+                    <a href="/public/2020/04/22/Java/Java%E5%9F%BA%E7%A1%80/String%E3%80%81StringBuffer%E3%80%81StringBuilder%E5%8C%BA%E5%88%AB/" class="title has-link-black-ter is-size-6 has-text-weight-normal">String、StringBuffer、StringBuilder</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/public/categories/Java/">Java</a>
                     </p>
@@ -976,18 +1361,56 @@
         
         <article class="media">
             
-            <a href="/public/2019/11/28/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/" class="media-left">
+            <a href="/public/2020/04/22/Other/Git/Git%E4%BB%93%E5%BA%93%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/thumbnail/img64.jpg" alt="Java代理模式">
+                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Other/Git/Git仓库服务器配置">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-28T12:18:36.264Z">2019-11-28</time></div>
-                    <a href="/public/2019/11/28/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java代理模式</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-22T13:57:48.332Z">2020-04-22</time></div>
+                    <a href="/public/2020/04/22/Other/Git/Git%E4%BB%93%E5%BA%93%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Other/Git/Git仓库服务器配置</a>
                     <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/public/categories/Java/">Java</a>
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/public/2020/04/22/Other/Project/Project/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Other/Project/Project">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-22T13:57:48.332Z">2020-04-22</time></div>
+                    <a href="/public/2020/04/22/Other/Project/Project/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Other/Project/Project</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/public/2020/04/22/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Java/设计模式/工厂模式">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-22T13:57:48.332Z">2020-04-22</time></div>
+                    <a href="/public/2020/04/22/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java/设计模式/工厂模式</a>
+                    <p class="is-size-7 is-uppercase">
+                        
                     </p>
                 </div>
             </div>
@@ -1003,6 +1426,50 @@
             Archives
         </h3>
         <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2020/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">10</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2020/03/">
+                <span class="level-start">
+                    <span class="level-item">March 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2020/02/">
+                <span class="level-start">
+                    <span class="level-item">February 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2020/01/">
+                <span class="level-start">
+                    <span class="level-item">January 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
         
         <li>
             <a class="level is-marginless" href="/public/archives/2019/12/">
@@ -1021,7 +1488,7 @@
                     <span class="level-item">November 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">8</span>
+                    <span class="level-item tag">3</span>
                 </span>
             </a>
         </li>
@@ -1032,7 +1499,7 @@
                     <span class="level-item">October 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
@@ -1043,7 +1510,7 @@
                     <span class="level-item">September 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">27</span>
+                    <span class="level-item tag">18</span>
                 </span>
             </a>
         </li>
@@ -1054,7 +1521,29 @@
                     <span class="level-item">August 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">5</span>
+                    <span class="level-item tag">9</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/07/">
+                <span class="level-start">
+                    <span class="level-item">July 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/06/">
+                <span class="level-start">
+                    <span class="level-item">June 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
                 </span>
             </a>
         </li>
@@ -1076,6 +1565,28 @@
                     <span class="level-item">April 2019</span>
                 </span>
                 <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/03/">
+                <span class="level-start">
+                    <span class="level-item">March 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/02/">
+                <span class="level-start">
+                    <span class="level-item">February 2019</span>
+                </span>
+                <span class="level-end">
                     <span class="level-item tag">1</span>
                 </span>
             </a>
@@ -1085,6 +1596,17 @@
             <a class="level is-marginless" href="/public/archives/2018/12/">
                 <span class="level-start">
                     <span class="level-item">December 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/11/">
+                <span class="level-start">
+                    <span class="level-item">November 2018</span>
                 </span>
                 <span class="level-end">
                     <span class="level-item tag">3</span>
@@ -1098,7 +1620,7 @@
                     <span class="level-item">October 2018</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
@@ -1109,7 +1631,7 @@
                     <span class="level-item">September 2018</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
@@ -1120,7 +1642,7 @@
                     <span class="level-item">August 2018</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">2</span>
+                    <span class="level-item tag">5</span>
                 </span>
             </a>
         </li>
@@ -1131,7 +1653,7 @@
                     <span class="level-item">July 2018</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">3</span>
+                    <span class="level-item tag">5</span>
                 </span>
             </a>
         </li>
@@ -1140,6 +1662,17 @@
             <a class="level is-marginless" href="/public/archives/2018/06/">
                 <span class="level-start">
                     <span class="level-item">June 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2018</span>
                 </span>
                 <span class="level-end">
                     <span class="level-item tag">1</span>
@@ -1164,7 +1697,7 @@
                     <span class="level-item">August 2017</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">14</span>
+                    <span class="level-item tag">15</span>
                 </span>
             </a>
         </li>
@@ -1196,7 +1729,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/public/tags/Android/">
                         <span class="tag">Android</span>
-                        <span class="tag is-grey">35</span>
+                        <span class="tag is-grey">53</span>
                     </a>
                 </div>
                 
@@ -1217,7 +1750,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/public/tags/Java/">
                         <span class="tag">Java</span>
-                        <span class="tag is-grey">12</span>
+                        <span class="tag is-grey">15</span>
                     </a>
                 </div>
                 
@@ -1229,9 +1762,37 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/public/tags/Other/">
+                        <span class="tag">Other</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/Ubuntu/">
+                        <span class="tag">Ubuntu</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/public/tags/pat/">
                         <span class="tag">pat</span>
                         <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/%E4%BC%98%E5%8C%96/">
+                        <span class="tag">优化</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">
+                        <span class="tag">性能优化</span>
+                        <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
@@ -1266,6 +1827,7 @@
                 &copy; 2020 Lucius Zhao&nbsp;
                 Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> & <a
                         href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a>
+				
                 
                 <br>
                 <span id="busuanzi_container_site_uv">
@@ -1275,9 +1837,11 @@
                 <span id="busuanzi_value_site_pv">0</span> visits
                 </span>
                 
+			
                 </p>
             </div>
             <div class="level-end">
+			
             
                 <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
                 
@@ -1291,6 +1855,9 @@
                 
                 </div>
             
+			<span>
+				<a href="http://www.beian.miit.gov.cn">鲁ICP备20014405号</a>
+				</span>
             </div>
         </div>
     </div>
