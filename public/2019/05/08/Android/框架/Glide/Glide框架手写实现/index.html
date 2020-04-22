@@ -1,0 +1,1752 @@
+<!DOCTYPE html>
+<html  lang="en">
+<head>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 4.2.0" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>Glide手写框架实现 - Android Development</title>
+
+
+    <meta name="description" content="Glide手写框架实现">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Glide手写框架实现">
+<meta property="og:url" content="https://luciuscs.github.io/public/2019/05/08/Android/%E6%A1%86%E6%9E%B6/Glide/Glide%E6%A1%86%E6%9E%B6%E6%89%8B%E5%86%99%E5%AE%9E%E7%8E%B0/index.html">
+<meta property="og:site_name" content="Android Development">
+<meta property="og:description" content="Glide手写框架实现">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://luciuscs.github.io/public/public/thumbnail/img92.jpg">
+<meta property="article:published_time" content="2019-05-07T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-04-22T13:57:48.316Z">
+<meta property="article:author" content="Lucius Zhao">
+<meta property="article:tag" content="Android">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://luciuscs.github.io/public/public/thumbnail/img92.jpg">
+
+
+
+
+
+
+
+<link rel="icon" href="/public/images/favicon.svg">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+
+    
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+    
+    
+    
+    
+<link rel="stylesheet" href="/public/css/back-to-top.css">
+
+    
+    
+    
+    
+    
+    
+    
+    <link rel="stylesheet" href="/public/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+    
+    <script async="" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+
+
+<link rel="stylesheet" href="/public/css/style.css">
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/public/">
+            
+                <img src="/public/images/logo.svg" alt="Glide手写框架实现" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/public/">Home</a>
+                
+                <a class="navbar-item"
+                href="/public/archives">Archives</a>
+                
+                <a class="navbar-item"
+                href="/public/categories">Categories</a>
+                
+                <a class="navbar-item"
+                href="/public/tags">Tags</a>
+                
+                <a class="navbar-item"
+                href="/public/about">About</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                
+                <a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;">
+                    <i class="fas fa-list-ul"></i>
+                </a>
+                
+                
+                <a class="navbar-item search" title="Search" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
+<div class="card">
+    
+    <div class="card-image">
+        <span  class="image is-7by1">
+            <img class="thumbnail" src="/public/thumbnail/img92.jpg" alt="Glide手写框架实现">
+        </span>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-05-07T16:00:00.000Z">2019-05-08</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/public/categories/Android/">Android</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    20 minutes read (About 3051 words)
+                </span>
+                
+                
+                <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
+                    <i class="far fa-eye"></i>
+                    <span id="busuanzi_value_page_pv">0</span> visits
+                </span>
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                Glide手写框架实现
+            
+        </h1>
+        <div class="content">
+            <h1 id="Glide手写框架实现"><a href="#Glide手写框架实现" class="headerlink" title="Glide手写框架实现"></a>Glide手写框架实现</h1><h2 id="实现步骤"><a href="#实现步骤" class="headerlink" title="实现步骤"></a>实现步骤</h2><p>Glide框架实现主要有以下步骤</p>
+<p>图片下载后，先缓存至活动缓存；在获取缓存中通过弱引用监控bitMap的回收，如果活动缓存中bitMap的弱引用被回收，那么会将活动缓存中的bitMap，缓存至内存缓存；当图片被再次使用会从内存缓存中移除，添加到活动缓存中；</p>
+<ul>
+<li><p>活动缓存的实现</p>
+</li>
+<li><p>内存缓存的实现</p>
+</li>
+<li><p>磁盘缓存的实现</p>
+</li>
+<li><p>声明周期的管理</p>
+</li>
+</ul>
+<h3 id="实现前的准备"><a href="#实现前的准备" class="headerlink" title="实现前的准备"></a>实现前的准备</h3><p>1、在图片加载的过程中，采用&lt;Key,BitMap&gt;的形式获取图片对象；在使用的过程中，需要对图片文件的名称和路径进行加密，定义一个专门的类对名称和路径进行加密和解密，这样可以避免图片路径过长的问题。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Path</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String key;  <span class="comment">//例如  ac43474d52403e60fe21894520a67d6f417a6868994c145eeb26712472a78311</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 加密前 sha256 (https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X3BuZy90cm01Vk1lRnA5blVESWdHaWJkVnlFSnk3MmlieVdXOElDWGlhamZDNlliNTc3YnVRTUdtYmUxR1hxSmhwVjNvUzhyWktENTIzODNVZDFpYkh6VTJDakxrUUEvNjQw?x-oss-process=image/format,png)</span></span><br><span class="line"><span class="comment">     * 加密后  ac43474d52403e60fe21894520a67d6f417a6868994c145eeb26712472a78311</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> key</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Path</span><span class="params">(String key)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.key = Tool.getSHA256StrJava( key);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//添加getter和setter方法。</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>2、在使用的过程中，需要对BitMap的使用状态以及回收状态进行处理，设置一个专门的类进行管理。在对BitMap进行管理的过程中，需要对BitMap的引用次数进行标记，当引用次数等于零时，回收BitMap的空间；BitMap回收采用回调的方式由外部进行回收</p>
+<p>回调接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ValueCallback</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//活动缓存监听的方法（BitMap不再使用了）</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">valueNonUseAction</span><span class="params">(String path, BitMapValue bitMapValue)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在BitMap中 <code>bitmap</code>变量用于持有正在使用的图片对象，<code>count</code>变量用于对该对象的引用进行计数，会进行加一或者减一操作，<code>path</code>变量用于标记图片的路路径，<code>valueCallback</code>用于引用次数为零时的回调；</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BitMapValue</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">BitMapValue</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//采用单利模式</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> BitMapValue bitMapValue;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> BitMapValue <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//.....</span></span><br><span class="line">        <span class="comment">//省略单例实现</span></span><br><span class="line">        <span class="keyword">return</span> bitMapValue;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Bitmap bitmap;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> count;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//互动缓存监听</span></span><br><span class="line">    <span class="keyword">private</span> ValueCallback valueCallback;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String path;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">useAction</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (bitmap.isRecycled())&#123;   <span class="comment">//已经被回收</span></span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        count++;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">nonUseAction</span><span class="params">()</span></span>&#123;</span><br><span class="line">        count--;</span><br><span class="line">        <span class="keyword">if</span> (count&lt;=<span class="number">0</span>)&#123;</span><br><span class="line">            valueCallback.valueNonUseAction(path,<span class="keyword">this</span>);</span><br><span class="line">            recycleBitmap();</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//释放bitmap</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">recycleBitmap</span><span class="params">()</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">        bitmap.recycle();</span><br><span class="line"></span><br><span class="line">        bitMapValue =<span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">        System.gc();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//添加getter和setter方法</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="活动缓存的实现"><a href="#活动缓存的实现" class="headerlink" title="活动缓存的实现"></a>活动缓存的实现</h3><p>活动缓存用于存储应用中正在使用的图片资源，采用弱引用的方式便于系统及时回收；在活动缓存中采用&lt;Path,Bitmap&gt;的方式表示的正在使用的图片信息;</p>
+<p>在活动缓存中需要对被回收的对象的引用进行监听，当对象被回收后，需要将其加入到内存缓存中。</p>
+<p>变量<code>Map&lt;String, WeakReference&lt;BitMapValue&gt;&gt;mapList</code>用于持有缓存对象的弱引用，<code>mapList</code>的<code>value</code>是一个弱引用，会被自动回收，需要对该弱引用的回收做监听，处理弱引用回收后的操作，因此需要创建一个<code>CustomWeakReference</code>内部类；</p>
+<p>变量<code>Map&lt;String, Bitmap&gt;mapValueList</code>用于持有缓存对象的引用，其中保存的对象与<code>mapList</code>中的对象一致，<code>mapList</code>中的弱引用被回收后，需要通过获取<code>mapValueList</code>中的Bitmap对象，将其缓存至内存缓存中；</p>
+<p>变量<code>ReferenceQueue&lt;BitMapValue&gt;queue</code> 将<code>BitMapValue</code>的弱引用添加到该队列中，通过调用<code>remove</code>这一阻塞方法监听弱引用是否被回收。</p>
+<p>变量<code>boolean isCloseThread</code> 用于监听是否将弱引用回收监听的线程进行停止；</p>
+<p>变量<code>Thread thread</code> 用于表示弱引用回收监听线程</p>
+<p>方法<code>put(String path, BitMapValue bitMapValue)</code>用于添加活动缓存；<br>方法<code>get(String key)</code>用于获取活动缓存；<br>方法<code>closeActiveCache()</code>用于关闭活动缓存</p>
+<p>内部类 <code>class CustomWeakReference</code>用于在弱引用被回收后，获取该 BitMapValue 的 path和bitmap</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ActiveCache</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Map&lt;String, WeakReference&lt;BitMapValue&gt;&gt;mapList=<span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Map&lt;String, Bitmap&gt;mapValueList=<span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> ReferenceQueue&lt;BitMapValue&gt;queue;    <span class="comment">//目的：为了监听弱引用是否被回收</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> isCloseThread;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Thread thread;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> ValueCallback valueCallback;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ActiveCache</span><span class="params">(ValueCallback valueCallback)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.valueCallback=valueCallback;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * TODO 添加活动缓存</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> path</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> bitMapValue</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">put</span><span class="params">(String path, BitMapValue bitMapValue)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        Tool.checkNotEmpty(path);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//绑定Value的监听，Value没有被使用了，就会发起这个监听，给外界业务需要来使用)</span></span><br><span class="line">        bitMapValue.setValueCallback(valueCallback);</span><br><span class="line"></span><br><span class="line">        mapList.put(path,<span class="keyword">new</span> CustomWeakReference(bitMapValue,getQueue(),path));</span><br><span class="line"></span><br><span class="line">        mapValueList.put(path,bitMapValue.getBitmap());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * TODO 给外界获取value</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> path</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> BitMapValue <span class="title">get</span><span class="params">(String path)</span></span>&#123;</span><br><span class="line">        WeakReference&lt;BitMapValue&gt;valueWeakReference=mapList.get(path);</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">null</span>!=valueWeakReference)&#123;</span><br><span class="line">            BitMapValue value=valueWeakReference.get();   <span class="comment">//返回value</span></span><br><span class="line">            value.setBitmap(mapValueList.get(path));</span><br><span class="line">            value.setPath(path);</span><br><span class="line">            <span class="keyword">return</span> value;   <span class="comment">//返回value</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//主动释放内存缓存，并将线程进行关闭</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">closeActiveCache</span><span class="params">()</span></span>&#123;</span><br><span class="line">        isCloseThread=<span class="keyword">true</span>;</span><br><span class="line">        mapList.clear();;</span><br><span class="line">        System.gc();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//监听弱引用，成为弱引用的子类，为了监听弱引用是否被回收，并获取弱引用回收后的 path和 BitMapValue</span></span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CustomWeakReference</span> <span class="keyword">extends</span> <span class="title">WeakReference</span>&lt;<span class="title">BitMapValue</span>&gt;</span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">private</span> String path;</span><br><span class="line">        <span class="keyword">private</span> BitMapValue value;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">CustomWeakReference</span><span class="params">(BitMapValue referent, ReferenceQueue&lt;? <span class="keyword">super</span> BitMapValue&gt; q,String path)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">super</span>(referent, q);</span><br><span class="line">            <span class="keyword">this</span>.path =path;</span><br><span class="line">            <span class="keyword">this</span>.value=referent;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//创建弱引用队列，并对弱引用的回收进行监听</span></span><br><span class="line">    <span class="keyword">private</span> ReferenceQueue&lt;BitMapValue&gt;getQueue()&#123;</span><br><span class="line">        <span class="keyword">if</span> (queue==<span class="keyword">null</span>)&#123;</span><br><span class="line">            queue=<span class="keyword">new</span> ReferenceQueue&lt;&gt;();</span><br><span class="line">            thread= <span class="keyword">new</span> Thread()&#123;</span><br><span class="line">                <span class="meta">@Override</span></span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                    <span class="keyword">super</span>.run();</span><br><span class="line">                    <span class="keyword">while</span> (!isCloseThread)&#123;</span><br><span class="line">                        <span class="keyword">try</span> &#123;</span><br><span class="line">                            <span class="comment">//阻塞式方法 如果有引用被回收，则会执行该方法，并返回被回收的对象</span></span><br><span class="line">                            Reference&lt;? extends BitMapValue&gt; remove = queue.remove(); </span><br><span class="line">                            CustomWeakReference weakReference = (CustomWeakReference) remove;</span><br><span class="line"></span><br><span class="line">                             <span class="comment">//将引用移除容器</span></span><br><span class="line">                            <span class="keyword">if</span> (mapList != <span class="keyword">null</span> &amp;&amp; !mapList.isEmpty()) &#123;</span><br><span class="line">                                    mapList.remove(weakReference.path);</span><br><span class="line">                                    mapValueList.remove(weakReference.path);</span><br><span class="line">                            &#125;</span><br><span class="line"></span><br><span class="line">                        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                            e.printStackTrace();</span><br><span class="line">                        &#125; &#125; &#125;</span><br><span class="line">            &#125;;</span><br><span class="line">            thread.start();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> queue;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="内存缓存的实现"><a href="#内存缓存的实现" class="headerlink" title="内存缓存的实现"></a>内存缓存的实现</h3><p>内存缓存将使用的图片资源缓存至内存中，采用LRU算法进行回收,继承<code>LruCache&lt;K, V&gt;</code>接口，并在初始化的时候设置图片缓存的最大值。内存缓存的图片在每一次调用之后，都会进行移除后再次加入到活动缓存中；</p>
+<p>与活动缓存一样，内存缓存在缓存中的BitMapValue被移除后，需要进行回调，内存缓存回调接口如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public interface MemoryCacheCallback &#123;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 内存缓存中移除的path</span><br><span class="line">     * @param path</span><br><span class="line">     * @param oldBitMapValue</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public void entryRemoveMemoryCache(String path,@NonNull BitMapValue oldBitMapValue);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>内存缓存的源码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MemoryCache</span> <span class="keyword">extends</span> <span class="title">LruCache</span> &lt;<span class="title">String</span>, <span class="title">BitMapValue</span>&gt;</span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> manualRemove;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//TODO 手动移除 Manual</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> BitMapValue <span class="title">manualRemove</span><span class="params">(String path)</span></span>&#123;</span><br><span class="line">        manualRemove=<span class="keyword">true</span>;</span><br><span class="line">       BitMapValue bitMapValue =remove(path);</span><br><span class="line">        manualRemove=<span class="keyword">false</span>;</span><br><span class="line">       <span class="keyword">return</span> bitMapValue;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> MemoryCacheCallback memoryCacheCallback;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setMemoryCacheCallback</span><span class="params">(MemoryCacheCallback memoryCacheCallback)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.memoryCacheCallback = memoryCacheCallback;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 传入元素最大值给 LruCache</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MemoryCache</span><span class="params">(<span class="keyword">int</span> maxSize)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(maxSize);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">int</span> <span class="title">sizeOf</span><span class="params">(@NonNull String key, @NonNull BitMapValue bitMapValue)</span> </span>&#123;</span><br><span class="line"><span class="comment">//        return super.sizeOf(key, value);</span></span><br><span class="line">        Bitmap bitmap= bitMapValue.getBitmap();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//最开始的的时候</span></span><br><span class="line"><span class="comment">//        int result=bitmap.getRowBytes()*bitmap.getHeight();</span></span><br><span class="line">        <span class="comment">//API 12  3.0</span></span><br><span class="line"><span class="comment">//        int result=bitmap.getByteCount();  //bitmap内存复用上有区别(所属的)</span></span><br><span class="line">        <span class="comment">//API 19 4.4</span></span><br><span class="line"><span class="comment">//        int result=bitmap.getAllocationByteCount();//bitmap内存复用上有区别(整个的)</span></span><br><span class="line">        <span class="keyword">int</span> sdkInt= Build.VERSION.SDK_INT;</span><br><span class="line">        <span class="keyword">if</span> (sdkInt&gt;=Build.VERSION_CODES.KITKAT)&#123;</span><br><span class="line">            <span class="keyword">return</span> bitmap.getAllocationByteCount();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> bitmap.getByteCount();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 1. 重复的key</span></span><br><span class="line"><span class="comment">     * 2. 最少使用的元素会被移除</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> evicted</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> key</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> oldBitMapValue</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> newBitMapValue</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">entryRemoved</span><span class="params">(<span class="keyword">boolean</span> evicted, @NonNull String key, @NonNull BitMapValue oldBitMapValue, @Nullable BitMapValue newBitMapValue)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.entryRemoved(evicted, key, oldBitMapValue, newBitMapValue);</span><br><span class="line">        <span class="keyword">if</span> (memoryCacheCallback!=<span class="keyword">null</span>&amp;&amp;!manualRemove)&#123;  <span class="comment">//被动删除</span></span><br><span class="line">            memoryCacheCallback.entryRemoveMemoryCache(key, oldBitMapValue);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="磁盘缓存的实现"><a href="#磁盘缓存的实现" class="headerlink" title="磁盘缓存的实现"></a>磁盘缓存的实现</h3><p>以文件的形式保存至本地磁盘，文件名称需要通过<code>Path</code>类进行设置，在磁盘缓存中借助于 <a href="https://github.com/JakeWharton/DiskLruCache">https://github.com/JakeWharton/DiskLruCache</a> 中的  <code>DiskLruCache.java</code> <code>StrictLineReader.java</code> <code>Util.java</code> 并对DiskLruCache进行封装。在封装的过程中，需要指定磁盘缓存的路径、缓存文件的最大值，以及put和get方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DiskLruCacheImpl</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//SD/disk_lru_cache_dir/ac43474d52403e60fe21894520a67d6f417a6868994c145eeb26712472a78311</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String DISKLRU_CACHE_DIR=<span class="string">"disk_lru_cache_dir"</span>;  <span class="comment">//磁盘缓存的目录</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> APP_VERSION=<span class="number">1</span>;   <span class="comment">//我们的版本号，一旦修改这个版本号，之前的缓存失效</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> VALUE_COUNT=<span class="number">1</span>;  <span class="comment">//通常情况下是1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">long</span> MAX_SIZE=<span class="number">1024</span>*<span class="number">1024</span>*<span class="number">10l</span>; <span class="comment">//指定缓存文件最大值</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> DiskLruCache diskLruCache;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DiskLruCacheImpl</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        File file=<span class="keyword">new</span> File(Environment.getExternalStorageDirectory()+File.separator+DISKLRU_CACHE_DIR);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            diskLruCache= DiskLruCache.open(file,APP_VERSION,VALUE_COUNT,MAX_SIZE);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//TODO put</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">put</span><span class="params">(String path)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        DiskLruCache.Editor editor=<span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">        OutputStream outputStream=<span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            editor=diskLruCache.edit(path);</span><br><span class="line"></span><br><span class="line">           outputStream=editor.newOutputStream(<span class="number">0</span>);  <span class="comment">//index不能大于 VALUE_COUNT</span></span><br><span class="line"></span><br><span class="line">            Bitmap bitmap= bitMapValue.getBitmap();</span><br><span class="line"></span><br><span class="line">            bitmap.compress(Bitmap.CompressFormat.PNG,<span class="number">100</span>,outputStream);  <span class="comment">//吧把BitMap 写入outputStream</span></span><br><span class="line"></span><br><span class="line">            outputStream.flush();</span><br><span class="line"></span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            <span class="comment">//....省略</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//....省略提交，流输出、关闭</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> BitMapValue <span class="title">get</span><span class="params">(String path, BitmapPool bitmapPool)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        InputStream inputStream=<span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            DiskLruCache.Snapshot snapshot=diskLruCache.get(key);</span><br><span class="line">            <span class="comment">//判断快照不为null的情况下，再去读操作</span></span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">null</span>!=snapshot)&#123;</span><br><span class="line">                BitMapValue bitMapValue = BitMapValue.getInstance();</span><br><span class="line">                inputStream=snapshot.getInputStream(<span class="number">0</span>); </span><br><span class="line"></span><br><span class="line">                <span class="keyword">int</span> w=<span class="number">1092</span>;</span><br><span class="line">                <span class="keyword">int</span> h=<span class="number">1080</span>;</span><br><span class="line">                BitmapFactory.Options options2 = <span class="keyword">new</span> BitmapFactory.Options();</span><br><span class="line">                options2.inMutable=<span class="keyword">true</span>;</span><br><span class="line">                options2.inPreferredConfig=Bitmap.Config.RGB_565;</span><br><span class="line">                options2.inJustDecodeBounds=<span class="keyword">false</span>;</span><br><span class="line">                <span class="comment">//inSampleSize是采样率，当inSampleSize为2时，一个2000 1000的图片，将被缩小至 1000 500</span></span><br><span class="line">                options2.inSampleSize= Tool.sampleBitmapSize(options2,w,h);</span><br><span class="line">                <span class="keyword">final</span> Bitmap bitmap = BitmapFactory.decodeStream(inputStream,<span class="keyword">null</span>,options2);</span><br><span class="line">                bitMapValue.setBitmap(bitmap);</span><br><span class="line">                <span class="comment">//保存key唯一标识</span></span><br><span class="line">                bitMapValue.setPath(path);</span><br><span class="line">                <span class="keyword">return</span> bitMapValue;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//....省略提交、流输出、关闭</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="复用池的实现"><a href="#复用池的实现" class="headerlink" title="复用池的实现"></a>复用池的实现</h3><p>复用池的作用是将已经不需要使用的数据空间重新拿来使用，可以避免频繁申请内存，减少内存的抖动；在未使用复用池的情况下，每张图片都需要一块内存，在使用复用池的情况下，如果存在能被复用的图片就会重复使用改图片的内存。</p>
+<p><code>inMutable</code>是bitmapFactory的一个参数，表示该bitmap是可变的，支持复用的，在复用Bitmap之前需要设置<code>inMutable</code>为true<br><code>inBitmap</code>设置想要存储的bitmap</p>
+<p>复用池接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">BitmapPool</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 存入到Bitmap</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> bitmap</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">put</span><span class="params">(Bitmap bitmap)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取匹配 可用复用 Bitmap</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> w</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> h</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function">Bitmap <span class="title">get</span><span class="params">(<span class="keyword">int</span> w,<span class="keyword">int</span> h,Bitmap.Config config)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在复用池接口实现的过程中，继承<code>LruCache</code> 类，实现LRU算法；在复用池中通过Treemap对图片的内存空间进行排序，并通过TreeMap的<code>ceilingKey()</code>方法获取到合适的Bitmap内存；当Bitmap从内存缓存中移除后，会将其内存空间添加到复用池中；当Bitmap从磁盘中取出后，会先去查找复用池中是否有合适的空间，如果有则直接使用，否则开辟新的内存空间；</p>
+<p>我觉得应该先去看bitmap的内存申请</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BitmapPoolImpl</span> <span class="keyword">extends</span> <span class="title">LruCache</span>&lt;<span class="title">Integer</span>,<span class="title">Bitmap</span>&gt; <span class="keyword">implements</span> <span class="title">BitmapPool</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//为了筛选出合适的 Bitmap 容器</span></span><br><span class="line">    <span class="keyword">private</span> TreeMap&lt;Integer,String&gt;treeMap=<span class="keyword">new</span> TreeMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> maxSize for caches that do not override &#123;<span class="doctag">@link</span> #sizeOf&#125;, this is</span></span><br><span class="line"><span class="comment">     *                the maximum number of entries in the cache. For all other caches,</span></span><br><span class="line"><span class="comment">     *                this is the maximum sum of the sizes of the entries in this cache.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">BitmapPoolImpl</span><span class="params">(<span class="keyword">int</span> maxSize)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(maxSize);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">put</span><span class="params">(Bitmap bitmap)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//存入复用池</span></span><br><span class="line">        bitmap.isMutable();</span><br><span class="line">        <span class="comment">//todo 条件一 bitmap.isMutable()==true;</span></span><br><span class="line">        <span class="keyword">if</span> (!bitmap.isMutable())</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (bitmap.isRecycled()==<span class="keyword">false</span>)&#123;</span><br><span class="line">                bitmap.recycle();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//todo 条件二 就计算bitmap的大小,</span></span><br><span class="line">        <span class="keyword">int</span> bitmapSize = getBitmapSize(bitmap);</span><br><span class="line">        <span class="keyword">if</span> (bitmapSize&gt;maxSize())&#123;</span><br><span class="line">            <span class="keyword">if</span> (bitmap.isRecycled()==<span class="keyword">false</span>)&#123;</span><br><span class="line">                bitmap.recycle();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//todo bitmap存入 LruCache</span></span><br><span class="line">        put(bitmapSize,bitmap);</span><br><span class="line">        <span class="comment">//存入筛选容器</span></span><br><span class="line">        treeMap.put(bitmapSize,<span class="keyword">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取可以复用Bitmap</span></span><br><span class="line">   </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Bitmap <span class="title">get</span><span class="params">(<span class="keyword">int</span> w, <span class="keyword">int</span> h, Bitmap.Config config)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * ALPHA_8 理论上 实际上Android自动做处理的  只有透明度 8 位，一个字节</span></span><br><span class="line"><span class="comment">         * w*h*1</span></span><br><span class="line"><span class="comment">         *</span></span><br><span class="line"><span class="comment">         * RGB_565 理论上 实际上Android自动处理的  R 5位 G 6位 B 5位 没有透明度 两个字节</span></span><br><span class="line"><span class="comment">         * w*h*2</span></span><br><span class="line"><span class="comment">         *</span></span><br><span class="line"><span class="comment">         * ARGB_4444  理论上 实际上Android自动处理的 A 4位 R 4位 G 4位 B 4位  两个字节</span></span><br><span class="line"><span class="comment">         *</span></span><br><span class="line"><span class="comment">         *</span></span><br><span class="line"><span class="comment">         * 质量最高：</span></span><br><span class="line"><span class="comment">         * ARGB_8888  Android默认使用  A 8位 R 8位 G 8位 B 8位  四个字节</span></span><br><span class="line"><span class="comment">         *</span></span><br><span class="line"><span class="comment">         *</span></span><br><span class="line"><span class="comment">         * 常用的 ARGB_8888 RGB_565</span></span><br><span class="line"><span class="comment">         *</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> getSize=w*h*(config==Bitmap.Config.ARGB_8888?<span class="number">4</span>:<span class="number">2</span>);  <span class="comment">//只考虑两种，Glide所有的都考虑了</span></span><br><span class="line"></span><br><span class="line">        Integer key = treeMap.ceilingKey(getSize);<span class="comment">//可以查找到容器里面 和 getSize一样大的，也可以比getSize还要大的</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//如果treeMap还没有put,那么一定是null</span></span><br><span class="line">        <span class="keyword">if</span> (key==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;   <span class="comment">//没有找到合适的可复用的key</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//查找容器取出来的key ,必须小于计算出来的 (getSize*2)</span></span><br><span class="line">        <span class="keyword">if</span> (key&lt;=(getSize*<span class="number">2</span>))&#123;</span><br><span class="line">            Bitmap remove=remove(key);  <span class="comment">//复用池如果要取出来，肯定要取出来，不给其他地方用</span></span><br><span class="line">            Log.e(TAG,<span class="string">"从复用池中取出复用元素 bitmap"</span>);</span><br><span class="line">            <span class="keyword">return</span> remove;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 计算Bitmap的大小</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> bitmap</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">getBitmapSize</span><span class="params">(Bitmap  bitmap)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> sdkInt= Build.VERSION.SDK_INT;</span><br><span class="line">        <span class="keyword">if</span> (sdkInt&gt;=Build.VERSION_CODES.KITKAT)&#123;</span><br><span class="line">            <span class="keyword">return</span> bitmap.getAllocationByteCount();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> bitmap.getByteCount();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//元素的大小</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">int</span> <span class="title">sizeOf</span><span class="params">(@NonNull Integer key, @NonNull Bitmap value)</span> </span>&#123;</span><br><span class="line"><span class="comment">//        return super.sizeOf(key, value);</span></span><br><span class="line">        <span class="keyword">return</span> getBitmapSize(value);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">entryRemoved</span><span class="params">(<span class="keyword">boolean</span> evicted, @NonNull Integer key, @NonNull Bitmap oldValue, @Nullable Bitmap newValue)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.entryRemoved(evicted, key, oldValue, newValue);</span><br><span class="line">        <span class="comment">//吧TreeMap里面的给移除</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://github.com/LuciusCS/AndroidProject">源码地址</a> 在<code>glidemodule</code>模块中进行实现</p>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/public/tags/Android/" rel="tag">Android</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        <div class="social-share"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
+<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">Like this article? Support the author with</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>Alipay</span>
+    <div class="qrcode"><img src="/public/images/alipay_donate.png" alt="Alipay"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>Wechat</span>
+    <div class="qrcode"><img src="/public/images/wechat_donate.png" alt="Wechat"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/public/2019/06/05/Android/Advanced/%E7%89%88%E6%9C%AC%E5%8C%BA%E5%88%AB/%E4%B8%8D%E5%90%8C%E7%89%88%E6%9C%AC%E5%8C%BA%E5%88%AB/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">Android不同版本的差异</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/public/2019/04/23/Android/%E6%A1%86%E6%9E%B6/AAC/Android%20Livedata%E8%AF%A6%E8%A7%A3/">
+                <span class="level-item">LiveData介绍与使用</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">Comments</h3>
+        
+<div id="comment-container"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+	var gitment = new Gitment({
+		id: '460377232b8beca971fa99cdb52c8628',
+		owner: 'LuciusCS',
+		repo: 'https://github.com/LuciusCS/LuciusCS.github.io',
+		oauth: {
+			client_id: 'f405db0bc334c654cb02',
+			client_secret: 'f1658ea7679789bb0b8f4c38bd46264eade59a9b',
+		},
+	})
+	gitment.render('comment-container')
+</script>
+
+    </div>
+</div>
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left is-sticky">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                    <figure class="image is-128x128 has-mb-6">
+                        <img class="is-rounded" src="https://www.gravatar.com/avatar/5f88f4a896dde4ec7ad915a606b0faa9?s=128" alt="Lucius">
+                    </figure>
+                    
+                    <p class="is-size-4 is-block">
+                        Lucius
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        Android Developer
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>Qingdao</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Posts
+                    </p>
+                    <a href="/public/archives">
+                        <p class="title has-text-weight-normal">
+                            112
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Categories
+                    </p>
+                    <a href="/public/categories">
+                        <p class="title has-text-weight-normal">
+                            6
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        Tags
+                    </p>
+                    <a href="/public/tags">
+                        <p class="title has-text-weight-normal">
+                            11
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/LuciusCS" target="_blank" rel="noopener">
+                Follow</a>
+        </div>
+        
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
+                title="Github" href="https://github.com/LuciusCS">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+
+    <div class="card widget" id="toc">
+        <div class="card-content">
+            <div class="menu">
+                <h3 class="menu-label">
+                    Catalogue
+                </h3>
+                <ul class="menu-list"><li>
+        <a class="is-flex" href="#Glide手写框架实现">
+        <span class="has-mr-6">1</span>
+        <span>Glide手写框架实现</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#实现步骤">
+        <span class="has-mr-6">1.1</span>
+        <span>实现步骤</span>
+        </a><ul class="menu-list"><li>
+        <a class="is-flex" href="#实现前的准备">
+        <span class="has-mr-6">1.1.1</span>
+        <span>实现前的准备</span>
+        </a></li><li>
+        <a class="is-flex" href="#活动缓存的实现">
+        <span class="has-mr-6">1.1.2</span>
+        <span>活动缓存的实现</span>
+        </a></li><li>
+        <a class="is-flex" href="#内存缓存的实现">
+        <span class="has-mr-6">1.1.3</span>
+        <span>内存缓存的实现</span>
+        </a></li><li>
+        <a class="is-flex" href="#磁盘缓存的实现">
+        <span class="has-mr-6">1.1.4</span>
+        <span>磁盘缓存的实现</span>
+        </a></li><li>
+        <a class="is-flex" href="#复用池的实现">
+        <span class="has-mr-6">1.1.5</span>
+        <span>复用池的实现</span>
+        </a></li></ul></li></ul></li></ul>
+            </div>
+        </div>
+    </div>
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Links
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener">
+                    <span class="level-left">
+                        <span class="level-item">Hexo</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">hexo.io</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://github.com/ppoffice" target="_blank" rel="noopener">
+                    <span class="level-left">
+                        <span class="level-item">PPOffice</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">github.com</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Categories
+            </h3>
+            <ul class="menu-list">
+            <li>
+        <a class="level is-marginless" href="/public/categories/Android/">
+            <span class="level-start">
+                <span class="level-item">Android</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">55</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/public/categories/Java/">
+            <span class="level-start">
+                <span class="level-item">Java</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">15</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/public/categories/Kotlin/">
+            <span class="level-start">
+                <span class="level-item">Kotlin</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/public/categories/Other/">
+            <span class="level-start">
+                <span class="level-item">Other</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">6</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/public/categories/PAT/">
+            <span class="level-start">
+                <span class="level-item">PAT</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">8</span>
+            </span>
+        </a></li><li>
+        <a class="level is-marginless" href="/public/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+            <span class="level-start">
+                <span class="level-item">数据结构</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">16</span>
+            </span>
+        </a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Tag Cloud
+        </h3>
+        <a href="/public/tags/Android/" style="font-size: 20px;">Android</a> <a href="/public/tags/Git/" style="font-size: 11.67px;">Git</a> <a href="/public/tags/JNI/" style="font-size: 11.67px;">JNI</a> <a href="/public/tags/Java/" style="font-size: 16.67px;">Java</a> <a href="/public/tags/Kotlin/" style="font-size: 10px;">Kotlin</a> <a href="/public/tags/Other/" style="font-size: 13.33px;">Other</a> <a href="/public/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/public/tags/pat/" style="font-size: 15px;">pat</a> <a href="/public/tags/%E4%BC%98%E5%8C%96/" style="font-size: 10px;">优化</a> <a href="/public/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" style="font-size: 10px;">性能优化</a> <a href="/public/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 18.33px;">数据结构</a>
+    </div>
+</div>
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen is-sticky">
+        
+            <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/public/2020/04/22/Java/Java%E5%9F%BA%E7%A1%80/Java%E9%9B%86%E5%90%88/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/public/thumbnail/img56.jpg" alt="Java集合">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-22T13:57:48.332Z">2020-04-22</time></div>
+                    <a href="/public/2020/04/22/Java/Java%E5%9F%BA%E7%A1%80/Java%E9%9B%86%E5%90%88/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java集合</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/public/categories/Java/">Java</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/public/2020/04/22/Java/Java%E5%9F%BA%E7%A1%80/String%E3%80%81StringBuffer%E3%80%81StringBuilder%E5%8C%BA%E5%88%AB/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/public/thumbnail/img58.jpg" alt="String、StringBuffer、StringBuilder">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-22T13:57:48.332Z">2020-04-22</time></div>
+                    <a href="/public/2020/04/22/Java/Java%E5%9F%BA%E7%A1%80/String%E3%80%81StringBuffer%E3%80%81StringBuilder%E5%8C%BA%E5%88%AB/" class="title has-link-black-ter is-size-6 has-text-weight-normal">String、StringBuffer、StringBuilder</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/public/categories/Java/">Java</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/public/2020/04/22/Other/Git/Git%E4%BB%93%E5%BA%93%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Other/Git/Git仓库服务器配置">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-22T13:57:48.332Z">2020-04-22</time></div>
+                    <a href="/public/2020/04/22/Other/Git/Git%E4%BB%93%E5%BA%93%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Other/Git/Git仓库服务器配置</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/public/2020/04/22/Other/Project/Project/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Other/Project/Project">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-22T13:57:48.332Z">2020-04-22</time></div>
+                    <a href="/public/2020/04/22/Other/Project/Project/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Other/Project/Project</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/public/2020/04/22/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Java/设计模式/工厂模式">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-22T13:57:48.332Z">2020-04-22</time></div>
+                    <a href="/public/2020/04/22/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java/设计模式/工厂模式</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Archives
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2020/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">10</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2020/03/">
+                <span class="level-start">
+                    <span class="level-item">March 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2020/02/">
+                <span class="level-start">
+                    <span class="level-item">February 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2020/01/">
+                <span class="level-start">
+                    <span class="level-item">January 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/12/">
+                <span class="level-start">
+                    <span class="level-item">December 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/11/">
+                <span class="level-start">
+                    <span class="level-item">November 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/09/">
+                <span class="level-start">
+                    <span class="level-item">September 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">18</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/08/">
+                <span class="level-start">
+                    <span class="level-item">August 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">9</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/07/">
+                <span class="level-start">
+                    <span class="level-item">July 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/06/">
+                <span class="level-start">
+                    <span class="level-item">June 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/03/">
+                <span class="level-start">
+                    <span class="level-item">March 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/02/">
+                <span class="level-start">
+                    <span class="level-item">February 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/12/">
+                <span class="level-start">
+                    <span class="level-item">December 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/11/">
+                <span class="level-start">
+                    <span class="level-item">November 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/09/">
+                <span class="level-start">
+                    <span class="level-item">September 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/08/">
+                <span class="level-start">
+                    <span class="level-item">August 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">5</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/07/">
+                <span class="level-start">
+                    <span class="level-item">July 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">5</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/06/">
+                <span class="level-start">
+                    <span class="level-item">June 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2017/08/">
+                <span class="level-start">
+                    <span class="level-item">August 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">15</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2017/07/">
+                <span class="level-start">
+                    <span class="level-item">July 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">11</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/Android/">
+                        <span class="tag">Android</span>
+                        <span class="tag is-grey">53</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/Git/">
+                        <span class="tag">Git</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/JNI/">
+                        <span class="tag">JNI</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/Java/">
+                        <span class="tag">Java</span>
+                        <span class="tag is-grey">15</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/Kotlin/">
+                        <span class="tag">Kotlin</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/Other/">
+                        <span class="tag">Other</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/Ubuntu/">
+                        <span class="tag">Ubuntu</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/pat/">
+                        <span class="tag">pat</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/%E4%BC%98%E5%8C%96/">
+                        <span class="tag">优化</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">
+                        <span class="tag">性能优化</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                        <span class="tag">数据结构</span>
+                        <span class="tag is-grey">16</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right is-sticky">
+    
+        <div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            Recent
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/public/2020/04/22/Java/Java%E5%9F%BA%E7%A1%80/Java%E9%9B%86%E5%90%88/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/public/thumbnail/img56.jpg" alt="Java集合">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-22T13:57:48.332Z">2020-04-22</time></div>
+                    <a href="/public/2020/04/22/Java/Java%E5%9F%BA%E7%A1%80/Java%E9%9B%86%E5%90%88/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java集合</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/public/categories/Java/">Java</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/public/2020/04/22/Java/Java%E5%9F%BA%E7%A1%80/String%E3%80%81StringBuffer%E3%80%81StringBuilder%E5%8C%BA%E5%88%AB/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/public/thumbnail/img58.jpg" alt="String、StringBuffer、StringBuilder">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-22T13:57:48.332Z">2020-04-22</time></div>
+                    <a href="/public/2020/04/22/Java/Java%E5%9F%BA%E7%A1%80/String%E3%80%81StringBuffer%E3%80%81StringBuilder%E5%8C%BA%E5%88%AB/" class="title has-link-black-ter is-size-6 has-text-weight-normal">String、StringBuffer、StringBuilder</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/public/categories/Java/">Java</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/public/2020/04/22/Other/Git/Git%E4%BB%93%E5%BA%93%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Other/Git/Git仓库服务器配置">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-22T13:57:48.332Z">2020-04-22</time></div>
+                    <a href="/public/2020/04/22/Other/Git/Git%E4%BB%93%E5%BA%93%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Other/Git/Git仓库服务器配置</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/public/2020/04/22/Other/Project/Project/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Other/Project/Project">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-22T13:57:48.332Z">2020-04-22</time></div>
+                    <a href="/public/2020/04/22/Other/Project/Project/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Other/Project/Project</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/public/2020/04/22/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Java/设计模式/工厂模式">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-22T13:57:48.332Z">2020-04-22</time></div>
+                    <a href="/public/2020/04/22/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java/设计模式/工厂模式</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            Archives
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2020/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">10</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2020/03/">
+                <span class="level-start">
+                    <span class="level-item">March 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2020/02/">
+                <span class="level-start">
+                    <span class="level-item">February 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2020/01/">
+                <span class="level-start">
+                    <span class="level-item">January 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/12/">
+                <span class="level-start">
+                    <span class="level-item">December 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/11/">
+                <span class="level-start">
+                    <span class="level-item">November 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/09/">
+                <span class="level-start">
+                    <span class="level-item">September 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">18</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/08/">
+                <span class="level-start">
+                    <span class="level-item">August 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">9</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/07/">
+                <span class="level-start">
+                    <span class="level-item">July 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/06/">
+                <span class="level-start">
+                    <span class="level-item">June 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/03/">
+                <span class="level-start">
+                    <span class="level-item">March 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2019/02/">
+                <span class="level-start">
+                    <span class="level-item">February 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/12/">
+                <span class="level-start">
+                    <span class="level-item">December 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/11/">
+                <span class="level-start">
+                    <span class="level-item">November 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/10/">
+                <span class="level-start">
+                    <span class="level-item">October 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/09/">
+                <span class="level-start">
+                    <span class="level-item">September 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">2</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/08/">
+                <span class="level-start">
+                    <span class="level-item">August 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">5</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/07/">
+                <span class="level-start">
+                    <span class="level-item">July 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">5</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/06/">
+                <span class="level-start">
+                    <span class="level-item">June 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/05/">
+                <span class="level-start">
+                    <span class="level-item">May 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2018/04/">
+                <span class="level-start">
+                    <span class="level-item">April 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2017/08/">
+                <span class="level-start">
+                    <span class="level-item">August 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">15</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/public/archives/2017/07/">
+                <span class="level-start">
+                    <span class="level-item">July 2017</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">11</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                Tags
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/Android/">
+                        <span class="tag">Android</span>
+                        <span class="tag is-grey">53</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/Git/">
+                        <span class="tag">Git</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/JNI/">
+                        <span class="tag">JNI</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/Java/">
+                        <span class="tag">Java</span>
+                        <span class="tag is-grey">15</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/Kotlin/">
+                        <span class="tag">Kotlin</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/Other/">
+                        <span class="tag">Other</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/Ubuntu/">
+                        <span class="tag">Ubuntu</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/pat/">
+                        <span class="tag">pat</span>
+                        <span class="tag is-grey">8</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/%E4%BC%98%E5%8C%96/">
+                        <span class="tag">优化</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">
+                        <span class="tag">性能优化</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/public/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                        <span class="tag">数据结构</span>
+                        <span class="tag is-grey">16</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+        <div class="level">
+            <div class="level-start has-text-centered-mobile">
+                <a class="footer-logo is-block has-mb-6" href="/public/">
+                
+                    <img src="/public/images/logo.svg" alt="Glide手写框架实现" height="28">
+                
+                </a>
+                <p class="is-size-7">
+                &copy; 2020 Lucius Zhao&nbsp;
+                Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> & <a
+                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a>
+				
+                
+                <br>
+                <span id="busuanzi_container_site_uv">
+                Visited by <span id="busuanzi_value_site_uv">0</span> users
+                </span>
+                <span id="busuanzi_container_site_pv">
+                <span id="busuanzi_value_site_pv">0</span> visits
+                </span>
+                
+			
+                </p>
+            </div>
+            <div class="level-end">
+			
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+			<span>
+				<a href="http://www.beian.miit.gov.cn">鲁ICP备20014405号</a>
+				</span>
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("en");</script>
+
+
+<script>
+var IcarusThemeSettings = {
+    site: {
+        url: 'https://luciuscs.github.io/public',
+        external_link: {"enable":true,"exclude":[]}
+    },
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+
+
+<script src="/public/js/animation.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+<script src="/public/js/gallery.js" defer></script>
+
+
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+
+<a id="back-to-top" title="Back to Top" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/public/js/back-to-top.js" defer></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/public/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: 'Posts',
+                PAGES: 'Pages',
+                CATEGORIES: 'Categories',
+                TAGS: 'Tags',
+                UNTITLED: '(Untitled)',
+            },
+            CONTENT_URL: '/public/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/public/js/insight.js" defer></script>
+<link rel="stylesheet" href="/public/css/search.css">
+<link rel="stylesheet" href="/public/css/insight.css">
+    
+</body>
+</html>
