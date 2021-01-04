@@ -168,5 +168,8 @@ service的生命周期从创建至销毁有两种情况；
 
 
 
+## 不同版本启动Service
+
+### Android 8.0 之前版本启动Service
 
 
