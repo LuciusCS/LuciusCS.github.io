@@ -13,7 +13,7 @@ timezone: ''
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: www.zhaohanchao.com
+url: http://www.zhaohanchao.com/public/index.html
 root: /public
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -46,7 +46,7 @@ relative_link: false
 future: true
 highlight:
   enable: true
-  line_number: true
+  line_number: false
   auto_detect: false
   tab_replace: ''
   wrap: true
@@ -77,7 +77,7 @@ meta_generator: true
 date_format: YYYY-MM-DD
 time_format: HH:mm:ss
 ## Use post's date for updated date unless set in front-matter
-use_date_for_updated: false
+updated_option: false
 
 # Pagination
 ## Set per_page to 0 to disable pagination
@@ -93,7 +93,7 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: icarus
+theme: hexo-theme-butterfly
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html

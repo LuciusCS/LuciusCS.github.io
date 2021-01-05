@@ -2,7 +2,7 @@
 title: Android悦跑圈模式保活
 tags: [Android]
 description: Android悦跑圈模式保活
-thumbnail: /thumbnail/img84.jpg
+cover: /thumbnail/img84.jpg
 toc: true
 categories: Android
 date: 2020/03/20

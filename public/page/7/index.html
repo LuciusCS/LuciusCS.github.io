@@ -1,2137 +1,250 @@
-<!DOCTYPE html>
-<html  lang="en">
-<head>
-    <meta charset="utf-8" />
-
-<meta name="generator" content="Hexo 4.2.0" />
-
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-
-<title>Android Development</title>
-
-
-    <meta name="description" content="程序员">
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Android Development</title><meta name="author" content="Lucius Zhao"><meta name="copyright" content="Lucius Zhao"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="程序员">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Android Development">
-<meta property="og:url" content="https://luciuscs.github.io/public/page/7/index.html">
+<meta property="og:url" content="http://www.zhaohanchao.com/public/index.html/page/7/index.html">
 <meta property="og:site_name" content="Android Development">
 <meta property="og:description" content="程序员">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://luciuscs.github.io/public/images/og_image.png">
+<meta property="og:image" content="http://www.zhaohanchao.com/public/index.html/null">
 <meta property="article:author" content="Lucius Zhao">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://luciuscs.github.io/public/images/og_image.png">
-
-
-
-
-
-
-
-<link rel="icon" href="/public/images/favicon.svg">
-
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
-
-
-    
-    
-<style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
-
-    
-    
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
-
-    
-    
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
-
-    
-    
-    
-    
-<link rel="stylesheet" href="/public/css/back-to-top.css">
-
-    
-    
-    
-    
-    
-    
-    
-    <link rel="stylesheet" href="/public/css/progressbar.css">
-<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
-    
-    <script async="" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    
-
-
-<link rel="stylesheet" href="/public/css/style.css">
-</head>
-<body class="is-3-column">
-    <nav class="navbar navbar-main">
-    <div class="container">
-        <div class="navbar-brand is-flex-center">
-            <a class="navbar-item navbar-logo" href="/public/">
-            
-                <img src="/public/images/logo.svg" alt="Android Development" height="28">
-            
-            </a>
-        </div>
-        <div class="navbar-menu">
-            
-            <div class="navbar-start">
-                
-                <a class="navbar-item"
-                href="/public/">Home</a>
-                
-                <a class="navbar-item"
-                href="/public/archives">Archives</a>
-                
-                <a class="navbar-item"
-                href="/public/categories">Categories</a>
-                
-                <a class="navbar-item"
-                href="/public/tags">Tags</a>
-                
-                <a class="navbar-item"
-                href="/public/about">About</a>
-                
-            </div>
-            
-            <div class="navbar-end">
-                
-                
-                
-                <a class="navbar-item search" title="Search" href="javascript:;">
-                    <i class="fas fa-search"></i>
-                </a>
-                
-            </div>
-        </div>
-    </div>
-</nav>
-    
-    <section class="section">
-        <div class="container">
-            <div class="columns">
-                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/public/2018/12/20/Android/%E6%A1%86%E6%9E%B6/AAC/Lifecycle%E5%92%8CRoom%E7%9A%84%E4%BD%BF%E7%94%A8/" class="image is-7by1">
-            <img class="thumbnail" src="/public/thumbnail/img28.jpg" alt="使用框架组件Room和Lifecycle来创建应用">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-12-19T16:00:00.000Z">2018-12-20</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/public/categories/Android/">Android</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    15 minutes read (About 2248 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/public/2018/12/20/Android/%E6%A1%86%E6%9E%B6/AAC/Lifecycle%E5%92%8CRoom%E7%9A%84%E4%BD%BF%E7%94%A8/">使用框架组件Room和Lifecycle来创建应用</a>
-            
-        </h1>
-        <div class="content">
-            <h1 id="使用框架组件Room和Lifecycle来创建应用"><a href="#使用框架组件Room和Lifecycle来创建应用" class="headerlink" title="使用框架组件Room和Lifecycle来创建应用"></a>使用框架组件Room和Lifecycle来创建应用</h1><h2 id="在build-gradle-Module-app-中添加依赖"><a href="#在build-gradle-Module-app-中添加依赖" class="headerlink" title="在build.gradle(Module:app)中添加依赖"></a>在build.gradle(Module:app)中添加依赖</h2>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/public/2018/12/20/Android/%E6%A1%86%E6%9E%B6/AAC/Lifecycle%E5%92%8CRoom%E7%9A%84%E4%BD%BF%E7%94%A8/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/public/2018/12/10/Java/Java%E5%9F%BA%E7%A1%80/Java%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" class="image is-7by1">
-            <img class="thumbnail" src="/public/thumbnail/img99.jpg" alt="Java文件操作">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-12-09T16:00:00.000Z">2018-12-10</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/public/categories/Java/">Java</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    a few seconds read (About 101 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/public/2018/12/10/Java/Java%E5%9F%BA%E7%A1%80/Java%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/">Java文件操作</a>
-            
-        </h1>
-        <div class="content">
-            <h1 id="Java文件读取"><a href="#Java文件读取" class="headerlink" title="Java文件读取"></a>Java文件读取</h1><h2 id="以数据流的形式整体进行读入"><a href="#以数据流的形式整体进行读入" class="headerlink" title="以数据流的形式整体进行读入"></a>以数据流的形式整体进行读入</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">    File file=<span class="keyword">new</span> File(path);</span><br><span class="line">    <span class="keyword">byte</span>[] fileData=<span class="keyword">new</span> <span class="keyword">byte</span>[(<span class="keyword">int</span>)file.length()];</span><br><span class="line">    DataInputStream dataInputStream=<span class="keyword">new</span> DataInputStream(<span class="keyword">new</span> FileInputStream(file));</span><br><span class="line">    dataInputStream.readFully(fileData);</span><br><span class="line">    dataInputStream.close();</span><br><span class="line">&#125;cache(IOException io)&#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="文件逐行读入"><a href="#文件逐行读入" class="headerlink" title="文件逐行读入"></a>文件逐行读入</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">    StringBuilder stringBuilder=<span class="keyword">new</span> StringBuilder();</span><br><span class="line">    File file=<span class="keyword">new</span> File(path);</span><br><span class="line">    InputStream inputStream=<span class="keyword">new</span> FileInputStream(file);</span><br><span class="line">    <span class="keyword">if</span>(inputStream!=<span class="keyword">null</span>)&#123;</span><br><span class="line">        InputStreamReader inputReader=<span class="keyword">new</span> InputStreamReader(inputSream);</span><br><span class="line">        BufferedReader bufferedReader=<span class="keyword">new</span> BufferedReader(inputReader);</span><br><span class="line">        String line;</span><br><span class="line">        <span class="keyword">while</span>(line=bufferedReader.readLine()!=<span class="keyword">null</span>)&#123;</span><br><span class="line">           stringBuilder.append(line);</span><br><span class="line">        &#125;</span><br><span class="line">        inputStream.close();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;cache(IOException io)&#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/public/2018/12/05/Android/%E6%A1%86%E6%9E%B6/AAC/Paging%E5%92%8CRoom%E4%BD%BF%E7%94%A8/" class="image is-7by1">
-            <img class="thumbnail" src="/public/thumbnail/img29.jpg" alt="Android框架组件paging+room的使用">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-12-04T16:00:00.000Z">2018-12-05</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/public/categories/Android/">Android</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    5 minutes read (About 735 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/public/2018/12/05/Android/%E6%A1%86%E6%9E%B6/AAC/Paging%E5%92%8CRoom%E4%BD%BF%E7%94%A8/">Android框架组件paging+room的使用</a>
-            
-        </h1>
-        <div class="content">
-            <h1 id="Android框架组件paging-room的使用"><a href="#Android框架组件paging-room的使用" class="headerlink" title="Android框架组件paging+room的使用"></a>Android框架组件paging+room的使用</h1><h2 id="简介："><a href="#简介：" class="headerlink" title="简介："></a>简介：</h2><h3 id="DataSource"><a href="#DataSource" class="headerlink" title="DataSource"></a>DataSource</h3><p>DataSource持有数据库的数据或者来自于网络的数据提供给PagedLists使用，PagedListed由LivePagedListBuilder产生，具有多个可以进行选择的参数。PagedList会持有DataSource的一个副本，</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/public/2018/12/05/Android/%E6%A1%86%E6%9E%B6/AAC/Paging%E5%92%8CRoom%E4%BD%BF%E7%94%A8/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/public/2018/11/25/Java/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%9F%BA%E7%A1%80/" class="image is-7by1">
-            <img class="thumbnail" src="/public/thumbnail/img62.jpg" alt="Java多线程基础">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-11-24T16:00:00.000Z">2018-11-25</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/public/categories/Android/">Android</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    17 minutes read (About 2526 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/public/2018/11/25/Java/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%9F%BA%E7%A1%80/">Java多线程基础</a>
-            
-        </h1>
-        <div class="content">
-            <h3 id="Runnable接口"><a href="#Runnable接口" class="headerlink" title="Runnable接口"></a>Runnable接口</h3><p>仅调用Runnable的<code>run()</code>方法不能产生一个新的线程，新线程的执行必须通过<code>Thread.start()</code>方法来执行。</p>
-<p>通常将一个Runnable对象转换成一个任务，需要将其传递给一个Thread构造函数。</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/public/2018/11/25/Java/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%9F%BA%E7%A1%80/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/public/2018/11/19/Android/%E6%A1%86%E6%9E%B6/AAC/Room%E5%92%8CLifecycle%E6%9E%84%E5%BB%BA%E7%A8%8B%E5%BA%8F/" class="image is-7by1">
-            <img class="thumbnail" src="/public/thumbnail/img30.jpg" alt="使用框架组件Room和Lifecycle来创建应用">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-11-18T16:00:00.000Z">2018-11-19</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/public/categories/Android/">Android</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    15 minutes read (About 2248 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/public/2018/11/19/Android/%E6%A1%86%E6%9E%B6/AAC/Room%E5%92%8CLifecycle%E6%9E%84%E5%BB%BA%E7%A8%8B%E5%BA%8F/">使用框架组件Room和Lifecycle来创建应用</a>
-            
-        </h1>
-        <div class="content">
-            <h1 id="使用框架组件Room和Lifecycle来创建应用"><a href="#使用框架组件Room和Lifecycle来创建应用" class="headerlink" title="使用框架组件Room和Lifecycle来创建应用"></a>使用框架组件Room和Lifecycle来创建应用</h1><h2 id="在build-gradle-Module-app-中添加依赖"><a href="#在build-gradle-Module-app-中添加依赖" class="headerlink" title="在build.gradle(Module:app)中添加依赖"></a>在build.gradle(Module:app)中添加依赖</h2>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/public/2018/11/19/Android/%E6%A1%86%E6%9E%B6/AAC/Room%E5%92%8CLifecycle%E6%9E%84%E5%BB%BA%E7%A8%8B%E5%BA%8F/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/public/2018/11/05/Android/%E6%A1%86%E6%9E%B6/AAC/Room%E6%95%B0%E6%8D%AE%E5%BA%93/" class="image is-7by1">
-            <img class="thumbnail" src="/public/thumbnail/img31.jpg" alt="Room数据库">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-11-04T16:00:00.000Z">2018-11-05</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/public/categories/Android/">Android</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    2 minutes read (About 244 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/public/2018/11/05/Android/%E6%A1%86%E6%9E%B6/AAC/Room%E6%95%B0%E6%8D%AE%E5%BA%93/">Room数据库</a>
-            
-        </h1>
-        <div class="content">
-            <h3 id="1、数据库在表中可以指定多个主键"><a href="#1、数据库在表中可以指定多个主键" class="headerlink" title="1、数据库在表中可以指定多个主键"></a>1、数据库在表中可以指定多个主键</h3>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/public/2018/11/05/Android/%E6%A1%86%E6%9E%B6/AAC/Room%E6%95%B0%E6%8D%AE%E5%BA%93/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/public/2018/10/22/Android/View/LayoutInflater%E4%BD%BF%E7%94%A8/" class="image is-7by1">
-            <img class="thumbnail" src="/public/thumbnail/img21.jpg" alt="LayoutInflater介绍与使用">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-10-21T16:00:00.000Z">2018-10-22</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/public/categories/Android/">Android</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    4 minutes read (About 567 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/public/2018/10/22/Android/View/LayoutInflater%E4%BD%BF%E7%94%A8/">LayoutInflater介绍与使用</a>
-            
-        </h1>
-        <div class="content">
-            <p>LayoutInflater用于给相应的View对象实例化一个layout(即：将一个xml文件转化为一个View对象),在开发过程中不会直接使用，而是通过Activity.getLayoutInflater()或者Context.getSystemService(Class)方法，获取一个标准的实例，该实例已经与当前Context相关联。</p>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/public/2018/10/22/Android/View/LayoutInflater%E4%BD%BF%E7%94%A8/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/public/2018/10/05/Java/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/Java%E7%BA%BF%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1/" class="image is-7by1">
-            <img class="thumbnail" src="/public/thumbnail/img63.jpg" alt="Java线程间通信">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-10-04T16:00:00.000Z">2018-10-05</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/public/categories/Java/">Java</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    15 minutes read (About 2300 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/public/2018/10/05/Java/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/Java%E7%BA%BF%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1/">Java线程间通信</a>
-            
-        </h1>
-        <div class="content">
-            <h1 id="线程间通信"><a href="#线程间通信" class="headerlink" title="线程间通信"></a>线程间通信</h1><ul>
-<li>使用单向管道（Pipe）传递数据</li>
-<li>共享内存（Shared Memory）通信</li>
-<li>使用阻塞队列（Blocking Queue）实现生产者-消费者模式</li>
-<li>处理消息队列（Message Queue）</li>
-</ul>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/public/2018/10/05/Java/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/Java%E7%BA%BF%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/public/2018/09/10/Android/Android%E5%9F%BA%E7%A1%80/Android%E5%BA%8F%E5%88%97%E5%8C%96/" class="image is-7by1">
-            <img class="thumbnail" src="/public/thumbnail/img10.jpg" alt="Android序列化">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-09-09T16:00:00.000Z">2018-09-10</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/public/categories/Android/">Android</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    a few seconds read (About 67 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/public/2018/09/10/Android/Android%E5%9F%BA%E7%A1%80/Android%E5%BA%8F%E5%88%97%E5%8C%96/">Android序列化</a>
-            
-        </h1>
-        <div class="content">
-            <h2 id="Android序列化"><a href="#Android序列化" class="headerlink" title="Android序列化"></a>Android序列化</h2><p>Android序列化对象的方法有两种：</p>
-<ul>
-<li>实现Serializable接口，Java自带</li>
-<li>实现Parcelable接口，android特有接口，效率高于Serializable接口，支持Intent数据传递，也可用于跨进程通讯（IPC）
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/public/2018/09/10/Android/Android%E5%9F%BA%E7%A1%80/Android%E5%BA%8F%E5%88%97%E5%8C%96/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    
-<div class="card">
-    
-    <div class="card-image">
-        <a href="/public/2018/09/01/Android/View/Materials%20Design/" class="image is-7by1">
-            <img class="thumbnail" src="/public/thumbnail/img22.jpg" alt="Materials Design 介绍与使用">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-08-31T16:00:00.000Z">2018-09-01</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/public/categories/Android/">Android</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    6 minutes read (About 826 words)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/public/2018/09/01/Android/View/Materials%20Design/">Materials Design 介绍与使用</a>
-            
-        </h1>
-        <div class="content">
-            <h1 id="Materials-Design-介绍与使用"><a href="#Materials-Design-介绍与使用" class="headerlink" title="Materials Design 介绍与使用"></a>Materials Design 介绍与使用</h1><h2 id="CoordinatorLayout"><a href="#CoordinatorLayout" class="headerlink" title="CoordinatorLayout"></a>CoordinatorLayout</h2><p> CoordinatorLayout布局遵循Materials Design风格，可以实现各种控件之间的联动效果，在联动控件实现的过程中需要Behavior来协助。<br>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/public/2018/09/01/Android/View/Materials%20Design/#more">Read More</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-
-    
-<div class="card card-transparent">
-    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
-        <div class="pagination-previous">
-            <a class="is-flex-grow has-text-black-ter" href="/public/page/6/">Previous</a>
-        </div>
-        <div class="pagination-next">
-            <a class="is-flex-grow has-text-black-ter" href="/public/page/8/">Next</a>
-        </div>
-        <ul class="pagination-list is-hidden-mobile">
-            
-            <li><a class="pagination-link has-text-black-ter" href="/public/">1</a></li>
-            
-            <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
-            
-            <li><a class="pagination-link has-text-black-ter" href="/public/page/6/">6</a></li>
-            
-            <li><a class="pagination-link is-current" href="/public/page/7/">7</a></li>
-            
-            <li><a class="pagination-link has-text-black-ter" href="/public/page/8/">8</a></li>
-            
-            <li><span class="pagination-ellipsis has-text-black-ter">&hellip;</span></li>
-            
-            <li><a class="pagination-link has-text-black-ter" href="/public/page/12/">12</a></li>
-            
-        </ul>
-    </nav>
-</div>
-</div>
-                
-
-
-
-
-<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left is-sticky">
-    
-        
-<div class="card widget">
-    <div class="card-content">
-        <nav class="level">
-            <div class="level-item has-text-centered" style="flex-shrink: 1">
-                <div>
-                    
-                    <figure class="image is-128x128 has-mb-6">
-                        <img class="is-rounded" src="https://www.gravatar.com/avatar/5f88f4a896dde4ec7ad915a606b0faa9?s=128" alt="Lucius">
-                    </figure>
-                    
-                    <p class="is-size-4 is-block">
-                        Lucius
-                    </p>
-                    
-                    
-                    <p class="is-size-6 is-block">
-                        Android Developer
-                    </p>
-                    
-                    
-                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
-                        <i class="fas fa-map-marker-alt has-mr-7"></i>
-                        <span>Qingdao</span>
-                    </p>
-                    
-                </div>
-            </div>
-        </nav>
-        <nav class="level is-mobile">
-            <div class="level-item has-text-centered is-marginless">
-                <div>
-                    <p class="heading">
-                        Posts
-                    </p>
-                    <a href="/public/archives">
-                        <p class="title has-text-weight-normal">
-                            112
-                        </p>
-                    </a>
-                </div>
-            </div>
-            <div class="level-item has-text-centered is-marginless">
-                <div>
-                    <p class="heading">
-                        Categories
-                    </p>
-                    <a href="/public/categories">
-                        <p class="title has-text-weight-normal">
-                            6
-                        </p>
-                    </a>
-                </div>
-            </div>
-            <div class="level-item has-text-centered is-marginless">
-                <div>
-                    <p class="heading">
-                        Tags
-                    </p>
-                    <a href="/public/tags">
-                        <p class="title has-text-weight-normal">
-                            11
-                        </p>
-                    </a>
-                </div>
-            </div>
-        </nav>
-        
-        <div class="level">
-            <a class="level-item button is-link is-rounded" href="https://github.com/LuciusCS" target="_blank" rel="noopener">
-                Follow</a>
-        </div>
-        
-        
-        
-        <div class="level is-mobile">
-            
-            <a class="level-item button is-white is-marginless" target="_blank" rel="noopener"
-                title="Github" href="https://github.com/LuciusCS">
-                
-                <i class="fab fa-github"></i>
-                
-            </a>
-            
-        </div>
-        
-    </div>
-</div>
-    
-        
-    
-        <div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-        <h3 class="menu-label">
-            Links
-        </h3>
-        <ul class="menu-list">
-        
-            <li>
-                <a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener">
-                    <span class="level-left">
-                        <span class="level-item">Hexo</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">hexo.io</span>
-                    </span>
-                </a>
-            </li>
-        
-            <li>
-                <a class="level is-mobile" href="https://github.com/ppoffice" target="_blank" rel="noopener">
-                    <span class="level-left">
-                        <span class="level-item">PPOffice</span>
-                    </span>
-                    <span class="level-right">
-                        <span class="level-item tag">github.com</span>
-                    </span>
-                </a>
-            </li>
-        
-        </ul>
-        </div>
-    </div>
-</div>
-
-    
-        
-<div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-            <h3 class="menu-label">
-                Categories
-            </h3>
-            <ul class="menu-list">
-            <li>
-        <a class="level is-marginless" href="/public/categories/Android/">
-            <span class="level-start">
-                <span class="level-item">Android</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">55</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/public/categories/Java/">
-            <span class="level-start">
-                <span class="level-item">Java</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">15</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/public/categories/Kotlin/">
-            <span class="level-start">
-                <span class="level-item">Kotlin</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">1</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/public/categories/Other/">
-            <span class="level-start">
-                <span class="level-item">Other</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">6</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/public/categories/PAT/">
-            <span class="level-start">
-                <span class="level-item">PAT</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">8</span>
-            </span>
-        </a></li><li>
-        <a class="level is-marginless" href="/public/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
-            <span class="level-start">
-                <span class="level-item">数据结构</span>
-            </span>
-            <span class="level-end">
-                <span class="level-item tag">16</span>
-            </span>
-        </a></li>
-            </ul>
-        </div>
-    </div>
-</div>
-    
-        <div class="card widget">
-    <div class="card-content">
-        <h3 class="menu-label">
-            Tag Cloud
-        </h3>
-        <a href="/public/tags/Android/" style="font-size: 20px;">Android</a> <a href="/public/tags/Git/" style="font-size: 11.67px;">Git</a> <a href="/public/tags/JNI/" style="font-size: 11.67px;">JNI</a> <a href="/public/tags/Java/" style="font-size: 16.67px;">Java</a> <a href="/public/tags/Kotlin/" style="font-size: 10px;">Kotlin</a> <a href="/public/tags/Other/" style="font-size: 13.33px;">Other</a> <a href="/public/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/public/tags/pat/" style="font-size: 15px;">pat</a> <a href="/public/tags/%E4%BC%98%E5%8C%96/" style="font-size: 10px;">优化</a> <a href="/public/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" style="font-size: 10px;">性能优化</a> <a href="/public/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 18.33px;">数据结构</a>
-    </div>
-</div>
-    
-    
-        <div class="column-right-shadow is-hidden-widescreen is-sticky">
-        
-            <div class="card widget">
-    <div class="card-content">
-        <h3 class="menu-label">
-            Recent
-        </h3>
-        
-        <article class="media">
-            
-            <a href="/public/2020/04/22/Java/Java%E5%9F%BA%E7%A1%80/Java%E9%9B%86%E5%90%88/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/thumbnail/img56.jpg" alt="Java集合">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-22T13:57:48.332Z">2020-04-22</time></div>
-                    <a href="/public/2020/04/22/Java/Java%E5%9F%BA%E7%A1%80/Java%E9%9B%86%E5%90%88/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java集合</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/public/categories/Java/">Java</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/public/2020/04/22/Java/Java%E5%9F%BA%E7%A1%80/String%E3%80%81StringBuffer%E3%80%81StringBuilder%E5%8C%BA%E5%88%AB/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/thumbnail/img58.jpg" alt="String、StringBuffer、StringBuilder">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-22T13:57:48.332Z">2020-04-22</time></div>
-                    <a href="/public/2020/04/22/Java/Java%E5%9F%BA%E7%A1%80/String%E3%80%81StringBuffer%E3%80%81StringBuilder%E5%8C%BA%E5%88%AB/" class="title has-link-black-ter is-size-6 has-text-weight-normal">String、StringBuffer、StringBuilder</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/public/categories/Java/">Java</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/public/2020/04/22/Other/Git/Git%E4%BB%93%E5%BA%93%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Other/Git/Git仓库服务器配置">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-22T13:57:48.332Z">2020-04-22</time></div>
-                    <a href="/public/2020/04/22/Other/Git/Git%E4%BB%93%E5%BA%93%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Other/Git/Git仓库服务器配置</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/public/2020/04/22/Other/Project/Project/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Other/Project/Project">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-22T13:57:48.332Z">2020-04-22</time></div>
-                    <a href="/public/2020/04/22/Other/Project/Project/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Other/Project/Project</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/public/2020/04/22/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Java/设计模式/工厂模式">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-22T13:57:48.332Z">2020-04-22</time></div>
-                    <a href="/public/2020/04/22/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java/设计模式/工厂模式</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-    </div>
-</div>
-        
-            <div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-        <h3 class="menu-label">
-            Archives
-        </h3>
-        <ul class="menu-list">
-        
-        <li>
-            <a class="level is-marginless" href="/public/archives/2020/04/">
-                <span class="level-start">
-                    <span class="level-item">April 2020</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">10</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/public/archives/2020/03/">
-                <span class="level-start">
-                    <span class="level-item">March 2020</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">4</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/public/archives/2020/02/">
-                <span class="level-start">
-                    <span class="level-item">February 2020</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/public/archives/2020/01/">
-                <span class="level-start">
-                    <span class="level-item">January 2020</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">3</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/public/archives/2019/12/">
-                <span class="level-start">
-                    <span class="level-item">December 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/public/archives/2019/11/">
-                <span class="level-start">
-                    <span class="level-item">November 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">3</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/public/archives/2019/10/">
-                <span class="level-start">
-                    <span class="level-item">October 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">2</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/public/archives/2019/09/">
-                <span class="level-start">
-                    <span class="level-item">September 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">18</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/public/archives/2019/08/">
-                <span class="level-start">
-                    <span class="level-item">August 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">9</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/public/archives/2019/07/">
-                <span class="level-start">
-                    <span class="level-item">July 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/public/archives/2019/06/">
-                <span class="level-start">
-                    <span class="level-item">June 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/public/archives/2019/05/">
-                <span class="level-start">
-                    <span class="level-item">May 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/public/archives/2019/04/">
-                <span class="level-start">
-                    <span class="level-item">April 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">3</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/public/archives/2019/03/">
-                <span class="level-start">
-                    <span class="level-item">March 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/public/archives/2019/02/">
-                <span class="level-start">
-                    <span class="level-item">February 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/public/archives/2018/12/">
-                <span class="level-start">
-                    <span class="level-item">December 2018</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">4</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/public/archives/2018/11/">
-                <span class="level-start">
-                    <span class="level-item">November 2018</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">3</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/public/archives/2018/10/">
-                <span class="level-start">
-                    <span class="level-item">October 2018</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">2</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/public/archives/2018/09/">
-                <span class="level-start">
-                    <span class="level-item">September 2018</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">2</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/public/archives/2018/08/">
-                <span class="level-start">
-                    <span class="level-item">August 2018</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">5</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/public/archives/2018/07/">
-                <span class="level-start">
-                    <span class="level-item">July 2018</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">5</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/public/archives/2018/06/">
-                <span class="level-start">
-                    <span class="level-item">June 2018</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">4</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/public/archives/2018/05/">
-                <span class="level-start">
-                    <span class="level-item">May 2018</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/public/archives/2018/04/">
-                <span class="level-start">
-                    <span class="level-item">April 2018</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/public/archives/2017/08/">
-                <span class="level-start">
-                    <span class="level-item">August 2017</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">15</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/public/archives/2017/07/">
-                <span class="level-start">
-                    <span class="level-item">July 2017</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">11</span>
-                </span>
-            </a>
-        </li>
-        
-        </ul>
-        </div>
-    </div>
-</div>
-        
-            <div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-            <h3 class="menu-label">
-                Tags
-            </h3>
-            <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/public/tags/Android/">
-                        <span class="tag">Android</span>
-                        <span class="tag is-grey">53</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/public/tags/Git/">
-                        <span class="tag">Git</span>
-                        <span class="tag is-grey">2</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/public/tags/JNI/">
-                        <span class="tag">JNI</span>
-                        <span class="tag is-grey">2</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/public/tags/Java/">
-                        <span class="tag">Java</span>
-                        <span class="tag is-grey">15</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/public/tags/Kotlin/">
-                        <span class="tag">Kotlin</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/public/tags/Other/">
-                        <span class="tag">Other</span>
-                        <span class="tag is-grey">4</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/public/tags/Ubuntu/">
-                        <span class="tag">Ubuntu</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/public/tags/pat/">
-                        <span class="tag">pat</span>
-                        <span class="tag is-grey">8</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/public/tags/%E4%BC%98%E5%8C%96/">
-                        <span class="tag">优化</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/public/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">
-                        <span class="tag">性能优化</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/public/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
-                        <span class="tag">数据结构</span>
-                        <span class="tag is-grey">16</span>
-                    </a>
-                </div>
-                
-            </div>
-        </div>
-    </div>
-</div>
-        
-        </div>
-    
-</div>
-
-                
-
-
-
-
-<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right is-sticky">
-    
-        <div class="card widget">
-    <div class="card-content">
-        <h3 class="menu-label">
-            Recent
-        </h3>
-        
-        <article class="media">
-            
-            <a href="/public/2020/04/22/Java/Java%E5%9F%BA%E7%A1%80/Java%E9%9B%86%E5%90%88/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/thumbnail/img56.jpg" alt="Java集合">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-22T13:57:48.332Z">2020-04-22</time></div>
-                    <a href="/public/2020/04/22/Java/Java%E5%9F%BA%E7%A1%80/Java%E9%9B%86%E5%90%88/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java集合</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/public/categories/Java/">Java</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/public/2020/04/22/Java/Java%E5%9F%BA%E7%A1%80/String%E3%80%81StringBuffer%E3%80%81StringBuilder%E5%8C%BA%E5%88%AB/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/thumbnail/img58.jpg" alt="String、StringBuffer、StringBuilder">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-22T13:57:48.332Z">2020-04-22</time></div>
-                    <a href="/public/2020/04/22/Java/Java%E5%9F%BA%E7%A1%80/String%E3%80%81StringBuffer%E3%80%81StringBuilder%E5%8C%BA%E5%88%AB/" class="title has-link-black-ter is-size-6 has-text-weight-normal">String、StringBuffer、StringBuilder</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/public/categories/Java/">Java</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/public/2020/04/22/Other/Git/Git%E4%BB%93%E5%BA%93%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Other/Git/Git仓库服务器配置">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-22T13:57:48.332Z">2020-04-22</time></div>
-                    <a href="/public/2020/04/22/Other/Git/Git%E4%BB%93%E5%BA%93%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Other/Git/Git仓库服务器配置</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/public/2020/04/22/Other/Project/Project/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Other/Project/Project">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-22T13:57:48.332Z">2020-04-22</time></div>
-                    <a href="/public/2020/04/22/Other/Project/Project/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Other/Project/Project</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/public/2020/04/22/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/public/images/thumbnail.svg" alt="Java/设计模式/工厂模式">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-04-22T13:57:48.332Z">2020-04-22</time></div>
-                    <a href="/public/2020/04/22/Java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Java/设计模式/工厂模式</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-    </div>
-</div>
-    
-        <div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-        <h3 class="menu-label">
-            Archives
-        </h3>
-        <ul class="menu-list">
-        
-        <li>
-            <a class="level is-marginless" href="/public/archives/2020/04/">
-                <span class="level-start">
-                    <span class="level-item">April 2020</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">10</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/public/archives/2020/03/">
-                <span class="level-start">
-                    <span class="level-item">March 2020</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">4</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/public/archives/2020/02/">
-                <span class="level-start">
-                    <span class="level-item">February 2020</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/public/archives/2020/01/">
-                <span class="level-start">
-                    <span class="level-item">January 2020</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">3</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/public/archives/2019/12/">
-                <span class="level-start">
-                    <span class="level-item">December 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/public/archives/2019/11/">
-                <span class="level-start">
-                    <span class="level-item">November 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">3</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/public/archives/2019/10/">
-                <span class="level-start">
-                    <span class="level-item">October 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">2</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/public/archives/2019/09/">
-                <span class="level-start">
-                    <span class="level-item">September 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">18</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/public/archives/2019/08/">
-                <span class="level-start">
-                    <span class="level-item">August 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">9</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/public/archives/2019/07/">
-                <span class="level-start">
-                    <span class="level-item">July 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/public/archives/2019/06/">
-                <span class="level-start">
-                    <span class="level-item">June 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/public/archives/2019/05/">
-                <span class="level-start">
-                    <span class="level-item">May 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/public/archives/2019/04/">
-                <span class="level-start">
-                    <span class="level-item">April 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">3</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/public/archives/2019/03/">
-                <span class="level-start">
-                    <span class="level-item">March 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/public/archives/2019/02/">
-                <span class="level-start">
-                    <span class="level-item">February 2019</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/public/archives/2018/12/">
-                <span class="level-start">
-                    <span class="level-item">December 2018</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">4</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/public/archives/2018/11/">
-                <span class="level-start">
-                    <span class="level-item">November 2018</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">3</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/public/archives/2018/10/">
-                <span class="level-start">
-                    <span class="level-item">October 2018</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">2</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/public/archives/2018/09/">
-                <span class="level-start">
-                    <span class="level-item">September 2018</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">2</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/public/archives/2018/08/">
-                <span class="level-start">
-                    <span class="level-item">August 2018</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">5</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/public/archives/2018/07/">
-                <span class="level-start">
-                    <span class="level-item">July 2018</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">5</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/public/archives/2018/06/">
-                <span class="level-start">
-                    <span class="level-item">June 2018</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">4</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/public/archives/2018/05/">
-                <span class="level-start">
-                    <span class="level-item">May 2018</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/public/archives/2018/04/">
-                <span class="level-start">
-                    <span class="level-item">April 2018</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">1</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/public/archives/2017/08/">
-                <span class="level-start">
-                    <span class="level-item">August 2017</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">15</span>
-                </span>
-            </a>
-        </li>
-        
-        <li>
-            <a class="level is-marginless" href="/public/archives/2017/07/">
-                <span class="level-start">
-                    <span class="level-item">July 2017</span>
-                </span>
-                <span class="level-end">
-                    <span class="level-item tag">11</span>
-                </span>
-            </a>
-        </li>
-        
-        </ul>
-        </div>
-    </div>
-</div>
-    
-        <div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-            <h3 class="menu-label">
-                Tags
-            </h3>
-            <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/public/tags/Android/">
-                        <span class="tag">Android</span>
-                        <span class="tag is-grey">53</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/public/tags/Git/">
-                        <span class="tag">Git</span>
-                        <span class="tag is-grey">2</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/public/tags/JNI/">
-                        <span class="tag">JNI</span>
-                        <span class="tag is-grey">2</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/public/tags/Java/">
-                        <span class="tag">Java</span>
-                        <span class="tag is-grey">15</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/public/tags/Kotlin/">
-                        <span class="tag">Kotlin</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/public/tags/Other/">
-                        <span class="tag">Other</span>
-                        <span class="tag is-grey">4</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/public/tags/Ubuntu/">
-                        <span class="tag">Ubuntu</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/public/tags/pat/">
-                        <span class="tag">pat</span>
-                        <span class="tag is-grey">8</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/public/tags/%E4%BC%98%E5%8C%96/">
-                        <span class="tag">优化</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/public/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">
-                        <span class="tag">性能优化</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/public/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
-                        <span class="tag">数据结构</span>
-                        <span class="tag is-grey">16</span>
-                    </a>
-                </div>
-                
-            </div>
-        </div>
-    </div>
-</div>
-    
-    
-</div>
-
-            </div>
-        </div>
-    </section>
-    <footer class="footer">
-    <div class="container">
-        <div class="level">
-            <div class="level-start has-text-centered-mobile">
-                <a class="footer-logo is-block has-mb-6" href="/public/">
-                
-                    <img src="/public/images/logo.svg" alt="Android Development" height="28">
-                
-                </a>
-                <p class="is-size-7">
-                &copy; 2020 Lucius Zhao&nbsp;
-                Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> & <a
-                        href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a>
-				
-                
-                <br>
-                <span id="busuanzi_container_site_uv">
-                Visited by <span id="busuanzi_value_site_uv">0</span> users
-                </span>
-                <span id="busuanzi_container_site_pv">
-                <span id="busuanzi_value_site_pv">0</span> visits
-                </span>
-                
-			
-                </p>
-            </div>
-            <div class="level-end">
-			
-            
-                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
-                
-                <p class="control">
-                    <a class="button is-white is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
-                        
-                        <i class="fab fa-creative-commons-by"></i>
-                        
-                    </a>
-                </p>
-                
-                </div>
-            
-			<span>
-				<a href="http://www.beian.miit.gov.cn">鲁ICP备20014405号</a>
-				</span>
-            </div>
-        </div>
-    </div>
-</footer>
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
-<script>moment.locale("en");</script>
-
-
-<script>
-var IcarusThemeSettings = {
-    site: {
-        url: 'https://luciuscs.github.io/public',
-        external_link: {"enable":true,"exclude":[]}
+<meta name="twitter:image" content="http://www.zhaohanchao.com/public/index.html/null"><link rel="shortcut icon" href="/public/img/favicon.png"><link rel="canonical" href="http://www.zhaohanchao.com/public/index.html/page/7/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/public/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>var GLOBAL_CONFIG = { 
+  root: '/public/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
     },
-    article: {
-        highlight: {
-            clipboard: true,
-            fold: 'unfolded'
-        }
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
     }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
 };
-</script>
 
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
 
-<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
 
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
 
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}
 
+// https://stackoverflow.com/questions/16839698/jquery-getscript-alternative-in-native-javascript
+const getScript = url => new Promise((resolve, reject) => {
+  const script = document.createElement('script')
+  script.src = url
+  script.async = true
+  script.onerror = reject
+  script.onload = script.onreadystatechange = function() {
+    const loadState = this.readyState
+    if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+    script.onload = script.onreadystatechange = null
+    resolve()
+  }
+  document.head.appendChild(script)
+})</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2021-01-05 19:09:58'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
 
-
-<script src="/public/js/animation.js"></script>
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
-<script src="/public/js/gallery.js" defer></script>
-
-
-
-<div id="outdated">
-    <h6>Your browser is out-of-date!</h6>
-    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
-            my browser now </a></p>
-    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        outdatedBrowser({
-            bgColor: '#f25648',
-            color: '#ffffff',
-            lowerThan: 'flex'
-        });
-    });
-</script>
-
-
-<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    MathJax.Hub.Config({
-        'HTML-CSS': {
-            matchFontHeight: false
-        },
-        SVG: {
-            matchFontHeight: false
-        },
-        CommonHTML: {
-            matchFontHeight: false
-        },
-        tex2jax: {
-            inlineMath: [
-                ['$','$'],
-                ['\\(','\\)']
-            ]
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
         }
-    });
-});
-</script>
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><meta name="generator" content="Hexo 5.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/public/null" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/public/archives/"><div class="headline">Articles</div><div class="length-num">120</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/public/tags/"><div class="headline">Tags</div><div class="length-num">11</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/public/categories/"><div class="headline">Categories</div><div class="length-num">6</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/public/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/public/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/public/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/public/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/public/">Android Development</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/public/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/public/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/public/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/public/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">Android Development</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/LuciusCS" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:826764620@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left_radius"><a href="/public/2019/06/05/Android/Advanced/%E7%89%88%E6%9C%AC%E5%8C%BA%E5%88%AB/%E4%B8%8D%E5%90%8C%E7%89%88%E6%9C%AC%E5%8C%BA%E5%88%AB/" title="Android不同版本的差异">     <img class="post_bg" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/public/img/404.jpg'" alt="Android不同版本的差异"></a></div><div class="recent-post-info"><a class="article-title" href="/public/2019/06/05/Android/Advanced/%E7%89%88%E6%9C%AC%E5%8C%BA%E5%88%AB/%E4%B8%8D%E5%90%8C%E7%89%88%E6%9C%AC%E5%8C%BA%E5%88%AB/" title="Android不同版本的差异">Android不同版本的差异</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2019-06-04T16:00:00.000Z" title="Created 2019-06-05 00:00:00">2019-06-05</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/public/categories/Android/">Android</a></span></div><div class="content">Android 8.0 后台Service限制前台应用和后台应用的区别前台应用：  
+
+具有可见Activity(不管该Activity已启动还是已暂停)
+具有前台Service
+另一个应用已关联到该应用
+
+后台应用:不满足前台应用的所有条件
+Andorid 9.0(API 28)加密连接在Andorid 9.0(API 28) 之后网络请求默认需要使用加密连接，没有加密的是不可以的在 9.0之前   android:usesCleartextTraffic默认为true9.0 之后 android:usesCleartextTraffic 默认为falue，需要改为true
+
+12&lt;application  android:usesCleartextTraffic=&quot;true&quot;&gt;
+
+Android 9.0 (API 28) 对非SDK接口加以限制通过反射机制处理类时，不应方位SDK中未列出的方法或字段；非SDK接口中存在黑名单、灰名单、白名单。
+Android 10.0 (API 29)对后台定位的限制在Android 10.0 后台定位时，需要进行两 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/public/2019/05/08/Android/%E6%A1%86%E6%9E%B6/Glide/Glide%E6%A1%86%E6%9E%B6%E6%89%8B%E5%86%99%E5%AE%9E%E7%8E%B0/" title="Glide手写框架实现">     <img class="post_bg" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/public/img/404.jpg'" alt="Glide手写框架实现"></a></div><div class="recent-post-info"><a class="article-title" href="/public/2019/05/08/Android/%E6%A1%86%E6%9E%B6/Glide/Glide%E6%A1%86%E6%9E%B6%E6%89%8B%E5%86%99%E5%AE%9E%E7%8E%B0/" title="Glide手写框架实现">Glide手写框架实现</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2019-05-07T16:00:00.000Z" title="Created 2019-05-08 00:00:00">2019-05-08</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/public/categories/Android/">Android</a></span></div><div class="content">Glide手写框架实现实现步骤Glide框架实现主要有以下步骤
+图片下载后，先缓存至活动缓存；在获取缓存中通过弱引用监控bitMap的回收，如果活动缓存中bitMap的弱引用被回收，那么会将活动缓存中的bitMap，缓存至内存缓存；当图片被再次使用会从内存缓存中移除，添加到活动缓存中；
+
+活动缓存的实现
+
+内存缓存的实现
+
+磁盘缓存的实现
+
+声明周期的管理
 
 
-<a id="back-to-top" title="Back to Top" href="javascript:;">
-    <i class="fas fa-chevron-up"></i>
-</a>
-<script src="/public/js/back-to-top.js" defer></script>
+实现前的准备1、在图片加载的过程中，采用&lt;Key,BitMap&gt;的形式获取图片对象；在使用的过程中，需要对图片文件的名称和路径进行加密，定义一个专门的类对名称和路径进行加密和解密，这样可以避免图片路径过长的问题。
+12345678910111213141516public class Path &#123;    private String key;  //例如  ac43474d52403e60fe21894520a67d6f417a6868994c145eeb26712472a78311    /**     * 加密前 sha256 (https://imgconvert.csdnimg.cn/aHR0cHM ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/public/2019/04/23/Android/%E6%A1%86%E6%9E%B6/AAC/Android%20Livedata%E8%AF%A6%E8%A7%A3/" title="LiveData介绍与使用">     <img class="post_bg" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/public/img/404.jpg'" alt="LiveData介绍与使用"></a></div><div class="recent-post-info"><a class="article-title" href="/public/2019/04/23/Android/%E6%A1%86%E6%9E%B6/AAC/Android%20Livedata%E8%AF%A6%E8%A7%A3/" title="LiveData介绍与使用">LiveData介绍与使用</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2019-04-22T16:00:00.000Z" title="Created 2019-04-23 00:00:00">2019-04-23</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/public/categories/Android/">Android</a></span></div><div class="content">LiveData介绍LiveData是一个被观察的类，其具有生命周期感知，即只有Android组件，Activity、Fragment、Service处于活动状态时，它才会通知组件数据发生变化。LiveData是一个抽象类，其继承关系如下：
 
 
+LiveData的优势
+保证UI界面与数据相匹配
+
+无内存泄漏
+  观察者绑定至Lifecycle，当观察者的生命周期结束后，其会自动清理
+
+不会由于Activity stop而发生崩溃
+  如果观察者的生命周期进入inactive状态，那么其将不会收到LiveData的数据
+
+合理的数据配置
+  如果Activity和Fragment由于屏幕旋转重建导致页面配置发生变化，则可以通过LiveData获取到最新数据 
+
+数据共享
+  可以使用继承自Livedata的单例类，定义系统所需要的数据，并在整个App中进行共享。
 
 
+在具有生命周期的对象中使用LiveData定义被观察者在定义被观察者对象时通常使用MutableLiveData类，在Activity中定义一个被观察的对象：
+123  MutableLiveData&lt;String&g ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/public/2019/04/05/Android/Android%E5%9F%BA%E7%A1%80/%E5%AE%9A%E4%BD%8D/" title="Android 定位">     <img class="post_bg" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/public/img/404.jpg'" alt="Android 定位"></a></div><div class="recent-post-info"><a class="article-title" href="/public/2019/04/05/Android/Android%E5%9F%BA%E7%A1%80/%E5%AE%9A%E4%BD%8D/" title="Android 定位">Android 定位</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2019-04-04T16:00:00.000Z" title="Created 2019-04-05 00:00:00">2019-04-05</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/public/categories/Android/">Android</a></span></div><div class="content">Android 原生定位Android 的原生定位主要有以下几种
+network: LocationManager.NETWORK_PROVIDER通过网络来进行定位，低精度、低耗电模式的定位，可通过Wifi或4g进行适配定位。使用网络定位，在国内不可行，通常使用第三方定位服务；原因如下：
 
 
+network 需要连接谷歌服务器，且定位不准确。
+
+gps: LocationManager.GPS_PROVIDER通过GPS定位，高精度、高耗电定位模式，只能用于室外,可在无网络的状态下使用。
+passive: LocationManager.PASSIVE_PROVIDER被动定位模式，依赖其他APP的定位信息，需要获取android.Manifest.permission.ACCESS_FINE_LOCATION权限
+在Android P上利用802.11 mc协议以及RTT实现Wifi室内定位Android 9 需要具有硬件支持
+Android原生定位实现地图使用过程中遇到的问题百度地图在连续定位的过程中只定位一次12&lt;service android:name=&quot;co ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/public/2019/04/03/Java/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/Java%20Queue/" title="Java Queue">     <img class="post_bg" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/public/img/404.jpg'" alt="Java Queue"></a></div><div class="recent-post-info"><a class="article-title" href="/public/2019/04/03/Java/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/Java%20Queue/" title="Java Queue">Java Queue</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2019-04-02T16:00:00.000Z" title="Created 2019-04-03 00:00:00">2019-04-03</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/public/categories/Java/">Java</a></span></div><div class="content">队列（Queue）阻塞队列（Blocking Queue）当插入数据时，如果队列已满，则插入操作会被阻塞；在取出数据是，如果队列为空，则取出操作会被阻塞；
+阻塞队列支持生产者和消费者模式，在阻塞队列中生产者和消费者，不能同时对队列进行操作；其会将要操作的对象，放入”to do”列表，在某时间后进行处理，而不是对数据立即进行处理。在阻塞队列的生产者和消费者的模式下，当生产者可操作时，将数据插入队列中；当消费者可操作时，其从队列中取出数据。可以具有多个生产者和多个消费者；
+子类
+LinkedBlockingQueue 与LinkedList相似 put() 在队列满的时候会阻塞，直到有成员被消费; take()在队列空的时候会被阻塞，直到有成员被加入队列；
+
+ArrayBlockingQueue 与ArrayList相似 
+
+PriorityBlockingQueue  是一个优先级队列，可以对实现 Comparable 接口的元素进行优先级排序
+
+SynchronousQueue  不是一个真正的队列，其没有用于保存元素的空间。它持有一个队列线程列表，等待入队或者出队，节省从生产者将数据 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/public/2019/03/25/Java/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" title="Java单例模式">     <img class="post_bg" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/public/img/404.jpg'" alt="Java单例模式"></a></div><div class="recent-post-info"><a class="article-title" href="/public/2019/03/25/Java/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" title="Java单例模式">Java单例模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2019-03-24T16:00:00.000Z" title="Created 2019-03-25 00:00:00">2019-03-25</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/public/categories/Java/">Java</a></span></div><div class="content">不同单例模式在多线程下的特点
+懒汉式：该加载模式是非线程安全的，当有多个线程并行调用getInstance()时，会创建多个实例；
+123456789101112public class Singleton &#123;    private static Singleton instance;    private Singleton ()&#123;&#125;    public static Singleton getInstance() &#123;     if (instance == null) &#123;         instance = new Singleton();     &#125;     return instance;    &#125;&#125;
+懒汉式线程安全代码，将整个getInstance()方法设置为同步(synchronized)；但在任何一个时候只能有一个线程调用getInstance()方式，而同步操作只需要在第一次调用时需要。
+
+12345678public static synchronized Singleton getI ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/public/2019/02/15/Java/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8D%8F%E4%BD%9C/" title="Java多线程之间的协作">     <img class="post_bg" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/public/img/404.jpg'" alt="Java多线程之间的协作"></a></div><div class="recent-post-info"><a class="article-title" href="/public/2019/02/15/Java/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8D%8F%E4%BD%9C/" title="Java多线程之间的协作">Java多线程之间的协作</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2019-02-14T16:00:00.000Z" title="Created 2019-02-15 00:00:00">2019-02-15</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/public/categories/Java/">Java</a></span></div><div class="content">Java多线程协作Java多线程之间的协作需要解决的一个问题是任务之间的握手操作，要完成握手操作，需要互斥量，互斥量可以保证每次只有一个任务可以获取该信号，在某一互斥量的状态下将任务挂起，或通过某一操作恢复任务操作。在Object对象中有wait()和notifyAll()方法，在Java  SE 5多任务库中添加Condition类，其中有await()和singal()方法。
 
 
+join当一个在线程m中调用t.join()，m线程会被挂起，直至t执行结束(t.isAlive为false)；如果t线程调用t.interrupt()(在m线程之外)，则线程m中会继续执行任务。
+</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/public/2018/12/20/Android/%E6%A1%86%E6%9E%B6/AAC/Lifecycle%E5%92%8CRoom%E7%9A%84%E4%BD%BF%E7%94%A8/" title="使用框架组件Room和Lifecycle来创建应用">     <img class="post_bg" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/public/img/404.jpg'" alt="使用框架组件Room和Lifecycle来创建应用"></a></div><div class="recent-post-info"><a class="article-title" href="/public/2018/12/20/Android/%E6%A1%86%E6%9E%B6/AAC/Lifecycle%E5%92%8CRoom%E7%9A%84%E4%BD%BF%E7%94%A8/" title="使用框架组件Room和Lifecycle来创建应用">使用框架组件Room和Lifecycle来创建应用</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2018-12-19T16:00:00.000Z" title="Created 2018-12-20 00:00:00">2018-12-20</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/public/categories/Android/">Android</a></span></div><div class="content">使用框架组件Room和Lifecycle来创建应用在build.gradle(Module:app)中添加依赖
+12345678&#x2F;&#x2F;Room组件implementation &quot;android.arch.persistence.room:runtime:$rootProject.roomVersion&quot;annotationProcessor &quot;android.arch.persistence.room:compiler:$rootProject.roomVersion&quot;androidTestImplementation &quot;android.arch.persistence.room:testing:$rootProject.roomVersion&quot;&#x2F;&#x2F;lifestyle组件implementation &quot;android.arch.lifecycle:extensions:$rootProject.archLifecycleVersion&quot;annotationProcess ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/public/2018/12/20/Android/%E6%A1%86%E6%9E%B6/AAC/WorkManager%E4%BB%8B%E7%BB%8D/" title="WorkManager介绍与使用">     <img class="post_bg" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/public/img/404.jpg'" alt="WorkManager介绍与使用"></a></div><div class="recent-post-info"><a class="article-title" href="/public/2018/12/20/Android/%E6%A1%86%E6%9E%B6/AAC/WorkManager%E4%BB%8B%E7%BB%8D/" title="WorkManager介绍与使用">WorkManager介绍与使用</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2018-12-19T16:00:00.000Z" title="Created 2018-12-20 00:00:00">2018-12-20</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/public/categories/Android/">Android</a></span></div><div class="content">WorkManager是一个Job分发服务，用来管理任务,一旦任务进入管理队里，无论是退出当前应用或重启设备，WorkManager都会保证任务的进行。
+在默认请状态下WorkManager会立即运行任务，但可以指定在手机在某一特殊状态下运行，如：网络状态、电池状态、或者是内存状态。
 
+当程序运行时，运行WorkManager,WorkManager会在一个新的后台子线程中进行；如果程序没有运行，WorkManager将会根据设备的API以及是否可以使用Google服务来选择合适的方式运行。当API在23及以上，WorkManager会使用功JobScheduler来运行，在API14-22将会使用Firebase JobDispatcher，如果JobDispatcher不能使用则会调用一个自定义AlarmManager以及BroadcastReceiver来实现后台运行任务。
+WorkManager不是为了执行所有不在主线程中的任务，如果任务不需要保证执行，则应该使用intent service或者foreground service
+WorkManager可以执行两种类型的任务
+ ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/public/2018/12/10/Java/Java%E5%9F%BA%E7%A1%80/Java%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" title="Java文件操作">     <img class="post_bg" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/public/img/404.jpg'" alt="Java文件操作"></a></div><div class="recent-post-info"><a class="article-title" href="/public/2018/12/10/Java/Java%E5%9F%BA%E7%A1%80/Java%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" title="Java文件操作">Java文件操作</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2018-12-09T16:00:00.000Z" title="Created 2018-12-10 00:00:00">2018-12-10</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/public/categories/Java/">Java</a></span></div><div class="content">Java文件读取以数据流的形式整体进行读入12345678910try&#123;    File file=new File(path);    byte[] fileData=new byte[(int)file.length()];    DataInputStream dataInputStream=new DataInputStream(new FileInputStream(file));    dataInputStream.readFully(fileData);    dataInputStream.close();&#125;cache(IOException io)&#123;    e.printStackTrace();&#125;
 
-
-
-
-
-<script src="/public/js/main.js" defer></script>
-
-    
-    <div class="searchbox ins-search">
-    <div class="searchbox-container ins-search-container">
-        <div class="searchbox-input-wrapper">
-            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something..." />
-            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
-        </div>
-        <div class="searchbox-result-wrapper ins-section-wrapper">
-            <div class="ins-section-container"></div>
-        </div>
-    </div>
-</div>
-<script>
-    (function (window) {
-        var INSIGHT_CONFIG = {
-            TRANSLATION: {
-                POSTS: 'Posts',
-                PAGES: 'Pages',
-                CATEGORIES: 'Categories',
-                TAGS: 'Tags',
-                UNTITLED: '(Untitled)',
-            },
-            CONTENT_URL: '/public/content.json',
-        };
-        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
-    })(window);
-</script>
-<script src="/public/js/insight.js" defer></script>
-<link rel="stylesheet" href="/public/css/search.css">
-<link rel="stylesheet" href="/public/css/insight.css">
-    
-</body>
-</html>
+文件逐行读入123456789101112131415161718try&#123;    StringBuilder stringBuilder=new StringBuilder();    File file=new File(path);    InputStream inputStream=new FileInputS ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/public/page/6/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/public/">1</a><span class="space">&hellip;</span><a class="page-number" href="/public/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/public/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/public/page/12/">12</a><a class="extend next" rel="next" href="/public/page/8/"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="/public/null" onerror="this.onerror=null;this.src='/public/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Lucius Zhao</div><div class="author-info__description">程序员</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/public/archives/"><div class="headline">Articles</div><div class="length-num">120</div></a></div><div class="card-info-data-item is-center"><a href="/public/tags/"><div class="headline">Tags</div><div class="length-num">11</div></a></div><div class="card-info-data-item is-center"><a href="/public/categories/"><div class="headline">Categories</div><div class="length-num">6</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/LuciusCS" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:826764620@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/public/2020/12/25/Flutter/Flutter%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/" title="No title"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/public/img/404.jpg'" alt="No title"/></a><div class="content"><a class="title" href="/public/2020/12/25/Flutter/Flutter%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/" title="No title">No title</a><time datetime="2020-12-25T09:41:28.645Z" title="Created 2020-12-25 17:41:28">2020-12-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/public/2020/12/24/Android/Advanced/%E6%8F%92%E4%BB%B6%E5%8C%96/Android%E6%8F%92%E6%A1%A9/" title="No title"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/public/img/404.jpg'" alt="No title"/></a><div class="content"><a class="title" href="/public/2020/12/24/Android/Advanced/%E6%8F%92%E4%BB%B6%E5%8C%96/Android%E6%8F%92%E6%A1%A9/" title="No title">No title</a><time datetime="2020-12-24T08:27:49.998Z" title="Created 2020-12-24 16:27:49">2020-12-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/public/2020/12/24/Android/Advanced/%E5%9F%BA%E7%A1%80/Android%E6%89%93%E5%8C%85%E6%B5%81%E7%A8%8B/" title="No title"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/public/img/404.jpg'" alt="No title"/></a><div class="content"><a class="title" href="/public/2020/12/24/Android/Advanced/%E5%9F%BA%E7%A1%80/Android%E6%89%93%E5%8C%85%E6%B5%81%E7%A8%8B/" title="No title">No title</a><time datetime="2020-12-24T08:19:42.373Z" title="Created 2020-12-24 16:19:42">2020-12-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/public/2020/12/23/Flutter/Flutter%E5%9F%BA%E7%A1%80/" title="No title"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/public/img/404.jpg'" alt="No title"/></a><div class="content"><a class="title" href="/public/2020/12/23/Flutter/Flutter%E5%9F%BA%E7%A1%80/" title="No title">No title</a><time datetime="2020-12-23T07:07:31.447Z" title="Created 2020-12-23 15:07:31">2020-12-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/public/2020/11/27/Android/Android%E5%9F%BA%E7%A1%80/Android%E5%B8%B8%E7%94%A8%E7%9A%84%E5%BA%93/" title="No title"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/public/img/404.jpg'" alt="No title"/></a><div class="content"><a class="title" href="/public/2020/11/27/Android/Android%E5%9F%BA%E7%A1%80/Android%E5%B8%B8%E7%94%A8%E7%9A%84%E5%BA%93/" title="No title">No title</a><time datetime="2020-11-27T09:07:24.137Z" title="Created 2020-11-27 17:07:24">2020-11-27</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline"><i class="fas fa-folder-open"></i><span>Categories</span></div><ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/public/categories/Android/"><span class="card-category-list-name">Android</span><span class="card-category-list-count">55</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/public/categories/Java/"><span class="card-category-list-name">Java</span><span class="card-category-list-count">15</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/public/categories/Kotlin/"><span class="card-category-list-name">Kotlin</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/public/categories/Other/"><span class="card-category-list-name">Other</span><span class="card-category-list-count">6</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/public/categories/PAT/"><span class="card-category-list-name">PAT</span><span class="card-category-list-count">8</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/public/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"><span class="card-category-list-name">数据结构</span><span class="card-category-list-count">16</span></a></li>
+            
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/public/tags/Android/" style="font-size: 1.5em; color: #99a9bf">Android</a> <a href="/public/tags/Git/" style="font-size: 1.17em; color: #999c9f">Git</a> <a href="/public/tags/JNI/" style="font-size: 1.17em; color: #999c9f">JNI</a> <a href="/public/tags/Java/" style="font-size: 1.37em; color: #99a4b2">Java</a> <a href="/public/tags/Kotlin/" style="font-size: 1.1em; color: #999">Kotlin</a> <a href="/public/tags/Other/" style="font-size: 1.23em; color: #999ea6">Other</a> <a href="/public/tags/Ubuntu/" style="font-size: 1.1em; color: #999">Ubuntu</a> <a href="/public/tags/pat/" style="font-size: 1.3em; color: #99a1ac">pat</a> <a href="/public/tags/%E4%BC%98%E5%8C%96/" style="font-size: 1.1em; color: #999">优化</a> <a href="/public/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" style="font-size: 1.1em; color: #999">性能优化</a> <a href="/public/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 1.43em; color: #99a6b9">数据结构</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>Archives</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/public/archives/2020/12/"><span class="card-archive-list-date">December 2020</span><span class="card-archive-list-count">4</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/public/archives/2020/11/"><span class="card-archive-list-date">November 2020</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/public/archives/2020/05/"><span class="card-archive-list-date">May 2020</span><span class="card-archive-list-count">22</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/public/archives/2020/03/"><span class="card-archive-list-date">March 2020</span><span class="card-archive-list-count">4</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/public/archives/2020/02/"><span class="card-archive-list-date">February 2020</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/public/archives/2020/01/"><span class="card-archive-list-date">January 2020</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/public/archives/2019/12/"><span class="card-archive-list-date">December 2019</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/public/archives/2019/10/"><span class="card-archive-list-date">October 2019</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item more is-center"><a class="card-archive-list-link-more" href="/public/archives/">
+              <span>More</span><i class="fas fa-angle-right"  ></i></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article :</div><div class="item-count">120</div></div><div class="webinfo-item"><div class="item-name">UV :</div><div class="item-count" id="busuanzi_value_site_uv"></div></div><div class="webinfo-item"><div class="item-name">PV :</div><div class="item-count" id="busuanzi_value_site_pv"></div></div><div class="webinfo-item"><div class="item-name">Last Push :</div><div class="item-count" id="last-push-date" data-lastPushDate="2021-01-05T11:09:58.322Z"></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By Lucius Zhao</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/public/js/utils.js"></script><script src="/public/js/main.js"></script><div class="js-pjax"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></div></body></html>
