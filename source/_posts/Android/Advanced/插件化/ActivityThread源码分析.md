@@ -1,9 +1,9 @@
 ---
 title: "ActivityThread源码分析"
 description: "ActivityThread源码分析"
-tags: [Android]
+type: [Android]
 toc: true
-thumbnail: /thumbnail/img80.jpg
+cover:  /cover/img80.jpg
 categories: Android
 date: 2019/08/10
 ---

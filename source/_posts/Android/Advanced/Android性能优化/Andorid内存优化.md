@@ -1,9 +1,9 @@
 ---
 title: "Android 内存性能优化"
 description: "Android开发过程中的性能优化"
-tags: [Android,性能优化]
+type: [Android,性能优化]
 toc: true
-thumbnail: /thumbnail/img77.jpg
+cover:  /cover/img77.jpg
 categories: Android
 date: 2019/09/01
 ---

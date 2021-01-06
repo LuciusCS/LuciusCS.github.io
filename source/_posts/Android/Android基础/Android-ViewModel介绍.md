@@ -2,8 +2,8 @@
 
 title: "Android生命周期感知组件"
 description: "Android生命周期感知组件介绍"
-tags: [Android]
-thumbnail: /thumbnail/img7.jpg
+type: [Android]
+cover: /cover/img7.jpg
 toc: true
 categories: Android
 date: 2018/08/09

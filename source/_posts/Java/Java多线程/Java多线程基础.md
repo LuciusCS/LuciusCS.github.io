@@ -1,10 +1,10 @@
 ---
 title: Java多线程基础
-thumbnail: /thumbnail/img62.jpg
+cover:  /cover/img62.jpg
 toc: true
 description: Java多线程基础
 categories: Android
-tags: [Android]
+type: [Android]
 date: 2018/11/25
 ---
 

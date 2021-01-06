@@ -1,9 +1,9 @@
 ---
 title: "Android 插件化介绍"
 description: "Android 插件化介绍"
-tags: [Android]
+type: [Android]
 toc: true
-thumbnail: /thumbnail/img86.jpg
+cover:  /cover/img86.jpg
 categories: Android
 date: 2020/03/05
 ---

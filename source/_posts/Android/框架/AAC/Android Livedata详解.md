@@ -1,10 +1,10 @@
 ---
 title: LiveData介绍与使用
-thumbnail: /thumbnail/img26.jpg
+cover: /cover/img26.jpg
 toc: true
 description: LiveData介绍与使用
 categories: Android
-tags: [Android]
+type: [Android]
 date: 2019/04/23
 
 ---

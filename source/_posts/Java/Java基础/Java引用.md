@@ -1,8 +1,8 @@
 ---
 title: Java引用
-tags: [Java]
+type: [Java]
 description: Java引用
-thumbnail: /thumbnail/img54.jpg
+cover:  /cover/img54.jpg
 toc: true
 categories: Java
 ---

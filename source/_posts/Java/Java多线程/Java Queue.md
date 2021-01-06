@@ -1,9 +1,9 @@
 ---
 title: Java Queue
-thumbnail: /thumbnail/img98.jpg
+cover: /cover/img98.jpg
 toc: true
 description: Java Queue
-tags: [Java]
+type: [Java]
 categories:  Java 
 date: 2019/04/03
 ---

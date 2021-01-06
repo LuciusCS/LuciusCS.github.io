@@ -1,8 +1,8 @@
 ---
 title: Android常用网站
-tags: [Android]
+type: [Android]
 description: Android常用网站
-thumbnail: /thumbnail/img86.jpg
+cover: /cover/img86.jpg
 toc: true
 categories: Android
 date: 2019/08/09

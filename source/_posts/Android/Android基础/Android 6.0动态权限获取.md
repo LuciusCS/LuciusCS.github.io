@@ -1,9 +1,9 @@
 ---
 title: Android 6.0及以上手机权限进行动态获取
-thumbnail: /thumbnail/img8.jpg
+cover: /cover/img8.jpg
 toc: true
 categories: Android
-tags: [Android]
+type: [Android]
 date: 2019/09/19
 ---
 

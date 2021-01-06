@@ -1,9 +1,9 @@
 ---
 title: Android 蓝牙4.0开发
-thumbnail: /thumbnail/img15.jpg
+cover: /cover/img15.jpg
 toc: true
 description: Android 蓝牙4.0开发
-tags: [Android]
+type: [Android]
 categories: Android
 date: 2019/09/19
 ---
@@ -56,7 +56,7 @@ private class DeviceReceiver extends BroadcastReceiver {
 }
 ```
 
-* 方法二：`BluetoothAdapter.startScan(ScanCallback callback)`在`ScanCallback`的`onScanResult(int callbackType, ScanResult result)`方法中，通过`result.getDevice()`可获取扫描到的Ble设备
+* 方法二：`BluetoothAdapter.startScan(ScanCallback callback)`在`ScanCallback`的`onScanResult(int callbacktype, ScanResult result)`方法中，通过`result.getDevice()`可获取扫描到的Ble设备
 * 方法三：`BluetoothAdapter.startLeScan(BluetoothAdapter.LeScanCallback callback)`
   该方法已经被舍弃
 

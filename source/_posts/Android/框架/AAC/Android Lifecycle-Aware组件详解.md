@@ -1,10 +1,10 @@
 ---
 title: Android生命周期感知组件详解
-thumbnail: /thumbnail/img25.jpg
+cover: /cover/img25.jpg
 toc: true
 description: Android生命周期感知组件详解
 categories: Android
-tags: [Android]
+type: [Android]
 date: 2018/07/08
 
 ---

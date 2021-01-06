@@ -1,8 +1,8 @@
 ---
 title: 常用Git操作
-thumbnail: /thumbnail/img68.jpg
+cover:  /cover/img68.jpg
 toc: true
-tags: [Git]
+type: [Git]
 description: 常用Git操作
 categories: Other
 date: 2018/06/27

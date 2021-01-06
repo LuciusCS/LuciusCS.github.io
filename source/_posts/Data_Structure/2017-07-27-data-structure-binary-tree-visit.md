@@ -2,8 +2,8 @@
 
 title: "二叉树的前序、中序、后序遍历"
 description: "递归构建二叉树、二叉树的三种遍历方式都是通过递归进行"
-tags: [数据结构]
-thumbnail: /thumbnail/img36.jpg
+type: [数据结构]
+cover: /cover/img36.jpg
 toc: true
 categories: 数据结构
 date: 2017/07/27

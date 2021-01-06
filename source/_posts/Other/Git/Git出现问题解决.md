@@ -1,8 +1,8 @@
 ---
 title:  Permission to LuciusCS/test.git denied to Lrici.
-thumbnail: /thumbnail/img67.jpg
+cover:  /cover/img67.jpg
 toc: true
-tags: [Git]
+type: [Git]
 description: Permission to LuciusCS/test.git denied to Lrici.
 categories: Other
 date: 2017/07/27

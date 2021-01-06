@@ -1,9 +1,9 @@
 ---
 title: Android防止二次打包
-thumbnail: /thumbnail/img4.jpg
+cover: /cover/img4.jpg
 toc: true
 description: Android防止二次打包
-tags: [Android]
+type: [Android]
 categories: Android
 date: 2019/09/30
 ---

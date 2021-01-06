@@ -1,10 +1,10 @@
 ---
 title: Fasetjson 介绍与使用
-thumbnail: /thumbnail/img34.jpg
+cover: /cover/img34.jpg
 toc: true
 description: Fasetjson 介绍与使用
 categories: Android
-tags: [Android]
+type: [Android]
 date: 2018/05/06
 ---
 

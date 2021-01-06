@@ -1,10 +1,9 @@
-
 ---
 title: "Android LoadApk插件化实现"
 description: "Android LoadApk插件化实现"
-tags: [Android]
+type: [Android]
 toc: true
-thumbnail: /thumbnail/img81.jpg
+cover:  /cover/img81.jpg
 categories: Android
 date: 2020/2/28
 ---

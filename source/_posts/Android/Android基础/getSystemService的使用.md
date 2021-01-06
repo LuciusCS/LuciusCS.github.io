@@ -1,9 +1,9 @@
 ---
 title: getSystemService的使用
-thumbnail: /thumbnail/img12.jpg
+cover: /cover/img12.jpg
 toc: true
 description: getSystemService的使用
-tags: [Android]
+type: [Android]
 categories: Android
 date: 2019/09/30
 ---

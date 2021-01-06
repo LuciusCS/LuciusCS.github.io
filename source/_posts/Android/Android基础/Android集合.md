@@ -1,5 +1,12 @@
-
-
+---
+title: "Android中使用的集合"
+description: "Android中使用的集合介绍"
+type: [Android]
+toc: true
+cover:  /cover/img101.jpg
+categories: Android
+date: 2019/5/16
+---
 ## Android中使用的集合介绍
 
 ### HashMap、ArrayMap和SparseArray

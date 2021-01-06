@@ -1,8 +1,8 @@
 ---
 title: Glide手写框架实现
-tags: [Android]
+type: [Android]
 description:  Glide手写框架实现
-thumbnail: /thumbnail/img92.jpg
+cover: /cover/img92.jpg
 toc: true
 categories: Android
 date: 2019/05/08

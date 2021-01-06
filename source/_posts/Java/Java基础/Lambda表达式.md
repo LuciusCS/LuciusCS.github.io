@@ -1,8 +1,8 @@
 ---
 title: Lambda介绍
-tags: [Java]
+type: [Java]
 description: Lambda介绍
-thumbnail: /thumbnail/img57.jpg
+cover:  /cover/img57.jpg
 toc: true
 categories: Java
 ---
@@ -88,16 +88,6 @@ Java中的Lambda表达式通常用`(argument)->(body)`的语法表示
 
 
 ```
-
-
-
-
-
-
-<<<<<<< HEAD
-=======
-#### 函数式接口
-把只有一个抽象方法的接口叫做函数式接口（functional interface）
 
 
 #### Lambda表达式使用注意事项

@@ -1,9 +1,9 @@
 ---
 title: Android文件操作
-thumbnail: /thumbnail/img11.jpg
+cover: /cover/img11.jpg
 toc: true
 description: Android文件操作
-tags: [Android]
+type: [Android]
 categories: Android
 date: 2019/09/19
 ---

@@ -1,9 +1,9 @@
 ---
 title: "Android AIDL介绍"
 description: "Android接口定义语言AIDL"
-tags: [Android]
+type: [Android]
 toc: true
-thumbnail: /thumbnail/img79.jpg
+cover:  /cover/img79.jpg
 categories: Android
 date: 2019/10/30
 ---

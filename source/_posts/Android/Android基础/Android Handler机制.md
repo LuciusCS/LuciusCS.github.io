@@ -1,9 +1,9 @@
 ---
 title:  Handler介绍
-thumbnail: /thumbnail/img13.jpg
+cover: /cover/img13.jpg
 toc: true
 description: Android Handler介绍与使用
-tags: [Android]
+type: [Android]
 categories: Android
 date: 2019/09/30
 ---

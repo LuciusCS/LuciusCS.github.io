@@ -1,10 +1,10 @@
 ---
 title: Databinding点击事件的实现
-thumbnail: /thumbnail/img27.jpg
+cover: /cover/img27.jpg
 toc: true
 description: Databinding点击事件的几种实现方式
 categories: Android
-tags: [Android]
+type: [Android]
 date: 2018/04/06
 
 ---

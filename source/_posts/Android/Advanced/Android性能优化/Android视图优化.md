@@ -1,9 +1,9 @@
 ---
 title: "Android视图优化"
 description: "Android视图优化"
-tags: [Android,优化]
+type: [Android,优化]
 toc: true
-thumbnail: /thumbnail/img78.jpg
+cover:  /cover/img78.jpg
 categories: Android
 date: 2019/08/16
 ---

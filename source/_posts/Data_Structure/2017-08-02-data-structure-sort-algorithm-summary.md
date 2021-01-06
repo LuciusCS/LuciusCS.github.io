@@ -2,8 +2,8 @@
 
 title: "排序算法总结"
 description: ""
-tags: [数据结构]
-thumbnail: /thumbnail/img42.jpg
+type: [数据结构]
+cover: /cover/img42.jpg
 toc: true
 categories: 数据结构
 date: 2017/08/02

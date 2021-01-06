@@ -1,10 +1,10 @@
 ---
 title: 结构化组件介绍与使用
-thumbnail: /thumbnail/img24.jpg
+cover: /cover/img24.jpg
 toc: true
 description: 结构化组件介绍与使用
 categories: Android
-tags: [Android]
+type: [Android]
 date: 2019/08/19
 
 ---

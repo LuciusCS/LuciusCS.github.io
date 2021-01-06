@@ -1,10 +1,10 @@
 ---
 title: 使用框架组件Room和Lifecycle来创建应用
-thumbnail: /thumbnail/img28.jpg
+cover: /cover/img28.jpg
 toc: true
 description: 使用框架组件Room和Lifecycle来创建应用
 categories: Android
-tags: [Android]
+type: [Android]
 date: 2018/12/20
 
 ---

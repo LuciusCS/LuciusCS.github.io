@@ -1,9 +1,9 @@
 ---
 title: Android序列化
-thumbnail: /thumbnail/img10.jpg
+cover: /cover/img10.jpg
 toc: true
 description: Android序列化
-tags: [Android]
+type: [Android]
 categories: Android
 date: 2018/09/10
 ---

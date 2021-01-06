@@ -1,10 +1,10 @@
 ---
 title: Java单例模式
-thumbnail: /thumbnail/img60.jpg
+cover:  /cover/img60.jpg
 toc: true
 description: Java单例模式
 categories: Java
-tags: [Java]
+type: [Java]
 date: 2019/03/25
 ---
 
