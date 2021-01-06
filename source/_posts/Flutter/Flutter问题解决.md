@@ -1,4 +1,12 @@
-
+---
+title: "Flutter开发问题解决"
+description: "Flutter开发问题解决"
+type: [Android]
+toc: true
+cover:  /cover/img113.jpg
+categories: Android
+date: 2020/12/11
+---
 
 ## Flutter问题解决
 

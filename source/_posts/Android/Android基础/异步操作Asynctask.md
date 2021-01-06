@@ -1,9 +1,9 @@
 ---
 title: AsyncTask异步操作
-thumbnail: /thumbnail/img14.jpg
+cover: /cover/img14.jpg
 toc: true
 description: AsyncTask异步操作
-tags: [Android]
+type: [Android]
 categories: Android
 date: 2019/08/20
 ---

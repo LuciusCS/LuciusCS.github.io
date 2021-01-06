@@ -1,8 +1,8 @@
 ---
 title: Java泛型
-tags: [Java]
+type: [Java]
 description: Java泛型
-thumbnail: /thumbnail/img55.jpg
+cover:  /cover/img55.jpg
 toc: true
 categories: Java
 ---

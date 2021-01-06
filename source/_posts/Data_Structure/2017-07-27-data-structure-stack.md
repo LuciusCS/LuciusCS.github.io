@@ -1,8 +1,8 @@
 ---
 title: 顺序栈的表示与实现
 description:
-tags: [数据结构]
-thumbnail: /thumbnail/img37.jpg
+type: [数据结构]
+cover: /cover/img37.jpg
 toc: true
 categories: 数据结构
 date: 2017/07/27

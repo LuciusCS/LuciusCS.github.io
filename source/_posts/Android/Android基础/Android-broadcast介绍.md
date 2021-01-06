@@ -1,8 +1,8 @@
 ---
 title: "Android Broadcast介绍"
 description: "Android Broadcast介绍"
-tags: [Android]
-thumbnail: /thumbnail/img6.jpg
+type: [Android]
+cover: /cover/img6.jpg
 toc: true
 categories: Android
 

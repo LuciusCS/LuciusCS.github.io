@@ -1,0 +1,232 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>C++ 基础 | Android Development</title><meta name="author" content="Lucius Zhao"><meta name="copyright" content="Lucius Zhao"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="C++开发基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++ 基础">
+<meta property="og:url" content="http://www.zhaohanchao.com/public/index.html/2017/09/25/C++/C++%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="Android Development">
+<meta property="og:description" content="C++开发基础">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://www.zhaohanchao.com/public/index.html/cover/img107.jpg">
+<meta property="article:published_time" content="2017-09-24T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-01-06T01:02:44.163Z">
+<meta property="article:author" content="Lucius Zhao">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.zhaohanchao.com/public/index.html/cover/img107.jpg"><link rel="shortcut icon" href="/public/img/favicon.png"><link rel="canonical" href="http://www.zhaohanchao.com/public/index.html/2017/09/25/C++/C++%E5%9F%BA%E7%A1%80/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/public/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>var GLOBAL_CONFIG = { 
+  root: '/public/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}
+
+// https://stackoverflow.com/questions/16839698/jquery-getscript-alternative-in-native-javascript
+const getScript = url => new Promise((resolve, reject) => {
+  const script = document.createElement('script')
+  script.src = url
+  script.async = true
+  script.onerror = reject
+  script.onload = script.onreadystatechange = function() {
+    const loadState = this.readyState
+    if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+    script.onload = script.onreadystatechange = null
+    resolve()
+  }
+  document.head.appendChild(script)
+})</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-01-06 09:02:44'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><meta name="generator" content="Hexo 5.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/public/null" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/public/archives/"><div class="headline">Articles</div><div class="length-num">118</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/public/categories/"><div class="headline">Categories</div><div class="length-num">8</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/public/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/public/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/public/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/public/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/public/cover/img107.jpg)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/public/">Android Development</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/public/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/public/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/public/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/public/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">C++ 基础</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2017-09-24T16:00:00.000Z" title="Created 2017-09-25 00:00:00">2017-09-25</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2021-01-06T01:02:44.163Z" title="Updated 2021-01-06 09:02:44">2021-01-06</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/public/categories/Android/">Android</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// arr 表示一个数组，同时代表一个指针</span></span><br><span class="line"><span class="keyword">int</span> arr[] =&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> *p=arr;</span><br><span class="line"><span class="comment">//修改数组的第一个值</span></span><br><span class="line">*p=<span class="number">4</span>;</span><br><span class="line"><span class="comment">//修改数组第二个值</span></span><br><span class="line">*(p+<span class="number">1</span>)=<span class="number">5</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="数组指针-也称为行指针"><a href="#数组指针-也称为行指针" class="headerlink" title="数组指针(也称为行指针)"></a>数组指针(也称为行指针)</h2><p><code>int (*p)[n]</code> 首先p是一个指针，指向一个整型的一维数组，这个一维数组的长度是n；执行p+1时，p要跨过n个整型数据的长度。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">int</span> a[<span class="number">3</span>][<span class="number">4</span>];</span><br><span class="line"><span class="keyword">int</span> (*p)[<span class="number">4</span>]; <span class="comment">//该语句是定义一个数组指针，指向含四个元素的一维数组</span></span><br><span class="line">p=a;         <span class="comment">//将该二维数组的首地址赋值给p，也就是a[0]或&amp;a[0][0];</span></span><br><span class="line">p++:       <span class="comment">//该语句执行过后，也就是 p=p+1; p跨过行 a[0][]指向了 a[1][];</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="指针数组"><a href="#指针数组" class="headerlink" title="指针数组"></a>指针数组</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> arr[] =&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line"><span class="keyword">int</span> *p[<span class="number">3</span>];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">3</span>;i++)&#123;</span><br><span class="line">    p[i]=&amp;arr[i];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;数组%d&quot;</span>,*p[<span class="number">0</span>]);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="指针函数"><a href="#指针函数" class="headerlink" title="指针函数"></a>指针函数</h2><p>带指针的函数，本质是一个函数。函数的返回值是某一类型的指针；</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//    void* wParam 表示传入的参数可以是任一类型，只需要是指针即可</span></span><br><span class="line"><span class="function"><span class="keyword">int</span>* <span class="keyword">int</span> <span class="title">add_func</span><span class="params">(<span class="keyword">void</span>* wParams)</span></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;指针函数&quot;</span>);</span><br><span class="line">    <span class="keyword">int</span> b=<span class="number">10</span>;</span><br><span class="line">    <span class="keyword">int</span> *c=&amp;b;</span><br><span class="line">    <span class="keyword">return</span> *c;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="函数指针"><a href="#函数指针" class="headerlink" title="函数指针"></a>函数指针</h2><p>函数指针是指向函数的指针变量，即本质是一个指针变量</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//int(*f)表示返回值， int x表示方法的参数类型</span></span><br><span class="line"><span class="keyword">int</span>(*func)(<span class="keyword">int</span> x); <span class="comment">//声明一个函数指针</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">point_func</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">       <span class="built_in">printf</span>(<span class="string">&quot;函数指针&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    func=point_func;</span><br><span class="line">    <span class="comment">//调用函数指针，会直接调用函数</span></span><br><span class="line">    func(<span class="number">10</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="结构体"><a href="#结构体" class="headerlink" title="结构体"></a>结构体</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Student</span>&#123;</span></span><br><span class="line">    <span class="keyword">char</span> name[<span class="number">50</span>];</span><br><span class="line">    <span class="keyword">int</span> age;</span><br><span class="line">&#125;student,a;  <span class="comment">//结构变量student和a可以不定义，其为Student类型</span></span><br><span class="line">student.age=<span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用typedf定义</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span></span><br><span class="line">    <span class="keyword">char</span> name[<span class="number">50</span>];</span><br><span class="line">    <span class="keyword">int</span> age;</span><br><span class="line">&#125;Student;</span><br><span class="line"></span><br><span class="line"><span class="comment">//施工</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Student</span> <span class="title">student1</span>;</span></span><br><span class="line">student.age=<span class="number">10</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="结构体大小"><a href="#结构体大小" class="headerlink" title="结构体大小"></a>结构体大小</h3><p>当结构体需要内存过大，使用动态内存申请。结构体占用字节数和结构体内字段有关，指针占用内存就是4/8字节，因此传指针比传值效率更高。</p>
+<h3 id="结构体存储原则"><a href="#结构体存储原则" class="headerlink" title="结构体存储原则"></a>结构体存储原则</h3><p>1、结构体变量中成员的偏移量必须是成员大小的整数倍。<br>2、结构体大小必须是所有成员大小的整数倍，也即所有成员大小的公倍数。</p>
+<h3 id="内存对齐"><a href="#内存对齐" class="headerlink" title="内存对齐"></a>内存对齐</h3><p>对齐跟数据在内存中的位置有关。如果一个变量的内存地址正好位于它长度的整数倍，它就被称为自然对齐。</p>
+<h2 id="共用体"><a href="#共用体" class="headerlink" title="共用体"></a>共用体</h2><p>共用体是一种特殊的数据类型，允许在相同的内存位置存储不同的数据类型。可以定义一个带有多成员的共用体，凡是任何时候只能有一个成员带有值。共用体提供了一种使用相同的内存位置的有效方法。</p>
+<p>共用体占用的内存应足够存储共用体中最大的成员，其大小取决于最大的成员变量</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">union</span> <span class="title">Data</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">float</span> f;</span><br><span class="line">    <span class="keyword">char</span> str[<span class="number">20</span>];</span><br><span class="line">&#125;data;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="动态库和静态库"><a href="#动态库和静态库" class="headerlink" title="动态库和静态库"></a>动态库和静态库</h2><p>在Linux下，动态库后缀为 .so 静态库为 .a</p>
+<p>在Windows下，动态库后缀为 .dll 静态库为 .lib</p>
+<p>区别：</p>
+<p>1、静态库比较大，动态库比较小；<br>2、静态库需要在编译时，被链接在目标代码中，动态库在运行时才会被加载到目标代码；静态库在运行时的速度快；<br>3、静态库类似于Android中的Module,一旦打包APK需要重新进行编译；<br>4、动态库类似于jar包，打包不需要重新进行编译；</p>
+<h2 id="C-类的构造"><a href="#C-类的构造" class="headerlink" title="C++类的构造"></a>C++类的构造</h2><p>C++的类用 .cpp表示</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Lucius Zhao</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://www.zhaohanchao.com/public/index.html/2017/09/25/C++/C++%E5%9F%BA%E7%A1%80/">http://www.zhaohanchao.com/public/index.html/2017/09/25/C++/C++%E5%9F%BA%E7%A1%80/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/public/cover/img107.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/public/2018/04/06/Android/%E6%A1%86%E6%9E%B6/AAC/DataBinding%E7%9A%84%E4%BD%BF%E7%94%A8/"><img class="prev-cover" src="/public/cover/img27.jpg" onerror="onerror=null;src='/public/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Databinding点击事件的实现</div></div></a></div><div class="next-post pull-right"><a href="/public/2017/08/28/Data_Structure/2017-08-28-data-structure-huffman-tree/"><img class="next-cover" src="/public/cover/img51.jpg" onerror="onerror=null;src='/public/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Huffman树的算法实现</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="/public/null" onerror="this.onerror=null;this.src='/public/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Lucius Zhao</div><div class="author-info__description">程序员</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/public/archives/"><div class="headline">Articles</div><div class="length-num">118</div></a></div><div class="card-info-data-item is-center"><a href="/public/categories/"><div class="headline">Categories</div><div class="length-num">8</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/LuciusCS" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:826764620@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%87%E9%92%88"><span class="toc-number">1.</span> <span class="toc-text">指针</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E6%8C%87%E9%92%88-%E4%B9%9F%E7%A7%B0%E4%B8%BA%E8%A1%8C%E6%8C%87%E9%92%88"><span class="toc-number">2.</span> <span class="toc-text">数组指针(也称为行指针)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%87%E9%92%88%E6%95%B0%E7%BB%84"><span class="toc-number">3.</span> <span class="toc-text">指针数组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%87%E9%92%88%E5%87%BD%E6%95%B0"><span class="toc-number">4.</span> <span class="toc-text">指针函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E6%8C%87%E9%92%88"><span class="toc-number">5.</span> <span class="toc-text">函数指针</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E4%BD%93"><span class="toc-number">6.</span> <span class="toc-text">结构体</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E4%BD%93%E5%A4%A7%E5%B0%8F"><span class="toc-number">6.1.</span> <span class="toc-text">结构体大小</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E4%BD%93%E5%AD%98%E5%82%A8%E5%8E%9F%E5%88%99"><span class="toc-number">6.2.</span> <span class="toc-text">结构体存储原则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E5%AF%B9%E9%BD%90"><span class="toc-number">6.3.</span> <span class="toc-text">内存对齐</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B1%E7%94%A8%E4%BD%93"><span class="toc-number">7.</span> <span class="toc-text">共用体</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E5%BA%93%E5%92%8C%E9%9D%99%E6%80%81%E5%BA%93"><span class="toc-number">8.</span> <span class="toc-text">动态库和静态库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#C-%E7%B1%BB%E7%9A%84%E6%9E%84%E9%80%A0"><span class="toc-number">9.</span> <span class="toc-text">C++类的构造</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/public/2021/01/06/Flutter/Flutter%E5%B8%B8%E7%94%A8%E7%9A%84%E5%BC%80%E6%BA%90%E5%BA%93/" title="Flutter开发基础"><img src="/public/cover/img114.jpg" onerror="this.onerror=null;this.src='/public/img/404.jpg'" alt="Flutter开发基础"/></a><div class="content"><a class="title" href="/public/2021/01/06/Flutter/Flutter%E5%B8%B8%E7%94%A8%E7%9A%84%E5%BC%80%E6%BA%90%E5%BA%93/" title="Flutter开发基础">Flutter开发基础</a><time datetime="2021-01-05T16:00:00.000Z" title="Created 2021-01-06 00:00:00">2021-01-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/public/2021/01/05/Other/Blog/%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99/" title="Hexo博客搭建相关资料"><img src="/public/cover/img112.jpg" onerror="this.onerror=null;this.src='/public/img/404.jpg'" alt="Hexo博客搭建相关资料"/></a><div class="content"><a class="title" href="/public/2021/01/05/Other/Blog/%E7%9B%B8%E5%85%B3%E8%B5%84%E6%96%99/" title="Hexo博客搭建相关资料">Hexo博客搭建相关资料</a><time datetime="2021-01-04T16:00:00.000Z" title="Created 2021-01-05 00:00:00">2021-01-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/public/2020/12/11/Flutter/Flutter%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/" title="Flutter开发问题解决"><img src="/public/cover/img113.jpg" onerror="this.onerror=null;this.src='/public/img/404.jpg'" alt="Flutter开发问题解决"/></a><div class="content"><a class="title" href="/public/2020/12/11/Flutter/Flutter%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/" title="Flutter开发问题解决">Flutter开发问题解决</a><time datetime="2020-12-10T16:00:00.000Z" title="Created 2020-12-11 00:00:00">2020-12-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/public/2020/12/10/Flutter/Flutter%E5%9F%BA%E7%A1%80/" title="Flutter开发基础"><img src="/public/cover/img108.jpg" onerror="this.onerror=null;this.src='/public/img/404.jpg'" alt="Flutter开发基础"/></a><div class="content"><a class="title" href="/public/2020/12/10/Flutter/Flutter%E5%9F%BA%E7%A1%80/" title="Flutter开发基础">Flutter开发基础</a><time datetime="2020-12-09T16:00:00.000Z" title="Created 2020-12-10 00:00:00">2020-12-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/public/2020/07/06/Android/%E6%A1%86%E6%9E%B6/Retrofit/Retrofit%20%E4%BD%BF%E7%94%A8HTTPS%E8%AF%B7%E6%B1%82/" title="Retrofit使用HTTPS请求"><img src="/public/cover/img104.jpg" onerror="this.onerror=null;this.src='/public/img/404.jpg'" alt="Retrofit使用HTTPS请求"/></a><div class="content"><a class="title" href="/public/2020/07/06/Android/%E6%A1%86%E6%9E%B6/Retrofit/Retrofit%20%E4%BD%BF%E7%94%A8HTTPS%E8%AF%B7%E6%B1%82/" title="Retrofit使用HTTPS请求">Retrofit使用HTTPS请求</a><time datetime="2020-07-05T16:00:00.000Z" title="Created 2020-07-06 00:00:00">2020-07-06</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By Lucius Zhao</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/public/js/utils.js"></script><script src="/public/js/main.js"></script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    let initData = {
+      el: '#vcomment',
+      appId: 'A72Ef5fLfPYpBEIXmnvll5Dk-gzGzoHsz',
+      appKey: 'MpqbmnVQw07fwHSM7P8JBayK',
+      placeholder: 'Please leave your footprints',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'en',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: false,
+      path: window.location.pathname,
+    }
+
+    if (false) { 
+      initData.requiredFields= (''.split(','))
+    }
+    
+    if (false) {
+      const otherData = false
+      initData = Object.assign(initData, otherData)
+    }
+    
+    const valine = new Valine(initData)
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script></div></body></html>

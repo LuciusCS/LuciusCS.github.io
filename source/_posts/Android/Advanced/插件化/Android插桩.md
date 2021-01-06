@@ -1,5 +1,12 @@
-
-
+---
+title: "Android 插桩"
+description: "Android 插桩介绍"
+type: [Android]
+toc: true
+cover:  /cover/img99.jpg
+categories: Android
+date: 2020/6/15
+---
 
 AOP面向切面编程
 

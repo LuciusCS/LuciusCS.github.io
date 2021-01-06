@@ -1,10 +1,10 @@
 ---
 title: Materials Design 介绍与使用
-thumbnail: /thumbnail/img22.jpg
+cover: /cover/img22.jpg
 toc: true
 description: Materials Design 介绍与使用
 categories: Android
-tags: [Android]
+type: [Android]
 date: 2018/09/01
 ---
 

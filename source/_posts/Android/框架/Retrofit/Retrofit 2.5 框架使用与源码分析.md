@@ -1,10 +1,10 @@
 ---
 title: Retrofit 框架介绍与使用
-thumbnail: /thumbnail/img35.jpg
+cover: /cover/img35.jpg
 toc: true
 categories: Android
 description: Retrofit 框架介绍与使用
-tags: [Android]
+type: [Android]
 date: 2019/12/20
 ---
 

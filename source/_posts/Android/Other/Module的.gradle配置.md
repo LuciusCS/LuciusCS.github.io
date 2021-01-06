@@ -1,9 +1,9 @@
 ---
 title: gradle介绍
-thumbnail: /thumbnail/img17.jpg
+cover: /cover/img17.jpg
 toc: true
 description: gradle介绍
-tags: [Android]
+type: [Android]
 categories: Android
 date: 2019/08/10
 ---

@@ -1,9 +1,9 @@
 ---
 title: 将Hexo博客部署到云服务器上
-thumbnail: /thumbnail/img96.jpg
+cover:  /cover/img96.jpg
 toc: true
 description: 将Hexo博客部署到云服务器上
-tags: [Other]
+type: [Other]
 categories: Other
 date: 2020/03/25
 ---

@@ -1,9 +1,9 @@
 ---
 title: "归并排序"
 description: ""
-tags: [数据结构]
+type: [数据结构]
 
-thumbnail: /thumbnail/img44.jpg
+cover: /cover/img44.jpg
 toc: true
 categories: 数据结构
 date: 2017/08/04

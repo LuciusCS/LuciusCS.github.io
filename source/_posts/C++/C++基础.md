@@ -1,4 +1,12 @@
-
+---
+title: "C++ 基础"
+description: "C++开发基础"
+type: [Android]
+toc: true
+cover:  /cover/img107.jpg
+categories: Android
+date: 2017/9/25
+---
 
 ## 指针
 

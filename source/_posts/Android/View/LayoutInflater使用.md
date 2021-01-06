@@ -1,10 +1,10 @@
 ---
 title: LayoutInflater介绍与使用
-thumbnail: /thumbnail/img21.jpg
+cover: /cover/img21.jpg
 toc: true
 description: LayoutInflater介绍与使用
 categories: Android
-tags: [Android]
+type: [Android]
 date: 2018/10/22
 ---
 

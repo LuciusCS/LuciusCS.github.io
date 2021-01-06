@@ -1,9 +1,9 @@
 ---
 title: Android后台处理
-thumbnail: /thumbnail/img9.jpg
+cover: /cover/img9.jpg
 toc: true
 description: Android后台处理介绍
-tags: [Android]
+type: [Android]
 categories: Android
 date: 2019/09/30
 ---

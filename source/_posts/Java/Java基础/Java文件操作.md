@@ -1,8 +1,8 @@
 ---
 title: Java文件操作
-tags: [Java]
+type: [Java]
 description:  Java文件操作
-thumbnail: /thumbnail/img99.jpg
+cover:  /cover/img99.jpg
 toc: true
 categories: Java
 date: 2018/12/10

@@ -1,10 +1,10 @@
 ---
 title: Room数据库
-thumbnail: /thumbnail/img31.jpg
+cover: /cover/img31.jpg
 toc: true
 description: Room数据库
 categories: Android
-tags: [Android]
+type: [Android]
 date: 2018/11/05
 
 ---

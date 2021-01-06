@@ -1,8 +1,8 @@
 ---
 title: java 内部类
-tags: [Java]
+type: [Java]
 description: java 内部类
-thumbnail: /thumbnail/img53.jpg
+cover:  /cover/img53.jpg
 toc: true
 categories: Java
 ---

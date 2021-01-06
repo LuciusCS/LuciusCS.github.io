@@ -1,4 +1,12 @@
-
+---
+title: "Android 打包流程"
+description: "Android 打包流程"
+type: [Android]
+toc: true
+cover:  /cover/img97.jpg
+categories: Android
+date: 2020/5/30
+---
 
 ## Android 打包流程
 

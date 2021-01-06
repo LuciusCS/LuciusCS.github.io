@@ -1,10 +1,10 @@
 ---
 title: Kotlin Lambda表达式
-thumbnail: /thumbnail/img66.jpg
+cover:  /cover/img66.jpg
 toc: true
 description: Kotlin Lambda表达式
 categories: Kotlin
-tags: [Kotlin]
+type: [Kotlin]
 date: 2019/07/30
 ---
 

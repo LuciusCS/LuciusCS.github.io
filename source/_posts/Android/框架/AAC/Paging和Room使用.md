@@ -1,10 +1,10 @@
 ---
 title: Android框架组件paging+room的使用
-thumbnail: /thumbnail/img29.jpg
+cover: /cover/img29.jpg
 toc: true
 description: Android框架组件paging+room的使用
 categories: Android
-tags: [Android]
+type: [Android]
 date: 2018/12/05
 
 ---

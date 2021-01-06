@@ -1,9 +1,9 @@
 ---
 title: "Andoid组件化注意问题"
 description: "Andoid组件化注意问题"
-tags: [Android]
+type: [Android]
 toc: true
-thumbnail: /thumbnail/img83.jpg
+cover:  /cover/img83.jpg
 categories: Android
 date: 2020/01/08
 ---

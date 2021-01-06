@@ -1,10 +1,10 @@
 ---
 title: Java线程间通信
-thumbnail: /thumbnail/img63.jpg
+cover:  /cover/img63.jpg
 toc: true
 description: Java线程间通信
 categories: Java
-tags: [Java]
+type: [Java]
 date: 2018/10/05
 ---
 

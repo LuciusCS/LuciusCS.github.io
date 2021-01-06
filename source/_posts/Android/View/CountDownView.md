@@ -1,10 +1,10 @@
 ---
 title: 自定义View实现倒计时功能
-thumbnail: /thumbnail/img20.jpg
+cover: /cover/img20.jpg
 toc: true
 description: 自定义View实现倒计时功能
 categories: Android
-tags: [Android]
+type: [Android]
 date: 2018/06/20
 ---
 

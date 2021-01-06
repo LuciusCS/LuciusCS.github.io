@@ -1,8 +1,8 @@
 ---
 title: "线索化二叉树"
 description: ""
-tags: [数据结构]
-thumbnail: /thumbnail/img46.jpg
+type: [数据结构]
+cover:  /cover/img46.jpg
 toc: true
 categories: 数据结构
 date: 2017/08/08

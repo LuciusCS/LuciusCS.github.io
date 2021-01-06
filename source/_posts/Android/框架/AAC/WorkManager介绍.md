@@ -1,10 +1,10 @@
 ---
 title: WorkManager介绍与使用
-thumbnail: /thumbnail/img32.jpg
+cover: /cover/img32.jpg
 toc: true
 description: WorkManager介绍与使用
 categories: Android
-tags: [Android]
+type: [Android]
 date: 2018/12/20
 
 ---

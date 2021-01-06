@@ -1,9 +1,9 @@
 ---
 title: "Android Binder机制介绍"
 description: "Android Binder机制介绍"
-tags: [Android]
+type: [Android]
 toc: true
-thumbnail: /thumbnail/img84.jpg
+cover: /cover/img84.jpg
 categories: Android
 date: 2017/08/01
 ---

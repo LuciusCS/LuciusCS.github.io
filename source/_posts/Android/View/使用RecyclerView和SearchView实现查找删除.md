@@ -1,10 +1,10 @@
 ---
 title: 使用SearchView以及RecyclerView实现条目删选
-thumbnail: /thumbnail/img23.jpg
+cover: /cover/img23.jpg
 toc: true
 description: 使用SearchView以及RecyclerView实现条目删选
 categories: Android
-tags: [Android]
+type: [Android]
 date: 2018/07/30
 ---
 

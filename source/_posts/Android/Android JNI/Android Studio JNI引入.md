@@ -1,9 +1,9 @@
 ---
 title: Android中使用JNI
-thumbnail: /thumbnail/img3.jpg
+cover:  /cover/img3.jpg
 toc: true
 description: Android中使用JNI
-tags: [JNI]
+type: [JNI]
 categories: Android
 date: 2019/09/21
 ---

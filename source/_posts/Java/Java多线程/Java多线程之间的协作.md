@@ -1,10 +1,10 @@
 ---
 title: Java多线程之间的协作
-thumbnail: /thumbnail/img61.jpg
+cover:  /cover/img61.jpg
 toc: true
 description: Java多线程之间的协作
 categories: Java
-tags: [Java]
+type: [Java]
 date: 2019/02/15
 ---
 

@@ -1,10 +1,10 @@
 ---
 title: Dagger2 介绍与使用
-thumbnail: /thumbnail/img33.jpg
+cover: /cover/img33.jpg
 toc: true
 description: Dagger2 介绍与使用
 categories: Android
-tags: [Android]
+type: [Android]
 date: 2019/10/10
 ---
 

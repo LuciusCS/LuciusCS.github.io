@@ -1,8 +1,8 @@
 ---
 title: "排序算法"
 description: "插入排序"
-tags: [数据结构]
-thumbnail: /thumbnail/img38.jpg
+type: [数据结构]
+cover: /cover/img38.jpg
 toc: true
 categories: 数据结构
 date: 2017/07/31

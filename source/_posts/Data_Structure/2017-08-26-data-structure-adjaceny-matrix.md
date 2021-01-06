@@ -1,8 +1,8 @@
 ---
 title: "图的邻接矩阵表示"
 description: "图的邻接矩阵表示"
-tags: [数据结构]
-thumbnail: /thumbnail/img47.jpg
+type: [数据结构]
+cover:  /cover/img47.jpg
 toc: true
 categories: 数据结构
 

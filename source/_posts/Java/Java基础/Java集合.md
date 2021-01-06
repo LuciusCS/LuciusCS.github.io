@@ -1,8 +1,8 @@
 ---
 title: Java集合
-tags: [Java]
+type: [Java]
 description: Java集合
-thumbnail: /thumbnail/img56.jpg
+cover:  /cover/img56.jpg
 toc: true
 categories: Java
 ---

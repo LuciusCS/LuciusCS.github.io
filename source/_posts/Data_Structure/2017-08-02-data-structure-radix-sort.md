@@ -2,8 +2,8 @@
 
 title: "基数排序（Radix Sort）"
 description: "基数排序"
-tags: [数据结构]
-thumbnail: /thumbnail/img41.jpg
+type: [数据结构]
+cover: /cover/img41.jpg
 toc: true
 categories: 数据结构
 date: 2017/08/02

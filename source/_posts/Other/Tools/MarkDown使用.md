@@ -1,8 +1,8 @@
 ---
 title: MarkDown的使用
-tags: [Other]
+type: [Other]
 description:  MarkDown的使用
-thumbnail: /thumbnail/img95.jpg
+cover:  /cover/img95.jpg
 toc: true
 categories: Other
 date: 2018/06/30

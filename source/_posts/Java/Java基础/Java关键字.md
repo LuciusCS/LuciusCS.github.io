@@ -1,8 +1,8 @@
 ---
 title: Java关键字介绍
-tags: [Java]
+type: [Java]
 description: Java关键字介绍
-thumbnail: /thumbnail/img52.jpg
+cover:  /cover/img52.jpg
 toc: true
 categories: Java
 ---

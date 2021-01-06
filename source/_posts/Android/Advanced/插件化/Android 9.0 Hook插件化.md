@@ -1,9 +1,9 @@
 ---
 title: Android 9.0 Hook插件化
-thumbnail: /thumbnail/img4.jpg
+cover:  /cover/img4.jpg
 toc: true
 description: Android 9.0 Hook插件化
-tags: [Android]
+type: [Android]
 categories: Android
 date: 2020/03/02
 ---

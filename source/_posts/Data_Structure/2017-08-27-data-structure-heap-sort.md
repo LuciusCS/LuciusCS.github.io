@@ -2,8 +2,8 @@
 
 title: "堆排序"
 description: "堆排序"
-tags: [数据结构]
-thumbnail: /thumbnail/img50.jpg
+type: [数据结构]
+cover:  /cover/img50.jpg
 toc: true
 categories: 数据结构
 date: 2017/08/27

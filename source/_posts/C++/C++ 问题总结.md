@@ -1,3 +1,13 @@
+---
+title: "C++ 问题总结"
+description: "C++问题总结"
+type: [Android]
+toc: true
+cover:  /cover/img106.jpg
+categories: Android
+date: 2018/7/25
+---
+
 
 ## pthread和std::thread
 

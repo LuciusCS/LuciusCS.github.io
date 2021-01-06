@@ -1,8 +1,8 @@
 ---
 title: "Android Service介绍"
 description: "Android Service介绍"
-thumbnail: /thumbnail/img4.jpg
-tags: [Android]
+cover: /cover/img4.jpg
+type: [Android]
 toc: true
 categories: Android
 date: 2018/07/31

@@ -1,8 +1,8 @@
 ---
 title: String、StringBuffer、StringBuilder
-tags: [Java]
+type: [Java]
 description: String、StringBuffer、StringBuilder
-thumbnail: /thumbnail/img58.jpg
+cover:  /cover/img58.jpg
 toc: true
 categories: Java
 ---

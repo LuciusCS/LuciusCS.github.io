@@ -1,9 +1,9 @@
 ---
 title: Android JNI敏感信息保护
-thumbnail: /thumbnail/img2.jpg
+cover:  /cover/img2.jpg
 toc: true
 description: Android JNI敏感信息保护
-tags: [JNI,Android]
+type: [JNI,Android]
 categories: Android
 date: 2019/09/21
 ---

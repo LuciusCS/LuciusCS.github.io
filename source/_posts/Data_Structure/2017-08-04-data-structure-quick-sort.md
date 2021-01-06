@@ -1,8 +1,8 @@
 ---
 title: "快速排序"
 description: "快速排序3"
-tags: [数据结构]
-thumbnail: /thumbnail/img45.jpg
+type: [数据结构]
+cover: /cover/img45.jpg
 toc: true
 categories: 数据结构
 date: 2017/08/04

@@ -2,8 +2,8 @@
 
 title: "Huffman树的算法实现"
 description: "Huffman树的算法实现"
-tags: [数据结构]
-thumbnail: /thumbnail/img51.jpg
+type: [数据结构]
+cover:  /cover/img51.jpg
 toc: true
 categories: 数据结构
 date: 2017/08/28

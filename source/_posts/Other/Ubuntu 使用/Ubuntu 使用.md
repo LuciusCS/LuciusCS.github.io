@@ -1,8 +1,8 @@
 ---
 title: Ubuntu使用
-tags: [Ubuntu]
+type: [Ubuntu]
 description:  Ubuntu使用
-thumbnail: /thumbnail/img93.jpg
+cover:  /cover/img93.jpg
 toc: true
 categories: Android
 date: 2018/07/08
