@@ -139,7 +139,46 @@ date: 2018/04/06
 **在Databinding使用的过程中，布局文件需要按照规范来写，类的报名应全部为小写，否则会报出错误**
 
 
+## import androidx.databinding.DataBindingComponent 引入databinding出错
+
+解决方法：https://www.javaer101.com/en/article/66119.html
+
+```
+1、Add lines android.enableExperimentalFeatureDatabinding=true and android.databinding.enableV2=false to gradle.properties
+2、Sync project
+3、Build -> Clean Project
+4、Build -> Rebuild Project
+
+```
+
+但是加上去之后会显示，还需要进行删除,又出现了新的错误
+
+```
+
+Build file 'J:\SVN\PAD\Project\PadStation\flutter_module\.android\Flutter\build.gradle' line: 26
+
+A problem occurred evaluating project ':flutter'.
+> Failed to apply plugin [id 'com.android.internal.library']
+   > The option 'android.enableExperimentalFeatureDatabinding' is deprecated.
+     The current default is 'false'.
+     It was removed in version 4.0 of the Android Gradle plugin.
+     This property has no effect. The features plugin was removed in AGP 4.0.
 
 
+```
 
+多次尝试后，发现是由Flutter引起的，如果没有Flutter编译框则正常运行；过一段时间后又报红。
+
+最后发现是在navigation中destination的id多用了一个 '+' 号
+
+下面是正确写法
+
+```xml
+   <action
+            android:id="@+id/action_title_to_electricity"
+            app:destination="@id/goto_electricity_fragment" />
+
+```
+
+之前还有在 constraintlayout 的id多使用了 '+' 号，报出的也是Databinding的错；
 
