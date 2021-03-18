@@ -98,3 +98,17 @@ Tried calling: _debugTypesAreRight(Instance of 'FlutterReduxApp')
  Unsupported Modules Unsupported Modules Detected: Compilation is not supported for following modules: flutter_module. Unfortunately you can't have non-Gradle Java modules and Android-Gradle modules in one project.
 
 ```
+
+### 加载原生和Flutter混合项目时出现
+
+```
+A problem occurred evaluating settings 'PadStation'.
+> D:\Project\PadStation\flutter_module\.android\include_flutter.groovy 
+
+```
+
+
+### 运行Flutter项目 main.dart时一直卡在 Running Gradle task 'assembleDebug'
+
+解决办法：使用阿里云镜像
+
