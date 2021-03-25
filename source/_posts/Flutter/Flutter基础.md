@@ -42,3 +42,19 @@ yaml文件格式严格控制，需要注意其中的空格；
  #### Flutter手势
 
  触摸
+
+
+ #### Flutter中的页面管理
+
+ 在Flutter中通过Navigator来负责维护页面的堆栈管理
+
+ ```dart
+
+    压一个新的页面到屏幕上
+    Navigator.of(context).push
+    把路由顶层的页面移除
+    Navigator.of(context).pop
+
+ ```
+
+在构建应用的时候没有主动创建Navigator，它是由MaterialApp提供的，但是如果home，routes，onGenerateRoute和onUnknownRoute都为null，并且builder不为null，MaterialApp则不会创建任何Navigator。

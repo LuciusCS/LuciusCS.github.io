@@ -99,6 +99,7 @@ Tried calling: _debugTypesAreRight(Instance of 'FlutterReduxApp')
 
 ```
 
+<<<<<<< HEAD
 
 
 ###  Settings file 'J:\SVN\PAD\Project\PadStation\settings.gradle' line: 3
@@ -112,3 +113,18 @@ A problem occurred evaluating settings 'PadStation'.
 ```xml
  flutter pub get
 ```
+=======
+### 加载原生和Flutter混合项目时出现
+
+```
+A problem occurred evaluating settings 'PadStation'.
+> D:\Project\PadStation\flutter_module\.android\include_flutter.groovy 
+
+```
+
+
+### 运行Flutter项目 main.dart时一直卡在 Running Gradle task 'assembleDebug'
+
+解决办法：使用阿里云镜像
+
+>>>>>>> 13e09446af3fd370beeac39aafa8b559f3bf79d9
