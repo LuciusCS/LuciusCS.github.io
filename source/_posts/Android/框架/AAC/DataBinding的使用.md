@@ -182,3 +182,4 @@ A problem occurred evaluating project ':flutter'.
 
 之前还有在 constraintlayout 的id多使用了 '+' 号，报出的也是Databinding的错；
 
+注：'+' 引起Databinding出错也不一定是它的问题，可能是编译器的问题

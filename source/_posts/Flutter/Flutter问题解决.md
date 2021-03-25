@@ -98,3 +98,17 @@ Tried calling: _debugTypesAreRight(Instance of 'FlutterReduxApp')
  Unsupported Modules Unsupported Modules Detected: Compilation is not supported for following modules: flutter_module. Unfortunately you can't have non-Gradle Java modules and Android-Gradle modules in one project.
 
 ```
+
+
+
+###  Settings file 'J:\SVN\PAD\Project\PadStation\settings.gradle' line: 3
+
+A problem occurred evaluating settings 'PadStation'.
+> J:\SVN\PAD\Project\PadStation\flutter_module\.android\include_flutter.groovy (J:\SVN\PAD\Project\PadStation\flutter_module\.android\include_flutter.groovy)
+
+在flutter_module目录下不存在 .android
+
+运行
+```xml
+ flutter pub get
+```

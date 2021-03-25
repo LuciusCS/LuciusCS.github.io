@@ -241,6 +241,15 @@ date: 2019/04/23
 `MediatorLiveData`是`LiveData`的一个子类，可以将`LiveData`的数据源合并至一起；当任一`LiveData`数据源的数据发生改变后，都会触发`MediatorLiveData`的观察者。
 
 
-### 继承LiveData进行数据共享
+### Android Livedata Observer发生多次调用
+
+LiveData的Observer在Fragment中的应该，只注册一次
+
+
+
+
+
+
+
 
 
