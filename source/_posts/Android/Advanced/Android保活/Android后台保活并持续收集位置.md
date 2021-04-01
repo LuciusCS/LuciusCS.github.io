@@ -17,7 +17,7 @@
 
 ```
 
-*  第二部需要获取`ACCESS_BACKGROUND_LOCATION`权限，在获取时选择**始终允许**
+*  第二步需要获取`ACCESS_BACKGROUND_LOCATION`权限，在获取时选择**始终允许**
 
 ```xml
   <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"></uses-permission>
@@ -38,3 +38,20 @@
 百度地图定位显示 `Code: NetWork location failed because baidu location service can not decrypt the request query, please check the so file !`
 
 上面两个问题都是因为删掉了百度地图定位的一部分 so 文件
+
+
+### 在Android 10中如果缺少 `ACCESS_FINE_LOCATION`
+
+使用高德地图定位会报错：
+```xml
+缺少定位权限 请到http://lbs.amap.com/api/android-location-sdk/guide/utilities/errorcode/查看错误码说明,错误详细信息:定位权限被禁用,请授予应用定位权限#1201
+```
+
+使用百度地图定位会报错：
+
+```xml
+Longitude:4.9E-324   latitude4.9E-324
+Code: 62
+Code: Location failed beacuse we can not get any loc information!
+
+```
