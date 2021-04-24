@@ -142,3 +142,16 @@ date: 2018/04/06
 ## import androidx.databinding.DataBindingComponent 引入databinding出错
 
 解决方法：https://www.javaer101.com/en/article/66119.html
+
+
+
+### Databinding 转义字符
+
+```
+      <include
+                    android:id="@+id/include_line_chart1"
+                    layout="@layout/include_line_chart"
+                    app:name1="@{&quot;测试1&quot;}"
+                    ></include>
+
+```
