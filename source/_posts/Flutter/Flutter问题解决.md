@@ -99,16 +99,23 @@ Tried calling: _debugTypesAreRight(Instance of 'FlutterReduxApp')
 
 ```
 
-### 加载原生和Flutter混合项目时出现
+###  Settings file 'J:\SVN\PAD\Project\PadStation\settings.gradle' line: 3
 
-```
 A problem occurred evaluating settings 'PadStation'.
-> D:\Project\PadStation\flutter_module\.android\include_flutter.groovy 
+> J:\SVN\PAD\Project\PadStation\flutter_module\.android\include_flutter.groovy (J:\SVN\PAD\Project\PadStation\flutter_module\.android\include_flutter.groovy)
 
+在flutter_module目录下不存在 .android
+
+运行
+```xml
+ flutter pub get
 ```
-
 
 ### 运行Flutter项目 main.dart时一直卡在 Running Gradle task 'assembleDebug'
 
 解决办法：使用阿里云镜像
 
+
+### Caused by: org.gradle.process.internal.ExecException: Process 'command 'I:\DevelopmentKit\SDK\flutter\bin\flutter.bat'' finished with non-zero exit value -1073740791
+
+解决办法：需要设置一下flutter sdk路径
