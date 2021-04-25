@@ -31,3 +31,10 @@ tryLoadInstantRunDexFil()  173行
 
 4、耗时操作，就需要线程池：67行
 
+
+### 组件化过程主模块引用子模块代码失败
+
+子模块代码是Kotlin，需要添加Kotlin插件
+
+
+### Android组件化对于Application的处理
