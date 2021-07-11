@@ -38,3 +38,5 @@ tryLoadInstantRunDexFil()  173行
 
 
 ### Android组件化对于Application的处理
+
+https://juejin.cn/post/6844904031668666376

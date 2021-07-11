@@ -242,8 +242,23 @@ date: 2019/04/23
 
 
 ### Android Livedata Observer发生多次调用
+LiveData会一直向活跃的应用组件观察者发送数据，而使用Naviagtion组件时，导致了每次切换页面都会重走一次Fragment的生命周期，也就是处于“STARTED 或 RESUMED 状态”，导致了从其他页面切换回来之后，会触发LiveData的数据回调。
 
-LiveData的Observer在Fragment中的应该，只注册一次
+解决方式：
+1、合理管理ViewModel的范围，虽然ViewModel可以用来Fragment之间的数据共享，但如果业务范围只跟某个Fragment有关，那么最好就只给这个Fragment使用。这样Fragment在销毁或者创建的时候，也会销毁ViewModel与创建ViewModel，ViewModel携带的LiveData就是全新的不会在发送之前设置的数据
+
+2、使用一个google大神实现的一个复写类 SingleLiveEvent，其中的机制是用一个原子 AtomicBoolean记录一次setValue。在发送一次后在将AtomicBoolean设置为false，阻止后续前台重新触发时的数据发送
+
+
+
+### LiveData调用postValue时，值丢失
+
+
+
+
+### LiveData『数据倒灌』的问题
+
+
 
 
 
