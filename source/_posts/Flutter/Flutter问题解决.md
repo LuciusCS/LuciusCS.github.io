@@ -119,3 +119,17 @@ A problem occurred evaluating settings 'PadStation'.
 ### Caused by: org.gradle.process.internal.ExecException: Process 'command 'I:\DevelopmentKit\SDK\flutter\bin\flutter.bat'' finished with non-zero exit value -1073740791
 
 解决办法：需要设置一下flutter sdk路径
+
+
+
+
+### FAILURE: Build failed with an exception.
+
+* Where:
+Script 'I:\DevelopmentKit\SDK\flutter\packages\flutter_tools\gradle\flutter.gradle' line: 904
+
+* What went wrong:
+Execution failed for task ':flutter:compileFlutterBuildDebug'.
+> Process 'command 'I:\DevelopmentKit\SDK\flutter\bin\flutter.bat'' finished with non-zero exit value 1
+
+解决办法：重启
