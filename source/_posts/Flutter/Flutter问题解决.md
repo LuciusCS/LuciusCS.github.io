@@ -119,3 +119,59 @@ A problem occurred evaluating settings 'PadStation'.
 ### Caused by: org.gradle.process.internal.ExecException: Process 'command 'I:\DevelopmentKit\SDK\flutter\bin\flutter.bat'' finished with non-zero exit value -1073740791
 
 解决办法：需要设置一下flutter sdk路径
+
+
+
+
+### FAILURE: Build failed with an exception.
+
+* Where:
+Script 'I:\DevelopmentKit\SDK\flutter\packages\flutter_tools\gradle\flutter.gradle' line: 904
+
+* What went wrong:
+Execution failed for task ':flutter:compileFlutterBuildDebug'.
+> Process 'command 'I:\DevelopmentKit\SDK\flutter\bin\flutter.bat'' finished with non-zero exit value 1
+
+解决办法：重启
+
+
+###
+
+Failed to send crash report due to a network error: SocketException: OS Error: The semaphore timeout period has expired.
+, errno = 121, address = clients2.google.com, port = 56324
+Oops; flutter has exited unexpectedly: "FileSystemException: Failed to decode data using encoding 'utf-8', path = 'I:\DevelopmentKit\SDK\flutter\.pub-cache\hosted\pub.flutter-io.cn\android_intent-2.0.0\android\src\main\java\io\flutter\plugins\androidintent\AndroidIntentPlugin.java'".
+A crash report has been written to J:\SVN\PAD\Project\app_platform\flutter_04.log.
+
+```
+#0      _File._tryDecode (dart:io/file_impl.dart:564:7)
+#1      _File.readAsStringSync (dart:io/file_impl.dart:584:7)
+#2      ForwardingFile.readAsStringSync (package:file/src/forwarding/forwarding_file.dart:96:16)
+#3      ErrorHandlingFile.readAsStringSync.<anonymous closure> (package:flutter_tools/src/base/error_handling_io.dart:221:22)
+#4      _runSync (package:flutter_tools/src/base/error_handling_io.dart:573:14)
+#5      ErrorHandlingFile.readAsStringSync (package:flutter_tools/src/base/error_handling_io.dart:220:12)
+#6      AndroidPlugin._getSupportedEmbeddings (package:flutter_tools/src/platform_plugins.dart:137:53)
+#7      AndroidPlugin._supportedEmbedings (package:flutter_tools/src/platform_plugins.dart:91:70)
+#8      AndroidPlugin.toMap (package:flutter_tools/src/platform_plugins.dart:83:30)
+#9      _extractPlatformMaps (package:flutter_tools/src/plugins.dart:606:40)
+#10     _writeAndroidPluginRegistrant (package:flutter_tools/src/plugins.dart:622:5)
+#11     injectPlugins (package:flutter_tools/src/plugins.dart:1202:11)
+
+
+问题解决：
+
+```xml
+
+    flutter doctor -v
+    flutter clean
+    flutter pub cache repair
+    flutter pub get
+```
+
+
+## flutter2声名变量报 ”Non-nullable instance field ‘***‘ must be initialized.“
+  
+  因flutter2.0添加了Sound null safety空安全声明，目的是通过显式声明可能为null的变量，增加Dart语言的鲁棒性。
+
+因为Dart语言变量可以存null或者具体的值，因此在日常的开发中可能因为忘记赋值或者变量延迟赋值，导致访问某个变量时为null，导致程序运行时抛出exception。
+这个功能推出后，可以从源码级解决null异常导致的错误。
+简单的操作是在类型声明后添加？以标识这个变量是可以为null的
