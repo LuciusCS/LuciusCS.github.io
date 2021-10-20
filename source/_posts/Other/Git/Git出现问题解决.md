@@ -85,3 +85,13 @@ ssh-add
 
 ```
 
+
+### 问题三：远程服务器内存不够
+
+
+```
+GIT: remote: fatal: Out of memory, malloc failed (tried to allocate 190135255 bytes)
+
+```
+
+![](public/img/other/GitImg10.png)

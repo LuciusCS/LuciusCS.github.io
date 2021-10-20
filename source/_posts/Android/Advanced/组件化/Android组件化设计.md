@@ -73,3 +73,7 @@ https://github.com/1170762202/WanAndroid ： 组件化 + Arouter + Jetpack + Rxj
 每一个模块的网络请求单独设置，在ViewModel中进行实现
 
  
+
+ https://juejin.cn/post/6881116198889586701#heading-31
+
+ https://juejin.cn/post/6844903708908601352
