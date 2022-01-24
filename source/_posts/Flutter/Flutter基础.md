@@ -11,6 +11,8 @@ date: 2020/12/10
 # Flutter基础
 
 
+Flutter学习网站：https://guoshuyu.cn/home/wx/Flutter-1.html
+
 ## pubspec.yaml
 
 yaml文件格式严格控制，需要注意其中的空格； 
@@ -58,3 +60,7 @@ yaml文件格式严格控制，需要注意其中的空格；
  ```
 
 在构建应用的时候没有主动创建Navigator，它是由MaterialApp提供的，但是如果home，routes，onGenerateRoute和onUnknownRoute都为null，并且builder不为null，MaterialApp则不会创建任何Navigator。
+
+
+
+

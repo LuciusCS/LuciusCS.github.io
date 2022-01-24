@@ -173,10 +173,39 @@ Java中的Lambda表达式通常用`(argument)->(body)`的语法表示
 
 在`java.util.function`包中，包含多个类用于支持Java的函数式编程，使用`java.util.function.Predicate`函数式接口以及lambda表达式，可以向API方法添加逻辑，用更少的代码支持更的动态行为
 
+```
 
 
+public static void main(String[] args) {
+    List<String> languages = Arrays.asList("Java", "Scala", "C++", "Haskell", "Lisp");
+
+    System.out.println("Languages which starts with J :");
+    filter(languages, (str)->((String)str).startsWith("J"));
+
+    System.out.println("Languages which ends with a ");
+    filter(languages, (str)->((String)str).endsWith("a"));
+
+    System.out.println("Print all languages :");
+    filter(languages, (str)->true);
+
+    System.out.println("Print no language : ");
+    filter(languages, (str)->false);
+
+    System.out.println("Print language whose length greater than 4:");
+    filter(languages, (str)->((String)str).length() > 4);
+}
+
+public static void filter(List names, Predicate condition) {
+    names.stream().filter((name) -> (condition.test(name))).forEach((name) -> {
+        System.out.println(name + " ");
+    });
+}
 
 
+```
+
+
+### 
 
 
 

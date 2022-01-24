@@ -77,3 +77,8 @@ https://github.com/1170762202/WanAndroid ： 组件化 + Arouter + Jetpack + Rxj
  https://juejin.cn/post/6881116198889586701#heading-31
 
  https://juejin.cn/post/6844903708908601352
+
+
+ ### Android 组件化参考资料
+
+ https://zhuanlan.zhihu.com/p/261736134

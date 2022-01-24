@@ -175,3 +175,6 @@ public class MainActivity extends Activity{
 单个应用可用的最大值对应于 /system/build.prop 文件中的 dalvik.vm.heapgrowthlimit
 
 一次性创建大的数组或载入大的图片会导致OOM
+
+
+## 

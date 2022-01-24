@@ -195,7 +195,7 @@ date: 2019/04/23
     }
 
 ```
-`observeForever()`与`removeOberver()`方法需要成对进行使用，通过`observeForever()`方法添加观察者，该方法只能在主线程中调用;
+`observeForever()`与`removeOberver()`方法需要成对进行使用，通过`observeForever()`方法添加观察者，该方法只能在主线程中调用;如果在子线程中订阅会抛出异常；
 
 ```java
 
@@ -251,17 +251,169 @@ LiveData会一直向活跃的应用组件观察者发送数据，而使用Naviag
 
 
 
-### LiveData调用postValue时，值丢失
+### LiveData 数据丢失问题
+
+由于 LiveData 数据始终保持最新状态的特性，LiveData 只会保留最新一条数据到缓存中，在平时开发过程中，常常发现数据丢失的情况。
+
+ LiveData调用数据丢失会有多种情况，UI可见、UI不可见、同时调用两次`postValue(T value)`、同时调用两次`setValue(T value)`，先调用`postValue(T value)`后调用`setValue(T value)`，先调用`setValue(T value)`后调用`postValue(T value)`，等多种情况下都会有数据丢失的情况发生。
 
 
+#### 跟踪 `postValue` 源码
+
+```
+   protected void postValue(T value) {
+        boolean postTask;
+        synchronized (mDataLock) {
+            postTask = mPendingData == NOT_SET;
+            mPendingData = value;
+        }
+        if (!postTask) {
+            return;
+        }
+        ArchTaskExecutor.getInstance().postToMainThread(mPostValueRunnable);
+    }
+
+    private final Runnable mPostValueRunnable = new Runnable() {
+        @SuppressWarnings("unchecked")
+        @Override
+        public void run() {
+            Object newValue;
+            synchronized (mDataLock) {
+                newValue = mPendingData;
+                mPendingData = NOT_SET;
+            }
+            setValue((T) newValue);
+        }
+    };
+
+
+```
+`postValue` 执行了 `postToMainThread` 方法，实际上调用的是 `handler.post` 实现的线程切换，线程切换需要几十毫秒的时间开销，当连续发送多条数据时，由于第一条数据的 mPostValueRunnable 未执行完成，postTask 为 false ,后面的 postValue 只会执行 mPendingData = value 赋值操作，当mPostValueRunnable 的 run 方法执行后会拿到最新的 mPendingData 调用 setValue 进行数据分发，因此只会发送最后一条数据，导致前面几条数据丢失。
+
+
+#### 跟踪 setValue 源码
+
+```
+    @MainThread
+    protected void setValue(T value) {
+        assertMainThread("setValue");
+        mVersion++;
+        mData = value;
+        dispatchingValue(null);
+    }
+
+    void dispatchingValue(@Nullable ObserverWrapper initiator) {
+        if (mDispatchingValue) {
+            mDispatchInvalidated = true;
+            return;
+        }
+        mDispatchingValue = true;
+        do {
+            mDispatchInvalidated = false;
+            if (initiator != null) {
+                considerNotify(initiator);
+                initiator = null;
+            } else {
+                for (Iterator<Map.Entry<Observer<? super T>, ObserverWrapper>> iterator =
+                        mObservers.iteratorWithAdditions(); iterator.hasNext(); ) {
+                    considerNotify(iterator.next().getValue());
+                    if (mDispatchInvalidated) {
+                        break;
+                    }
+                }
+            }
+        } while (mDispatchInvalidated);
+        mDispatchingValue = false;
+    }
+    private void considerNotify(ObserverWrapper observer) {
+        if (!observer.mActive) {
+            return;
+        }
+        // Check latest state b4 dispatch. Maybe it changed state but we didn't get the event yet.
+        //
+        // we still first check observer.active to keep it as the entrance for events. So even if
+        // the observer moved to an active state, if we've not received that event, we better not
+        // notify for a more predictable notification order.
+        if (!observer.shouldBeActive()) {
+            observer.activeStateChanged(false);
+            return;
+        }
+        if (observer.mLastVersion >= mVersion) {
+            return;
+        }
+        observer.mLastVersion = mVersion;
+        observer.mObserver.onChanged((T) mData);
+    }
+
+```
+
+
+LiveData 只有在 Activity 的 onPause、onStart、onResume 状态时才会发送数据，在其他生命周期时只会保存数据到全局变量 mData 中，并且在 onDestroy 状态时会移出观察者，从而避免了出现内存泄漏的情况。并且在 ObserverWrapper 的 activeStateChanged 方法中当 mActive = true 时会调用 dispatchingValue 方法，即 UI 恢复可见状态时发送最新数据
 
 
 ### LiveData『数据倒灌』的问题
 
+LiveData的设计原则，在页面重建时，LiveData自动推送最后一次数据，而不必重新去向后台请求；LiveData自动推送最后一次数据条件是页面重建，也就是Activity生命周期经过了销毁到重建。
+
+如果生命周期变为非活跃状态，它会在再次变为活跃状态时接收最新的数据。例如，曾经在后台的 Activity 会在返回前台后立即接收最新的数据。
+
+
+LiveData内部对每次修改数据时都会对当前数据版本号进行++处理.而每次以生命周期绑定方式观察LiveData时,都会创建一个新的缓存观测对象,且该对象自己的版本号默认为-1.当生命周期>=STARTED时,如果LiveData存在旧数据会马上通知被观察者.此为LiveData的默认机制，
+
+在使用 Fragment 时，可能会出现 LiveData 多次订阅的情况，当 LiveData 中有数据时，在重新订阅后就会发送一次数据，然后有时我们一个数据只需要接收一次。只针对这个问题，有用户在 Stack Overflow 实现了一个复写类 SingleLiveEvent，其中的机制是用一个原子 AtomicBoolean 记录一次 setValue。在发送一次后在将 AtomicBoolean 设置为 false，阻止后续前台重新触发时的数据发送。
+
+```
+import androidx.annotation.MainThread;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
+
+import java.util.concurrent.atomic.AtomicBoolean;
+
+public class SingleLiveEvent<T> extends MutableLiveData<T> {
+    private final AtomicBoolean mPending = new AtomicBoolean(false);
+    @Override
+    public void observe(@NonNull LifecycleOwner owner, @NonNull final Observer<? super T> observer) {
+        super.observe(owner, new Observer<T>() {
+            @Override
+            public void onChanged(@Nullable T t) {
+                if (mPending.compareAndSet(true, false)) {
+                    observer.onChanged(t);
+                }
+            }
+        });
+    }
+
+    @MainThread
+    public void setValue(@Nullable T t) {
+        mPending.set(true);
+        super.setValue(t);
+    }
+
+    /**
+     * Used for cases where T is Void, to make calls cleaner.
+     */
+    @MainThread
+    public void call() {
+        setValue(null);
+    }
+}
+
+```
+
+
+官方防止数据倒灌 https://github.com/android/architecture-samples/blob/dev-todo-mvvm-live/todoapp/app/src/main/java/com/example/android/architecture/blueprints/todoapp/SingleLiveEvent.java
+
+美团 LivedataBus  https://tech.meituan.com/2018/07/26/android-livedatabus.html
 
 
 
 
+### LiveData 的 observeForever 和 removeObserver 方法要配套使用
+
+在某些情况下，我们需要在页面不可见时也想收到数据，则会使用 observeForever 订阅被观察者对象，这时观察者对象不会自动移除引用，会导致内存泄漏问题，就需要我们在对应的生命周期下调用 removeObserver 方法移除引用。
 
 
 
