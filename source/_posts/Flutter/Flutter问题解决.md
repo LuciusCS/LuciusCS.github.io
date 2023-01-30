@@ -175,3 +175,25 @@ A crash report has been written to J:\SVN\PAD\Project\app_platform\flutter_04.lo
 因为Dart语言变量可以存null或者具体的值，因此在日常的开发中可能因为忘记赋值或者变量延迟赋值，导致访问某个变量时为null，导致程序运行时抛出exception。
 这个功能推出后，可以从源码级解决null异常导致的错误。
 简单的操作是在类型声明后添加？以标识这个变量是可以为null的
+
+
+## 页面跳转后第二个页面没有返回按钮
+
+https://www.jianshu.com/p/1109d11f2f12
+
+
+https://blog.csdn.net/weixin_30321709/article/details/97508106
+
+### Exception: CocoaPods not installed or not in valid state.
+
+已经安装 CocoaPods 之后，运行安装到iphone显示该错误
+
+解决方法
+
+```
+
+chmod +x /Applications/Android\ Studio.app/Contents/bin/printenv、
+///使用命令行打开
+open /Applications/Android\ Studio.app
+
+```
