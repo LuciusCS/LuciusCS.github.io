@@ -1,0 +1,5 @@
+
+
+feign的使用
+
+主要是基于SpringMVC的注解来声明远程调用的信息，feign为了省事采用SpringMVC注解
