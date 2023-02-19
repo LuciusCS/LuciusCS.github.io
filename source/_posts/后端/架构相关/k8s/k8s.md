@@ -105,7 +105,7 @@ kubeadm version
 ### 安装命令 tab 提示
 
 ```
-    apt-install bash-completion
+    apt install bash-completion
     source <(kubeadm completion bash)
     source <(kubectl completion bash)
     source <(crictl completion bash)
@@ -177,17 +177,20 @@ curl https://raw.githubusercontent.com/projectcalico/calico/v3.24.1/manifests/ca
 
 kubectl apply -f calico.yaml
 
+
+
+
 ```
 
 ### 安装dashboard
 
-网址：https://github.com/kubernetes/dashboard
+网址：https://github.com/kubernetes/dashboard/tree/v2.7.0/aio/deploy
 ```
    vim recommended.yaml
    kubectl apply -f recommended.yaml
-   get service --namespace kubernetes-dashboard
+   kubectl get service --namespace kubernetes-dashboard
    kubectl --namespace kubernetes-dashboard edit service kubernetes-dashboard
-   ///修改 nodePort 30003
+   ///添加 nodePort 30003
    ///修改 type NodePort
 
 ```
@@ -203,6 +206,41 @@ kubectl apply -f admin-user.yaml
 kubectl --namespace kubernetes-dashboard get serviceaccounts
 kubectl --namespace kubernetes-dashboard describe serviceaccounts admin-user
 kubectl --namespace kubernetes-dashboard create token admin-user
+
+
+```
+
+/// kubernetes-dashboard 访问地址
+
+```
+https://192.168.2.16:30003/
+```
+
+### Harbor 搭建
+
+网址：https://zhuanlan.zhihu.com/p/547358630
+
+#### 安装 docker-compose
+
+
+### K8S重启pod
+
+```
+kubectl replace --force -f youpod.yaml
+```
+
+
+k8s暂停一个服务：
+```
+kubectl scale --replicas=0 deployment/[deployment]  -n [namespace]（如要恢复设置参数--replicas=1即可），操作后该[deployment]对应的[pod]就停止了，服务就暂停了
+```
+
+
+### K8S输出pod文件
+
+```
+
+   kubectl logs auth-685474bf87-bcvmb > log
 
 
 ```
