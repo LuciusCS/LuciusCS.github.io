@@ -67,3 +67,12 @@ journalctl -xefu kubelet
 
 ```
 
+
+
+### k8s pod运行失败，查看日志
+
+```
+kubectl logs <pod-name>
+kubectl logs --previous <pod-name>
+
+```
