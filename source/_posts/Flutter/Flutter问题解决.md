@@ -197,3 +197,26 @@ chmod +x /Applications/Android\ Studio.app/Contents/bin/printenv、
 open /Applications/Android\ Studio.app
 
 ```
+
+
+
+### Module 'camera_avfoundation' not found
+
+
+```
+Parse Issue (Xcode): Module 'camera_avfoundation' not found
+/Users/eastsoft/Documents/Development/ESProject/app_new/es_platform/ios/Runner/GeneratedPluginRegistrant.m:11:8
+
+Could not build the application for the simulator.
+Error launching application on iPhone 11 Pro Max.
+
+```
+
+* scheme 需要进行对应，debug 模式下就要用debug模式的scheme, 而不能用release模式
+* 在虚拟机环境下需要配置  Architectures  -> Excluded Architectures -> Any IOS Simulator  ->  i386  arm64
+* 需要在 XCode 打开 Runner.xcworkspace 而不是 Runner.xcodepro
+
+
+参考资料  https://www.jianshu.com/p/c10632015e02
+         https://github.com/flutter/flutter/issues/41033
+         https://blog.devlxx.com/2021/12/02/M1设备的Xcode编译问题深究/
