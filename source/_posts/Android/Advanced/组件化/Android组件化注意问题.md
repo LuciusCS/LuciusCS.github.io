@@ -40,3 +40,25 @@ tryLoadInstantRunDexFil()  173行
 ### Android组件化对于Application的处理
 
 https://juejin.cn/post/6844904031668666376
+
+
+//gradle.properties
+#组件独立调试开关, 每次更改值后要同步工程
+isModule = false
+//build.gradle
+//注意gradle.properties中的数据类型都是String类型，使用其他数据类型需要自行转换
+if (isModule.toBoolean()){
+    apply plugin: 'com.android.application'
+}else {
+    apply plugin: 'com.android.library'
+}
+
+
+
+
+DFDL43_240827(240827)_V1.2(1.2)(1).bin
+
+dimpe_v1.1_d240526.bin
+
+00FJ-240516-v1.1
+

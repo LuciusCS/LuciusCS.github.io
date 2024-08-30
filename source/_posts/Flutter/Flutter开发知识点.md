@@ -42,3 +42,5 @@ https://developer.school/flutter-using-json_serializable-to-serialise-dart-class
 
 
 
+
+### Flutter keepAlive是什么属性

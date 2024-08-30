@@ -73,3 +73,39 @@ MethodChannel 本质上是一个双向通道，它允许Flutter和Android之间�
 Flutter可以通过该通道向Android发送方法调用并接收结果。
 Android也可以通过同一个通道向Flutter发送方法调用并接收结果。
 这种对等性使得Flutter和Android之间的交互更加自然和对称，无论是哪一方发起调用，都可以使用相同的通道进行通信。
+
+
+
+关键网址
+
+http://gityuan.com/2019/08/10/flutter_channel/
+
+
+1.2 Channel类说明
+1) Flutter提供了三种不同的Channel：
+
+BasicMessageChannel：传递字符串和半结构化数据
+MethodChannel：方法调用
+EventChannel：数据流的通信
+2) 方法编解码MethodCodec有两个子类：
+
+StandardMethodCodec
+JSONMethodCodec
+3) 消息编解码MessageCodec有4个子类：
+
+StandardMessageCodec
+StringCodec
+JSONMessageCodec
+BinaryCodec
+4) BinaryMessages
+
+_handlers的数据类型为map，其中以MethodChannel的name为key，以返回值为Future的Function为value。
+
+
+
+
+### 这些CHANNEL的调用只能放在MainActivity中吗
+
+
+
+

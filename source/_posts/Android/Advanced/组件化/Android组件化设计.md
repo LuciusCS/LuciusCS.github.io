@@ -82,3 +82,16 @@ https://github.com/1170762202/WanAndroid ： 组件化 + Arouter + Jetpack + Rxj
  ### Android 组件化参考资料
 
  https://zhuanlan.zhihu.com/p/261736134
+
+
+
+ //gradle.properties
+#组件独立调试开关, 每次更改值后要同步工程
+isModule = false
+//build.gradle
+//注意gradle.properties中的数据类型都是String类型，使用其他数据类型需要自行转换
+if (isModule.toBoolean()){
+    apply plugin: 'com.android.application'
+}else {
+    apply plugin: 'com.android.library'
+}
