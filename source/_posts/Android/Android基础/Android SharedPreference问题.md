@@ -1,0 +1,15 @@
+
+
+
+
+
+https://juejin.cn/post/7139342752080199693#heading-12
+
+
+https://www.toutiao.com/article/6961956479972737569/?app=news_article&timestamp=1704418346&use_new_style=1&req_id=2024010509322556081B23AADEC551994B&group_id=6961956479972737569&wxshare_count=1&tt_from=weixin&utm_source=weixin&utm_medium=toutiao_android&utm_campaign=client_share&share_token=d887212a-a6dc-4ce6-aa7b-4e38c18eea25&source=m_redirect&wid=1727579664511
+
+
+要完全去杜绝SharedPreferences引起的anr,我们可以去全盘切换成mmkv,为什么要这样做呢，是因为我们经常在二方库、三方库里发现使用SharedPreferences的情况，那理论上就可能存在导致anr的问题，因为这些是我们没法规范和整治的。所以一劳永逸的做法就是，直接用ASM字节码插桩替换掉 getSharedPreferences调用的地方为我们自己创建的代理就可以了。
+但是别忘了处理好getAll
+还有一种方案是替换为Jetpack的DataStore，这种更为友好，综合前面看Google填上QueuedWork的这个Hook点，官方是不建议我们之前那样去做的。同时他们也没去主动解决SharedPreferences带来的潜在问题，我猜测是有点想让你主动放弃，选择新框架的意思。
+

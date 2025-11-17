@@ -18,3 +18,11 @@
 
 
 https://www.kancloud.cn/alex_wsc/flutter_demo/1566683
+
+
+
+
+
+开源库中的 add_to_appadd_to_app
+https://github.com/flutter/samples.git
+

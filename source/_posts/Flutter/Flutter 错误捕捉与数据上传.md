@@ -97,3 +97,21 @@ Flutter监测内容
 2、UI卡顿
 3、线上日志
 4、网络监控
+
+
+
+12.如何统一管理错误页面？
+参考答案：
+在main方法修改ErrorWidget.builder 来自定义一个属于自己的Widget；
+如：
+
+```
+  ErrorWidget.builder = (FlutterErrorDetails flutterErrorDetails) {
+    debugPrint(flutterErrorDetails.toString());
+    return new Center(child: new Text("App错误，快去反馈给作者!"));
+  };
+
+
+  ```
+
+

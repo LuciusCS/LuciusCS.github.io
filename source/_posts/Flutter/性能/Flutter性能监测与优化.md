@@ -178,3 +178,14 @@ flutter analyze：分析项目中的代码，查找潜在的问题，包括可�
 
 总结
 尽管Flutter没有像JankStats那样的专用工具，但Flutter提供了一系列工具和方法来帮助开发者监控和优化应用的性能。这些工具包括性能叠加层、Flutter DevTools、Timeline API、以及其他性能分析方法。通过合理使用这些工具，开发者可以有效地识别和解决应用中的卡顿问题。
+
+
+
+开源库：
+
+https://github.com/allenymt/flutter_fps
+
+flutter_fps
+
+
+performance_fps
